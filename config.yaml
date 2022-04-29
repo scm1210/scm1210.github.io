@@ -14,12 +14,15 @@ permalinks:
   post: /:year/:month/:day/:slug/
 menu:
   main:
+    - name: Steven Mesquiti
+      url: /StevenMesquiti
+      weight: 1
     - name: About
       url: /about/
     - name: GitHub
-      url: https://github.com/rstudio/blogdown
+      url: https://github.com/scm1210
     - name: Twitter
-      url: https://twitter.com/rstudio
+      url: https://twitter.com/StevenMesquiti
 params:
   MathJaxCDN: //cdnjs.cloudflare.com/ajax/libs
   MathJaxVersion: 2.7.5

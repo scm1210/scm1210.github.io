@@ -1,6 +1,16 @@
 ---
 date: "2016-05-05T21:48:51-07:00"
-title: About
+title: Steven Mesquiti 
 ---
 
-This is a "hello world" example website for the [**blogdown**](https://github.com/rstudio/blogdown) package. The theme was forked from [@jrutheiser/hugo-lithium-theme](https://github.com/jrutheiser/hugo-lithium-theme) and modified by [Yihui Xie](https://github.com/yihui/hugo-lithium).
+
+
+
+
+#### Lab Manager & Research Coordinator 
+#### [Communication Neuroscience Lab](https://www.asc.upenn.edu/research/centers/communication-neuroscience-lab)
+#### [Annenberg School for Communication](https://www.asc.upenn.edu/research/centers/communication-neuroscience-lab)
+#### [University of Pennsylvania](https://www.asc.upenn.edu/research/centers/communication-neuroscience-lab)
+
+
+I am currently a co-lab manager and research coordinator for the Communication Neuroscience Lab at the University of Pennsylvania. I hold a B.A. in Psychology from Southwestern University and a M.A. in Psychological Research from Texas State University. My past research has looked at cross-cultural differences in prosocial lying, how self-regulation (e.g., grit and implicit theories) predicts subjective well-being, and the use of computerized text analysis to measure behavior change. Broadly, I am interested in learning more about multidisciplinary approaches to study self-regulation and behavior change, as well as the application of Bayesian Inference to social science.

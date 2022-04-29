@@ -1,1 +1,26 @@
-theme: jekyll-theme-slate
+baseurl: /
+title: Steven Mesquiti, M.A. 
+theme: hugo-lithium
+ignoreFiles:
+  - \.Rmd$
+  - \.Rmarkdown$
+  - _cache$
+  - \.knit\.md$
+  - \.utf8\.md$
+
+menu:
+  main:
+    - name: Steven Mesquiti 
+      url: /StevenMesquiti/
+      
+main:
+    - name: About
+      url: /about/
+      
+main:
+    - name: My Github
+      url: /https://github.com/scm1210/
+      
+main:
+    - name: My Twitter
+      url: /https://twitter.com/StevenMesquiti/
