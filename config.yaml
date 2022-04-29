@@ -15,14 +15,17 @@ permalinks:
 menu:
   main:
     - name: Steven Mesquiti
-      url: /StevenMesquiti
+      url: https://scm1210.github.io
       weight: 1
     - name: About
       url: /about/
+      weight: 2
     - name: GitHub
       url: https://github.com/scm1210
+      weight: 3
     - name: Twitter
       url: https://twitter.com/StevenMesquiti
+      weight: 4
 params:
   MathJaxCDN: //cdnjs.cloudflare.com/ajax/libs
   MathJaxVersion: 2.7.5
