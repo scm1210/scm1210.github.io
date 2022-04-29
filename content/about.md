@@ -3,7 +3,7 @@ date: "2016-05-05T21:48:51-07:00"
 title: Steven Mesquiti, M.A.
 ---
 
-![Steven Mesquiti](https://github.com/scm1210/scm1210.github.io/blob/main/Mesquiti%2BSteven_headshot.png)
+![Steven Mesquiti](https://github.com/scm1210/scm1210.github.io/blob/main/Steven_headshot.png)
 
 #### Lab Manager & Research Coordinator 
 #### [Communication Neuroscience Lab](https://www.asc.upenn.edu/research/centers/communication-neuroscience-lab)

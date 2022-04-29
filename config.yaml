@@ -26,13 +26,6 @@ menu:
     - name: Twitter
       url: https://twitter.com/StevenMesquiti
       weight: 4
-      
-params:
-  logo:
-    url = "https://github.com/scm1210/scm1210.github.io/blob/main/Mesquiti%2BSteven_headshot.png"
-    width = 50
-    height = 50
-    alt = "Logo"
 params:
   MathJaxCDN: //cdnjs.cloudflare.com/ajax/libs
   MathJaxVersion: 2.7.5
