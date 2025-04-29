@@ -1,6 +1,6 @@
 ---
 title: "CV"
-author: "Steven Mesquiti, M.A."
+author: "Steven Mesquiti"
 output: pdf_document
 # header-includes:
 #   - \usepackage{enumitem}
@@ -8,6 +8,7 @@ output: pdf_document
 #   - \usepackage{geometry}
 geometry: margin=1in
 fontsize: 11pt
+title-block-banner: true
 ---
 
 # Steven Mesquiti, M.A.
