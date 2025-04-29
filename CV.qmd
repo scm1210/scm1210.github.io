@@ -1,0 +1,119 @@
+---
+title: "CV"
+author: "Steven Mesquiti, M.A."
+output: pdf_document
+# header-includes:
+#   - \usepackage{enumitem}
+#   - \usepackage{hyperref}
+#   - \usepackage{geometry}
+geometry: margin=1in
+fontsize: 11pt
+---
+
+# Steven Mesquiti, M.A.
+
+Department of Psychology\
+Princeton University\
+sm9518\@princeton.edu
+
+------------------------------------------------------------------------
+
+## Education
+
+**Princeton University** (2024-Present)\
+Ph.D. in Psychology\
+Advisor: Dr. Erik Nook
+
+**Texas State University** (2019-2022)\
+M.A. in Psychological Research\
+Advisor: Dr. Randall Osborne
+
+**Southwestern University** (2015-2019)\
+B.A. in Psychology (Minor: Spanish)
+
+------------------------------------------------------------------------
+
+## Publications
+
+-   Denotes shared first authorships
+
+**Mesquiti, S., Cosme, D., Nook, E.C., Falk E.B., Burns S.** (Under Review). *Predicting Psychological and Subjective Well-being through Language-based Assessments of Well-being.*
+
+**Mesquiti, S., Seraj, S., Weyland, A. H., Ashokkumar, A., Boyd, R. L., Mihalcea, R., & Pennebaker, J. W.** (2025). *Analysis of social media language reveals the psychological interaction of three successive upheavals.* *Scientific Reports, 15*(1), 5740. [DOI](https://doi.org/10.1038/s41598-025-89165-z).
+
+**Kang, Y., Mesquiti, S., Baik, E.S., & Falk, E. B.** (2024). *Empathy and Helping: The Role of Affect in Response to Others’ Suffering.* *Scientific Reports, 15*, 3256 [DOI](https://doi.org/10.1038/s41598-025-87221-2).
+
+**Mesquiti, S., Seraj, S.** (2023). *The Psychological Impacts of the COVID-19 Pandemic on Business Leadership.* *PLOS One.* [DOI](https://doi.org/10.1371/journal.pone.0290621)
+
+------------------------------------------------------------------------
+
+## Works in Progress
+
+-   **Kang, Y., Mesquiti, S. & Falk, E. B.** (in prep). *The Effect of Compassion Training on Emotional Support Giving.*
+-   **Mesquiti, S. & Nook, E.C.** (in prep.) *The Implication of Artificial Intelligence on Mental Health.*
+-   **Mesquiti, S., Stade E. C., Hull, T.D., Nook, E. C.** (in prep.) *Tracking Shifts in the Latent Meaning of "I" and Its Connection to Mental Health Outcomes in a Large Therapy Dataset.*
+
+------------------------------------------------------------------------
+
+## Funding
+
+-   **2025**: New Jersey Health Foundation: *Investigating Racial Equity of Psycholinguistic Measures of Mental Health* (PI: Erik C. Nook; \$34,867; \# PC 42-25)
+-   **2022**: Northwestern University Kellogg School of Management Behavioral Research Fellowship (Finalist \[Declined\]; \$35,000)
+-   **2020**: Texas State University Thesis Research Support Fellowship (\$1,070)
+
+------------------------------------------------------------------------
+
+## Honors & Awards
+
+-   **2024-25**: Princeton University William G. Bowen Merit Fellowship
+-   **2020-21**: Texas State University Graduate College of Liberal Arts Scholarship
+-   **2021**: Masters in Psychological Research Graduate Competitive Scholarship
+-   **2019**: Texas State University Graduate College of Education Scholarship
+-   **2015**: Southwestern University Mood Scholar
+
+------------------------------------------------------------------------
+
+## Invited Talks
+
+-   **2025**: *Tracking Shifts in the Latent Meaning of "I" and Its Connection to Mental Health Outcomes in a Large Therapy Dataset.* Social Psychology Seminar, Princeton University, Princeton, NJ.
+-   **2022**: *Within-and between-person effects of autonomous motivation on goal pursuit.* Duckworth Lab, Princeton University.
+-   **2021**: *The whole truth and nothing but the truth: an analysis of the variability of prosocial lying in the Netherlands and the United States.* Texas State University Psychology Department Brown Bag.
+-   **2021**: *The truth about prosocial lying: Cross-cultural differences in prosocial lying.* Southwestern Psychological Association (Virtual).
+
+------------------------------------------------------------------------
+
+## Conference Presentations
+
+\* Denotes Undergraduate Mentored
+
+-   **Mesquiti, S. C., Nook, E.** (2024, March). *Investigating Racial Sensitivity in Language-Based Assessments of Mental Health.* Poster presented at the annual meeting for the Society for Affective Science.
+-   **Mesquiti, S. C., Cosme, D., Nook, E., Falk E., Burns S.** (2025, February). *Predicting Well-being with Language-based Assessments.* Poster presented at the annual meeting for the Society for Personality and Social Psychology.
+-   **Mesquiti, S. C., Burns S., Cosme, D., Falk E.** (2024, February). *Enhancing Psychological Well-being Prediction Through Natural Language Analysis.* Poster presented at the annual meeting for the Society for Personality and Social Psychology.
+-   **Mesquiti, S. C., Mobasser, A., Falk, E., Pfeifer, J. H., & Cosme, D** (2023, February). *Within-and between-person effects of autonomous motivation on goal pursuit.* Poster submitted to the annual meeting for the Society for Personality and Social Psychology.
+-   **Spehar, A.,\* Muzekari, B., Butler, T. B., Mesquiti, S.C., Cosme, D., Falk, E.** (2022, August). *Relating Collective and Self-Focus Language in Social Support with Self-Reported Depression.* Poster presented at the annual University of Pennsylvania MindCORE student show case. Philadelphia, Pa. [Github](https://github.com)
+-   **Andrews, M. E., Cooper, N., Paul, A., Johnson, D., Muzekari, B., Mesquiti, S.C., Torres, O., Resnick, A., Scholz, C., Mattan, B., Barnet, I., Henriksen, L., Strasser, A., & Falk, E. B.** (2023, May). *Compounding effect of microaggressions and exposure to tobacco advertising on stress and smoking.* Annual conference of the International Communication Association, Toronto, Ontario, Canada.
+-   \*\*Santana, C\*., Mesquiti, S.C., Carreras-Tartak, J., Kang, Y., Falk, E.\*\* (2022, August). *Relating Collective and Self-Focus Language in Social Support with Self-Reported Depression.* Poster presented at the annual University of Pennsylvania MindCORE student show case. Philadelphia, Pa.
+-   \*\*Woolfolk, Z\*., Cosme, D., Butler, T., Carreras-Tartak, J., Mesquiti, S.C., Kang, Y., Falk, E.\*\* (2022, August). *Racial Homophily in Emotion Sharing Network.* Poster presented at the annual University of Pennsylvania MindCORE student show case. Philadelphia, Pa.
+-   **Mesquiti, S.C.** (2022, April). *Exploring Cognitive Language of CEOs during the COVID-19 Pandemic Over Time and its Connection to Decision Processing.* Poster presented at the annual Texas State University Psychology Department Showcase. San Marcos, Tx.
+-   **Mesquiti, S.C., Tsai, J. L., Marion, J., Olivarez, O., Blackburn, K., Durland, M.** (2022, February). *The linguistic lifespan of a CEO: Exploring the way cognitive language unfolds over time and its connection to decision processing.* Poster presented at the annual meeting for the Society for Personality and Social Psychology.
+-   **Haskard-Zolnierek, K., Mesquiti, S.C., & Snyder, M.** (2022, February). *Associations between patient satisfaction and physician and nurse word use.* Poster presented at the annual meeting for the Society for Personality and Social Psychology (virtual).
+-   **Mesquiti, S.C., Kok, R., Clegg, J. M., Warnell, K. R.** (2021, April). *The truth behind prosocial lies: A linguistic analysis of lying to be polite.* Poster presented at the annual Texas State University Psychology Department Showcase. San Marcos, Tx.
+-   **Mesquiti, S.C., Domer, K., Warnell, K. R., Clegg, J. M.** (2021, February). *More than a disappointing gift: Examining variability in when and how we prosocially lie.* Poster presented at the annual meeting for the Society for Personality and Social Psychology (virtual).
+-   **Domer, K., Mesquiti, S.C., Warnell, K. R., Clegg, J. M.** (2021, February). *More than a social norm: Examining who we lie to and what we lie about.* Poster presented at the annual meeting for the Society for Personality and Social Psychology (virtual).
+-   **Mesquiti, S.C.** (2019, April). *Internship at the Central Texas Treatment Center.* Poster presented at Southwestern University Creative Works Symposium, Georgetown, Tx.
+
+------------------------------------------------------------------------
+
+## References
+
+-   **Emily Falk**\
+    Professor of Communication, Psychology, Marketing, and OID (Operations, Informatics, and Decisions), Vice Dean of the Annenberg School for Communication, University of Pennsylvania\
+    efalk\@falklab.org
+
+-   **James Pennebaker**\
+    Professor Emeritus of Psychology, The University of Texas at Austin\
+    pennebaker\@utexas.edu
+
+-   **Erik Nook**\
+    Assistant Professor of Psychology, Princeton University\
+    enook\@princeton.edu

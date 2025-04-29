@@ -1,0 +1,45 @@
+---
+title: "Steven Mesquiti"
+image: profile.jpg
+about:
+  template: trestles
+  links:
+    - text: CV
+      href: CV.qmd
+    - text: Bluesky
+      href: https://bsky.app/profile/smesquiti.bsky.social
+    - icon: google scholar
+      text: Google Scholar
+      href: https://scholar.google.com/citations?user=jMPn4hoAAAAJ&hl=en&inst=10749622055976013885
+    - icon: github
+      text: GitHub
+      href: https://github.com/scm1210
+    - icon: envelope
+      text: Email
+      href: mailto:sm9518@princeton.edu
+fontsize: 11pt
+---
+
+My name is Steven Mesquiti! I'm a [first-year](https://lemolab.princeton.edu/people/steven-mesquiti) in the Department of Psychology at Princeton University advised by [Erik Nook](https://lemolab.princeton.edu/people/erik-c-nook-phd).
+
+I study how we can use Natural Language Processing techniques and Artifical Intelligence to explain, predict, and improve people's Mental Health.
+
+Before Princeton, I worked as a Lab Manager for Emily Falk in the [Communication Neuroscience Lab](https://www.asc.upenn.edu/research/centers/communication-neuroscience-lab) at the Univeristy of Pennsylvania. Along the way, I have worked with excessively generous scientists like Jamie Pennebaker, Lyle Ungar, & Angela Duckworth pursing questions at the nexus of Computer Science, Computational Linguistics, and Psychology
+
+## 🧠 Research Interests
+
+-   Natural Language Processing
+-   Well-being
+-   Artificial Intelligence
+-   Language-based Assessments of Mental Health
+
+---
+
+## 🎓 Education
+
+| Degree | Field | Year(s) | Institution |
+|--------|-------|---------|-------------|
+| Ph.D.  | Psychology | 2024–Present | Princeton University |
+| M.A.   | Psychological Research | 2019–2022 | Texas State University |
+| B.A.   | Psychology (Minor: Spanish) | 2015–2019 | Southwestern University |
+

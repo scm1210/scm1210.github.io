@@ -1,0 +1,172 @@
+/* Root variables for light mode (default) */
+:root {
+  --q-primary: #fff;                   /* Primary color: white */
+  --q-secondary: #E77500;              /* Secondary color: Princeton orange */
+  --q-font-family-base: 'Arial', sans-serif;  /* Base font */
+  --q-heading-font-family: 'Georgia', serif;  /* Heading font */
+  --q-text-color: #222222;             /* Default text color (dark gray for readability) */
+  --q-background-color: #fff;          /* Background color */
+  --q-accent: #b3b3b3;                 /* Accent color: warm Princeton gray */
+  --q-accent-light: #fff4e6;           /* Light accent for backgrounds/highlights */
+  --q-border-radius: 8px;              /* Consistent rounded corners */
+}
+
+/* Dark mode variables */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --q-primary: #121212;              /* Dark primary background */
+    --q-secondary: #FF7F00;            /* Dark secondary (bright orange) */
+    --q-font-family-base: 'Arial', sans-serif;  /* Base font */
+    --q-heading-font-family: 'Georgia', serif;  /* Heading font */
+    --q-text-color: #e0e0e0;           /* Light text for dark mode */
+    --q-background-color: #121212;     /* Dark background */
+    --q-accent: #b3b3b3;                /* Light accent for dark mode */
+    --q-accent-light: #333;             /* Darker light accent */
+  }
+}
+
+/* General body styles */
+body {
+  font-family: var(--q-font-family-base);
+  color: var(--q-text-color);
+  background-color: var(--q-background-color);
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Navbar */
+.navbar {
+  background-color: var(--q-secondary);
+  color: #fff;
+  padding: 1rem 2rem;
+  border-bottom: 3px solid var(--q-primary);
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  margin-right: 1.5rem;
+  transition: color 0.2s;
+}
+
+.navbar a:hover {
+  color: var(--q-accent);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--q-heading-font-family);
+  color: var(--q-secondary);
+  margin-top: 1.5em;
+}
+
+/* Links */
+a {
+  color: var(--q-secondary);
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--q-accent);
+}
+
+/* Buttons */
+.button, button, input[type="submit"] {
+  background-color: var(--q-secondary);
+  color: #fff;
+  border: none;
+  border-radius: var(--q-border-radius);
+  padding: 0.6em 1.2em;
+  font-family: var(--q-font-family-base);
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.button:hover, button:hover, input[type="submit"]:hover {
+  background-color: var(--q-primary);
+  color: var(--q-secondary);
+  border: 1px solid var(--q-secondary);
+}
+
+/* Card styles */
+.card {
+  background: var(--q-accent-light);
+  border: 1px solid #eaeaea;
+  border-radius: var(--q-border-radius);
+  box-shadow: 0 2px 8px rgba(231, 117, 0, 0.08); /* subtle orange shadow */
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Accent highlight (e.g. for badges, highlights) */
+.accent {
+  background: var(--q-accent);
+  color: var(--q-secondary);
+  padding: 0.2em 0.6em;
+  border-radius: var(--q-border-radius);
+  font-weight: bold;
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 1em;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 0.75em;
+  text-align: left;
+}
+
+th {
+  background-color: var(--q-secondary);
+  color: #fff;
+  font-family: var(--q-heading-font-family);
+}
+
+tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+/* Code blocks and inline code */
+pre, code {
+  background-color: #000 !important;  /* Black background */
+  color: #fff !important;             /* White text */
+  font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', monospace;
+  border-radius: 6px;
+  padding: 0.5em 0.75em;
+  font-size: 1em;
+}
+
+/* For code blocks specifically (multi-line) */
+pre {
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+/* For inline code (single-line) */
+code {
+  padding: 0.15em 0.4em;
+  font-size: 0.98em;
+  border-radius: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .navbar {
+    padding: 1rem;
+  }
+  .card {
+    padding: 1rem;
+  }
+  th, td {
+    padding: 0.5em;
+  }
+}

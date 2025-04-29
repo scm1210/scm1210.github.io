@@ -1,0 +1,25 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  description: "Personal Website of Steven Mesquiti"
+  navbar:
+    left:
+      - text: Steven Mesquiti
+        href: about.qmd  # Redirects to the about page when clicked
+    right:
+      - text: Home
+        href: about.qmd  # Additional link to the about page
+      - text: Publications & Preprints
+        href: publications.qmd
+      - text: CV
+        href: CV.qmd
+format:
+  html:
+    theme:
+      - cyborg
+      - brand
+    toc: true
+    css: styles.css
+editor: visual
