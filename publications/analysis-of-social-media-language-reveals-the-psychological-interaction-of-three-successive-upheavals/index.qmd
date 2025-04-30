@@ -2,6 +2,8 @@
 title: "Analysis of social media language reveals the psychological interaction of three successive upheavals"
 categories: [Upheavals, LIWC, Social Media, Reddit, Language, COVID-19, Black Lives Matter, Roe v. Wade]
 title-block-banner: true
+doi: "10.1038/s41598-025-89165-z"
+Year: 2025
 ---
 
 Citation: Mesquiti, S., Seraj, S., Weyland, A. H., Ashokkumar, A., Boyd, R. L., Mihalcea, R., & Pennebaker, J. W. (2025). Analysis of social media language reveals the psychological interaction of three successive upheavals. *Scientific Reports*, 15, 5740. https://doi.org/10.1038/s41598-025-89165-z Year: 2025
