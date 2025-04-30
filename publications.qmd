@@ -14,4 +14,3 @@ title-block-banner: true
 ---
 
 # Publications and Preprints
-
