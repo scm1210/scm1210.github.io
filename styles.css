@@ -1,27 +1,27 @@
 /* Root variables for light mode (default) */
 :root {
-  --q-primary: #fff;                   /* Primary color: white */
-  --q-secondary: #E77500;              /* Secondary color: Princeton orange */
-  --q-font-family-base: 'Arial', sans-serif;  /* Base font */
-  --q-heading-font-family: 'Georgia', serif;  /* Heading font */
-  --q-text-color: #222222;             /* Default text color (dark gray for readability) */
-  --q-background-color: #fff;          /* Background color */
-  --q-accent: #b3b3b3;                 /* Accent color: warm Princeton gray */
-  --q-accent-light: #fff4e6;           /* Light accent for backgrounds/highlights */
-  --q-border-radius: 8px;              /* Consistent rounded corners */
+  --q-primary: #fff;
+  --q-secondary: #E77500;
+  --q-font-family-base: 'Arial', sans-serif;
+  --q-heading-font-family: 'Georgia', serif;
+  --q-text-color: #222222;
+  --q-background-color: #fff;
+  --q-accent: #222;
+  --q-accent-light: #fff4e6;
+  --q-border-radius: 8px;
 }
 
 /* Dark mode variables */
 @media (prefers-color-scheme: dark) {
   :root {
-    --q-primary: #121212;              /* Dark primary background */
-    --q-secondary: #FF7F00;            /* Dark secondary (bright orange) */
-    --q-font-family-base: 'Arial', sans-serif;  /* Base font */
-    --q-heading-font-family: 'Georgia', serif;  /* Heading font */
-    --q-text-color: #e0e0e0;           /* Light text for dark mode */
-    --q-background-color: #121212;     /* Dark background */
-    --q-accent: #b3b3b3;                /* Light accent for dark mode */
-    --q-accent-light: #333;             /* Darker light accent */
+    --q-primary: #121212;
+    --q-secondary: #FF7F00;
+    --q-font-family-base: 'Arial', sans-serif;
+    --q-heading-font-family: 'Georgia', serif;
+    --q-text-color: #fff;
+    --q-background-color: #121212;
+    --q-accent: #b3b3b3;
+    --q-accent-light: #333;
   }
 }
 
@@ -62,15 +62,39 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 1.5em;
 }
 
-/* Links */
+/* Links (default) */
 a {
   color: var(--q-secondary);
   text-decoration: underline;
   transition: color 0.2s;
+  text-underline-offset: 3px;
 }
 
 a:hover {
   color: var(--q-accent);
+}
+
+/* Fix for grey links in Quarto about section */
+div.quarto-about-trestles .about-entity .about-link {
+  color: var(--q-secondary) !important;
+  text-decoration: none;
+  border: solid 1px;
+}
+
+div.quarto-about-trestles .about-entity .about-link:hover {
+  color: var(--q-accent) !important;
+  text-decoration: underline;
+}
+
+div.quarto-about-marquee .about-link {
+     color: var(--q-secondary) !important;
+    text-decoration: none;
+    border: solid 1px;
+}
+
+div.quarto-post a {
+    color: var(--q-text-color) !important;
+    text-decoration: none;
 }
 
 /* Buttons */
@@ -92,17 +116,40 @@ a:hover {
   border: 1px solid var(--q-secondary);
 }
 
+/* DOI Button */
+.btn-primary {
+  background-color: var(--q-secondary);
+  color: var(--q-secondary);
+}
+
+.btn-primary:hover {
+  background-color: var(--q-primary);
+  color: var(--q-secondary);
+  border: 1px solid var(--q-secondary);
+}
+
+/* PDF Button */
+.btn-secondary {
+  background-color: #28a745;
+  color: var(--q-secondary);
+}
+
+.btn-secondary:hover {
+  background-color: #1e7e34;
+  color: var(--q-secondary);
+}
+
 /* Card styles */
 .card {
   background: var(--q-accent-light);
   border: 1px solid #eaeaea;
   border-radius: var(--q-border-radius);
-  box-shadow: 0 2px 8px rgba(231, 117, 0, 0.08); /* subtle orange shadow */
+  box-shadow: 0 2px 8px rgba(231, 117, 0, 0.08);
   padding: 1.5rem;
   margin-bottom: 2rem;
 }
 
-/* Accent highlight (e.g. for badges, highlights) */
+/* Accent highlight */
 .accent {
   background: var(--q-accent);
   color: var(--q-secondary);
@@ -137,21 +184,19 @@ tr:nth-child(even) {
 
 /* Code blocks and inline code */
 pre, code {
-  background-color: #000 !important;  /* Black background */
-  color: #fff !important;             /* White text */
+  background-color: #000 !important;
+  color: #fff !important;
   font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', monospace;
   border-radius: 6px;
   padding: 0.5em 0.75em;
   font-size: 1em;
 }
 
-/* For code blocks specifically (multi-line) */
 pre {
   overflow-x: auto;
   margin: 1em 0;
 }
 
-/* For inline code (single-line) */
 code {
   padding: 0.15em 0.4em;
   font-size: 0.98em;

@@ -33,7 +33,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
@@ -101,6 +100,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="../../CV.html"> 
 <span class="menu-text">CV</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts.html"> 
+<span class="menu-text">Posts</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -124,45 +127,46 @@ ul.task-list li input[type="checkbox"] {
               </div>
                   </div>
   </div>
-    
-  
   <div class="quarto-title-meta">
-
-      
-    
-      
     </div>
-    
-  
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
-   
   <ul>
   <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<div class="quarto-about-marquee">
+  <div class="about-image-container">
+  </div>
+  <div class="about-contents">
+     <main class="content quarto-banner-title-block" id="quarto-document-content">
 
-
-
-
-
-<p>Citation: Mesquiti, S., Cosme, D., Nook, E. C., Falk, E. B., &amp; Burns, S. (2023). Predicting psychological and subjective well-being through language-based assessment. Preprint. Year: 2023</p>
 <section id="abstract" class="level1">
 <h1>Abstract</h1>
 <p>Well-being is often defined in terms of a person’s comfort, happiness, functioning and flourishing. Scholars distinguish subjective well-being (i.e., perceiving one’s life as pleasant) from psychological well-being (i.e., perceiving one’s life as meaningful). Advances in natural language processing have yielded automated assessments of psychological states and traits from language alone, including subjective well-being. However, the strength of these tools for assessing psychological well-being remains unstudied. Across three studies (one preregistered), we examined the strength of language-based assessments of self-reported subjective and psychological well-being components. Participants gave verbal or written responses to queries regarding their satisfaction with life and autonomy, along with questionnaire measures of subjective and psychological well-being. We then tested the strength of contextual word embeddings generated from AI-based transformers applied to verbal responses in predicting self-reported satisfaction with life and psychological well-being. Predictions generated from word embeddings of open-ended assessments correlated significantly with questionnaire measures of corresponding well-being constructs (rs = .16 &lt; r &lt; .63) and they also generalized across well-being components (rs = .15 &lt; r &lt; .50). However, the strength of these relations was lower than previous studies (rs = .72 &lt; r &lt; .85), and sense of autonomy was consistently less predictable than satisfaction with life. These findings demonstrate that although linguistic measures can significantly correlate with one’s sense of autonomy, it appears to be more challenging to assess than other forms of well-being.</p>
-<p>Type: Journal article Publication:</p>
+<p><strong>Citation</strong>: Mesquiti, S., Cosme, D., Nook, E. C., Falk, E. B., &amp; Burns, S. (2023). Predicting psychological and subjective well-being through language-based assessment. Preprint.</p>
 
 
 </section>
-
-</main> <!-- /main -->
+</main> 
+    <div class="about-footer"><div class="about-links">
+  <a href="https://doi.org/10.31234/osf.io/rfq8p_v1" class="about-link" rel="" target="">
+     <span class="about-link-text">DOI</span>
+  </a>
+  <a href="https://osf.io/rfq8p_v1/download/" class="about-link" rel="" target="">
+     <span class="about-link-text">PDF</span>
+  </a>
+</div>
+</div>
+  </div>
+</div>
+ <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -183,13 +187,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
   const isCodeAnnotation = (el) => {
     for (const clz of el.classList) {
       if (clz.startsWith('code-annotation-')) {                     

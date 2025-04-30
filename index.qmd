@@ -23,16 +23,16 @@ fontsize: 11pt
 
 My name is Steven Mesquiti! I'm a [first-year](https://lemolab.princeton.edu/people/steven-mesquiti) in the Department of Psychology at Princeton University advised by [Erik Nook](https://lemolab.princeton.edu/people/erik-c-nook-phd).
 
-I study how we can use Natural Language Processing techniques and Artifical Intelligence to explain, predict, and improve people's Mental Health.
+I study how we can use Natural Language Processing techniques and Artificial Intelligence to explain, predict, and improve people's Mental Health.
 
-Before Princeton, I worked as a Lab Manager for Emily Falk in the [Communication Neuroscience Lab](https://www.asc.upenn.edu/research/centers/communication-neuroscience-lab) at the Univeristy of Pennsylvania. Along the way, I have worked with excessively generous scientists like Jamie Pennebaker, Lyle Ungar, & Angela Duckworth pursing questions at the nexus of Computer Science, Computational Linguistics, and Psychology
+Before Princeton, I worked as a Lab Manager for Emily Falk in the [Communication Neuroscience Lab](https://www.asc.upenn.edu/research/centers/communication-neuroscience-lab) at the University of Pennsylvania. Along the way, I have worked with excessively generous scientists like Jamie Pennebaker, Lyle Ungar, & Angela Duckworth pursing questions at the nexus of Computer Science, Computational Linguistics, and Psychology.
 
 ## 🧠 Research Interests
 
 -   Natural Language Processing
 -   Well-being
--   Artificial Intelligence
 -   Language-based Assessments of Mental Health
+-   Artificial Intelligence
 
 ------------------------------------------------------------------------
 
