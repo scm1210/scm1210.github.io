@@ -1,6 +1,6 @@
 ---
 title: "Steven Mesquiti"
-subtitle: "PhD Student"
+subtitle: "PhD Student | Deparment of Psychology | Princeton University"
 image: profile.jpg
 about:
   template: trestles
@@ -27,6 +27,8 @@ I study how we can use Natural Language Processing techniques and Artificial Int
 
 Before Princeton, I worked as a Lab Manager for Emily Falk in the [Communication Neuroscience Lab](https://www.asc.upenn.edu/research/centers/communication-neuroscience-lab) at the University of Pennsylvania. Along the way, I have worked with excessively generous scientists like Jamie Pennebaker, Lyle Ungar, & Angela Duckworth pursing questions at the nexus of Computer Science, Computational Linguistics, and Psychology.
 
+------------------------------------------------------------------------
+
 ## 🧠 Research Interests
 
 -   Natural Language Processing
@@ -39,7 +41,7 @@ Before Princeton, I worked as a Lab Manager for Emily Falk in the [Communication
 ## 🎓 Education
 
 | Degree | Field                       | Year(s)      | Institution             |
-|-----------------|-----------------|-----------------|-----------------------|
+|-----------------|-----------------|-----------------|---------------------|
 | Ph.D.  | Psychology                  | 2024–Present | Princeton University    |
 | M.A.   | Psychological Research      | 2019–2022    | Texas State University  |
 | B.A.   | Psychology (Minor: Spanish) | 2015–2019    | Southwestern University |
