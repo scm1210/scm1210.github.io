@@ -1,17 +1,14 @@
 ---
-title: "Publications and Preprints"
+title: "Posts"
 author: "Steven Mesquiti"
 listing:
-  contents: publications
+  contents: posts
   type: default
   sort: "date desc"
   categories: true
   sort-ui: true
   filter-ui: true
-  fields: [title, authors, journal, doi, pdf]
 page-layout: full
 title-block-banner: true
 ---
-
-# Publications and Preprints
 

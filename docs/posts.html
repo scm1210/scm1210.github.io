@@ -8,7 +8,7 @@
 
 <meta name="author" content="Steven Mesquiti">
 
-<title>CV</title>
+<title>Posts</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,6 +31,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -39,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f38260bc0185ec0d701b99598976dbca.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-0063d04294f35071145263a56bfbe081.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,7 +69,65 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -99,11 +159,11 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Publications &amp; Preprints</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./CV.html" aria-current="page"> 
+    <a class="nav-link" href="./CV.html"> 
 <span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./posts.html"> 
+    <a class="nav-link active" href="./posts.html" aria-current="page"> 
 <span class="menu-text">Posts</span></a>
   </li>  
 </ul>
@@ -116,13 +176,13 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">CV</h1>
+    <div class="quarto-title column-page-left">
+      <h1 class="title">Posts</h1>
                       </div>
   </div>
     
   
-  <div class="quarto-title-meta">
+  <div class="quarto-title-meta column-page-left">
 
       <div>
       <div class="quarto-title-meta-heading">Author</div>
@@ -136,144 +196,91 @@ ul.task-list li input[type="checkbox"] {
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#steven-mesquiti-m.a." id="toc-steven-mesquiti-m.a." class="nav-link active" data-scroll-target="#steven-mesquiti-m.a.">Steven Mesquiti, M.A.</a>
-  <ul class="collapse">
-  <li><a href="#education" id="toc-education" class="nav-link" data-scroll-target="#education">Education</a></li>
-  <li><a href="#publications" id="toc-publications" class="nav-link" data-scroll-target="#publications">Publications</a></li>
-  <li><a href="#works-in-progress" id="toc-works-in-progress" class="nav-link" data-scroll-target="#works-in-progress">Works in Progress</a></li>
-  <li><a href="#funding" id="toc-funding" class="nav-link" data-scroll-target="#funding">Funding</a></li>
-  <li><a href="#honors-awards" id="toc-honors-awards" class="nav-link" data-scroll-target="#honors-awards">Honors &amp; Awards</a></li>
-  <li><a href="#invited-talks" id="toc-invited-talks" class="nav-link" data-scroll-target="#invited-talks">Invited Talks</a></li>
-  <li><a href="#conference-presentations" id="toc-conference-presentations" class="nav-link" data-scroll-target="#conference-presentations">Conference Presentations</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+        
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="T3Bpbmlvbg==">Opinion <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2NpZW5jZSUyMFBvbGljeQ==">Science Policy <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
 
 
 
 
-<section id="steven-mesquiti-m.a." class="level1">
-<h1>Steven Mesquiti, M.A.</h1>
-<p>Department of Psychology<br>
-Princeton University<br>
-sm9518@princeton.edu</p>
-<hr>
-<section id="education" class="level2">
-<h2 class="anchored" data-anchor-id="education">Education</h2>
-<p><strong>Princeton University</strong> (2024-Present)<br>
-Ph.D.&nbsp;in Psychology<br>
-Advisor: Dr.&nbsp;Erik Nook</p>
-<p><strong>Texas State University</strong> (2019-2022)<br>
-M.A.&nbsp;in Psychological Research<br>
-Advisor: Dr.&nbsp;Randall Osborne</p>
-<p><strong>Southwestern University</strong> (2015-2019)<br>
-B.A. in Psychology (Minor: Spanish)</p>
-<hr>
-</section>
-<section id="publications" class="level2">
-<h2 class="anchored" data-anchor-id="publications">Publications</h2>
-<ul>
-<li>Denotes shared first authorships</li>
-</ul>
-<p><strong>Mesquiti, S., Cosme, D., Nook, E.C., Falk E.B., Burns S.</strong> (Under Review). <em>Predicting Psychological and Subjective Well-being through Language-based Assessments of Well-being.</em></p>
-<p><strong>Mesquiti, S., Seraj, S., Weyland, A. H., Ashokkumar, A., Boyd, R. L., Mihalcea, R., &amp; Pennebaker, J. W.</strong> (2025). <em>Analysis of social media language reveals the psychological interaction of three successive upheavals.</em> <em>Scientific Reports, 15</em>(1), 5740. <a href="https://doi.org/10.1038/s41598-025-89165-z">DOI</a>.</p>
-<p><strong>Kang, Y., Mesquiti, S., Baik, E.S., &amp; Falk, E. B.</strong> (2024). <em>Empathy and Helping: The Role of Affect in Response to Others’ Suffering.</em> <em>Scientific Reports, 15</em>, 3256 <a href="https://doi.org/10.1038/s41598-025-87221-2">DOI</a>.</p>
-<p><strong>Mesquiti, S., Seraj, S.</strong> (2023). <em>The Psychological Impacts of the COVID-19 Pandemic on Business Leadership.</em> <em>PLOS One.</em> <a href="https://doi.org/10.1371/journal.pone.0290621">DOI</a></p>
-<hr>
-</section>
-<section id="works-in-progress" class="level2">
-<h2 class="anchored" data-anchor-id="works-in-progress">Works in Progress</h2>
-<ul>
-<li><strong>Kang, Y., Mesquiti, S. &amp; Falk, E. B.</strong> (in prep). <em>The Effect of Compassion Training on Emotional Support Giving.</em></li>
-<li><strong>Mesquiti, S. &amp; Nook, E.C.</strong> (in prep.) <em>The Implication of Artificial Intelligence on Mental Health.</em></li>
-<li><strong>Mesquiti, S., Stade E. C., Hull, T.D., Nook, E. C.</strong> (in prep.) <em>Tracking Shifts in the Latent Meaning of “I” and Its Connection to Mental Health Outcomes in a Large Therapy Dataset.</em></li>
-</ul>
-<hr>
-</section>
-<section id="funding" class="level2">
-<h2 class="anchored" data-anchor-id="funding">Funding</h2>
-<ul>
-<li><strong>2025</strong>: New Jersey Health Foundation: <em>Investigating Racial Equity of Psycholinguistic Measures of Mental Health</em> (PI: Erik C. Nook; $34,867; # PC 42-25)</li>
-<li><strong>2022</strong>: Northwestern University Kellogg School of Management Behavioral Research Fellowship (Finalist [Declined]; $35,000)</li>
-<li><strong>2020</strong>: Texas State University Thesis Research Support Fellowship ($1,070)</li>
-</ul>
-<hr>
-</section>
-<section id="honors-awards" class="level2">
-<h2 class="anchored" data-anchor-id="honors-awards">Honors &amp; Awards</h2>
-<ul>
-<li><strong>2024-25</strong>: Princeton University William G. Bowen Merit Fellowship</li>
-<li><strong>2020-21</strong>: Texas State University Graduate College of Liberal Arts Scholarship</li>
-<li><strong>2021</strong>: Masters in Psychological Research Graduate Competitive Scholarship</li>
-<li><strong>2019</strong>: Texas State University Graduate College of Education Scholarship</li>
-<li><strong>2015</strong>: Southwestern University Mood Scholar</li>
-</ul>
-<hr>
-</section>
-<section id="invited-talks" class="level2">
-<h2 class="anchored" data-anchor-id="invited-talks">Invited Talks</h2>
-<ul>
-<li><strong>2025</strong>: <em>Tracking Shifts in the Latent Meaning of “I” and Its Connection to Mental Health Outcomes in a Large Therapy Dataset.</em> Social Psychology Seminar, Princeton University, Princeton, NJ.</li>
-<li><strong>2022</strong>: <em>Within-and between-person effects of autonomous motivation on goal pursuit.</em> Duckworth Lab, Princeton University.</li>
-<li><strong>2021</strong>: <em>The whole truth and nothing but the truth: an analysis of the variability of prosocial lying in the Netherlands and the United States.</em> Texas State University Psychology Department Brown Bag.</li>
-<li><strong>2021</strong>: <em>The truth about prosocial lying: Cross-cultural differences in prosocial lying.</em> Southwestern Psychological Association (Virtual).</li>
-</ul>
-<hr>
-</section>
-<section id="conference-presentations" class="level2">
-<h2 class="anchored" data-anchor-id="conference-presentations">Conference Presentations</h2>
-<p>* Denotes Undergraduate Mentored</p>
-<ul>
-<li><strong>Mesquiti, S. C., Nook, E.</strong> (2024, March). <em>Investigating Racial Sensitivity in Language-Based Assessments of Mental Health.</em> Poster presented at the annual meeting for the Society for Affective Science.</li>
-<li><strong>Mesquiti, S. C., Cosme, D., Nook, E., Falk E., Burns S.</strong> (2025, February). <em>Predicting Well-being with Language-based Assessments.</em> Poster presented at the annual meeting for the Society for Personality and Social Psychology.</li>
-<li><strong>Mesquiti, S. C., Burns S., Cosme, D., Falk E.</strong> (2024, February). <em>Enhancing Psychological Well-being Prediction Through Natural Language Analysis.</em> Poster presented at the annual meeting for the Society for Personality and Social Psychology.</li>
-<li><strong>Mesquiti, S. C., Mobasser, A., Falk, E., Pfeifer, J. H., &amp; Cosme, D</strong> (2023, February). <em>Within-and between-person effects of autonomous motivation on goal pursuit.</em> Poster submitted to the annual meeting for the Society for Personality and Social Psychology.</li>
-<li><strong>Spehar, A.,* Muzekari, B., Butler, T. B., Mesquiti, S.C., Cosme, D., Falk, E.</strong> (2022, August). <em>Relating Collective and Self-Focus Language in Social Support with Self-Reported Depression.</em> Poster presented at the annual University of Pennsylvania MindCORE student show case. Philadelphia, Pa. <a href="https://github.com">Github</a></li>
-<li><strong>Andrews, M. E., Cooper, N., Paul, A., Johnson, D., Muzekari, B., Mesquiti, S.C., Torres, O., Resnick, A., Scholz, C., Mattan, B., Barnet, I., Henriksen, L., Strasser, A., &amp; Falk, E. B.</strong> (2023, May). <em>Compounding effect of microaggressions and exposure to tobacco advertising on stress and smoking.</em> Annual conference of the International Communication Association, Toronto, Ontario, Canada.</li>
-<li>**Santana, C*., Mesquiti, S.C., Carreras-Tartak, J., Kang, Y., Falk, E.** (2022, August). <em>Relating Collective and Self-Focus Language in Social Support with Self-Reported Depression.</em> Poster presented at the annual University of Pennsylvania MindCORE student show case. Philadelphia, Pa.</li>
-<li>**Woolfolk, Z*., Cosme, D., Butler, T., Carreras-Tartak, J., Mesquiti, S.C., Kang, Y., Falk, E.** (2022, August). <em>Racial Homophily in Emotion Sharing Network.</em> Poster presented at the annual University of Pennsylvania MindCORE student show case. Philadelphia, Pa.</li>
-<li><strong>Mesquiti, S.C.</strong> (2022, April). <em>Exploring Cognitive Language of CEOs during the COVID-19 Pandemic Over Time and its Connection to Decision Processing.</em> Poster presented at the annual Texas State University Psychology Department Showcase. San Marcos, Tx.</li>
-<li><strong>Mesquiti, S.C., Tsai, J. L., Marion, J., Olivarez, O., Blackburn, K., Durland, M.</strong> (2022, February). <em>The linguistic lifespan of a CEO: Exploring the way cognitive language unfolds over time and its connection to decision processing.</em> Poster presented at the annual meeting for the Society for Personality and Social Psychology.</li>
-<li><strong>Haskard-Zolnierek, K., Mesquiti, S.C., &amp; Snyder, M.</strong> (2022, February). <em>Associations between patient satisfaction and physician and nurse word use.</em> Poster presented at the annual meeting for the Society for Personality and Social Psychology (virtual).</li>
-<li><strong>Mesquiti, S.C., Kok, R., Clegg, J. M., Warnell, K. R.</strong> (2021, April). <em>The truth behind prosocial lies: A linguistic analysis of lying to be polite.</em> Poster presented at the annual Texas State University Psychology Department Showcase. San Marcos, Tx.</li>
-<li><strong>Mesquiti, S.C., Domer, K., Warnell, K. R., Clegg, J. M.</strong> (2021, February). <em>More than a disappointing gift: Examining variability in when and how we prosocially lie.</em> Poster presented at the annual meeting for the Society for Personality and Social Psychology (virtual).</li>
-<li><strong>Domer, K., Mesquiti, S.C., Warnell, K. R., Clegg, J. M.</strong> (2021, February). <em>More than a social norm: Examining who we lie to and what we lie about.</em> Poster presented at the annual meeting for the Society for Personality and Social Psychology (virtual).</li>
-<li><strong>Mesquiti, S.C.</strong> (2019, April). <em>Internship at the Central Texas Treatment Center.</em> Poster presented at Southwestern University Creative Works Symposium, Georgetown, Tx.</li>
-</ul>
-<hr>
-</section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<ul>
-<li><p><strong>Emily Falk</strong><br>
-Professor of Communication, Psychology, Marketing, and OID (Operations, Informatics, and Decisions), Vice Dean of the Annenberg School for Communication, University of Pennsylvania<br>
-efalk@falklab.org</p></li>
-<li><p><strong>James Pennebaker</strong><br>
-Professor Emeritus of Psychology, The University of Texas at Austin<br>
-pennebaker@utexas.edu</p></li>
-<li><p><strong>Erik Nook</strong><br>
-Assistant Professor of Psychology, Princeton University<br>
-enook@princeton.edu</p></li>
-</ul>
 
 
-</section>
-</section>
 
-</main> <!-- /main -->
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+       <option value="" disabled="" selected="" hidden="">Order By</option>
+       <option value="index" data-direction="asc">Default</option>
+         <option value="listing-title" data-direction="asc">
+          Title
+        </option>
+         <option value="listing-date-sort" data-direction="asc">
+          Date - Oldest
+        </option>
+         <option value="listing-date-sort" data-direction="desc">
+          Date - Newest
+        </option>
+         <option value="listing-author" data-direction="asc">
+          Author
+        </option>
+     </select>
+  </div>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
+</div>
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="T3BpbmlvbiUyQ1NjaWVuY2UlMjBQb2xpY3k=" data-listing-date-sort="1742184000000" data-listing-file-modified-sort="1746025371235" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="586">
+<div class="thumbnail">
+<p><a href="./posts/Federal research funding cuts will stall scientific progress, hurt Texas students/Federal research funding cuts will stall scientific progress, hurt Texas students.html" class="no-external"></a></p><a href="./posts/Federal research funding cuts will stall scientific progress, hurt Texas students/Federal research funding cuts will stall scientific progress, hurt Texas students.html" class="no-external">
+<p class="card-img-top"><img src="posts/Federal research funding cuts will stall scientific progress, hurt Texas students/Mesquiti-Oped.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/Federal research funding cuts will stall scientific progress, hurt Texas students/Federal research funding cuts will stall scientific progress, hurt Texas students.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/Federal research funding cuts will stall scientific progress, hurt Texas students/Federal research funding cuts will stall scientific progress, hurt Texas students.html" class="no-external">Federal research funding cuts will stall scientific progress, hurt Texas students</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/Federal research funding cuts will stall scientific progress, hurt Texas students/Federal research funding cuts will stall scientific progress, hurt Texas students.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('T3Bpbmlvbg=='); return false;">
+Opinion
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('U2NpZW5jZSUyMFBvbGljeQ=='); return false;">
+Science Policy
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/Federal research funding cuts will stall scientific progress, hurt Texas students/Federal research funding cuts will stall scientific progress, hurt Texas students.html" class="no-external"><em>This piece was published as an Op-ed in the</em> <em>San Antonio Express News</em></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/Federal research funding cuts will stall scientific progress, hurt Texas students/Federal research funding cuts will stall scientific progress, hurt Texas students.html" class="no-external">
+<div class="listing-date">
+Mar 17, 2025
+</div>
+<div class="listing-author">
+Steven Mesquiti
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

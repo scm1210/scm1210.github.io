@@ -1,0 +1,14 @@
+---
+listing:
+  type: custom
+---
+
+## Publications
+
+{{#each contents}}
+- **Title:** {{title}}
+- **Authors:** {{authors}}
+- **Journal:** {{journal}}
+- **DOI:** [{{doi}}](https://doi.org/{{doi}})
+- **PDF:** [Link](./{{pdf}})
+{{/each}}

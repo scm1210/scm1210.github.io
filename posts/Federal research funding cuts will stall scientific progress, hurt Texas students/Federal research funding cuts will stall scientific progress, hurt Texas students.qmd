@@ -1,0 +1,52 @@
+---
+title: "Federal research funding cuts will stall scientific progress, hurt Texas students
+"
+title-block-banner: true
+author: "Steven Mesquiti"
+date: "2025-03-17"
+about:
+  template: marquee
+format: html
+categories: [Opinion, Science Policy]
+---
+
+![](Mesquiti-Oped.png){fig-align="center" width="664"}
+
+*This piece was published as an Op-ed in the* [*San Antonio Express News*](https://www.expressnews.com/opinion/commentary/article/federal-science-funding-cut-texas-20221663.php)
+
+Scientific progress in the United States faces a series of threats. These disruptions have slashed federal research funding; upended the scientific process; dismantled diversity, equity and inclusion — DEI — initiatives; and endangered the careers of future and current scientists.
+
+In particular, the federal government has frozen billions in funding for the National Institutes of Health and the National Science Foundation — both of which provide substantial medical and economic benefits to San Antonio and Texas.
+
+Last year, the NIH awarded nearly `$`2 billion in funding to Texan institutes, which supported more than 30,000 Texan jobs and generated more than `$`6 billion in economic activity.
+
+As a scientist, I am deeply concerned about these funding cuts. I strongly believe in the direct and indirect opportunities that science provides to improve the lives of our community members.
+
+I am a Mexican American who was born and raised on San Antonio’s West Side, where programs like the Pre-Freshman Engineering Program, or PREP, gave me early exposure to careers in science and laid the foundation for my academic journey.
+
+Today, I am fortunate enough to be a psychology doctoral student at Princeton University, where I am conducting research showing how to identify individuals struggling with poor mental health by examining patterns in their language use.
+
+Programs like PREP provided my first introduction to research, which was further developed in labs at Texas State University, the University of Texas at Austin and the University of Pennsylvania — all institutions supported by grants from the NIH and NSF.
+
+Programs like PREP, often labeled as “DEI initiatives,” are not about exclusion. They are about giving everyone a shot at the American Dream. They ensure young people without built-in academic connections or financial resources have opportunities to pursue careers in science.
+
+Without these programs, countless students — regardless of race, gender or political affiliation — will lose their chance to break into fields that shape our nation’s future.
+
+Stripping funding from anything perceived as “DEI-adjacent” harms us all. It reduces available jobs in the state, freezes life-changing research and shuts the door on talented, hardworking students.
+
+To make matters worse, recent government budget cuts have slashed funding for universities, including critical “indirect costs” that fund lab space, technical support, and salaries for scientists and staff.
+
+Universities across the country, including the University of Texas at San Antonio, have already begun reducing graduate admissions. This disruption will shrink the pipeline of trained scientists, limit opportunities for young San Antonians, and jeopardize scientific progress in Texas and beyond.
+
+Due to decades of federally funded research, we have breakthroughs like revolutionary cancer treatments and lifesaving vaccines. Similar advancements have been made in our ability to detect mental health issues with language and provide more personalized support — progress that can save countless lives.
+
+These advancements depend on continued support from institutions like the NIH and NSF, which drive our economy, research and the training of future scientists.
+
+Programs that provide early exposure to science — especially for underrepresented students — ensure that the next generation is prepared to tackle issues like the mental health epidemic.
+
+Cutting funding for research and training will stall progress and limit opportunities for young minds. Now more than ever, we must fight to protect science and its future to build a healthier, more resilient society for everyone.
+
+------------------------------------------------------------------------
+
+**About the Author**\
+*Steven Mesquiti was born and raised in San Antonio’s West Side. He completed his undergraduate studies at Southwestern University, has a master’s degree from Texas State University and is a doctoral student at Princeton University.*
