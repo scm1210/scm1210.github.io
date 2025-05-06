@@ -36,11 +36,11 @@ B.A. in Psychology (Minor: Spanish)
 
 ## Publications
 
--   Denotes shared first authorships
+\* Denotes Shared First Authorship
 
 **Mesquiti, S., Cosme, D., Nook, E.C., Falk E.B., Burns S.** (Under Review). *Predicting Psychological and Subjective Well-being through Language-based Assessments of Well-being.*
 
-**Mesquiti, S., Seraj, S., Weyland, A. H., Ashokkumar, A., Boyd, R. L., Mihalcea, R., & Pennebaker, J. W.** (2025). *Analysis of social media language reveals the psychological interaction of three successive upheavals.* *Scientific Reports, 15*(1), 5740. [DOI](https://doi.org/10.1038/s41598-025-89165-z).
+**Mesquiti, S.,\* Seraj, S.,\* Weyland, A. H., Ashokkumar, A., Boyd, R. L., Mihalcea, R., & Pennebaker, J. W.** (2025). *Analysis of social media language reveals the psychological interaction of three successive upheavals.* *Scientific Reports, 15*(1), 5740. [DOI](https://doi.org/10.1038/s41598-025-89165-z).
 
 **Kang, Y., Mesquiti, S., Baik, E.S., & Falk, E. B.** (2024). *Empathy and Helping: The Role of Affect in Response to Others’ Suffering.* *Scientific Reports, 15*, 3256 [DOI](https://doi.org/10.1038/s41598-025-87221-2).
 
@@ -93,8 +93,8 @@ B.A. in Psychology (Minor: Spanish)
 -   **Mesquiti, S. C., Mobasser, A., Falk, E., Pfeifer, J. H., & Cosme, D** (2023, February). *Within-and between-person effects of autonomous motivation on goal pursuit.* Poster submitted to the annual meeting for the Society for Personality and Social Psychology.
 -   **Spehar, A.,\* Muzekari, B., Butler, T. B., Mesquiti, S.C., Cosme, D., Falk, E.** (2022, August). *Relating Collective and Self-Focus Language in Social Support with Self-Reported Depression.* Poster presented at the annual University of Pennsylvania MindCORE student show case. Philadelphia, Pa. [Github](https://github.com)
 -   **Andrews, M. E., Cooper, N., Paul, A., Johnson, D., Muzekari, B., Mesquiti, S.C., Torres, O., Resnick, A., Scholz, C., Mattan, B., Barnet, I., Henriksen, L., Strasser, A., & Falk, E. B.** (2023, May). *Compounding effect of microaggressions and exposure to tobacco advertising on stress and smoking.* Annual conference of the International Communication Association, Toronto, Ontario, Canada.
--   \*\*Santana, C\*., Mesquiti, S.C., Carreras-Tartak, J., Kang, Y., Falk, E.\*\* (2022, August). *Relating Collective and Self-Focus Language in Social Support with Self-Reported Depression.* Poster presented at the annual University of Pennsylvania MindCORE student show case. Philadelphia, Pa.
--   \*\*Woolfolk, Z\*., Cosme, D., Butler, T., Carreras-Tartak, J., Mesquiti, S.C., Kang, Y., Falk, E.\*\* (2022, August). *Racial Homophily in Emotion Sharing Network.* Poster presented at the annual University of Pennsylvania MindCORE student show case. Philadelphia, Pa.
+-   **Santana, C.,\* Mesquiti, S.C., Carreras-Tartak, J., Kang, Y., Falk, E.** (2022, August). *Relating Collective and Self-Focus Language in Social Support with Self-Reported Depression.* Poster presented at the annual University of Pennsylvania MindCORE student show case. Philadelphia, Pa.
+-   **Woolfolk, Z\*., Cosme, D., Butler, T., Carreras-Tartak, J., Mesquiti, S.C., Kang, Y., Falk, E.** (2022, August). *Racial Homophily in Emotion Sharing Network.* Poster presented at the annual University of Pennsylvania MindCORE student show case. Philadelphia, Pa.
 -   **Mesquiti, S.C.** (2022, April). *Exploring Cognitive Language of CEOs during the COVID-19 Pandemic Over Time and its Connection to Decision Processing.* Poster presented at the annual Texas State University Psychology Department Showcase. San Marcos, Tx.
 -   **Mesquiti, S.C., Tsai, J. L., Marion, J., Olivarez, O., Blackburn, K., Durland, M.** (2022, February). *The linguistic lifespan of a CEO: Exploring the way cognitive language unfolds over time and its connection to decision processing.* Poster presented at the annual meeting for the Society for Personality and Social Psychology.
 -   **Haskard-Zolnierek, K., Mesquiti, S.C., & Snyder, M.** (2022, February). *Associations between patient satisfaction and physician and nurse word use.* Poster presented at the annual meeting for the Society for Personality and Social Psychology (virtual).
@@ -102,6 +102,16 @@ B.A. in Psychology (Minor: Spanish)
 -   **Mesquiti, S.C., Domer, K., Warnell, K. R., Clegg, J. M.** (2021, February). *More than a disappointing gift: Examining variability in when and how we prosocially lie.* Poster presented at the annual meeting for the Society for Personality and Social Psychology (virtual).
 -   **Domer, K., Mesquiti, S.C., Warnell, K. R., Clegg, J. M.** (2021, February). *More than a social norm: Examining who we lie to and what we lie about.* Poster presented at the annual meeting for the Society for Personality and Social Psychology (virtual).
 -   **Mesquiti, S.C.** (2019, April). *Internship at the Central Texas Treatment Center.* Poster presented at Southwestern University Creative Works Symposium, Georgetown, Tx.
+
+------------------------------------------------------------------------
+
+## Mentorship
+
+-   Emily Yun \| Thesis Student \| Princeton University (2024-Present)
+
+-   Arden Spehar \| Summer MindCORE REU Student \| University of Pennsylvania (2022)
+
+-   Carlos Santana \| Summer MindCORE REU Student \| University of Pennsylvania (2022)
 
 ------------------------------------------------------------------------
 
