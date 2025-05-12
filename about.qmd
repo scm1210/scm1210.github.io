@@ -32,7 +32,7 @@ Before Princeton, I worked as a Lab Manager for Emily Falk in the [Communication
 ## 🧠 Research Interests
 
 -   Natural Language Processing
--   Well-being
+-   Mental Health
 -   Language-based Assessments of Mental Health
 -   Artificial Intelligence
 
@@ -41,7 +41,7 @@ Before Princeton, I worked as a Lab Manager for Emily Falk in the [Communication
 ## 🎓 Education
 
 | Degree | Field                       | Year(s)      | Institution             |
-|-----------------|-----------------|-----------------|----------------------|
+|-----------------|-----------------|-----------------|---------------------|
 | Ph.D.  | Psychology                  | 2024–Present | Princeton University    |
 | M.A.   | Psychological Research      | 2019–2022    | Texas State University  |
 | B.A.   | Psychology (Minor: Spanish) | 2015–2019    | Southwestern University |
