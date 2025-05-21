@@ -1,6 +1,5 @@
 ---
 title: "CV"
-author: "Steven Mesquiti"
 output: pdf_document
 # header-includes:
 #   - \usepackage{enumitem}
@@ -10,6 +9,12 @@ geometry: margin=1in
 fontsize: 11pt
 title-block-banner: true
 ---
+```{r}
+#| eval: false
+#| include: false
+#| use this to render to pdf
+quarto render CV.qmd --to pdf
+```
 
 # Steven Mesquiti, M.A.
 
@@ -38,7 +43,7 @@ B.A. in Psychology (Minor: Spanish)
 
 \* Denotes Shared First Authorship
 
-**Mesquiti, S., Cosme, D., Nook, E.C., Falk E.B., Burns S.** (Under Review). *Predicting Psychological and Subjective Well-being through Language-based Assessments of Well-being.*
+**Mesquiti, S., Cosme, D., Nook, E.C., Falk E.B., Burns S.** (Under Revision). *Predicting Psychological and Subjective Well-being through Language-based Assessments of Well-being.*
 
 **Mesquiti, S.,\* Seraj, S.,\* Weyland, A. H., Ashokkumar, A., Boyd, R. L., Mihalcea, R., & Pennebaker, J. W.** (2025). *Analysis of social media language reveals the psychological interaction of three successive upheavals.* *Scientific Reports, 15*(1), 5740. [DOI](https://doi.org/10.1038/s41598-025-89165-z).
 
