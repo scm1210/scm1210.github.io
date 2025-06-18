@@ -1,5 +1,5 @@
 ---
-title: "I representation: Combiled Results"
+title: "I representation: Compiled Results"
 author: "Steven"
 date: "`r Sys.Date()`"
 format: 
