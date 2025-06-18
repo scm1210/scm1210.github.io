@@ -1,0 +1,36 @@
+/* styles.css */
+
+/* Make elements with class 'scrollable' scroll vertically with a max height */
+.scrollable {
+  max-height: 75vh;        /* max height relative to viewport height */
+  overflow-y: auto;        /* vertical scrollbar if content overflows */
+  padding-right: 1em;      /* space so scrollbar doesn't overlap content */
+  box-sizing: border-box;  /* include padding in height */
+}
+
+/* Center content inside scrollable container and limit max width */
+.scrollable > * {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Make plots (images, SVGs) scale responsively inside scrollable */
+.scrollable img,
+.scrollable svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Improve appearance of scrollbar on WebKit browsers */
+.scrollable::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 100, 100, 0.5);
+  border-radius: 10px;
+}

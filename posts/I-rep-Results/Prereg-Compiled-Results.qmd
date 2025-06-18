@@ -2547,13 +2547,13 @@ ggplot(aes(x = estimate, y = factor(term),
 
 ## Story of I `DLATK` Analyses
 
----
+------------------------------------------------------------------------
 
 ## 1st Half of Treatment
 
 Used median split for `daysSinceFirstText` to create two groups Median treatment time = `r median(df$daysSinceFirstText, na.rm = TRUE)` days.
 
----
+------------------------------------------------------------------------
 
 ```{r}
 #| echo: FALSE
@@ -2596,7 +2596,7 @@ for (slide in plots) {
 
 ## 2nd Half of Treatment
 
----
+------------------------------------------------------------------------
 
 ```{r}
 #| echo: FALSE
@@ -2638,13 +2638,12 @@ for (slide in plots) {
 
 ```
 
-
 ## Topic Modeling
 
-Built topic model from all sentences in `Talksapace` data using `bertopic` from sentences that had the word I in them. \
+Built topic model from all sentences in `Talksapace` data using `bertopic` from sentences that had the word I in them.\
 Extracted the top 20 topics from the model
 
----
+------------------------------------------------------------------------
 
 ```{r}
 library(ggwordcloud)
@@ -2709,8 +2708,7 @@ plot_topics <- function(topics) {
 plots_list <- purrr::map(topic_groups, plot_topics)
 ```
 
-
-``` {r}
+```{r}
 #| echo: FALSE
 #| results: asis
 #| warning: FALSE
@@ -2725,11 +2723,11 @@ for (i in seq_along(plots_list)) {
 
 ```
 
-# Supplemental Analyses 
+# Supplemental Analyses
 
-----
+------------------------------------------------------------------------
 
-## Examining other pairs 
+## Examining other pairs
 
 Looking at happy-sad, calm-anxious, can-cannot.
 
@@ -2905,9 +2903,8 @@ ggplot(aes(x = estimate, y = factor(outcome),
 
 All models control for time in tx and are specified separately for each word.
 
-::: scrollable
+:::: scrollable
 ::: panel-tabset
-
 ### Non-disaggregated
 
 ```{r}
@@ -3038,6 +3035,5 @@ ggplot(aes(x = estimate, y = factor(term),
   )
 
 ```
-
 :::
-:::
+::::
