@@ -126,13 +126,6 @@
     "text": "Abstract\nDecades of research hold that empathy is a multifaceted construct. A related challenge in empathy research is to describe how each subcomponent of empathy uniquely contributes to social outcomes. Here, we examined distinct mechanisms through which different components of empathy—Empathic Concern, Perspective Taking, and Personal Distress—may relate to prosociality. Participants (N = 77) watched a prerecorded video of a person sharing an emotional real-life story and provided verbal support in response. The listeners then reported how positive and negative they felt while listening to the story. We found that individuals with greater tendencies to experience Empathic Concern and Perspective Taking felt more positive (e.g., connected, compassionate), whereas those with higher Personal Distress felt more negative (e.g., nervous, anxious) in response to another’s suffering. We also observed indirect relationships between Empathic Concern / Perspective Taking and the tendency to help others through positive affective responses to the other’s suffering. These findings build upon the growing literature that distinguishes different components of empathy and their mechanisms that relate to divergent behavioral consequences. Results also highlight the role of positive affect that may motivate prosociality in the face of others’ suffering.\nCitation: Kang, Y., Mesquiti, S., Baik, E. S., & Falk, E. B. (2025). Empathy and helping: the role of affect in response to others’ suffering. Scientific Reports, 15(1), 3256. https://doi.org/10.1038/s41598-025-87221-2"
   },
   {
-    "objectID": "posts/Federal research funding cuts will stall scientific progress, hurt Texas students/Federal research funding cuts will stall scientific progress, hurt Texas students.html",
-    "href": "posts/Federal research funding cuts will stall scientific progress, hurt Texas students/Federal research funding cuts will stall scientific progress, hurt Texas students.html",
-    "title": "Federal research funding cuts will stall scientific progress, hurt Texas students",
-    "section": "",
-    "text": "This piece was published as an Op-ed in the San Antonio Express News\nScientific progress in the United States faces a series of threats. These disruptions have slashed federal research funding; upended the scientific process; dismantled diversity, equity and inclusion — DEI — initiatives; and endangered the careers of future and current scientists.\nIn particular, the federal government has frozen billions in funding for the National Institutes of Health and the National Science Foundation — both of which provide substantial medical and economic benefits to San Antonio and Texas.\nLast year, the NIH awarded nearly $2 billion in funding to Texan institutes, which supported more than 30,000 Texan jobs and generated more than $6 billion in economic activity.\nAs a scientist, I am deeply concerned about these funding cuts. I strongly believe in the direct and indirect opportunities that science provides to improve the lives of our community members.\nI am a Mexican American who was born and raised on San Antonio’s West Side, where programs like the Pre-Freshman Engineering Program, or PREP, gave me early exposure to careers in science and laid the foundation for my academic journey.\nToday, I am fortunate enough to be a psychology doctoral student at Princeton University, where I am conducting research showing how to identify individuals struggling with poor mental health by examining patterns in their language use.\nPrograms like PREP provided my first introduction to research, which was further developed in labs at Texas State University, the University of Texas at Austin and the University of Pennsylvania — all institutions supported by grants from the NIH and NSF.\nPrograms like PREP, often labeled as “DEI initiatives,” are not about exclusion. They are about giving everyone a shot at the American Dream. They ensure young people without built-in academic connections or financial resources have opportunities to pursue careers in science.\nWithout these programs, countless students — regardless of race, gender or political affiliation — will lose their chance to break into fields that shape our nation’s future.\nStripping funding from anything perceived as “DEI-adjacent” harms us all. It reduces available jobs in the state, freezes life-changing research and shuts the door on talented, hardworking students.\nTo make matters worse, recent government budget cuts have slashed funding for universities, including critical “indirect costs” that fund lab space, technical support, and salaries for scientists and staff.\nUniversities across the country, including the University of Texas at San Antonio, have already begun reducing graduate admissions. This disruption will shrink the pipeline of trained scientists, limit opportunities for young San Antonians, and jeopardize scientific progress in Texas and beyond.\nDue to decades of federally funded research, we have breakthroughs like revolutionary cancer treatments and lifesaving vaccines. Similar advancements have been made in our ability to detect mental health issues with language and provide more personalized support — progress that can save countless lives.\nThese advancements depend on continued support from institutions like the NIH and NSF, which drive our economy, research and the training of future scientists.\nPrograms that provide early exposure to science — especially for underrepresented students — ensure that the next generation is prepared to tackle issues like the mental health epidemic.\nCutting funding for research and training will stall progress and limit opportunities for young minds. Now more than ever, we must fight to protect science and its future to build a healthier, more resilient society for everyone.\n\nAbout the Author\nSteven Mesquiti was born and raised in San Antonio’s West Side. He completed his undergraduate studies at Southwestern University, has a master’s degree from Texas State University and is a doctoral student at Princeton University."
-  },
-  {
     "objectID": "posts/Stats-Project/Stats-project.html",
     "href": "posts/Stats-Project/Stats-project.html",
     "title": "Final Project: Prediciting Head to Head Pokémon Wins with Multi-level Binary Logistic Regression",
@@ -217,6 +210,258 @@
     "text": "Individually Inspect the top N-Models\nNow that we used specr(), we can summarize individual specifications by using broom::tidy() and broom::glance(). For most cases, this provides a sufficient and appropriate summary of the relationship of interest and model characteristics. Sometimes, however, it might be useful to investigate specific models in more detail or to investigate a specific parameter that is not provided by the two functions (e.g., r-square or variance accounted for by the model).\n\nInspect the significant models\nFirst, we’ll look at just the significant models (i.e., p &lt; 0.05). This is done by filtering the results dataframe to only include significant models. We can then use the DT package to create an interactive table that allows us to sort and filter the data.\n\nmodels &lt;- results %&gt;% \n  as_tibble() %&gt;% \n  dplyr::select(formula, x, y, estimate, std.error, p.value, conf.low, conf.high) %&gt;% \n  filter(p.value &lt; 0.051) %&gt;%  # keep only significant models\n  mutate(\n    estimate = round(estimate, 3),\n    std.error = round(std.error, 3),\n    p.value = round(p.value, 3),\n    conf.low = round(conf.low, 3),\n    conf.high = round(conf.high, 3)\n  ) %&gt;%\n  arrange(desc(abs(estimate)))\n\nmodels |&gt;\n  DT::datatable(\n    options = list(\n      pageLength = 10,\n      autoWidth = TRUE,\n      columnDefs = list(list(targets = \"_all\"))\n    ),\n    rownames = FALSE\n  )\n\n\n\n\n\n\n\nHow does R-squared change with different models?\nWe can also evaluate the best model by looking at the conditional r-square value. We start by ranking the models by their conditional r-square value and then plotting the results. This will allow us to see which models are the best predictors of the outcome.\nFrom the results below, we can see that we can account for over 50% of the variance in the outcome using just the challenger Pokemon’s stats. This is a pretty good result, and it suggests that we can use these stats to predict the outcome of a battle. However, we still don’t quite know what the recipe for the best model is yet.\n\nbest_model &lt;- results %&gt;% \n  as_tibble() %&gt;% \n  dplyr::select(formula, x, y, estimate, std.error, p.value, conf.low, conf.high,fit_r2_conditional) %&gt;% \n  filter(p.value &lt; 0.051) %&gt;%  # keep only significant models\n  mutate(\n    estimate = round(estimate, 3),\n    std.error = round(std.error, 3),\n    p.value = round(p.value, 3),\n    conf.low = round(conf.low, 3),\n    conf.high = round(conf.high, 3)\n  ) \n\nbest_model %&gt;%\n  arrange(fit_r2_conditional) %&gt;%\n  mutate(rank = 1:n()) %&gt;%\n  ggplot(aes(x = rank, y = fit_r2_conditional)) +\n  geom_line(color = \"#ADA7C9\", size = 0.85) +  # smooth teal-ish line\n  geom_point(size = 1.5, alpha = 0.7, color = \"#4D4861\") +  # darker small points\n  theme_minimal(base_family = \"Futura Medium\") +  # match your font\n  theme(\n    panel.grid.minor = element_blank(),\n    panel.grid.major.x = element_blank(),\n    axis.line = element_line(color = \"black\", size = 0.5),\n    axis.ticks = element_line(color = \"black\"),\n    axis.text = element_text(color = \"black\"),\n    strip.text = element_blank()\n  ) +\n  labs(\n    x = \"Model Rank\",\n    y = \"Conditional R²\"\n  ) +\n  plot_aes\n\n\n\n\n\n\n\n\n\n\nWhat seems to be the best model?\nNow that we have a sense of the best model, we can plot the results using ggplot to create a bar graph that shows us how much variance each of the top 50 models accounts for.\n\nbest_model %&gt;%\n  arrange(desc(fit_r2_conditional), desc(estimate)) %&gt;%\n  head(50) %&gt;%\n  mutate(rank = 1:n()) %&gt;%\n  ggplot(aes(x = factor(rank), \n             y = fit_r2_conditional, \n             fill = fit_r2_conditional)) +  # Use fit_r2_conditional for color fill\n  geom_col() +\n  geom_text(aes(label = formula), \n            vjust = -0.5, \n            size = 3, \n            angle = 90) +\n  scale_fill_gradient(low = \"#ee9b00\", high = \"#c44536\") +  # Gradient from low to high values\n  plot_aes + \n  theme(\n    strip.text = element_blank(),\n    axis.line = element_line(color = \"black\", size = .5),\n    axis.text = element_text(color = \"black\"),\n    axis.text.x = element_text(angle = 45, hjust = 1),  # Rotate x-axis labels by 45 degrees\n    legend.position = \"none\"\n  ) +\n  labs(x = \"Model Rank\", y = \"Conditional R²\") +\n  ylim(0, 0.55)\n\n\n\n\n\n\n\n\nBased on what our graph tells us, the best model is (1 | challenger) + s_defense. This model accounts for 55% of the variance in the outcome, which is a pretty good result. However, it’s important to note that this is a pretty simple model and there are likely other factors that could be included to improve the model. For example, we could include the opponent’s stats or other variables that might be relevant to the outcome of the battle. If anything, this goes to show how balanced of a meta Pokemon has.\nThanks for following along!\n\n\n\nIf you’d like to learn more about SCA, I’d recommend checking out ✨Dr. Dani Cosme’s ✨ website. She’s an amazing person, teacher, and has a ton of great resources on SCA and other statistical methods in R. I especially recommend this reproducibililty workshop."
   },
   {
+    "objectID": "posts/Federal research funding cuts will stall scientific progress, hurt Texas students/Federal research funding cuts will stall scientific progress, hurt Texas students.html",
+    "href": "posts/Federal research funding cuts will stall scientific progress, hurt Texas students/Federal research funding cuts will stall scientific progress, hurt Texas students.html",
+    "title": "Federal research funding cuts will stall scientific progress, hurt Texas students",
+    "section": "",
+    "text": "This piece was published as an Op-ed in the San Antonio Express News\nScientific progress in the United States faces a series of threats. These disruptions have slashed federal research funding; upended the scientific process; dismantled diversity, equity and inclusion — DEI — initiatives; and endangered the careers of future and current scientists.\nIn particular, the federal government has frozen billions in funding for the National Institutes of Health and the National Science Foundation — both of which provide substantial medical and economic benefits to San Antonio and Texas.\nLast year, the NIH awarded nearly $2 billion in funding to Texan institutes, which supported more than 30,000 Texan jobs and generated more than $6 billion in economic activity.\nAs a scientist, I am deeply concerned about these funding cuts. I strongly believe in the direct and indirect opportunities that science provides to improve the lives of our community members.\nI am a Mexican American who was born and raised on San Antonio’s West Side, where programs like the Pre-Freshman Engineering Program, or PREP, gave me early exposure to careers in science and laid the foundation for my academic journey.\nToday, I am fortunate enough to be a psychology doctoral student at Princeton University, where I am conducting research showing how to identify individuals struggling with poor mental health by examining patterns in their language use.\nPrograms like PREP provided my first introduction to research, which was further developed in labs at Texas State University, the University of Texas at Austin and the University of Pennsylvania — all institutions supported by grants from the NIH and NSF.\nPrograms like PREP, often labeled as “DEI initiatives,” are not about exclusion. They are about giving everyone a shot at the American Dream. They ensure young people without built-in academic connections or financial resources have opportunities to pursue careers in science.\nWithout these programs, countless students — regardless of race, gender or political affiliation — will lose their chance to break into fields that shape our nation’s future.\nStripping funding from anything perceived as “DEI-adjacent” harms us all. It reduces available jobs in the state, freezes life-changing research and shuts the door on talented, hardworking students.\nTo make matters worse, recent government budget cuts have slashed funding for universities, including critical “indirect costs” that fund lab space, technical support, and salaries for scientists and staff.\nUniversities across the country, including the University of Texas at San Antonio, have already begun reducing graduate admissions. This disruption will shrink the pipeline of trained scientists, limit opportunities for young San Antonians, and jeopardize scientific progress in Texas and beyond.\nDue to decades of federally funded research, we have breakthroughs like revolutionary cancer treatments and lifesaving vaccines. Similar advancements have been made in our ability to detect mental health issues with language and provide more personalized support — progress that can save countless lives.\nThese advancements depend on continued support from institutions like the NIH and NSF, which drive our economy, research and the training of future scientists.\nPrograms that provide early exposure to science — especially for underrepresented students — ensure that the next generation is prepared to tackle issues like the mental health epidemic.\nCutting funding for research and training will stall progress and limit opportunities for young minds. Now more than ever, we must fight to protect science and its future to build a healthier, more resilient society for everyone.\n\nAbout the Author\nSteven Mesquiti was born and raised in San Antonio’s West Side. He completed his undergraduate studies at Southwestern University, has a master’s degree from Texas State University and is a doctoral student at Princeton University."
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#good-vs-bad",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#good-vs-bad",
+    "title": "I representation: Combiled Results",
+    "section": "Good vs Bad",
+    "text": "Good vs Bad\nI moves from bad to good"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#able-vs-unable",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#able-vs-unable",
+    "title": "I representation: Combiled Results",
+    "section": "Able vs Unable",
+    "text": "Able vs Unable\nI moves from unable to able"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#good-vs-bad-1",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#good-vs-bad-1",
+    "title": "I representation: Combiled Results",
+    "section": "Good vs Bad",
+    "text": "Good vs Bad\nMore “good” representation = less sx (both between- and within-person)\n\n\nNon-disaggregatedDisaggregated"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#able-vs-unable-1",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#able-vs-unable-1",
+    "title": "I representation: Combiled Results",
+    "section": "Able vs Unable",
+    "text": "Able vs Unable\nMore “able” representation = less sx (both between- and within-person)\n\n\nNon-disaggregatedDisaggregated"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#good-vs-bad-2",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#good-vs-bad-2",
+    "title": "I representation: Combiled Results",
+    "section": "Good vs Bad",
+    "text": "Good vs Bad\nWord Frequency\nNo, all results hold when controlling for frequency of “I” and other words"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#able-vs-unable-2",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#able-vs-unable-2",
+    "title": "I representation: Combiled Results",
+    "section": "Able vs Unable",
+    "text": "Able vs Unable"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#changes-over-therapy",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#changes-over-therapy",
+    "title": "I representation: Combiled Results",
+    "section": "Changes over Therapy",
+    "text": "Changes over Therapy"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#track-with-changes-in-symptoms",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#track-with-changes-in-symptoms",
+    "title": "I representation: Combiled Results",
+    "section": "Track with Changes in Symptoms",
+    "text": "Track with Changes in Symptoms"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#story-of-i-dlatk-analyses",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#story-of-i-dlatk-analyses",
+    "title": "I representation: Combiled Results",
+    "section": "Story of I DLATK Analyses",
+    "text": "Story of I DLATK Analyses"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#st-half-of-treatment",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#st-half-of-treatment",
+    "title": "I representation: Combiled Results",
+    "section": "1st Half of Treatment",
+    "text": "1st Half of Treatment\nUsed median split for daysSinceFirstText to create two groups Median treatment time = 37 days."
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#able_mads_neg.r_0.064-0.104_wc",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#able_mads_neg.r_0.064-0.104_wc",
+    "title": "I representation: Combiled Results",
+    "section": "able_MADS_neg.r_0.064-0.104_wc",
+    "text": "able_MADS_neg.r_0.064-0.104_wc"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#able_mads_pos.r_0.062-0.111_wc",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#able_mads_pos.r_0.062-0.111_wc",
+    "title": "I representation: Combiled Results",
+    "section": "able_MADS_pos.r_0.062-0.111_wc",
+    "text": "able_MADS_pos.r_0.062-0.111_wc"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#good_mads_neg.r_0.056-0.168_wc",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#good_mads_neg.r_0.056-0.168_wc",
+    "title": "I representation: Combiled Results",
+    "section": "good_MADs_neg.r_0.056-0.168_wc",
+    "text": "good_MADs_neg.r_0.056-0.168_wc"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#good_mads_pos.r_0.056-0.066_wc",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#good_mads_pos.r_0.056-0.066_wc",
+    "title": "I representation: Combiled Results",
+    "section": "good_MADs_pos.r_0.056-0.066_wc",
+    "text": "good_MADs_pos.r_0.056-0.066_wc"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_able_mads_neg.r_0.079-0.079_wc",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_able_mads_neg.r_0.079-0.079_wc",
+    "title": "I representation: Combiled Results",
+    "section": "high_low_able_mads_neg.r_0.079-0.079_wc",
+    "text": "high_low_able_mads_neg.r_0.079-0.079_wc"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_able_mads_pos.r_0.071-0.081_wc",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_able_mads_pos.r_0.071-0.081_wc",
+    "title": "I representation: Combiled Results",
+    "section": "high_low_able_mads_pos.r_0.071-0.081_wc",
+    "text": "high_low_able_mads_pos.r_0.071-0.081_wc"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_good_mads_neg.r_0.060-0.109_wc",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_good_mads_neg.r_0.060-0.109_wc",
+    "title": "I representation: Combiled Results",
+    "section": "high_low_good_mads_neg.r_0.060-0.109_wc",
+    "text": "high_low_good_mads_neg.r_0.060-0.109_wc"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#nd-half-of-treatment",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#nd-half-of-treatment",
+    "title": "I representation: Combiled Results",
+    "section": "2nd Half of Treatment",
+    "text": "2nd Half of Treatment"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#able_mads_neg.r_0.058-0.081_wc",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#able_mads_neg.r_0.058-0.081_wc",
+    "title": "I representation: Combiled Results",
+    "section": "able_MADS_neg.r_0.058-0.081_wc",
+    "text": "able_MADS_neg.r_0.058-0.081_wc"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#able_mads_pos.r_0.056-0.216_wc",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#able_mads_pos.r_0.056-0.216_wc",
+    "title": "I representation: Combiled Results",
+    "section": "able_MADS_pos.r_0.056-0.216_wc",
+    "text": "able_MADS_pos.r_0.056-0.216_wc"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#good_mads_neg.r_0.059-0.192_wc",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#good_mads_neg.r_0.059-0.192_wc",
+    "title": "I representation: Combiled Results",
+    "section": "good_MADs_neg.r_0.059-0.192_wc",
+    "text": "good_MADs_neg.r_0.059-0.192_wc"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#good_mads_pos.r_0.051-0.123_wc",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#good_mads_pos.r_0.051-0.123_wc",
+    "title": "I representation: Combiled Results",
+    "section": "good_MADs_pos.r_0.051-0.123_wc",
+    "text": "good_MADs_pos.r_0.051-0.123_wc"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_able_mads_neg.r_0.064-0.073_wc",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_able_mads_neg.r_0.064-0.073_wc",
+    "title": "I representation: Combiled Results",
+    "section": "high_low_able_mads_neg.r_0.064-0.073_wc",
+    "text": "high_low_able_mads_neg.r_0.064-0.073_wc"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_able_mads_pos.r_0.063-0.185_wc",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_able_mads_pos.r_0.063-0.185_wc",
+    "title": "I representation: Combiled Results",
+    "section": "high_low_able_mads_pos.r_0.063-0.185_wc",
+    "text": "high_low_able_mads_pos.r_0.063-0.185_wc"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_good_mads_neg.r_0.055-0.137_wc",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_good_mads_neg.r_0.055-0.137_wc",
+    "title": "I representation: Combiled Results",
+    "section": "high_low_good_mads_neg.r_0.055-0.137_wc",
+    "text": "high_low_good_mads_neg.r_0.055-0.137_wc"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_good_mads_pos.r_0.055-0.102_wc",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_good_mads_pos.r_0.055-0.102_wc",
+    "title": "I representation: Combiled Results",
+    "section": "high_low_good_mads_pos.r_0.055-0.102_wc",
+    "text": "high_low_good_mads_pos.r_0.055-0.102_wc"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-modeling",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-modeling",
+    "title": "I representation: Combiled Results",
+    "section": "Topic Modeling",
+    "text": "Topic Modeling\nBuilt topic model from all sentences in Talksapace data using bertopic from sentences that had the word I in them.\nExtracted the top 20 topics from the model"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-1",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-1",
+    "title": "I representation: Combiled Results",
+    "section": "Topic Group 1",
+    "text": "Topic Group 1"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-2",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-2",
+    "title": "I representation: Combiled Results",
+    "section": "Topic Group 2",
+    "text": "Topic Group 2"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-3",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-3",
+    "title": "I representation: Combiled Results",
+    "section": "Topic Group 3",
+    "text": "Topic Group 3"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-4",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-4",
+    "title": "I representation: Combiled Results",
+    "section": "Topic Group 4",
+    "text": "Topic Group 4"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-5",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-5",
+    "title": "I representation: Combiled Results",
+    "section": "Topic Group 5",
+    "text": "Topic Group 5"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#examining-other-pairs",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#examining-other-pairs",
+    "title": "I representation: Combiled Results",
+    "section": "Examining other pairs",
+    "text": "Examining other pairs\nLooking at happy-sad, calm-anxious, can-cannot."
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#changes-over-therapy-1",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#changes-over-therapy-1",
+    "title": "I representation: Combiled Results",
+    "section": "Changes over Therapy",
+    "text": "Changes over Therapy"
+  },
+  {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#track-with-changes-in-symptoms-1",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#track-with-changes-in-symptoms-1",
+    "title": "I representation: Combiled Results",
+    "section": "Track with Changes in Symptoms",
+    "text": "Track with Changes in Symptoms\nAll models control for time in tx and are specified separately for each word.\n\n\nNon-disaggregatedDisaggregated"
+  },
+  {
     "objectID": "publications/analysis-of-social-media-language-reveals-the-psychological-interaction-of-three-successive-upheavals/index.html",
     "href": "publications/analysis-of-social-media-language-reveals-the-psychological-interaction-of-three-successive-upheavals/index.html",
     "title": "Analysis of social media language reveals the psychological interaction of three successive upheavals",
@@ -242,6 +487,6 @@
     "href": "posts.html",
     "title": "Posts",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nFinal Project: Prediciting Head to Head Pokémon Wins with Multi-level Binary Logistic Regression\n\n\nPSY-504\n\n\n\nFinal-Project\n\n\nCoding\n\n\nTutorial\n\n\n\n\n\n\n\n\n\nSteven Mesquiti\n\n\n\n\n\n\n\n\n\n\n\n\nFederal research funding cuts will stall scientific progress, hurt Texas students\n\n\n\n\n\n\nOpinion\n\n\nScience Policy\n\n\n\n\n\n\n\n\n\nMar 17, 2025\n\n\nSteven Mesquiti\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nFinal Project: Prediciting Head to Head Pokémon Wins with Multi-level Binary Logistic Regression\n\n\nPSY-504\n\n\n\nFinal-Project\n\n\nCoding\n\n\nTutorial\n\n\n\n\n\n\n\n\n\nSteven Mesquiti\n\n\n\n\n\n\n\n\n\n\n\n\nFederal research funding cuts will stall scientific progress, hurt Texas students\n\n\n\n\n\n\nOpinion\n\n\nScience Policy\n\n\n\n\n\n\n\n\n\nMar 17, 2025\n\n\nSteven Mesquiti\n\n\n\n\n\n\n\n\n\n\n\n\nI representation: Combiled Results\n\n\n\n\n\n\n\n\n\n\n\nInvalid Date\n\n\nSteven\n\n\n\n\n\n\nNo matching items"
   }
 ]

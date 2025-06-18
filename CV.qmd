@@ -9,12 +9,7 @@ geometry: margin=1in
 fontsize: 11pt
 title-block-banner: true
 ---
-```{r}
-#| eval: false
-#| include: false
-#| use this to render to pdf
-quarto render CV.qmd --to pdf
-```
+
 
 # Steven Mesquiti, M.A.
 
