@@ -8,9 +8,15 @@ format:
     center: true  
     scrollable: true
     smaller: true
-    slide-number: true   
-    fig-width: 10
-    fig-height: 7
+    slide-number: true 
+    controls: true                 # Show next/prev arrows for easier navigation
+    progress: true                 # Show a progress bar at the bottom
+    keyboard: true                 # Enable keyboard navigation (usually on by default)
+    slideNumberFormat: "%current% / %total%"  # More informative slide numbering
+    navigationMode: 'linear'       # Ensures left/right arrows move strictly in order
+    transition: "slide"            # Slide transition effect (could be 'fade', 'convex', 'concave', 'zoom')
+    transitionSpeed: "fast"        # Transition speed: 'default', 'fast', or 'slow'
+    touch: true                   # Enable touch gestures for mobile/tablets  
 ---
 
 ```{r load packages and installize conda environment, include=FALSE}
