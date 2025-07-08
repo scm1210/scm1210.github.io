@@ -8,7 +8,7 @@ format:
     center: true  
     scrollable: true
     smaller: true
-    slide-number: true 
+    #slide-number: true 
     controls: true                 # Show next/prev arrows for easier navigation
     progress: true                 # Show a progress bar at the bottom
     keyboard: true                 # Enable keyboard navigation (usually on by default)
@@ -665,10 +665,9 @@ disagg_model |>
 
 ## Good vs Bad
 
-----
+------------------------------------------------------------------------
 
 ### Word Frequency
-
 
 #### Controlling for all the Words Frequency and Total words
 
@@ -798,7 +797,6 @@ No, all results hold when controlling for sentiment and emotion words and total 
 
 :::: scrollable
 ::: panel-tabset
-
 ##### Non-disaggregated
 
 ```{r}
@@ -912,10 +910,9 @@ good_bad_model |>
 :::
 ::::
 
-
 ## Able vs Unable
 
----
+------------------------------------------------------------------------
 
 #### Controlling for all the Words Frequency and Total words
 
@@ -1033,7 +1030,7 @@ able_unable_model |>
 :::
 ::::
 
-----
+------------------------------------------------------------------------
 
 #### Sentiment, Emotion Words, and Total Word Count
 
@@ -1151,7 +1148,6 @@ able_unable_model |>
 ```
 :::
 ::::
-
 
 # Q4) Is this occurring for all words, or is “I” unique in some way? {.tabset}
 
@@ -1415,6 +1411,8 @@ Used median split for `daysSinceFirstText` to create two groups Median treatment
 #| results: asis
 #| warning: FALSE
 #| message: FALSE
+#| fig-width: 10
+#| fig-height: 7
 library(magick)
 library(ggplot2)
 library(tools)
@@ -1426,8 +1424,9 @@ png_files <- sort(png_files)
 plots <- lapply(png_files, function(file) {
   slide_title <- file_path_sans_ext(basename(file))
   
-  img <- image_read(file)
-  p <- image_ggplot(img, interpolate = TRUE) + 
+ img <- image_read(file) |> 
+    image_scale("1000")  # Scale width to 1000px, preserve aspect ratio
+    p <- image_ggplot(img, interpolate = TRUE) + 
     ggtitle(slide_title) + 
     theme_minimal() +
  theme(
@@ -1442,7 +1441,6 @@ plots <- lapply(png_files, function(file) {
 
 # Now print each slide with slide title and plot, plus slide break
 for (slide in plots) {
-  cat("## ", slide$title, "\n\n", sep = "")
   print(slide$plot)
   cat("\n\n---\n\n")
 }
@@ -1458,6 +1456,8 @@ for (slide in plots) {
 #| results: asis
 #| warning: FALSE
 #| message: FALSE
+#| fig-width: 10
+#| fig-height: 7
 library(magick)
 library(ggplot2)
 library(tools)
@@ -1469,7 +1469,9 @@ png_files <- sort(png_files)
 plots <- lapply(png_files, function(file) {
   slide_title <- file_path_sans_ext(basename(file))
   
-  img <- image_read(file)
+    img <- image_read(file) |> 
+    image_scale("1000")  # Scale width to 1000px, preserve aspect ratio
+  
   p <- image_ggplot(img, interpolate = TRUE) + 
     ggtitle(slide_title) + 
     theme_minimal() +
@@ -1485,11 +1487,9 @@ plots <- lapply(png_files, function(file) {
 
 # Now print each slide with slide title and plot, plus slide break
 for (slide in plots) {
-  cat("## ", slide$title, "\n\n", sep = "")
   print(slide$plot)
   cat("\n\n---\n\n")
 }
-
 
 ```
 
@@ -1568,14 +1568,14 @@ plots_list <- purrr::map(topic_groups, plot_topics)
 #| results: asis
 #| warning: FALSE
 #| message: FALSE
+#| fig-width: 10
+#| fig-height: 7
 for (i in seq_along(plots_list)) {
   
-  cat("## Topic Group", i, "\n\n")  # Slide title
   cat("\n\n")  # New slide (required by Quarto/revealjs)
   print(plots_list[[i]])  # Render the plot
   cat("\n\n---\n\n")
 }
-
 ```
 
 # Supplemental Analyses
