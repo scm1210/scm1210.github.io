@@ -1155,53 +1155,53 @@ No, control words \*\* the, and, to, be, a, we \*\* do not uniformly move along 
 
 ```{r}
 #| include: false
-control_palette = (
-  values = c(
-    "The" = "#006d77",
-    "And" = "#3a86ff",
-    "To" = "#8338ec",
-    "Be" = "#2ec4b6",
-    "A" = "#8ecae6",
-    "We" = "#f72585"
-  )
+control_palette <- c(
+  "The (Good)" = "#006d77",
+  "The (Able)" = "#006d77",
+  "And (Good)" = "#3a86ff",
+  "And (Able)" = "#3a86ff",
+  "To (Good)"  = "#8338ec",
+  "To (Able)"  = "#8338ec",
+  "Be (Good)"  = "#2ec4b6",
+  "Be (Able)"  = "#2ec4b6",
+  "A (Good)"   = "#8ecae6",
+  "A (Able)"   = "#8ecae6",
+  "We (Good)"  = "#f72585",
+  "We (Able)"  = "#f72585"
 )
-
-df = read_csv('/Users/sm9518/Downloads/Talkspace_MADS_TEST_words.csv')
-
-we_df = read_csv('/Users/sm9518/Downloads/Talkspace_MADS_We_words.csv')
-
-we_df = we_df |> 
-  dplyr::rename(room_id = 1) |> #rename the first column to the room_id
-  filter(bin < 5) |> 
-  select(1,2,bin,22:30)
+df = read_csv('/Users/sm9518/Downloads/Talkspace_MADS_Exp_TEST_Words.csv')
 
 df = df |> 
   dplyr::rename(room_id = 1) |> #rename the first column to the room_id
   filter(bin < 5) 
 
-df = df |>
-  left_join(we_df, by = c("room_id", "bin")) 
 
 data_small <- df |> 
   mutate(
-    the_MADS = the_good - the_bad,
-    and_MADS = and_good - and_bad,
-    to_MADS = to_good - to_bad,
-    be_MADS = be_good - be_bad,
-    a_MADS = a_good - a_bad,
-    we_MADS = we_good - we_bad,
-    our_MADS = ours_good - ours_bad,
+    the_good = the_good - the_bad,
+    the_able = the_able - the_unable,
+    and_good = and_good - and_bad,
+    and_able = and_able - and_unable,
+    to_good = to_good - to_bad,
+    to_able = to_able - to_unable,
+    be_good = be_good - be_bad,
+    be_able = be_able - be_unable,
+    a_good = a_good - a_bad,
+    a_able = a_able - a_unable,
+    we_good = we_good - we_bad,
+    we_able = we_able - we_unable,
     Internalizing = GAD + PHQ
-  ) |> 
-  rename(user_id = user_id.x)
+  ) 
 
-#### create disaggregated data 
+#### Create disaggregated data
 between <- data_small %>%
-  gather(item, value,the_MADS,and_MADS,to_MADS,be_MADS,a_MADS,we_MADS,our_MADS) %>%
+  gather(item, value,
+         the_good, and_good, to_good, be_good, a_good, we_good,
+         the_able, and_able, to_able, be_able, a_able, we_able) %>%
   select(user_id, item, value) %>%
   unique() %>%
   group_by(user_id, item) %>%
-  summarize(mean = mean(value, na.rm = TRUE)) %>%
+  summarize(mean = mean(value, na.rm = TRUE), .groups = "drop") %>%
   mutate(item = sprintf("%s_between", item)) %>%
   group_by(item) %>%
   mutate(mean = scale(mean, center = TRUE, scale = TRUE)) %>%
@@ -1209,7 +1209,9 @@ between <- data_small %>%
 
 # Within-person variation
 within <- data_small %>%
-  gather(item, value, the_MADS,and_MADS,to_MADS,be_MADS,a_MADS,we_MADS,our_MADS) %>%
+  gather(item, value,
+         the_good, and_good, to_good, be_good, a_good, we_good,
+         the_able, and_able, to_able, be_able, a_able, we_able) %>%
   group_by(user_id, item) %>%
   mutate(value = scale(value, center = TRUE, scale = TRUE),
          item = sprintf("%s_within", item)) %>%
@@ -1218,38 +1220,35 @@ within <- data_small %>%
 # Combine both within-person and between-person variation
 disaggregated <- within |> 
   left_join(between, by = "user_id") |> 
-  select(1:10,12,Internalizing,the_MADS_between,and_MADS_between,
-         to_MADS_between,be_MADS_between,a_MADS_between,we_MADS_between,
-         our_MADS_between,we_MADS_between,we_MADS_within, the_MADS_within,
-         and_MADS_within,to_MADS_within,be_MADS_within,a_MADS_within) 
+  select(1:10, 12, Internalizing,
+         ends_with("_good_between"), ends_with("_able_between"),
+         ends_with("_good_within"), ends_with("_able_within"))
 
-
-### data plot 
-
+### Data plot
 data_plot = data_small |> 
-  select(bin,daysSinceFirstText, user_id,the_MADS,and_MADS,to_MADS,be_MADS,a_MADS,we_MADS,our_MADS) |> 
-  pivot_longer(cols = c(the_MADS,and_MADS,to_MADS,be_MADS,a_MADS), names_to = "word_attribute", values_to = "distance") 
+  select(bin, daysSinceFirstText, user_id,
+         the_good, and_good, to_good, be_good, a_good) |> 
+  pivot_longer(cols = everything(), 
+               names_to = "word_attribute", 
+               values_to = "distance")
 
 data_sx = data_small |> 
-  select(bin,daysSinceFirstText, user_id, PHQ, GAD,Internalizing) |> 
-  pivot_longer(cols = PHQ:Internalizing, names_to = "Scale", values_to = "Scores") 
+  select(bin, daysSinceFirstText, user_id, PHQ, GAD, Internalizing) |> 
+  pivot_longer(cols = PHQ:Internalizing, 
+               names_to = "Scale", 
+               values_to = "Scores")
 
-# Scale all the variables
+# Scale all variables
 data_small <- data_small %>%
   mutate(
     daysSinceFirstText = scale(daysSinceFirstText),
     Internalizing = scale(Internalizing),
-    the_MADS = scale(the_MADS),
-    and_MADS = scale(and_MADS),
-    to_MADS = scale(to_MADS),
-    be_MADS = scale(be_MADS),
-    a_MADS = scale(a_MADS),
-    we_MADS = scale(we_MADS),
-    our_MADS = scale(our_MADS),
+    across(
+      c(the_good, and_good, to_good, be_good, a_good, we_good,
+        the_able, and_able, to_able, be_able, a_able, we_able),
+      scale
+    )
   )
-
-disaggregated$Internalizing <- scale(disaggregated$Internalizing)
-disaggregated$daysSinceFirstText <- scale(disaggregated$daysSinceFirstText)
 ```
 
 ------------------------------------------------------------------------
@@ -1258,7 +1257,14 @@ disaggregated$daysSinceFirstText <- scale(disaggregated$daysSinceFirstText)
 
 ::: scrollable
 ```{r}
-dv_list <- c("the_MADS", "and_MADS", "to_MADS", "be_MADS", "a_MADS", "we_MADS")
+dv_list <- c(
+  "the_good", "the_able",
+  "and_good", "and_able",
+  "to_good", "to_able",
+  "be_good", "be_able",
+  "a_good", "a_able",
+  "we_good", "we_able"
+)
 
 
 # Extract fixed effects for each DV
@@ -1271,12 +1277,12 @@ mads_coefs <- map_dfr(dv_list, function(dv) {
 
 mads_coefs <- mads_coefs |>
   mutate(outcome = recode(outcome,
-    "the_MADS" = "The",
-    "and_MADS" = "And",
-    "to_MADS" = "To",
-    "be_MADS" = "Be",
-    "a_MADS" = "A",
-    "we_MADS" = "We"
+    "the_good" = "The (Good)",     "the_able" = "The (Able)",
+    "and_good" = "And (Good)",     "and_able" = "And (Able)",
+    "to_good" = "To (Good)",       "to_able" = "To (Able)",
+    "be_good" = "Be (Good)",       "be_able" = "Be (Able)",
+    "a_good" = "A (Good)",         "a_able" = "A (Able)",
+    "we_good" = "We (Good)",       "we_able" = "We (Able)"
   ))
 
 max_y <- length(unique(mads_coefs$outcome)) + 0.5
@@ -1299,16 +1305,15 @@ ggplot(aes(x = estimate, y = factor(outcome),
   scale_color_manual(values = control_palette) +
   scale_alpha_manual(values = c(0.1, 1), guide = FALSE) +
   labs(
-    title = "Do words move closer to Good or Bad?",
-    subtitle = "Negative Coeff.= Moves closer to bad; Positive Coeff. = Moves closer to good",
+    title = "Do words move over time?",
     x = "Coefficient Estimate",
     y = NULL,
     color = "Word"
   ) +
   scale_x_continuous(limits = c(-0.2, 0.2)) +
   geom_vline(xintercept = 0, linetype = "dashed") +
-  annotate("text", x = -0.20, y = max_y, label = "← Bad", hjust = 0, size = 5, fontface = "italic") +
-  annotate("text", x =  0.18, y = max_y, label = "Good →", hjust = 1, size = 5, fontface = "italic") +
+  annotate("text", x = -0.20, y = max_y, label = "← Bad/Unable", hjust = 0, size = 5, fontface = "italic") +
+  annotate("text", x =  0.18, y = max_y, label = "Good/Able →", hjust = 1, size = 5, fontface = "italic") +
   theme_minimal() +
   theme(
     legend.position = "none",
@@ -1329,8 +1334,14 @@ ggplot(aes(x = estimate, y = factor(outcome),
 
 ::: scrollable
 ```{r}
-dv_list <- c("the_MADS", "and_MADS", "to_MADS", "be_MADS", "a_MADS", "we_MADS")
-
+dv_list <- c(
+  "the_good", "the_able",
+  "and_good", "and_able",
+  "to_good", "to_able",
+  "be_good", "be_able",
+  "a_good", "a_able",
+  "we_good", "we_able"
+)
 mads_coefs <- map_dfr(dv_list, function(dv) {
   formula_str <- paste0("Internalizing ~ daysSinceFirstText + ", dv, " + (1|room_id)")
   model <- lmer(as.formula(formula_str), data = data_small)
@@ -1341,12 +1352,12 @@ mads_coefs <- map_dfr(dv_list, function(dv) {
 
 mads_coefs <- mads_coefs |>
   mutate(term = recode(term,
-    "the_MADS" = "The",
-    "and_MADS" = "And",
-    "to_MADS" = "To",
-    "be_MADS" = "Be",
-    "a_MADS" = "A",
-    "we_MADS" = "We"
+    "the_good" = "The (Good)",     "the_able" = "The (Able)",
+    "and_good" = "And (Good)",     "and_able" = "And (Able)",
+    "to_good" = "To (Good)",       "to_able" = "To (Able)",
+    "be_good" = "Be (Good)",       "be_able" = "Be (Able)",
+    "a_good" = "A (Good)",         "a_able" = "A (Able)",
+    "we_good" = "We (Good)",       "we_able" = "We (Able)"
   ))
 
 max_y <- length(unique(mads_coefs$estimate)) + 0.5
@@ -1369,8 +1380,7 @@ ggplot(aes(x = estimate, y = factor(term),
   scale_color_manual(values = control_palette) +
   scale_alpha_manual(values = c(0.1, 1), guide = FALSE) +
   labs(
-    title = "Do words closer to good track with reduced sx",
-    subtitle = "Negative Coeff.= Reduction in Sx; Positive Coeff. = Increase in Sx",
+    title = "Do words closer to good/able track with reduced sx",
     x = "Coefficient Estimate",
     y = NULL,
     color = "Word"
@@ -1689,6 +1699,7 @@ palette <- c(
 ## Changes over Therapy
 
 ::: scrollable
+
 ```{r}
 dv_list <- c("calm_MADS","happy_MADS","can_MADS")
 
