@@ -119,27 +119,48 @@ extract_lmer_data <- function(model) {
   return(fixed_effects)
 }
 
+
+
 ```
 
 ```{r load-good-bad-data}
-df = read.csv('/Users/sm9518/Downloads/Talkspace_MADS_exp.csv')
 
-df = df |> 
-  #dplyr::rename(room_id = 1) |> #rename the first column to the room_id
-  filter(bin < 5) # filter out anyone with bin great than 4 |> 
+#df = read_csv('/Users/sm9518/Library/CloudStorage/Box-Box/Talkspace_ErikNook_HarvardPrinceton/Data/Processed/Mesquiti_LBA_2024/Talkspace-LBA/I-representations/data/text-level/Talkspace_MADS_EXP_text.csv')
 
-good_bad_data_small <- df |> 
+df = read_csv('/Users/sm9518/Library/CloudStorage/Box-Box/Talkspace_ErikNook_HarvardPrinceton/Data/Processed/Mesquiti_LBA_2024/Talkspace-LBA/I-representations/data/text-level/Talkspace_MADS_EXP_text_States.csv')
+
+# Step 2: Clean and filter main dataframe
+df <- df %>% 
+  rename(
+    Internalizing = internalizing,
+    daysSinceFirstText = days_since_first_text
+  ) |> 
+  filter(bin < 5) |> 
+  mutate(is_Preamble = factor(is_Preamble, levels = c(0, 1), labels = c("Not Preamble", "Preamble"))) |> 
+  filter(!(is_Preamble == "Preamble" & bin == 1))
+
+# Step 3: Average by daysSinceFirstText
+df_avg_by_day <- df %>%
+  group_by(room_id,daysSinceFirstText) %>%
+  summarise(across(
+    where(is.numeric),
+    mean,
+    na.rm = TRUE
+  ), .groups = "drop")
+
+
+good_bad_data_small <- df_avg_by_day |> 
   mutate(
     i_MADS = i_good - i_bad,
-    Internalizing = GAD + PHQ
-  ) |> 
+  )  |> 
   filter(
-  !is.na(daysSinceFirstText) & 
-  n_total >= 25 & # greater than 25 words needed to be included 
-  !is.na(i_MADS) & 
-  n_i > 0 &  # needs to have i in the text 
-  (n_good > 0 | n_bad > 0) # needs to have EITHER a single occurrence of good or bad 
-) 
+    !is.na(daysSinceFirstText) & 
+    n_total >= 25 & 
+    !is.na(i_MADS) & 
+    n_i > 0 &  
+    (n_good > 0 | n_bad > 0) 
+  )
+
 
 #### create disaggregated data 
 between <- good_bad_data_small %>%
@@ -164,13 +185,13 @@ within <- good_bad_data_small %>%
 # Combine both within-person and between-person variation
 disaggregated_good_bad <- within |> 
   left_join(between, by = "user_id") |> 
-  select(1:10,12,daysSinceFirstText,Internalizing,i_MADS_within,i_MADS_between,n_i_within,n_i_between,n_good_within,n_good_between,n_bad_within,n_bad_between, pct_i_between,pct_i_within,pct_good_between,pct_good_within,pct_bad_between,pct_bad_within,n_total_within,n_total_between,tone_pos_within,tone_pos_between,tone_neg_within,tone_neg_between,emo_pos_within,emo_pos_between,emo_neg_within,emo_neg_between) 
+  select(1:14,daysSinceFirstText,Internalizing,i_MADS_within,i_MADS_between,n_i_within,n_i_between,n_good_within,n_good_between,n_bad_within,n_bad_between, pct_i_between,pct_i_within,pct_good_between,pct_good_within,pct_bad_between,pct_bad_within,n_total_within,n_total_between,tone_pos_within,tone_pos_between,tone_neg_within,tone_neg_between,emo_pos_within,emo_pos_between,emo_neg_within,emo_neg_between) 
 
 
 ### data plot 
 
 data_plot_good = good_bad_data_small |> 
-  select(bin,daysSinceFirstText, user_id,i_MADS,n_i,n_good,n_bad,pct_i,pct_good,pct_bad,tone_pos,tone_neg,emo_pos,emo_neg) |> 
+  select(bin,daysSinceFirstText, user_id,i_MADS,n_total,Internalizing, n_i,n_good,n_bad,pct_i,pct_good,pct_bad,tone_pos,tone_neg,emo_pos,emo_neg,pct_able,pct_unable) |>
   pivot_longer(cols = i_MADS, names_to = "word_attribute", values_to = "distance") 
 
 data_sx_good = good_bad_data_small |> 
@@ -202,7 +223,8 @@ disaggregated_good_bad$daysSinceFirstText <- scale(disaggregated_good_bad$daysSi
 ```
 
 ```{r load-able-unable-data}
-able_unable_data_small <- df |> 
+
+able_unable_data_small <- df_avg_by_day |> 
   mutate(
     i_MADS = i_able - i_unable,
     Internalizing = GAD + PHQ
@@ -238,7 +260,7 @@ within <- able_unable_data_small %>%
 # Combine both within-person and between-person variation
 disaggregated_able_unable <- within |> 
   left_join(between, by = "user_id") |> 
-  select(1:10,12,daysSinceFirstText,
+  select(1:14,daysSinceFirstText,
          Internalizing,i_MADS_within,i_MADS_between,
          n_total_within,n_total_between,
          pct_i_within,pct_i_between,pct_able_within,pct_able_between,
@@ -291,17 +313,18 @@ able_palette <- c(
 )
 ```
 
+
 # Q1) How does “I” representation change across time
 
 ## Good vs Bad {.scrollable}
 
-I moves from bad to good
+I doesn't move from bad to good and the differences are very small.
 
 ::: center
 ```{r}
 #| paged-print: false
 #| 
-i_MADS_change <- lmer(i_MADS ~  daysSinceFirstText + (1|room_id), data = good_bad_data_small)
+i_MADS_change <- lmer(i_MADS ~  daysSinceFirstText  + (1|room_id), data = good_bad_data_small)
 model_summary <- summary(i_MADS_change)
 coeff_estimate <- model_summary$coefficients["daysSinceFirstText", "Estimate"]
 p_value <- model_summary$coefficients["daysSinceFirstText", "Pr(>|t|)"]
@@ -323,8 +346,6 @@ annotation_text <- sprintf(
   coeff_estimate, conf_int[1], conf_int[2]
 )
 
-
-
 data_plot_good |> 
   filter(word_attribute == "i_MADS") |>
   ggplot(aes(x = daysSinceFirstText, y = distance, group = user_id, color = word_attribute)) +
@@ -345,7 +366,7 @@ data_plot_good |>
  annotate(
     "text",
     x = max(data_sx_good$daysSinceFirstText, na.rm = TRUE) * 0.75,  # Right side of the x-axis
-    y = .021,  # Near the top of the plot
+    y = .027,  # Near the top of the plot
     label = annotation_text,
     color = "black",
     size = 6,  # Text size ~14 pt equivalent in ggplot
@@ -355,17 +376,125 @@ data_plot_good |>
   annotate(
     "text",
     x = mean(data_sx_good$daysSinceFirstText, na.rm = TRUE),  # Center over the x-axis
-    y = .021,  # Near the top of the plot
+    y = .027,  # Near the top of the plot
     label = sig_label,  # Dynamically assigned significance stars
     color = "black",
     size = 6,  
     fontface = "bold",
     hjust = 0.5
-  ) + 
-   annotate("text", x = 5, y = 0.02055, label = "Closer to Good →", hjust = 0, size = 5, fontface = "italic",angle = 90) +
-  annotate("text", x =  5, y = 0.01995, label = "← Closer to Bad", hjust = 1, size = 5, fontface = "italic",angle = 90) 
+  ) 
+   #annotate("text", x = 5, y = 0.025, label = "Closer to Good →", hjust = 0, size = 5, fontface = "italic",angle = 90) +
+  #annotate("text", x =  5, y = 0.02, label = "← Closer to Bad", hjust = 1, size = 5, fontface = "italic",angle = 90) 
 ```
+
+```{r}
+good_bad_data_small$days_c <- good_bad_data_small$daysSinceFirstText - mean(good_bad_data_small$daysSinceFirstText, na.rm = TRUE)
+good_bad_data_small$days_c2 <- good_bad_data_small$days_c^2
+
+i_MADS_change <- lmer(
+  i_MADS ~ days_c + days_c2 + (1 | room_id),
+  data = good_bad_data_small
+)
+
+summary(i_MADS_change)
+```
+
+```{r}
+# checking to see if the preamble texts have higher mads 
+library(ggdist)
+library(effectsize)
+
+states = read_csv('/Users/sm9518/Library/CloudStorage/Box-Box/Talkspace_ErikNook_HarvardPrinceton/Data/Processed/Mesquiti_LBA_2024/Talkspace-LBA/I-representations/data/text-level/Talkspace_MADS_EXP_text_States.csv')
+
+ # Step 2: Clean and filter main dataframe
+states <- states %>% 
+  rename(
+    Internalizing = internalizing,
+    daysSinceFirstText = days_since_first_text
+  ) |> 
+  filter(bin < 5)
+
+# Step 3: Average by daysSinceFirstText
+states_avg <- states %>%
+  group_by(room_id,daysSinceFirstText) %>%
+  summarise(across(
+    where(is.numeric),
+    mean,
+    na.rm = TRUE
+  ), .groups = "drop")
+
+
+states %>%
+  filter(bin == 1) %>%
+  mutate(is_Preamble = factor(is_Preamble, levels = c(0, 1), labels = c("Not Preamble", "Preamble"))) %>%
+  { 
+    df <- .
+
+    # Get group sizes
+    group_ns <- df %>%
+      count(is_Preamble) %>%
+      deframe()
+
+    # Updated factor labels with Ns
+    df$is_Preamble <- factor(
+      df$is_Preamble,
+      levels = c("Not Preamble", "Preamble"),
+      labels = paste0(c("Not Preamble", "Preamble"), " (n=", group_ns, ")")
+    )
+    
+    # Run t-test and effect size
+    t_res <- t.test(i_MADS ~ is_Preamble, data = df)
+    d_res <- cohens_d(i_MADS ~ is_Preamble, data = df)
+
+    # Plot
+    ggplot(df, aes(x = is_Preamble, y = i_MADS, fill = is_Preamble)) +
+      stat_halfeye(
+        adjust = 0.5,
+        width = 0.6,
+        .width = 0,
+        justification = -0.3,
+        point_colour = NA
+      ) +
+      geom_boxplot(
+        width = 0.1,
+        outlier.shape = NA,
+        alpha = 0.5
+      ) +
+      geom_jitter(
+        width = 0.1,
+        alpha = 0.01,
+        size = 0.5
+      ) +
+      scale_fill_manual(values = palette_condition) +
+      labs(
+        x = "",
+        y = "i_MADS",
+        title = "Raincloud Plot of i_MADS by Preamble Status (bin 1)",
+        subtitle = paste0(
+          "t(", round(t_res$parameter, 1), ") = ",
+          round(t_res$statistic, 2),
+          ", p = ", signif(t_res$p.value, 3),
+          "; d = ", round(d_res$Cohens_d, 2)
+        )
+      ) + plot_aes
+  }
+
+
+```
+
+
+
 :::
+
+```{r}
+data_plot_good |> 
+  ggplot(aes(x = daysSinceFirstText, y = distance, group = user_id, color = word_attribute)) +
+  geom_line(alpha = 0.1, color = "gray") +  # Individual lines
+  geom_smooth(aes(group = word_attribute), method = "gam", se = T, size = 1.2) +  # Omnibus trend lines
+  labs(title = "Individual Trajectories with GAM Curve",
+       x = "Days in Therapy", y = "i_MADS") +
+  plot_aes
+```
 
 ## Able vs Unable {.scrollable}
 
@@ -373,8 +502,7 @@ I moves from unable to able
 
 ::: center
 ```{r}
-i_MADS_change <- lmer(i_MADS ~  daysSinceFirstText + (1|room_id), data = able_unable_data_small)
-
+i_MADS_change <- lmer(i_MADS ~  daysSinceFirstText  + (1|room_id), data = able_unable_data_small)
 model_summary <- summary(i_MADS_change)
 coeff_estimate <- model_summary$coefficients["daysSinceFirstText", "Estimate"]
 p_value <- model_summary$coefficients["daysSinceFirstText", "Pr(>|t|)"]
@@ -398,10 +526,12 @@ annotation_text <- sprintf(
 
 data_plot_able |> 
   filter(word_attribute == "i_MADS") |>
-  ggplot(aes(x = daysSinceFirstText, y = distance, group = user_id, color = word_attribute)) +
-  geom_smooth(aes(group = word_attribute), method = "gam", se = T, size = 1.2) +  # Omnibus trend lines
-  scale_color_manual(values = able_palette, name = "") +
-  # Additional custom plot aesthetics
+  ggplot(aes(x = daysSinceFirstText, y = distance)) +
+  geom_smooth(method = "lm", se = TRUE, size = 1.2, color = able_palette[2]) +  # Linear trend
+  scale_y_continuous(
+    limits = c(min(data_plot_able$distance, na.rm = TRUE), 0.06),  # Add more headroom
+    expand = expansion(mult = c(0.03, 0.1))  # Padding at top/bottom
+  ) +
   labs(y = "Mean Attribute\nDifference Score", 
        x = "Days in Therapy") + 
   plot_aes +  
@@ -410,33 +540,34 @@ data_plot_able |>
   theme(
     plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
     plot.subtitle = element_text(hjust = 0.5),
-    text = element_text(size = 16, family= "Futura Medium"),
+    text = element_text(size = 16, family = "Futura Medium"),
     plot.caption = element_text(hjust = 0, size = 10, face = "italic")
   ) +
- annotate(
-    "text",
-    x = max(data_sx_able$daysSinceFirstText, na.rm = TRUE) * 0.75,  # Right side of the x-axis
-    y = .055,  # Near the top of the plot
-    label = annotation_text,
-    color = "black",
-    size = 6,  # Text size ~14 pt equivalent in ggplot
-    fontface = "bold",
-    hjust = 0.5
-  )  +
   annotate(
     "text",
-    x = mean(data_sx_able$daysSinceFirstText, na.rm = TRUE),  # Center over the x-axis
-    y = .055,  # Near the top of the plot
-    label = sig_label,  # Dynamically assigned significance stars
+    x = max(data_sx_able$daysSinceFirstText, na.rm = TRUE) * 0.75,
+    y = 0.055,  # Top annotation
+    label = annotation_text,
     color = "black",
-    size = 6,  
+    size = 6,
     fontface = "bold",
     hjust = 0.5
-  ) + 
-   annotate("text", x = 5, y = 0.0525, label = "Closer to Able →", hjust = 0, size = 5, fontface = "italic",angle = 90) +
-  annotate("text", x =  5, y = 0.049, label = "← Closer to Unable", hjust = 1, size = 5, fontface = "italic",angle = 90) 
+  ) +
+  annotate(
+    "text",
+    x = mean(data_sx_able$daysSinceFirstText, na.rm = TRUE),
+    y = 0.055,
+    label = sig_label,
+    color = "black",
+    size = 6,
+    fontface = "bold",
+    hjust = 0.5
+  ) +
+  annotate("text", x = 3, y = 0.04, label = "Closer to Able →", hjust = 0, size = 5, fontface = "italic", angle = 90) +
+  annotate("text", x = 3, y = 0.03, label = "← Closer to Unable", hjust = 1, size = 5, fontface = "italic", angle = 90)
 
 ```
+
 :::
 
 # Q2) How does “I” representation along these axes relate to symptoms? {.scrollable}
@@ -537,7 +668,7 @@ disagg_model |>
     color = "Predictor",
     caption = "Note: Error bars are 95% CIs."
   ) +
-  scale_x_continuous(limits = c(-0.35,0.35)) +
+  scale_x_continuous(limits = c(-0.3,0.3)) +
   theme(
     axis.text.x = element_text(hjust = 1, size = 12),
     legend.text = element_text(size = 8),
@@ -559,9 +690,9 @@ More “able” representation = less sx (both between- and within-person)
 ::: panel-tabset
 ### Non-disaggregated
 
-```{r able-unable-nondisagg, fig.height=7, fig.width=10}
+```{r able-unable-nondisagg}
 
-i_MADS_internalizing <- lmer(Internalizing ~  i_MADS + daysSinceFirstText + (1|room_id), data = able_unable_data_small)
+i_MADS_internalizing <- lmer(Internalizing ~  i_MADS + daysSinceFirstText  + (1|room_id), data = able_unable_data_small)
 
 i_MADS_internalizing <- extract_lmer_data(i_MADS_internalizing)
 
@@ -1147,7 +1278,7 @@ able_unable_model |>
 :::
 ::::
 
-# Q4) Is this occurring for all words, or is “I” unique in some way? 
+# Q4) Is this occurring for all words, or is “I” unique in some way?
 
 No, control words \*\* the, and, to, be, a, we \*\* do not uniformly move along these axes and/or they do not relate to symptoms.
 
@@ -1167,14 +1298,10 @@ control_palette <- c(
   "We (Good)"  = "#f72585",
   "We (Able)"  = "#f72585"
 )
-df = read_csv('/Users/sm9518/Downloads/Talkspace_MADS_Exp_TEST_Words.csv')
-
-df = df |> 
-  dplyr::rename(room_id = 1) |> #rename the first column to the room_id
-  filter(bin < 5) 
 
 
-data_small <- df |> 
+
+data_small <- df_avg_by_day |> 
   mutate(
     the_good = the_good - the_bad,
     the_able = the_able - the_unable,
@@ -1253,12 +1380,11 @@ disaggregated$daysSinceFirstText <- scale(disaggregated$daysSinceFirstText)
 
 ```
 
----
+------------------------------------------------------------------------
 
 ## Frequencies
 
-:::: scrollable
-
+::: scrollable
 ```{r}
 word_freq = read_csv('/Users/sm9518/Library/CloudStorage/Box-Box/Talkspace_ErikNook_HarvardPrinceton/Data/Processed/Mesquiti_LBA_2024/Talkspace-LBA/I-representations/data/Exploratory_word_frequencies.csv')
 
@@ -1269,7 +1395,7 @@ word_freq |>
   DT::datatable(options = list(pageLength = 10, autoWidth = TRUE), 
                 rownames = FALSE)
 ```
-::::
+:::
 
 ------------------------------------------------------------------------
 
@@ -1351,9 +1477,11 @@ ggplot(aes(x = estimate, y = factor(outcome),
 ------------------------------------------------------------------------
 
 ## Track with Changes in Symptoms
+
 :::: scrollable
 ::: panel-tabset
 ### Non-disaggregated
+
 ```{r}
 dv_list <- c(
   "the_good", "the_able",
@@ -1497,42 +1625,25 @@ mads_coefs |>
   )
 
 ```
-
 :::
 ::::
 
 ## Comparing to 'I' Models
 
 ```{r}
-df = read.csv('/Users/sm9518/Downloads/Talkspace_MADS_exp.csv')
 
-df = df |> 
-  #dplyr::rename(room_id = 1) |> #rename the first column to the room_id
-  filter(bin < 5) # filter out anyone with bin great than 4 |> 
-
-control = read_csv('/Users/sm9518/Downloads/Talkspace_MADS_Exp_TEST_Words.csv')
-
-control = control |> 
-  dplyr::rename(room_id = 1) |> #rename the first column to the room_id
-  filter(bin < 5) |> 
-  select(1,2,bin,a_good,a_bad,a_able,a_unable,and_good,and_bad,and_able,and_unable)
-
-
-### merge the two dataframes
-df = df |>
-  left_join(control, by = c("room_id", "bin")) 
-
-data_small <- df |> 
+data_small <- df_avg_by_day |> 
   mutate(
     i_good = i_good - i_bad,
     i_able = i_able - i_unable,
+    we_good = we_good - we_bad,
+    we_able = we_able - we_unable,
     and_good = and_good - and_bad,
     and_able = and_able - and_unable,
     a_good = a_good - a_bad,
     a_able = a_able - a_unable,
     Internalizing = GAD + PHQ
-  ) |> 
-  rename(user_id = `user_id.x`)
+  ) 
 
 
 #### Create disaggregated data
@@ -1540,7 +1651,7 @@ between <- data_small %>%
   gather(item, value,
                   i_good, i_able, 
          and_good, a_good, 
-         and_able, a_able) %>%
+         and_able, a_able,we_good,we_able) %>%
   select(user_id, item, value) %>%
   unique() %>%
   group_by(user_id, item) %>%
@@ -1554,6 +1665,7 @@ between <- data_small %>%
 within <- data_small %>%
   gather(item, value,
          i_good, i_able, 
+         we_good,we_able,
          and_good, a_good, 
          and_able, a_able) %>%
   group_by(user_id, item) %>%
@@ -1582,6 +1694,7 @@ data_small <- data_small %>%
     Internalizing = scale(Internalizing),
     across(
       c(i_good, i_able, 
+        we_good,we_able,
          and_good, a_good, 
          and_able, a_able),
       scale
@@ -1594,14 +1707,62 @@ disaggregated$daysSinceFirstText <- scale(disaggregated$daysSinceFirstText)
 
 ```
 
-
 ### Good
+
 :::: scrollable
 ::: panel-tabset
+
 #### And
 
 ```{r}
 i_MADS_internalizing <- lmer(Internalizing ~  i_good + daysSinceFirstText + and_good +  (1|room_id), data = data_small)
+i_MADS_internalizing <- extract_lmer_data(i_MADS_internalizing)
+max_y <- length(unique(i_MADS_internalizing$estimate)) - 0.5
+
+i_MADS_internalizing |> 
+  filter(term != "(Intercept)") |>
+  mutate(term = recode(term,
+    "daysSinceFirstText" = "Days in Therapy"
+  )) |>
+  ggplot(aes(x = estimate, y = factor(term), xmin = conf.low, xmax = conf.high, color = term)) +
+  geom_pointrange(position = position_dodge(width = 0.6),size = 1.1, linewidth = 1.5) +
+  geom_text(aes(x = estimate, y = factor(term), label = case_when(
+    p.value < 0.001 ~ "***",
+    p.value < 0.01 ~ "**",
+    p.value < 0.05 ~ "*",
+    TRUE ~ ""
+  )),
+  position = position_dodge(width = 0.7),
+  hjust = 0.5,
+  vjust = 0.01,
+  size = 6,
+  color = "black") + 
+  scale_color_manual(values = good_palette) +
+  scale_alpha_manual(values = c(0.1, 1), guide = FALSE) +
+  plot_aes +
+  labs(
+    title = "Mean Attribute Difference score\nPredicting Internalizing Symptoms",
+    x = "Standardized Coefficient Estimate ",
+    y = NULL,
+    color = "Predictor",
+    caption = "Note: Error bars are 95% CIs."
+  ) +
+  scale_x_continuous(limits = c(-0.5, 0.1)) +
+  theme(
+    axis.text.x = element_text(hjust = 1, size = 12),
+    legend.text = element_text(size = 8),
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold")  # Center and style the title
+  ) +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  annotate("text", x = -0.4, y = max_y, label = "← Fewer Sx", hjust = 0, size = 5, fontface = "italic") +
+  annotate("text", x =  0.1, y = max_y, label = "More Sx →", hjust = 1, size = 5, fontface = "italic") 
+
+```
+
+#### We
+
+```{r}
+i_MADS_internalizing <- lmer(Internalizing ~  i_good + daysSinceFirstText  + we_good  + (1|room_id), data = data_small)
 i_MADS_internalizing <- extract_lmer_data(i_MADS_internalizing)
 max_y <- length(unique(i_MADS_internalizing$estimate)) - 0.5
 
@@ -1694,15 +1855,63 @@ i_MADS_internalizing |>
 :::
 ::::
 
----
+------------------------------------------------------------------------
 
 ### Able
+
 :::: scrollable
 ::: panel-tabset
 #### And
 
 ```{r}
 i_MADS_internalizing <- lmer(Internalizing ~  i_able + daysSinceFirstText + and_able +  (1|room_id), data = data_small)
+i_MADS_internalizing <- extract_lmer_data(i_MADS_internalizing)
+max_y <- length(unique(i_MADS_internalizing$estimate)) - 0.5
+
+i_MADS_internalizing |> 
+  filter(term != "(Intercept)") |>
+  mutate(term = recode(term,
+    "daysSinceFirstText" = "Days in Therapy"
+  )) |>
+  ggplot(aes(x = estimate, y = factor(term), xmin = conf.low, xmax = conf.high, color = term)) +
+  geom_pointrange(position = position_dodge(width = 0.6),size = 1.1, linewidth = 1.5) +
+  geom_text(aes(x = estimate, y = factor(term), label = case_when(
+    p.value < 0.001 ~ "***",
+    p.value < 0.01 ~ "**",
+    p.value < 0.05 ~ "*",
+    TRUE ~ ""
+  )),
+  position = position_dodge(width = 0.7),
+  hjust = 0.5,
+  vjust = 0.01,
+  size = 6,
+  color = "black") + 
+  scale_color_manual(values = able_palette) +
+  scale_alpha_manual(values = c(0.1, 1), guide = FALSE) +
+  plot_aes +
+  labs(
+    title = "Mean Attribute Difference score\nPredicting Internalizing Symptoms",
+    x = "Standardized Coefficient Estimate ",
+    y = NULL,
+    color = "Predictor",
+    caption = "Note: Error bars are 95% CIs."
+  ) +
+  scale_x_continuous(limits = c(-0.5, 0.1)) +
+  theme(
+    axis.text.x = element_text(hjust = 1, size = 12),
+    legend.text = element_text(size = 8),
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold")  # Center and style the title
+  ) +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  annotate("text", x = -0.4, y = max_y, label = "← Fewer Sx", hjust = 0, size = 5, fontface = "italic") +
+  annotate("text", x =  0.1, y = max_y, label = "More Sx →", hjust = 1, size = 5, fontface = "italic") 
+
+```
+
+#### We
+
+```{r}
+i_MADS_internalizing <- lmer(Internalizing ~  i_able + daysSinceFirstText  + we_good  + (1|room_id), data = data_small)
 i_MADS_internalizing <- extract_lmer_data(i_MADS_internalizing)
 max_y <- length(unique(i_MADS_internalizing$estimate)) - 0.5
 
@@ -1990,13 +2199,19 @@ Looking at happy-sad, calm-anxious, can-cannot.
 ```{r}
 df = read.csv('/Users/sm9518/Downloads/Talkspace_MADS_exp.csv')
 
+user_stats <- df |> 
+  group_by(user_id) |> 
+  summarize(n_sessions = n()) |> 
+  filter(n_sessions > 2)
 
-df = df |> 
-  #dplyr::rename(room_id = 1) |> #rename the first column to the room_id
+
+df <- df |> 
+  filter(user_id %in% user_stats$user_id) |> 
   filter(bin < 5)
 
 data_small <- df |> 
   mutate(
+    good_MADS = i_good - i_bad,
     happy_MADS = i_happy - i_sad,
     calm_MADS = i_calm - i_anxious,
     can_MADS = i_can - i_cannot,
@@ -2004,14 +2219,14 @@ data_small <- df |>
   ) |> 
   filter(
   !is.na(daysSinceFirstText) & 
-    n_total >= 25 & 
+    n_total >= 200 & 
   !is.na(happy_MADS) & !is.na(calm_MADS) & !is.na(can_MADS) &
   n_i > 0 
 ) 
 
 #### create disaggregated data 
 between <- data_small %>%
-  gather(item, value,happy_MADS,calm_MADS,can_MADS, pct_i,pct_happy,pct_sad,emo_pos,emo_neg,tone_pos,tone_neg,n_total) %>%
+  gather(item, value,happy_MADS,calm_MADS,can_MADS, pct_i,pct_happy,pct_sad,pct_can, emo_pos,emo_neg,tone_pos,tone_neg,n_total) %>%
   select(user_id, item, value) %>%
   unique() %>%
   group_by(user_id, item) %>%
@@ -2023,7 +2238,7 @@ between <- data_small %>%
 
 # Within-person variation
 within <- data_small %>%
-  gather(item, value, happy_MADS,calm_MADS,can_MADS,pct_i,pct_happy,pct_sad,emo_pos,emo_neg,tone_pos,tone_neg,n_total) %>%
+  gather(item, value, happy_MADS,calm_MADS,can_MADS,pct_i,pct_happy,pct_sad,pct_can,emo_pos,emo_neg,tone_pos,tone_neg,n_total) %>%
   group_by(user_id, item) %>%
   mutate(value = scale(value, center = TRUE, scale = TRUE),
          item = sprintf("%s_within", item)) %>%
@@ -2039,6 +2254,7 @@ disaggregated <- within |>
          n_total_within,n_total_between,
          pct_i_within,pct_i_between,pct_happy_within,pct_happy_between,
          pct_sad_within,pct_sad_between,
+         pct_can_within,pct_can_between,
          emo_pos_within,emo_pos_between,
          emo_neg_within,emo_neg_between,
          tone_pos_within,tone_pos_between,
@@ -2069,6 +2285,7 @@ data_small <- data_small %>%
     pct_i = scale(pct_i),
     pct_happy = scale(pct_happy),
     pct_sad = scale(pct_sad),
+    pct_can = scale(pct_can),
     n_total = scale(n_total),
     tone_pos = scale(tone_pos),
     tone_neg = scale(tone_neg),
@@ -2088,8 +2305,8 @@ palette <- c(
 
 ## Changes over Therapy
 
-::: scrollable
 
+::: scrollable
 ```{r}
 dv_list <- c("calm_MADS","happy_MADS","can_MADS")
 
@@ -2135,7 +2352,7 @@ ggplot(aes(x = estimate, y = factor(outcome),
     y = NULL,
     color = "Word"
   ) +
-  scale_x_continuous(limits = c(-0.2, 0.2)) +
+  #scale_x_continuous(limits = c(-0.2, 0.2)) +
   geom_vline(xintercept = 0, linetype = "dashed") +
   annotate("text", x = -0.20, y = max_y, label = "← Bad", hjust = 0, size = 5, fontface = "italic") +
   annotate("text", x =  0.18, y = max_y, label = "Good →", hjust = 1, size = 5, fontface = "italic") +
@@ -2290,7 +2507,9 @@ ggplot(aes(x = estimate, y = factor(term),
     plot.subtitle = element_text(hjust = 0.5)
   )
 
+
+ model <- lmer(Internalizing ~ daysSinceFirstText + can_MADS_within + can_MADS_between + pct_can_within + pct_can_between +  + emo_pos_within + emo_pos_between + emo_neg_within + emo_neg_between + pct_i_within + pct_i_between + tone_pos_within + tone_pos_between + tone_neg_within + tone_neg_between + n_total_within + n_total_between + (1|room_id), data = disaggregated)
+ summary(model)
 ```
 :::
 ::::
-
