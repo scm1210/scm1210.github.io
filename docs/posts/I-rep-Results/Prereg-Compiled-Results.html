@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.40">
 
   <meta name="author" content="Steven">
-  <meta name="dcterms.date" content="2025-07-08">
+  <meta name="dcterms.date" content="2025-07-16">
   <title>I representation: Compiled Results</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -150,7 +150,7 @@ Steven
 </div>
 </div>
 
-  <p class="date">2025-07-08</p>
+  <p class="date">2025-07-16</p>
 </section>
 <section>
 <section id="q1-how-does-i-representation-change-across-time" class="title-slide slide level1 center">
@@ -159,7 +159,7 @@ Steven
 </section>
 <section id="good-vs-bad" class="slide level2 scrollable center">
 <h2>Good vs Bad</h2>
-<p>I moves from bad to good</p>
+<p>I doesn’t move from bad to good and the differences are very small.</p>
 <div class="center">
 <div class="cell">
 <div class="cell-output-display">
@@ -168,6 +168,57 @@ Steven
 <p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-1-1.png" width="960"></p>
 </figure>
 </div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by REML. t-tests use Satterthwaite's method [
+lmerModLmerTest]
+Formula: i_MADS ~ days_c + days_c2 + (1 | room_id)
+   Data: good_bad_data_small
+
+REML criterion at convergence: 26984.8
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-3.8546 -0.5424 -0.0288  0.5117  6.4138 
+
+Random effects:
+ Groups   Name        Variance Std.Dev.
+ room_id  (Intercept) 0.5301   0.7281  
+ Residual             0.4742   0.6886  
+Number of obs: 10450, groups:  room_id, 3627
+
+Fixed effects:
+              Estimate Std. Error         df t value Pr(&gt;|t|)    
+(Intercept) -7.431e-04  1.571e-02  5.405e+03  -0.047    0.962    
+days_c       4.067e-02  7.284e-03  7.547e+03   5.584 2.43e-08 ***
+days_c2     -4.067e-04  7.322e-03  7.414e+03  -0.056    0.956    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Correlation of Fixed Effects:
+        (Intr) days_c
+days_c   0.067       
+days_c2 -0.453 -0.129</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-3-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
+</figure>
 </div>
 </div>
 </div>
@@ -180,7 +231,7 @@ Steven
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-2-1.png" width="960"></p>
+<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-5-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -215,7 +266,7 @@ Steven
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-3-1.png" width="960"></p>
+<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -248,7 +299,7 @@ Steven
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
+<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -280,7 +331,7 @@ Steven
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-5-1.png" width="960"></p>
+<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -291,7 +342,7 @@ Steven
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
+<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -314,7 +365,7 @@ Steven
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
+<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -325,7 +376,7 @@ Steven
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
+<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-11-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -350,7 +401,7 @@ Steven
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
+<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -361,7 +412,7 @@ Steven
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></p>
+<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-13-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -383,7 +434,7 @@ Steven
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-11-1.png" width="960"></p>
+<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-14-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -394,7 +445,7 @@ Steven
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></p>
+<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-15-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -414,8 +465,8 @@ Steven
 <div class="scrollable">
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-0ac39061ce064533ac72" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-0ac39061ce064533ac72">{"x":{"filter":"none","vertical":false,"data":[["i","be","to","and","the","a","we"],[2891142,2065911,1291527,1130701,892781,769015,231373]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Word<\/th>\n      <th>Frequency<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"autoWidth":true,"columnDefs":[{"className":"dt-right","targets":1},{"name":"Word","targets":0},{"name":"Frequency","targets":1}],"order":[],"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-062af5a37599a5ee59b5" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-062af5a37599a5ee59b5">{"x":{"filter":"none","vertical":false,"data":[["i","be","to","and","the","a","we"],[2891142,2065911,1291527,1130701,892781,769015,231373]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Word<\/th>\n      <th>Frequency<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"autoWidth":true,"columnDefs":[{"className":"dt-right","targets":1},{"name":"Word","targets":0},{"name":"Frequency","targets":1}],"order":[],"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -427,7 +478,7 @@ Steven
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-15-1.png" width="960"></p>
+<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-18-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -445,7 +496,7 @@ Steven
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-16-1.png" width="960"></p>
+<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-19-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -456,7 +507,7 @@ Steven
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-17-1.png" width="768"></p>
+<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-20-1.png" width="768"></p>
 </figure>
 </div>
 </div>
@@ -471,14 +522,14 @@ Steven
 <h3 id="good">Good</h3>
 <div class="scrollable">
 <div class="panel-tabset">
-<ul id="tabset-8" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-8-1">And</a></li><li><a href="#tabset-8-2">A</a></li></ul>
+<ul id="tabset-8" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-8-1">And</a></li><li><a href="#tabset-8-2">We</a></li><li><a href="#tabset-8-3">A</a></li></ul>
 <div class="tab-content">
 <div id="tabset-8-1">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-19-1.png" width="960"></p>
+<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-22-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -489,7 +540,18 @@ Steven
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-20-1.png" width="960"></p>
+<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-23-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-8-3">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-24-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -504,14 +566,14 @@ Steven
 <h3 id="able">Able</h3>
 <div class="scrollable">
 <div class="panel-tabset">
-<ul id="tabset-9" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-9-1">And</a></li><li><a href="#tabset-9-2">A</a></li></ul>
+<ul id="tabset-9" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-9-1">And</a></li><li><a href="#tabset-9-2">We</a></li><li><a href="#tabset-9-3">A</a></li></ul>
 <div class="tab-content">
 <div id="tabset-9-1">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-21-1.png" width="960"></p>
+<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-25-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -522,7 +584,18 @@ Steven
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-22-1.png" width="960"></p>
+<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-3">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-27-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -542,71 +615,71 @@ Steven
 </section>
 <section id="st-half-of-treatment" class="slide level2 center">
 <h2>1st Half of Treatment</h2>
-<p>Used median split for <code>daysSinceFirstText</code> to create two groups Median treatment time = 37 days.</p>
+<p>Used median split for <code>daysSinceFirstText</code> to create two groups Median treatment time = 35 days.</p>
 </section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-23-1.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-28-1.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-23-2.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-28-2.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-23-3.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-28-3.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-23-4.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-28-4.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-23-5.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-28-5.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-23-6.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-28-6.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-23-7.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-28-7.png" width="960" class="r-stretch"></section>
 <section id="nd-half-of-treatment" class="slide level2 center">
 <h2>2nd Half of Treatment</h2>
 </section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-24-1.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-29-1.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-24-2.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-29-2.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-24-3.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-29-3.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-24-4.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-29-4.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-24-5.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-29-5.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-24-6.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-29-6.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-24-7.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-29-7.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-24-8.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-29-8.png" width="960" class="r-stretch"></section>
 <section id="topic-modeling" class="slide level2 center">
 <h2>Topic Modeling</h2>
 <p>Built topic model from all sentences in <code>Talksapace</code> data using <code>bertopic</code> from sentences that had the word I in them.<br>
@@ -615,103 +688,103 @@ Extracted the top 20 topics from the model</p>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-1.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-31-1.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-2.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-31-2.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-3.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-31-3.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-4.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-31-4.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-5.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-31-5.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-6.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-31-6.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-7.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-31-7.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-8.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-31-8.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-9.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-31-9.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-10.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-31-10.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-11.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-31-11.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-12.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-31-12.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-13.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-31-13.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-14.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-31-14.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-15.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-31-15.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-16.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-31-16.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-17.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-31-17.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-18.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-31-18.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-19.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-31-19.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-20.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-31-20.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-21.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-31-21.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-22.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-31-22.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-23.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-31-23.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-24.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-31-24.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-26-25.png" width="960" class="r-stretch"></section>
+<img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-31-25.png" width="960" class="r-stretch"></section>
 <section class="slide level2 center">
 
 </section></section>
@@ -731,7 +804,7 @@ Extracted the top 20 topics from the model</p>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-28-1.png" width="960"></p>
+<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-33-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -750,7 +823,7 @@ Extracted the top 20 topics from the model</p>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-29-1.png" width="960"></p>
+<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-34-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -761,9 +834,55 @@ Extracted the top 20 topics from the model</p>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-30-1.png" width="960"></p>
+<p><img data-src="Prereg-Compiled-Results_files/figure-revealjs/unnamed-chunk-35-1.png" width="960"></p>
 </figure>
 </div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by REML. t-tests use Satterthwaite's method [
+lmerModLmerTest]
+Formula: 
+Internalizing ~ daysSinceFirstText + can_MADS_within + can_MADS_between +  
+    pct_can_within + pct_can_between + +emo_pos_within + emo_pos_between +  
+    emo_neg_within + emo_neg_between + pct_i_within + pct_i_between +  
+    tone_pos_within + tone_pos_between + tone_neg_within + tone_neg_between +  
+    n_total_within + n_total_between + (1 | room_id)
+   Data: disaggregated
+
+REML criterion at convergence: 26537.6
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-3.4321 -0.5639 -0.0939  0.4863  4.7030 
+
+Random effects:
+ Groups   Name        Variance Std.Dev.
+ room_id  (Intercept) 0.5107   0.7146  
+ Residual             0.3589   0.5991  
+Number of obs: 11315, groups:  room_id, 3409
+
+Fixed effects:
+                     Estimate Std. Error         df t value Pr(&gt;|t|)    
+(Intercept)        -1.544e-03  1.351e-02  3.394e+03  -0.114 0.908999    
+daysSinceFirstText -2.412e-01  6.379e-03  8.419e+03 -37.811  &lt; 2e-16 ***
+can_MADS_within    -4.961e-02  7.114e-03  7.949e+03  -6.973 3.35e-12 ***
+can_MADS_between    4.816e-02  1.406e-02  3.422e+03   3.424 0.000623 ***
+pct_can_within      3.315e-03  6.751e-03  7.899e+03   0.491 0.623399    
+pct_can_between    -5.857e-03  1.371e-02  3.458e+03  -0.427 0.669147    
+emo_pos_within     -2.543e-02  8.340e-03  7.899e+03  -3.049 0.002306 ** 
+emo_pos_between    -8.367e-02  1.929e-02  3.478e+03  -4.337 1.48e-05 ***
+emo_neg_within      3.397e-02  1.069e-02  7.899e+03   3.178 0.001487 ** 
+emo_neg_between    -2.377e-02  3.271e-02  3.421e+03  -0.727 0.467565    
+pct_i_within        4.422e-03  6.810e-03  7.899e+03   0.649 0.516111    
+pct_i_between       3.475e-02  1.392e-02  3.444e+03   2.496 0.012602 *  
+tone_pos_within    -3.480e-02  8.430e-03  7.900e+03  -4.128 3.70e-05 ***
+tone_pos_between   -2.797e-02  1.953e-02  3.494e+03  -1.432 0.152148    
+tone_neg_within     1.198e-02  1.086e-02  7.903e+03   1.103 0.270108    
+tone_neg_between    2.203e-01  3.282e-02  3.421e+03   6.714 2.21e-11 ***
+n_total_within     -1.178e-02  6.809e-03  7.899e+03  -1.730 0.083715 .  
+n_total_between     1.833e-02  1.375e-02  3.417e+03   1.333 0.182747    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 </div>

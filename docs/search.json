@@ -221,7 +221,7 @@
     "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#good-vs-bad",
     "title": "I representation: Compiled Results",
     "section": "Good vs Bad",
-    "text": "Good vs Bad\nI moves from bad to good"
+    "text": "Good vs Bad\nI doesn’t move from bad to good and the differences are very small.\n\n\n\n\n\n\n\n\n\n\n\n\nLinear mixed model fit by REML. t-tests use Satterthwaite's method [\nlmerModLmerTest]\nFormula: i_MADS ~ days_c + days_c2 + (1 | room_id)\n   Data: good_bad_data_small\n\nREML criterion at convergence: 26984.8\n\nScaled residuals: \n    Min      1Q  Median      3Q     Max \n-3.8546 -0.5424 -0.0288  0.5117  6.4138 \n\nRandom effects:\n Groups   Name        Variance Std.Dev.\n room_id  (Intercept) 0.5301   0.7281  \n Residual             0.4742   0.6886  \nNumber of obs: 10450, groups:  room_id, 3627\n\nFixed effects:\n              Estimate Std. Error         df t value Pr(&gt;|t|)    \n(Intercept) -7.431e-04  1.571e-02  5.405e+03  -0.047    0.962    \ndays_c       4.067e-02  7.284e-03  7.547e+03   5.584 2.43e-08 ***\ndays_c2     -4.067e-04  7.322e-03  7.414e+03  -0.056    0.956    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nCorrelation of Fixed Effects:\n        (Intr) days_c\ndays_c   0.067       \ndays_c2 -0.453 -0.129"
   },
   {
     "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#able-vs-unable",
@@ -259,6 +259,13 @@
     "text": "Able vs Unable"
   },
   {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#frequencies",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#frequencies",
+    "title": "I representation: Compiled Results",
+    "section": "Frequencies",
+    "text": "Frequencies"
+  },
+  {
     "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#changes-over-therapy",
     "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#changes-over-therapy",
     "title": "I representation: Compiled Results",
@@ -273,6 +280,13 @@
     "text": "Track with Changes in Symptoms\n\n\nNon-disaggregatedDisaggregated"
   },
   {
+    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#comparing-to-i-models",
+    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#comparing-to-i-models",
+    "title": "I representation: Compiled Results",
+    "section": "Comparing to ‘I’ Models",
+    "text": "Comparing to ‘I’ Models\nGood\n\n\nAndWeA"
+  },
+  {
     "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#story-of-i-dlatk-analyses",
     "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#story-of-i-dlatk-analyses",
     "title": "I representation: Compiled Results",
@@ -284,56 +298,7 @@
     "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#st-half-of-treatment",
     "title": "I representation: Compiled Results",
     "section": "1st Half of Treatment",
-    "text": "1st Half of Treatment\nUsed median split for daysSinceFirstText to create two groups Median treatment time = 37 days."
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#able_mads_neg.r_0.064-0.104_wc",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#able_mads_neg.r_0.064-0.104_wc",
-    "title": "I representation: Compiled Results",
-    "section": "able_MADS_neg.r_0.064-0.104_wc",
-    "text": "able_MADS_neg.r_0.064-0.104_wc"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#able_mads_pos.r_0.062-0.111_wc",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#able_mads_pos.r_0.062-0.111_wc",
-    "title": "I representation: Compiled Results",
-    "section": "able_MADS_pos.r_0.062-0.111_wc",
-    "text": "able_MADS_pos.r_0.062-0.111_wc"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#good_mads_neg.r_0.056-0.168_wc",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#good_mads_neg.r_0.056-0.168_wc",
-    "title": "I representation: Compiled Results",
-    "section": "good_MADS_neg.r_0.056-0.168_wc",
-    "text": "good_MADS_neg.r_0.056-0.168_wc"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#good_mads_pos.r_0.056-0.066_wc",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#good_mads_pos.r_0.056-0.066_wc",
-    "title": "I representation: Compiled Results",
-    "section": "good_MADS_pos.r_0.056-0.066_wc",
-    "text": "good_MADS_pos.r_0.056-0.066_wc"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_able_mads_neg.r_0.079-0.079_wc",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_able_mads_neg.r_0.079-0.079_wc",
-    "title": "I representation: Compiled Results",
-    "section": "high_low_able_mads_neg.r_0.079-0.079_wc",
-    "text": "high_low_able_mads_neg.r_0.079-0.079_wc"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_able_mads_pos.r_0.071-0.081_wc",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_able_mads_pos.r_0.071-0.081_wc",
-    "title": "I representation: Compiled Results",
-    "section": "high_low_able_mads_pos.r_0.071-0.081_wc",
-    "text": "high_low_able_mads_pos.r_0.071-0.081_wc"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_good_mads_neg.r_0.060-0.109_wc",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_good_mads_neg.r_0.060-0.109_wc",
-    "title": "I representation: Compiled Results",
-    "section": "high_low_good_mads_neg.r_0.060-0.109_wc",
-    "text": "high_low_good_mads_neg.r_0.060-0.109_wc"
+    "text": "1st Half of Treatment\nUsed median split for daysSinceFirstText to create two groups Median treatment time = 35 days."
   },
   {
     "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#nd-half-of-treatment",
@@ -343,102 +308,11 @@
     "text": "2nd Half of Treatment"
   },
   {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#able_mads_neg.r_0.058-0.081_wc",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#able_mads_neg.r_0.058-0.081_wc",
-    "title": "I representation: Compiled Results",
-    "section": "able_MADS_neg.r_0.058-0.081_wc",
-    "text": "able_MADS_neg.r_0.058-0.081_wc"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#able_mads_pos.r_0.056-0.216_wc",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#able_mads_pos.r_0.056-0.216_wc",
-    "title": "I representation: Compiled Results",
-    "section": "able_MADS_pos.r_0.056-0.216_wc",
-    "text": "able_MADS_pos.r_0.056-0.216_wc"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#good_mads_neg.r_0.059-0.192_wc",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#good_mads_neg.r_0.059-0.192_wc",
-    "title": "I representation: Compiled Results",
-    "section": "good_MADS_neg.r_0.059-0.192_wc",
-    "text": "good_MADS_neg.r_0.059-0.192_wc"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#good_mads_pos.r_0.051-0.123_wc",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#good_mads_pos.r_0.051-0.123_wc",
-    "title": "I representation: Compiled Results",
-    "section": "good_MADS_pos.r_0.051-0.123_wc",
-    "text": "good_MADS_pos.r_0.051-0.123_wc"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_able_mads_neg.r_0.064-0.073_wc",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_able_mads_neg.r_0.064-0.073_wc",
-    "title": "I representation: Compiled Results",
-    "section": "high_low_able_mads_neg.r_0.064-0.073_wc",
-    "text": "high_low_able_mads_neg.r_0.064-0.073_wc"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_able_mads_pos.r_0.063-0.185_wc",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_able_mads_pos.r_0.063-0.185_wc",
-    "title": "I representation: Compiled Results",
-    "section": "high_low_able_mads_pos.r_0.063-0.185_wc",
-    "text": "high_low_able_mads_pos.r_0.063-0.185_wc"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_good_mads_neg.r_0.055-0.137_wc",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_good_mads_neg.r_0.055-0.137_wc",
-    "title": "I representation: Compiled Results",
-    "section": "high_low_good_mads_neg.r_0.055-0.137_wc",
-    "text": "high_low_good_mads_neg.r_0.055-0.137_wc"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_good_mads_pos.r_0.055-0.102_wc",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#high_low_good_mads_pos.r_0.055-0.102_wc",
-    "title": "I representation: Compiled Results",
-    "section": "high_low_good_mads_pos.r_0.055-0.102_wc",
-    "text": "high_low_good_mads_pos.r_0.055-0.102_wc"
-  },
-  {
     "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-modeling",
     "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-modeling",
     "title": "I representation: Compiled Results",
     "section": "Topic Modeling",
     "text": "Topic Modeling\nBuilt topic model from all sentences in Talksapace data using bertopic from sentences that had the word I in them.\nExtracted the top 20 topics from the model"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-1",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-1",
-    "title": "I representation: Compiled Results",
-    "section": "Topic Group 1",
-    "text": "Topic Group 1"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-2",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-2",
-    "title": "I representation: Compiled Results",
-    "section": "Topic Group 2",
-    "text": "Topic Group 2"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-3",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-3",
-    "title": "I representation: Compiled Results",
-    "section": "Topic Group 3",
-    "text": "Topic Group 3"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-4",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-4",
-    "title": "I representation: Compiled Results",
-    "section": "Topic Group 4",
-    "text": "Topic Group 4"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-5",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-5",
-    "title": "I representation: Compiled Results",
-    "section": "Topic Group 5",
-    "text": "Topic Group 5"
   },
   {
     "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#examining-other-pairs",
@@ -459,7 +333,7 @@
     "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#track-with-changes-in-symptoms-1",
     "title": "I representation: Compiled Results",
     "section": "Track with Changes in Symptoms",
-    "text": "Track with Changes in Symptoms\nAll models control for time in tx and are specified separately for each word.\n\n\nNon-disaggregatedDisaggregated"
+    "text": "Track with Changes in Symptoms\nAll models control for time in tx and are specified separately for each word.\n\n\nNon-disaggregatedDisaggregated\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLinear mixed model fit by REML. t-tests use Satterthwaite's method [\nlmerModLmerTest]\nFormula: \nInternalizing ~ daysSinceFirstText + can_MADS_within + can_MADS_between +  \n    pct_can_within + pct_can_between + +emo_pos_within + emo_pos_between +  \n    emo_neg_within + emo_neg_between + pct_i_within + pct_i_between +  \n    tone_pos_within + tone_pos_between + tone_neg_within + tone_neg_between +  \n    n_total_within + n_total_between + (1 | room_id)\n   Data: disaggregated\n\nREML criterion at convergence: 26537.6\n\nScaled residuals: \n    Min      1Q  Median      3Q     Max \n-3.4321 -0.5639 -0.0939  0.4863  4.7030 \n\nRandom effects:\n Groups   Name        Variance Std.Dev.\n room_id  (Intercept) 0.5107   0.7146  \n Residual             0.3589   0.5991  \nNumber of obs: 11315, groups:  room_id, 3409\n\nFixed effects:\n                     Estimate Std. Error         df t value Pr(&gt;|t|)    \n(Intercept)        -1.544e-03  1.351e-02  3.394e+03  -0.114 0.908999    \ndaysSinceFirstText -2.412e-01  6.379e-03  8.419e+03 -37.811  &lt; 2e-16 ***\ncan_MADS_within    -4.961e-02  7.114e-03  7.949e+03  -6.973 3.35e-12 ***\ncan_MADS_between    4.816e-02  1.406e-02  3.422e+03   3.424 0.000623 ***\npct_can_within      3.315e-03  6.751e-03  7.899e+03   0.491 0.623399    \npct_can_between    -5.857e-03  1.371e-02  3.458e+03  -0.427 0.669147    \nemo_pos_within     -2.543e-02  8.340e-03  7.899e+03  -3.049 0.002306 ** \nemo_pos_between    -8.367e-02  1.929e-02  3.478e+03  -4.337 1.48e-05 ***\nemo_neg_within      3.397e-02  1.069e-02  7.899e+03   3.178 0.001487 ** \nemo_neg_between    -2.377e-02  3.271e-02  3.421e+03  -0.727 0.467565    \npct_i_within        4.422e-03  6.810e-03  7.899e+03   0.649 0.516111    \npct_i_between       3.475e-02  1.392e-02  3.444e+03   2.496 0.012602 *  \ntone_pos_within    -3.480e-02  8.430e-03  7.900e+03  -4.128 3.70e-05 ***\ntone_pos_between   -2.797e-02  1.953e-02  3.494e+03  -1.432 0.152148    \ntone_neg_within     1.198e-02  1.086e-02  7.903e+03   1.103 0.270108    \ntone_neg_between    2.203e-01  3.282e-02  3.421e+03   6.714 2.21e-11 ***\nn_total_within     -1.178e-02  6.809e-03  7.899e+03  -1.730 0.083715 .  \nn_total_between     1.833e-02  1.375e-02  3.417e+03   1.333 0.182747    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"
   },
   {
     "objectID": "publications/analysis-of-social-media-language-reveals-the-psychological-interaction-of-three-successive-upheavals/index.html",
@@ -488,159 +362,5 @@
     "title": "Posts",
     "section": "",
     "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nFinal Project: Prediciting Head to Head Pokémon Wins with Multi-level Binary Logistic Regression\n\n\nPSY-504\n\n\n\nFinal-Project\n\n\nCoding\n\n\nTutorial\n\n\n\n\n\n\n\n\n\nSteven Mesquiti\n\n\n\n\n\n\n\n\n\n\n\n\nFederal research funding cuts will stall scientific progress, hurt Texas students\n\n\n\n\n\n\nOpinion\n\n\nScience Policy\n\n\n\n\n\n\n\n\n\nMar 17, 2025\n\n\nSteven Mesquiti\n\n\n\n\n\n\n\n\n\n\n\n\nI representation: Compiled Results\n\n\n\n\n\n\n\n\n\n\n\nInvalid Date\n\n\nSteven\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-6",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-6",
-    "title": "I representation: Compiled Results",
-    "section": "Topic Group 6",
-    "text": "Topic Group 6"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-7",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-7",
-    "title": "I representation: Compiled Results",
-    "section": "Topic Group 7",
-    "text": "Topic Group 7"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-8",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-8",
-    "title": "I representation: Compiled Results",
-    "section": "Topic Group 8",
-    "text": "Topic Group 8"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-9",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-9",
-    "title": "I representation: Compiled Results",
-    "section": "Topic Group 9",
-    "text": "Topic Group 9"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-10",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-10",
-    "title": "I representation: Compiled Results",
-    "section": "Topic Group 10",
-    "text": "Topic Group 10"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-11",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-11",
-    "title": "I representation: Compiled Results",
-    "section": "Topic Group 11",
-    "text": "Topic Group 11"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-12",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-12",
-    "title": "I representation: Compiled Results",
-    "section": "Topic Group 12",
-    "text": "Topic Group 12"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-13",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-13",
-    "title": "I representation: Compiled Results",
-    "section": "Topic Group 13",
-    "text": "Topic Group 13"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-14",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-14",
-    "title": "I representation: Compiled Results",
-    "section": "Topic Group 14",
-    "text": "Topic Group 14"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-15",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-15",
-    "title": "I representation: Compiled Results",
-    "section": "Topic Group 15",
-    "text": "Topic Group 15"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-16",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-16",
-    "title": "I representation: Compiled Results",
-    "section": "Topic Group 16",
-    "text": "Topic Group 16"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-17",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-17",
-    "title": "I representation: Compiled Results",
-    "section": "Topic Group 17",
-    "text": "Topic Group 17"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-18",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-18",
-    "title": "I representation: Compiled Results",
-    "section": "Topic Group 18",
-    "text": "Topic Group 18"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-19",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-19",
-    "title": "I representation: Compiled Results",
-    "section": "Topic Group 19",
-    "text": "Topic Group 19"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-20",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-20",
-    "title": "I representation: Compiled Results",
-    "section": "Topic Group 20",
-    "text": "Topic Group 20"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-21",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-21",
-    "title": "I representation: Compiled Results",
-    "section": "Topic Group 21",
-    "text": "Topic Group 21"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-22",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-22",
-    "title": "I representation: Compiled Results",
-    "section": "Topic Group 22",
-    "text": "Topic Group 22"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-23",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-23",
-    "title": "I representation: Compiled Results",
-    "section": "Topic Group 23",
-    "text": "Topic Group 23"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-24",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-24",
-    "title": "I representation: Compiled Results",
-    "section": "Topic Group 24",
-    "text": "Topic Group 24"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-25",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#topic-group-25",
-    "title": "I representation: Compiled Results",
-    "section": "Topic Group 25",
-    "text": "Topic Group 25"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#comparing-to-i-models",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#comparing-to-i-models",
-    "title": "I representation: Compiled Results",
-    "section": "Comparing to ‘I’ Models",
-    "text": "Comparing to ‘I’ Models\nGood\n\n\nAndA"
-  },
-  {
-    "objectID": "posts/I-rep-Results/Prereg-Compiled-Results.html#frequencies",
-    "href": "posts/I-rep-Results/Prereg-Compiled-Results.html#frequencies",
-    "title": "I representation: Compiled Results",
-    "section": "Frequencies",
-    "text": "Frequencies"
   }
 ]
