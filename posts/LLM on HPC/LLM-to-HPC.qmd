@@ -1,0 +1,124 @@
+---
+title: "LLM to HPC Tutorial"
+author: 
+  - Steven Mesquiti
+institute: "Princeton University"
+output: 
+  tufte::tufte_html:
+    css: 
+    tufte_variant: "envisioned"
+    highlight: github-dark
+    fig_height: 10
+    fig_width: 16
+    toc: true
+    toc_depth: 1
+    toc_float: true
+    code-fold: true
+    code-summary: "Show code"
+execute: 
+  message: false
+  warning: false
+params: 
+    SHOW_SOLS: TRUE
+    TOGGLE: TRUE
+jupyter: python3
+engine: knitr
+categories: [Coding, Tutorial]
+---
+
+# How to Download and Set Up Meta LLaMA 3 Models on HPC (Adroit)
+
+This guide walks you through configuring your environment, authenticating access, and downloading the LLaMA 3 models from Hugging Face on the Adroit HPC system. It assumes you have basic familiarity with command line, Python, and HPC usage.
+
+This process is infinitely easier if you have connected `VSCode` to the adroit cluster. [Here](https://researchcomputing.princeton.edu/support/knowledge-base/vs-code) is some info on that. IT also runs help sessions on this, which are very useful. 
+
+## Step 1: Configure the Hugging Face Cache Directory
+
+By default, Hugging Face stores downloaded models in your home directory (e.g., `/home/username/.cache/huggingface`), which may have limited storage on HPC systems. Redirect the cache to your scratch directory for ample space.
+
+You can do that by using the `checkquota` command in the terminal to find out how much space you have in your scratch directory.
+
+1.  **Set the environment variable `HF_HOME` to your scratch directory:**
+
+On the **Adroit login node**, run this command to append the export statement to your `.bashrc`:
+
+```         
+echo "export HF_HOME=/scratch/network/$USER/.cache/huggingface/" >> $HOME/.bashrc
+```
+
+2.  **Reload your shell configuration:**
+
+```         
+source ~/.bashrc
+```
+
+3.  **Verify the variable is set:**
+
+```         
+echo $HF_HOME
+```
+
+The excpected output should be:
+
+```         
+/scratch/network/<YourNetID>/.cache/huggingface/
+```
+
+## Step 2: Get Authentication Access from Meta (Required for LLaMA Models)
+
+Meta requires users to accept a license and gain explicit access to the LLaMA 3 models on Hugging Face. So, this means you'll need sign up for a [Hugging Face account](https://huggingface.co/join) and request access to the LLaMA 3 models.
+
+1.  Go to the LLaMA 3 model page on Hugging Face: https://huggingface.co/meta-llama/Llama-3.1-8B (or whatever model you want access to)
+
+2.  Log in or create a Hugging Face account if you haven't already.
+
+3.  Accept the model license terms: Click the "Access repository" button and agree to the license to request access.
+
+4.  Wait for access to be granted. This should be relatively quick, but may take a few minutes to a few hours depending on demand.
+
+## Step 3: Log In to Hugging Face CLI on HPC
+
+Once access is granted, authenticate your HPC environment to allow downloading protected models.
+
+1.  **Log in to Hugging Face CLI:**
+
+On the **Adroit login node**, run the following command:
+
+```         
+huggingface-cli login
+```
+
+2.  **Enter your Hugging Face token:**
+
+You will be prompted to enter your Hugging Face access token. You can find this token in your Hugging Face account settings under "Access Tokens". Copy and paste it into the terminal when prompted. Make sure not to share this with anyone since this is a personal access token that allows downloading models.
+
+## Step 4: Download the LLaMA 3 Model on the Login Node
+
+Now that you have authenticated, you can download the LLaMA 3 model to your scratch directory.
+
+1.  **Create a Python script download_llama3.py with this content:**
+
+Make sure to replace `meta-llama/Llama-3.1-8B` with the specific model you want\
+to download if different. Also, make sure you have `transformers` installed in your Python environment.
+
+```         
+from transformers import AutoTokenizer, AutoModelForCausalLM
+
+model_id = "meta-llama/Llama-3.1-8B"
+cache_path = "/scratch/network/sm9518/.cache/huggingface"  # replace with your actual NetID
+
+# Download model and tokenizer to cache
+AutoTokenizer.from_pretrained(model_id, cache_dir=cache_path)
+AutoModelForCausalLM.from_pretrained(model_id, cache_dir=cache_path)
+
+print(f"{model_id} Downloaded Successfully! to {cache_path}")
+```
+
+2. **Run the script on the login node:** 
+
+```
+python download_llama3.py
+```
+
+3. **This will download all necessary model files into your scratch cache directory set by HF_HOME.**
+
