@@ -8,7 +8,7 @@
 
 <meta name="author" content="Steven Mesquiti">
 
-<title>Posts</title>
+<title>LLM to HPC Tutorial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,24 +24,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0063d04294f35071145263a56bfbe081.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-0063d04294f35071145263a56bfbe081.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,73 +67,15 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
             <div id="quarto-search" class="" title="Search"></div>
@@ -145,25 +85,25 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">Steven Mesquiti</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./publications.html"> 
+    <a class="nav-link" href="../../publications.html"> 
 <span class="menu-text">Publications &amp; Preprints</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./CV.html"> 
+    <a class="nav-link" href="../../CV.html"> 
 <span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./posts.html" aria-current="page"> 
+    <a class="nav-link" href="../../posts.html"> 
 <span class="menu-text">Posts</span></a>
   </li>  
 </ul>
@@ -174,210 +114,141 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Posts</h1>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta column-page-left">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Steven Mesquiti </p>
-            </div>
-    </div>
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Q29kaW5n">Coding <span class="quarto-category-count">(2)</span></div><div class="category" data-category="RmluYWwtUHJvamVjdA==">Final-Project <span class="quarto-category-count">(1)</span></div><div class="category" data-category="T3Bpbmlvbg==">Opinion <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2NpZW5jZSUyMFBvbGljeQ==">Science Policy <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VHV0b3JpYWw=">Tutorial <span class="quarto-category-count">(2)</span></div></div></div>
-<!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
-
-
-
-
-
-
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
-          Title
-        </option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
-        </option>
-         <option value="listing-author" data-direction="asc">
-          Author
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#how-to-download-and-set-up-meta-llama-3-models-on-hpc-adroit" id="toc-how-to-download-and-set-up-meta-llama-3-models-on-hpc-adroit" class="nav-link active" data-scroll-target="#how-to-download-and-set-up-meta-llama-3-models-on-hpc-adroit">How to Download and Set Up Meta LLaMA 3 Models on HPC (Adroit)</a>
+  <ul class="collapse">
+  <li><a href="#step-1-configure-the-hugging-face-cache-directory" id="toc-step-1-configure-the-hugging-face-cache-directory" class="nav-link" data-scroll-target="#step-1-configure-the-hugging-face-cache-directory">Step 1: Configure the Hugging Face Cache Directory</a></li>
+  <li><a href="#step-2-get-authentication-access-from-meta-required-for-llama-models" id="toc-step-2-get-authentication-access-from-meta-required-for-llama-models" class="nav-link" data-scroll-target="#step-2-get-authentication-access-from-meta-required-for-llama-models">Step 2: Get Authentication Access from Meta (Required for LLaMA Models)</a></li>
+  <li><a href="#step-3-log-in-to-hugging-face-cli-on-hpc" id="toc-step-3-log-in-to-hugging-face-cli-on-hpc" class="nav-link" data-scroll-target="#step-3-log-in-to-hugging-face-cli-on-hpc">Step 3: Log In to Hugging Face CLI on HPC</a></li>
+  <li><a href="#step-4-download-the-llama-3-model-on-the-login-node" id="toc-step-4-download-the-llama-3-model-on-the-login-node" class="nav-link" data-scroll-target="#step-4-download-the-llama-3-model-on-the-login-node">Step 4: Download the LLaMA 3 Model on the Login Node</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
-</div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="RmluYWwtUHJvamVjdCUyQ0NvZGluZyUyQ1R1dG9yaWFs" data-listing-file-modified-sort="1753974329470" data-listing-reading-time-sort="25" data-listing-word-count-sort="4981">
-<div class="thumbnail">
-<p><a href="./posts/Stats-Project/Stats-project.html" class="no-external"></a></p><a href="./posts/Stats-Project/Stats-project.html" class="no-external">
-<p><img loading="lazy" src="./posts/Stats-Project/images/preview-image.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/Stats-Project/Stats-project.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Stats-Project/Stats-project.html" class="no-external">Final Project: Prediciting Head to Head Pokémon Wins with Multi-level Binary Logistic Regression</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Stats-Project/Stats-project.html" class="no-external">PSY-504</a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('RmluYWwtUHJvamVjdA=='); return false;">
-Final-Project
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Q29kaW5n'); return false;">
-Coding
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('VHV0b3JpYWw='); return false;">
-Tutorial
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/Stats-Project/Stats-project.html" class="no-external">This tutorial will walk you through the process of simulating Pokémon battles using the <code>OpenAI</code> API and then analyzing the results using a multi-level binary logistic…</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./posts/Stats-Project/Stats-project.html" class="no-external"></a></p><a href="./posts/Stats-Project/Stats-project.html" class="no-external">
-<div class="listing-author">
-Steven Mesquiti
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="Q29kaW5nJTJDVHV0b3JpYWw=" data-listing-file-modified-sort="1753974539735" data-listing-reading-time-sort="3" data-listing-word-count-sort="560">
-<div class="thumbnail">
-<p><a href="./posts/LLM on HPC/LLM-to-HPC.html" class="no-external"></a></p><a href="./posts/LLM on HPC/LLM-to-HPC.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/LLM on HPC/LLM-to-HPC.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/LLM on HPC/LLM-to-HPC.html" class="no-external">LLM to HPC Tutorial</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/LLM on HPC/LLM-to-HPC.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Q29kaW5n'); return false;">
-Coding
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('VHV0b3JpYWw='); return false;">
-Tutorial
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/LLM on HPC/LLM-to-HPC.html" class="no-external">This guide walks you through configuring your environment, authenticating access, and downloading the LLaMA 3 models from Hugging Face on the Adroit HPC system. It assumes…</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./posts/LLM on HPC/LLM-to-HPC.html" class="no-external"></a></p><a href="./posts/LLM on HPC/LLM-to-HPC.html" class="no-external">
-<div class="listing-author">
-Steven Mesquiti
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="T3BpbmlvbiUyQ1NjaWVuY2UlMjBQb2xpY3k=" data-listing-date-sort="1742184000000" data-listing-file-modified-sort="1746024952574" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="586">
-<div class="thumbnail">
-<p><a href="./posts/Federal research funding cuts will stall scientific progress, hurt Texas students/Federal research funding cuts will stall scientific progress, hurt Texas students.html" class="no-external"></a></p><a href="./posts/Federal research funding cuts will stall scientific progress, hurt Texas students/Federal research funding cuts will stall scientific progress, hurt Texas students.html" class="no-external">
-<p class="card-img-top"><img src="posts/Federal research funding cuts will stall scientific progress, hurt Texas students/Mesquiti-Oped.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Federal research funding cuts will stall scientific progress, hurt Texas students/Federal research funding cuts will stall scientific progress, hurt Texas students.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Federal research funding cuts will stall scientific progress, hurt Texas students/Federal research funding cuts will stall scientific progress, hurt Texas students.html" class="no-external">Federal research funding cuts will stall scientific progress, hurt Texas students</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Federal research funding cuts will stall scientific progress, hurt Texas students/Federal research funding cuts will stall scientific progress, hurt Texas students.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('T3Bpbmlvbg=='); return false;">
-Opinion
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('U2NpZW5jZSUyMFBvbGljeQ=='); return false;">
-Science Policy
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/Federal research funding cuts will stall scientific progress, hurt Texas students/Federal research funding cuts will stall scientific progress, hurt Texas students.html" class="no-external"><em>This piece was published as an Op-ed in the</em> <em>San Antonio Express News</em></a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Federal research funding cuts will stall scientific progress, hurt Texas students/Federal research funding cuts will stall scientific progress, hurt Texas students.html" class="no-external">
-<div class="listing-date">
-Mar 17, 2025
-</div>
-<div class="listing-author">
-Steven Mesquiti
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-listing-date-sort="NaN" data-listing-file-modified-sort="1752689000711" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="73" data-listing-word-count-sort="14494">
-<div class="thumbnail">
-<p><a href="./posts/I-rep-Results/Prereg-Compiled-Results.html" class="no-external"></a></p><a href="./posts/I-rep-Results/Prereg-Compiled-Results.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/I-rep-Results/Prereg-Compiled-Results.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/I-rep-Results/Prereg-Compiled-Results.html" class="no-external">I representation: Compiled Results</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/I-rep-Results/Prereg-Compiled-Results.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/I-rep-Results/Prereg-Compiled-Results.html" class="no-external"></a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/I-rep-Results/Prereg-Compiled-Results.html" class="no-external">
-<div class="listing-date">
-Invalid Date
-</div>
-<div class="listing-author">
-Steven
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">LLM to HPC Tutorial</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Coding</div>
+    <div class="quarto-category">Tutorial</div>
+  </div>
+  </div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Steven Mesquiti </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Princeton University
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="how-to-download-and-set-up-meta-llama-3-models-on-hpc-adroit" class="level1">
+<h1>How to Download and Set Up Meta LLaMA 3 Models on HPC (Adroit)</h1>
+<p>This guide walks you through configuring your environment, authenticating access, and downloading the LLaMA 3 models from Hugging Face on the Adroit HPC system. It assumes you have basic familiarity with command line, Python, and HPC usage.</p>
+<p>This process is infinitely easier if you have connected <code>VSCode</code> to the adroit cluster. <a href="https://researchcomputing.princeton.edu/support/knowledge-base/vs-code">Here</a> is some info on that. IT also runs help sessions on this, which are very useful.</p>
+<section id="step-1-configure-the-hugging-face-cache-directory" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-configure-the-hugging-face-cache-directory">Step 1: Configure the Hugging Face Cache Directory</h2>
+<p>By default, Hugging Face stores downloaded models in your home directory (e.g., <code>/home/username/.cache/huggingface</code>), which may have limited storage on HPC systems. Redirect the cache to your scratch directory for ample space.</p>
+<p>You can do that by using the <code>checkquota</code> command in the terminal to find out how much space you have in your scratch directory.</p>
+<ol type="1">
+<li><strong>Set the environment variable <code>HF_HOME</code> to your scratch directory:</strong></li>
+</ol>
+<p>On the <strong>Adroit login node</strong>, run this command to append the export statement to your <code>.bashrc</code>:</p>
+<pre><code>echo "export HF_HOME=/scratch/network/$USER/.cache/huggingface/" &gt;&gt; $HOME/.bashrc</code></pre>
+<ol start="2" type="1">
+<li><strong>Reload your shell configuration:</strong></li>
+</ol>
+<pre><code>source ~/.bashrc</code></pre>
+<ol start="3" type="1">
+<li><strong>Verify the variable is set:</strong></li>
+</ol>
+<pre><code>echo $HF_HOME</code></pre>
+<p>The excpected output should be:</p>
+<pre><code>/scratch/network/&lt;YourNetID&gt;/.cache/huggingface/</code></pre>
+</section>
+<section id="step-2-get-authentication-access-from-meta-required-for-llama-models" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-get-authentication-access-from-meta-required-for-llama-models">Step 2: Get Authentication Access from Meta (Required for LLaMA Models)</h2>
+<p>Meta requires users to accept a license and gain explicit access to the LLaMA 3 models on Hugging Face. So, this means you’ll need sign up for a <a href="https://huggingface.co/join">Hugging Face account</a> and request access to the LLaMA 3 models.</p>
+<ol type="1">
+<li><p>Go to the LLaMA 3 model page on Hugging Face: https://huggingface.co/meta-llama/Llama-3.1-8B (or whatever model you want access to)</p></li>
+<li><p>Log in or create a Hugging Face account if you haven’t already.</p></li>
+<li><p>Accept the model license terms: Click the “Access repository” button and agree to the license to request access.</p></li>
+<li><p>Wait for access to be granted. This should be relatively quick, but may take a few minutes to a few hours depending on demand.</p></li>
+</ol>
+</section>
+<section id="step-3-log-in-to-hugging-face-cli-on-hpc" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-log-in-to-hugging-face-cli-on-hpc">Step 3: Log In to Hugging Face CLI on HPC</h2>
+<p>Once access is granted, authenticate your HPC environment to allow downloading protected models.</p>
+<ol type="1">
+<li><strong>Log in to Hugging Face CLI:</strong></li>
+</ol>
+<p>On the <strong>Adroit login node</strong>, run the following command:</p>
+<pre><code>huggingface-cli login</code></pre>
+<ol start="2" type="1">
+<li><strong>Enter your Hugging Face token:</strong></li>
+</ol>
+<p>You will be prompted to enter your Hugging Face access token. You can find this token in your Hugging Face account settings under “Access Tokens”. Copy and paste it into the terminal when prompted. Make sure not to share this with anyone since this is a personal access token that allows downloading models.</p>
+</section>
+<section id="step-4-download-the-llama-3-model-on-the-login-node" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-download-the-llama-3-model-on-the-login-node">Step 4: Download the LLaMA 3 Model on the Login Node</h2>
+<p>Now that you have authenticated, you can download the LLaMA 3 model to your scratch directory.</p>
+<ol type="1">
+<li><strong>Create a Python script download_llama3.py with this content:</strong></li>
+</ol>
+<p>Make sure to replace <code>meta-llama/Llama-3.1-8B</code> with the specific model you want<br>
+to download if different. Also, make sure you have <code>transformers</code> installed in your Python environment.</p>
+<pre><code>from transformers import AutoTokenizer, AutoModelForCausalLM
+
+model_id = "meta-llama/Llama-3.1-8B"
+cache_path = "/scratch/network/sm9518/.cache/huggingface"  # replace with your actual NetID
+
+# Download model and tokenizer to cache
+AutoTokenizer.from_pretrained(model_id, cache_dir=cache_path)
+AutoModelForCausalLM.from_pretrained(model_id, cache_dir=cache_path)
+
+print(f"{model_id} Downloaded Successfully! to {cache_path}")</code></pre>
+<ol start="2" type="1">
+<li><strong>Run the script on the login node:</strong></li>
+</ol>
+<pre><code>python download_llama3.py</code></pre>
+<ol start="3" type="1">
+<li><strong>This will download all necessary model files into your scratch cache directory set by HF_HOME.</strong></li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
