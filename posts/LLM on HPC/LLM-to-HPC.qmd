@@ -30,7 +30,7 @@ categories: [Coding, Tutorial]
 
 This guide walks you through configuring your environment, authenticating access, and downloading the LLaMA 3 models from Hugging Face on the Adroit HPC system. It assumes you have basic familiarity with command line, Python, and HPC usage.
 
-This process is infinitely easier if you have connected `VSCode` to the adroit cluster. [Here](https://researchcomputing.princeton.edu/support/knowledge-base/vs-code) is some info on that. IT also runs help sessions on this, which are very useful. 
+This process is infinitely easier if you have connected `VSCode` to the adroit cluster. [Here](https://researchcomputing.princeton.edu/support/knowledge-base/vs-code) is some info on that. IT also runs help sessions on this, which are very useful.
 
 ## Step 1: Configure the Hugging Face Cache Directory
 
@@ -114,11 +114,96 @@ AutoModelForCausalLM.from_pretrained(model_id, cache_dir=cache_path)
 print(f"{model_id} Downloaded Successfully! to {cache_path}")
 ```
 
-2. **Run the script on the login node:** 
+2.  **Run the script on the login node:**
 
-```
+```         
 python download_llama3.py
 ```
 
-3. **This will download all necessary model files into your scratch cache directory set by HF_HOME.**
+3.  **This will download all necessary model files into your scratch cache directory set by HF_HOME.**
 
+## Step 5: Test the downloaded Model
+
+Now that you have downloaded the LLaMA 3 model to your scratch directory, you can run inference on an HPC compute node.
+
+### 5a. Create a Python script for testing (`run_test_llama.py`)
+
+Save the following code to `/scratch/network/$USER/python_test/run_test_llama.py`. This script loads the model and runs a short text generation example using the transformers pipeline API.
+
+```         
+from transformers import pipeline
+import torch
+import os
+
+print(f"CUDA Available: {torch.cuda.is_available()}")
+
+if not torch.cuda.is_available():
+    raise ValueError(
+        "CUDA is not available. Make sure you are running this on a GPU node. "
+        "For example, run with Slurm requesting GPU:\n\n"
+        "\tsalloc -t 0:10:00 --ntasks=1 --gres=gpu:1 python run_test_llama.py"
+    )
+
+model_path = "/scratch/network/$USER/.cache/huggingface/models--meta-llama--Llama-3.1-8B/snapshots/d04e592bb4f6aa9cfee91e2e20afa771667e1d4b"
+
+print("CUDA_VISIBLE_DEVICES =", os.environ.get("CUDA_VISIBLE_DEVICES"))
+
+pipe = pipeline("text-generation", model=model_path, tokenizer=model_path)
+
+prompt = "You are an expert psychologist. Tell me something interesting about psychology regarding Erik Nook's research:"
+output = pipe(prompt, max_new_tokens=50)
+
+print("\nModel output:\n", output)
+```
+
+> Make sure to replace \$USER in the path with your actual NetID or use a variable if running programmatically.
+
+### 5b. Create a Slurm job script (llama3-textgen.slurm)
+
+This Slurm batch script requests one A100 GPU on the Adroit cluster and runs the above Python test script.
+
+```         
+#!/bin/bash
+#SBATCH --job-name=llama3-textgen           # Job name
+#SBATCH --nodes=1                           # Use one node
+#SBATCH --ntasks=1                          # One task
+#SBATCH --cpus-per-task=1                   # One CPU core
+#SBATCH --mem=36G                          # Memory request # can be ess
+#SBATCH --gres=gpu:1                        # Request 1 GPU
+#SBATCH --time=00:10:00                     # Max runtime (adjust as needed)
+#SBATCH --constraint=a100                   # Use A100 GPU
+#SBATCH --nodelist=adroit-h11g1             # Run on node with free GPUs
+#SBATCH --mail-type=ALL                     # Email on start, end, fail
+#SBATCH --mail-user=sm9518@princeton.edu   # Your email
+
+module purge
+module load anaconda3/2024.6
+module load cudatoolkit/11.8 
+
+source activate talkspaceMADS
+
+cd /scratch/network/$USER/python_test
+
+echo "Job started at $(date)"
+
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+
+python run_test_llama.py
+
+echo "Job completed at $(date)"
+```
+
+> **💡 Check GPU Node Usage Before Selecting a Node or GPU.**
+>
+> Before submitting your job or manually specifying a GPU node (e.g., with `#SBATCH --nodelist=adroit-h11g1`).
+>
+> It’s a good idea to check which nodes and GPUs have free memory or are under low load. Otherwise, your job might be assigned to a GPU that is already fully used, causing CUDA out-of-memory errors.
+
+On Adroit, you can use commands like these from the login node to check GPU availability:
+
+```         
+# Show GPU status and free GPUs per node 
+shownodes -p gpu
+```
+
+If you don’t specify a node, Slurm will pick one for you, but it might not always be the best choice if GPUs on that node are busy.
