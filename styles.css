@@ -1,7 +1,7 @@
 /* Root variables for light mode (default) */
 :root {
   --q-primary: #fff;
-  --q-secondary: #E77500;
+  --q-secondary: #5c80a8;
   --q-font-family-base: 'Arial', sans-serif;
   --q-heading-font-family: 'Georgia', serif;
   --q-text-color: #222222;
@@ -18,7 +18,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --q-primary: #121212;
-    --q-secondary: #FF7F00;
+    --q-secondary: #5c80a8;
     --q-font-family-base: 'Arial', sans-serif;
     --q-heading-font-family: 'Georgia', serif;
     --q-text-color: #fff;
@@ -27,9 +27,10 @@
     --q-accent-light: #333;
 
     --background: #121212;
-    --highlight: #FF7F00;
+    --highlight: #5c80a8;
   }
 }
+
 
 /* General body styles */
 body {
