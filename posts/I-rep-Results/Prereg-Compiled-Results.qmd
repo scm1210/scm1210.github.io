@@ -134,10 +134,14 @@ df <- df %>%
   rename(
     Internalizing = internalizing,
     daysSinceFirstText = days_since_first_text
-  ) |> 
-  filter(bin < 5) |> 
-  mutate(is_Preamble = factor(is_Preamble, levels = c(0, 1), labels = c("Not Preamble", "Preamble"))) |> 
-  filter(!(is_Preamble == "Preamble" & bin == 1))
+  ) %>% 
+  filter(bin < 5) %>% 
+  mutate(
+    Llama_rating = ifelse(is.na(Llama_rating), 0, Llama_rating),
+    Llama_rating = factor(Llama_rating, levels = c(0, 1), labels = c("Not Preamble", "Preamble"))
+  ) %>% 
+  # Now filter preambles from bin 1
+  filter(!(Llama_rating == "Preamble"))
 
 # Step 3: Average by daysSinceFirstText
 df_avg_by_day <- df %>%
@@ -426,7 +430,8 @@ states_avg <- states %>%
 
 states %>%
   filter(bin == 1) %>%
-  mutate(is_Preamble = factor(is_Preamble, levels = c(0, 1), labels = c("Not Preamble", "Preamble"))) %>%
+  mutate( Llama_rating = ifelse(is.na(Llama_rating), 0, Llama_rating),
+    is_Preamble = factor(Llama_rating, levels = c(0, 1), labels = c("Not Preamble", "Preamble"))) %>%
   { 
     df <- .
 
@@ -486,15 +491,6 @@ states %>%
 
 :::
 
-```{r}
-data_plot_good |> 
-  ggplot(aes(x = daysSinceFirstText, y = distance, group = user_id, color = word_attribute)) +
-  geom_line(alpha = 0.1, color = "gray") +  # Individual lines
-  geom_smooth(aes(group = word_attribute), method = "gam", se = T, size = 1.2) +  # Omnibus trend lines
-  labs(title = "Individual Trajectories with GAM Curve",
-       x = "Days in Therapy", y = "i_MADS") +
-  plot_aes
-```
 
 ## Able vs Unable {.scrollable}
 

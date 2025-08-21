@@ -21,7 +21,7 @@ about:
 fontsize: 11pt
 ---
 
-My name is Steven Mesquiti! I'm a [first-year](https://lemolab.princeton.edu/people/steven-mesquiti) in the Department of Psychology at Princeton University advised by [Erik Nook](https://lemolab.princeton.edu/people/erik-c-nook-phd).
+My name is Steven Mesquiti! I'm a [second-year](https://lemolab.princeton.edu/people/steven-mesquiti) PhD Student in the Department of Psychology at Princeton University advised by [Erik Nook](https://lemolab.princeton.edu/people/erik-c-nook-phd).
 
 I study how we can use Natural Language Processing techniques and Artificial Intelligence to explain, predict, and improve people's Mental Health.
 
