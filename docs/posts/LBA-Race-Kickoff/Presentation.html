@@ -144,34 +144,70 @@ Steven
 </section>
 <section id="the-problem" class="title-slide slide level1 center">
 <h1>The Problem</h1>
+<div class="inline-fragment">
+<div class="fragment">
 <ul>
-<li><p>The U.S. is experiencing a mental health crisis (anxiety &amp; depression).Access to care is unequal, especially for racial and ethnic minority groups.</p></li>
-<li><p>Language-based assessments promise scalable screeningbut recent evidence shows reduced performance for minority groups — risking widened disparities.</p></li>
+<li>The U.S. is experiencing a mental health crisis (anxiety &amp; depression).Access to care is unequal, especially for racial and ethnic minority groups.</li>
 </ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Language-based assessments promise scalable screeningbut recent evidence shows reduced performance for minority groups — risking widened disparities.</li>
+</ul>
+</div>
+<div class="fragment">
 <p><a href="https://docs.google.com/document/d/1HglipIcEimjoXzj3AxEaWgLA2uyAOKWmJkqRe-2fgYc/edit?tab=t.0" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:10px 16px;border-radius:6px;background:#197278;color:#fff;text-decoration:none;font-weight:600;"> Open Original Proposal (new tab) </a></p>
+</div>
+</div>
 </section>
 
 <section id="background" class="title-slide slide level1 center">
 <h1>Background</h1>
+<div class="inline-fragment">
+<div class="fragment">
 <ul>
-<li><p>Language indexes psychological states (pronouns, negative-emotion words, temporal focus).</p></li>
-<li><p>NLP and LLMs can predict anxiety/depression from text, sometimes matching human sensitivity.</p></li>
-<li><p>Prior work suggests tools perform better for White participants than for some minority groups (Rai et al., 2024).</p></li>
+<li>Language indexes psychological states (pronouns, negative-emotion words, temporal focus).</li>
 </ul>
+</div>
+<div class="fragment">
+<ul>
+<li>NLP and LLMs can predict anxiety/depression from text, sometimes matching human sensitivity.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Prior work suggests tools perform better for White participants than for some minority groups (Rai et al., 2024).</li>
+</ul>
+</div>
+</div>
 </section>
 
 <section id="gap-in-the-literature" class="title-slide slide level1 center">
 <h1>Gap in the Literature</h1>
+<div class="inline-fragment">
+<div class="fragment">
 <ul>
-<li><p>Limited research testing whether language-based tools (especially modern LLMs) are equally sensitive across racial/ethnic groups.</p></li>
-<li><p>Identify linguistic markers of distress within minority groups to inform equitable tools.</p></li>
+<li>Limited research testing whether language-based tools (especially modern LLMs) are equally sensitive across racial/ethnic groups.</li>
 </ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Identify linguistic markers of distress within minority groups to inform equitable tools.</li>
+</ul>
+</div>
+</div>
 </section>
 
 <section id="aimsresearch-questions-from-grant" class="title-slide slide level1 center">
 <h1>Aims/Research Questions from Grant</h1>
+<div class="inline-fragment">
+<div class="fragment">
 <p><strong>Aim 1 – Sensitivty across Groups</strong> - Test prediction of current and future anxiety/depression across four racial/ethnic groups (N_total = 1,600; 400 per group). - <strong>Hypothesis:</strong> Reduced sensitivity for Black, Latino, and Asian participants vs.&nbsp;White participants.</p>
-<p><strong>Aim 2 — Markers in Minority Groups</strong> - Exploratory/descriptive: sentiment, pronouns, emotion words, and LLM-derived contextual embeddings to identify group-specific markers.</p>
+</div>
+<div class="fragment">
+<p><strong>Aim 2 — Markers in Minority Groups</strong> <strong>- Exploratory/descriptive</strong>: sentiment, pronouns, emotion words, and LLM-derived contextual embeddings to identify group-specific markers.</p>
+</div>
+</div>
 </section>
 
 <section>
@@ -199,32 +235,62 @@ Steven
 <img data-src="Presentation_files/figure-revealjs/unnamed-chunk-1-1.png" width="576" class="r-stretch"></section></section>
 <section id="measures" class="title-slide slide level1 center">
 <h1>Measures</h1>
+<div class="inline-fragment">
+<div class="fragment">
 <ul>
-<li><p><em>Text data: Free-text responses to prompts</em>(e.g., mood, motivation, sleep; e.g., Could you describe your general mood in the past 2 weeks? Has your mood been higher or lower than usual?)</p></li>
-<li><p><em>Clinical measures:</em> GAD-7 (anxiety), PHQ-8 (depression).</p></li>
-<li><p><em>Other covariates:</em> Age, gender, SES proxies?</p></li>
-<li><p><em>Pilot:</em> N = 240 to validate prompts, retention, and preprocessing pipelines.</p></li>
+<li><em>Text data: Free-text responses to prompts</em>(e.g., mood, motivation, sleep; e.g., Could you describe your general mood in the past 2 weeks? Has your mood been higher or lower than usual?)</li>
 </ul>
+</div>
+<div class="fragment">
+<ul>
+<li><em>Clinical measures:</em> GAD-7 (anxiety), PHQ-8 (depression).</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li><em>Other covariates:</em> Age, gender, SES proxies?</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li><em>Pilot:</em> N = 240 to validate prompts, retention, and preprocessing pipelines.</li>
+</ul>
+</div>
+</div>
 </section>
 
 <section id="data-processing-features" class="title-slide slide level1 center">
 <h1>Data processing &amp; Features</h1>
+<div class="inline-fragment">
+<div class="fragment">
 <p><strong>Lexicon-based features:</strong> LIWC categories (I-usage, negative emotion, temporal focus), sentiment scores.</p>
+</div>
+<div class="fragment">
 <p><strong>LLM-based features:</strong> Contextual embeddings from pre-trained/fine-tuned foundation models, Language-based predictions</p>
+</div>
+<div class="fragment">
 <p><strong>Derived DVs / PVs:</strong></p>
 <ul>
 <li><p>DVs: GAD-7 score, PHQ-8 score, ~1-week change.</p></li>
 <li><p>PVs: Lexicon counts (%), sentiment, embedding vectors, demographic variables</p></li>
 </ul>
+</div>
+</div>
 </section>
 
 <section id="analyses" class="title-slide slide level1 center">
 <h1>Analyses</h1>
+<div class="inline-fragment">
+<div class="fragment">
 <ul>
 <li><p><strong>Primary Analyses</strong></p>
 <ul>
 <li>Moderation: test race × linguistic-feature interaction predicting GAD-7/PHQ-8</li>
 </ul></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
 <li><p><strong>Secondary Analyses</strong></p>
 <ul>
 <li><p>LLM-based predictions vs.&nbsp;lexicon-based methods</p></li>
@@ -232,6 +298,8 @@ Steven
 <li><p>Exploring other NLP Analyses</p></li>
 </ul></li>
 </ul>
+</div>
+</div>
 </section>
 
 <section id="brain-storm" class="title-slide slide level1 center">

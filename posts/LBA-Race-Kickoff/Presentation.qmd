@@ -23,36 +23,55 @@ execute:
 
 # The Problem
 
+:::: {.inline-fragment}
+:::{.fragment}
 -   The U.S. is experiencing a mental health crisis (anxiety & depression).\n Access to care is unequal, especially for racial and ethnic minority groups.
-
+:::
+:::{.fragment} 
 -   Language-based assessments promise scalable screening\n but recent evidence shows reduced performance for minority groups — risking widened disparities.
-
+:::
+:::{.fragment}
 <a href="https://docs.google.com/document/d/1HglipIcEimjoXzj3AxEaWgLA2uyAOKWmJkqRe-2fgYc/edit?tab=t.0"
    target="_blank" rel="noopener noreferrer"
    style="display:inline-block;padding:10px 16px;border-radius:6px;background:#197278;color:#fff;text-decoration:none;font-weight:600;">
   Open Original Proposal (new tab)
 </a>
-
+:::
+::::
 
 # Background
-
+::::{.inline-fragment}
+:::{.fragment}
 -   Language indexes psychological states (pronouns, negative-emotion words, temporal focus).
-
+:::
+:::{.fragment}
 -   NLP and LLMs can predict anxiety/depression from text, sometimes matching human sensitivity.
-
+:::
+:::{.fragment}
 -   Prior work suggests tools perform better for White participants than for some minority groups (Rai et al., 2024).
+:::
+::::
 
 # Gap in the Literature
-
+::::{.inline-fragment}
+:::{.fragment}
 -   Limited research testing whether language-based tools (especially modern LLMs) are equally sensitive across racial/ethnic groups.
-
+:::
+:::{.fragment}
 -   Identify linguistic markers of distress within minority groups to inform equitable tools.
+:::
+::::
 
 # Aims/Research Questions from Grant
-
+::::{.inline-fragment}
+:::{.fragment}
 **Aim 1 -- Sensitivty across Groups** - Test prediction of current and future anxiety/depression across four racial/ethnic groups (N_total = 1,600; 400 per group). - **Hypothesis:** Reduced sensitivity for Black, Latino, and Asian participants vs. White participants.
-
-**Aim 2 — Markers in Minority Groups** - Exploratory/descriptive: sentiment, pronouns, emotion words, and LLM-derived contextual embeddings to identify group-specific markers.
+:::
+:::{.fragment}
+**Aim 2 — Markers in Minority Groups** 
+  **- Exploratory/descriptive**: sentiment, pronouns, emotion words, and LLM-derived contextual embeddings to identify group-specific markers.
+:::
+::::
 
 # Design and Procedures
 
@@ -147,33 +166,45 @@ combined
 ```
 
 # Measures
-
+::::{.inline-fragment}
+:::{.fragment}
 -   *Text data: Free-text responses to prompts*\n(e.g., mood, motivation, sleep; e.g., Could you describe your general mood in the past 2 weeks? Has your mood been higher or lower than usual?)
-
+:::
+:::{.fragment}
 -   *Clinical measures:* GAD-7 (anxiety), PHQ-8 (depression).
-
+:::
+:::{.fragment}
 -   *Other covariates:* Age, gender, SES proxies?
-
+:::
+:::{.fragment}
 -   *Pilot:* N = 240 to validate prompts, retention, and preprocessing pipelines.
+:::
+::::
 
 # Data processing & Features
-
+::::{.inline-fragment}
+:::{.fragment}
 **Lexicon-based features:** LIWC categories (I-usage, negative emotion, temporal focus), sentiment scores.
-
+:::
+:::{.fragment}
 **LLM-based features:** Contextual embeddings from pre-trained/fine-tuned foundation models, Language-based predictions
-
+:::
+:::{.fragment}
 **Derived DVs / PVs:**
 
 -   DVs: GAD-7 score, PHQ-8 score, \~1-week change.
 
 -   PVs: Lexicon counts (%), sentiment, embedding vectors, demographic variables
-
+:::
+::::
 # Analyses
-
+::::{.inline-fragment}
+:::{.fragment}
 -   **Primary Analyses**
 
     -   Moderation: test race × linguistic-feature interaction predicting GAD-7/PHQ-8
-
+:::
+:::{.fragment}
 -   **Secondary Analyses**
 
     -   LLM-based predictions vs. lexicon-based methods
@@ -181,6 +212,8 @@ combined
     -   Head-to-head comparisons (e.g., GPT v. LlaMA, vs. BERT embeddings, etc/)
 
     -   Exploring other NLP Analyses
+:::
+::::
 
 # Brain Storm 
 
