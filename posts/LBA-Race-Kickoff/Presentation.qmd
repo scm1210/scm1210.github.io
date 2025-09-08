@@ -50,7 +50,7 @@ execute:
 
 # Aims/Research Questions from Grant
 
-*Aim 1 -- Sensitivty across Groups* - Test prediction of current and future anxiety/depression across four racial/ethnic groups (N_total = 1,600; 400 per group). - **Hypothesis:** Reduced sensitivity for Black, Latino, and Asian participants vs. White participants.
+**Aim 1 -- Sensitivty across Groups** - Test prediction of current and future anxiety/depression across four racial/ethnic groups (N_total = 1,600; 400 per group). - **Hypothesis:** Reduced sensitivity for Black, Latino, and Asian participants vs. White participants.
 
 **Aim 2 — Markers in Minority Groups** - Exploratory/descriptive: sentiment, pronouns, emotion words, and LLM-derived contextual embeddings to identify group-specific markers.
 
