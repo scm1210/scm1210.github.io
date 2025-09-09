@@ -171,7 +171,7 @@ combined
 -   *Text data: Free-text responses to prompts*\n(e.g., mood, motivation, sleep; e.g., Could you describe your general mood in the past 2 weeks? Has your mood been higher or lower than usual?)
 :::
 :::{.fragment}
--   *Clinical measures:* GAD-7 (anxiety), PHQ-8 (depression).
+-   *Mental Health Outcomes:* GAD-7 (anxiety), PHQ-8 (depression).
 :::
 :::{.fragment}
 -   *Other covariates:* Age, gender, SES proxies?
