@@ -290,3 +290,11 @@ pre, code {
 .scrollable {
   font-size: 0.8em; /* adjust as needed */
 }
+
+/* Ensure scrollable panels in tabsets have fixed height and scroll */
+.panel-tabset .scrollable {
+  max-height: 60vh;      /* adjust as needed */
+  overflow-y: auto;
+  padding-right: 1em;
+  box-sizing: border-box;
+}

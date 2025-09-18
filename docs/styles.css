@@ -31,7 +31,6 @@
   }
 }
 
-
 /* General body styles */
 body {
   font-family: var(--q-font-family-base);
@@ -52,31 +51,31 @@ body {
   border-radius: 50px;
   position: relative;
   margin: 1rem;
+}
 
-  .switch {
-    background: var(--background);
-    width: 24px;
-    height: 24px;
-    border-radius: 100%;
-    position: absolute;
-    top: 3px;
-    left: 4px;
-    transition: 0.5s all ease;
-  }
+.theme-switch .switch {
+  background: var(--background);
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  transition: 0.5s all ease;
 }
 
 .light-theme {
   --background: #FFF;
   --text: #000;
   background: var(--background);
-  
-  .theme-switch {
-    background: var(--text);
-    
-    .switch {
-      transform: translateX(37px);
-    }
-  }
+}
+
+.light-theme .theme-switch {
+  background: var(--text);
+}
+
+.light-theme .theme-switch .switch {
+  transform: translateX(37px);
 }
 
 /* Navbar */
@@ -106,7 +105,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 1.5em;
 }
 
-/* Links (default) */
+/* Links */
 a {
   color: var(--q-secondary);
   text-decoration: underline;
@@ -118,8 +117,9 @@ a:hover {
   color: var(--q-accent);
 }
 
-/* Fix for grey links in Quarto about section */
-div.quarto-about-trestles .about-entity .about-link {
+/* Fix for Quarto about section links */
+div.quarto-about-trestles .about-entity .about-link,
+div.quarto-about-marquee .about-link {
   color: var(--q-secondary) !important;
   text-decoration: none;
   border: solid 1px;
@@ -128,12 +128,6 @@ div.quarto-about-trestles .about-entity .about-link {
 div.quarto-about-trestles .about-entity .about-link:hover {
   color: var(--q-accent) !important;
   text-decoration: underline;
-}
-
-div.quarto-about-marquee .about-link {
-  color: var(--q-secondary) !important;
-  text-decoration: none;
-  border: solid 1px;
 }
 
 div.quarto-post a {
@@ -203,25 +197,69 @@ tr:nth-child(even) {
   background-color: #f5f5f5;
 }
 
+/* Scrollable container (updated style) */
+.scrollable {
+  max-height: 75vh;
+  overflow-y: auto;
+  padding-right: 1em;
+  box-sizing: border-box;
+  border-radius: var(--q-border-radius);
+  background-color: var(--q-background-color);
+}
+
+.scrollable > * {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.scrollable img,
+.scrollable svg,
+.scrollable canvas {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.scrollable pre {
+  overflow: auto !important;
+  max-height: 400px;
+}
+
+/* Webkit scrollbar appearance */
+.scrollable::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 100, 100, 0.5);
+  border-radius: 10px;
+}
+
 /* Code blocks and inline code */
 pre, code {
-  background-color: #000 !important;
-  color: #fff !important;
+  background-color: var(--q-accent-light);
+  color: var(--q-text-color);
   font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', monospace;
   border-radius: 6px;
   padding: 0.5em 0.75em;
   font-size: 1em;
 }
 
-pre {
-  overflow-x: auto;
-  margin: 1em 0;
-}
-
-code {
-  padding: 0.15em 0.4em;
-  font-size: 0.98em;
-  border-radius: 4px;
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  pre, code {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+  }
+  .scrollable {
+    background-color: #121212;
+  }
+  tr:nth-child(even) {
+    background-color: #1a1a1a;
+  }
 }
 
 /* Responsive adjustments */
@@ -235,4 +273,20 @@ code {
   th, td {
     padding: 0.5em;
   }
+}
+
+/* Make plots scale responsively on all slides */
+.reveal .slides section img,
+.reveal .slides section svg,
+.reveal .slides section canvas {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===== NEW: Make font smaller in scrollable panels ===== */
+.scrollable {
+  font-size: 0.8em; /* adjust as needed */
 }
