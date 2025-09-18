@@ -11,6 +11,7 @@ format:
     controls: true
     progress: true
     keyboard: true
+    slide-number: true 
     slideNumberFormat: "%current% / %total%"
     navigationMode: 'linear'
     transition: "slide"
@@ -25,10 +26,13 @@ execute:
 
 :::: {.inline-fragment}
 :::{.fragment}
--   The U.S. is experiencing a mental health crisis (anxiety & depression).\n Access to care is unequal, especially for racial and ethnic minority groups.
+-   The U.S. is experiencing a mental health crisis (anxiety & depression). 
+:::
+:::{.fragment}
+-   Access to care is unequal, especially for racial and ethnic minority groups.
 :::
 :::{.fragment} 
--   Language-based assessments promise scalable screening\n but recent evidence shows reduced performance for minority groups — risking widened disparities.
+-   Language-based assessments promise scalable screening\n but recent evidence shows reduced performance for minority groups — risking widened disparities (see [Rai et al., 2024](https://www.pnas.org/doi/10.1073/pnas.2319837121)).
 :::
 :::{.fragment}
 <a href="https://docs.google.com/document/d/1HglipIcEimjoXzj3AxEaWgLA2uyAOKWmJkqRe-2fgYc/edit?tab=t.0"
@@ -39,18 +43,6 @@ execute:
 :::
 ::::
 
-# Background
-::::{.inline-fragment}
-:::{.fragment}
--   Language indexes psychological states (pronouns, negative-emotion words, temporal focus).
-:::
-:::{.fragment}
--   NLP and LLMs can predict anxiety/depression from text, sometimes matching human sensitivity.
-:::
-:::{.fragment}
--   Prior work suggests tools perform better for White participants than for some minority groups (Rai et al., 2024).
-:::
-::::
 
 # Gap in the Literature
 ::::{.inline-fragment}
@@ -62,46 +54,50 @@ execute:
 :::
 ::::
 
-# Aims/Research Questions from Grant
-::::{.inline-fragment}
-:::{.fragment}
-**Aim 1 -- Sensitivty across Groups** - Test prediction of current and future anxiety/depression across four racial/ethnic groups (N_total = 1,600; 400 per group). - **Hypothesis:** Reduced sensitivity for Black, Latino, and Asian participants vs. White participants.
-:::
-:::{.fragment}
-**Aim 2 — Markers in Minority Groups** 
-  **- Exploratory/descriptive**: sentiment, pronouns, emotion words, and LLM-derived contextual embeddings to identify group-specific markers.
-:::
-::::
 
-# Design and Procedures
-
-## Design 
+# Design
 
 -  Two-session online longitudinal study.
     -   Baseline: open-text responses about mood, motivation, sleep (≈25 min) + GAD-7 + PHQ-8.
-    -   Follow-up (1 week): repeat assessments (≈10 min).
-    
-## Sample
+    -   Follow-up (3 week): repeat assessments (≈10 min) and collect information on posts from social media.
+  
 -   N = 1,600 (ages 18–40), balanced by race/ethnicity (White, Black, Latino, Asian).
 <!-- -->
--   **Recruitment platform:** Online panel (e.g., Prolific) with demographic quotas.
+-   **Recruitment platform:** Online panel (e.g., Prolific/CloudResearch) with demographic quotas.
+-   Pilot: *N = 240 to validate prompts, retention, and preprocessing pipelines.*
+
+----
 
 ```{r}
+#| fig-height: 8
+#| fig-width: 8
 #| paged-print: false
 library(ggplot2)
 library(patchwork)
 
+
+
+plot_aes = theme_minimal() +
+  theme(legend.position = "bottom",
+        legend.text = element_text(size = 12),
+        text = element_text(size = 12, family = "Futura Medium"),
+        axis.text = element_text(color = "black"),
+        axis.ticks.y = element_blank())
+
+palette <- c("#197278", "#9a2a2b", "#f18f01", "#ffd500")
+
+
 # ---- Data ----
-timeline_df <- data.frame(day = 1:7)
+timeline_df <- data.frame(week = 1:3)
 
 timeline_df$duration_min <- with(timeline_df,
-  ifelse(day == 1, 25,
-         ifelse(day == 7, 10, NA_real_))
+  ifelse(week == 1, 25,
+         ifelse(week == 3, 10, NA_real_))
 )
 
 timeline_df$session <- with(timeline_df,
-  ifelse(day == 1, "Baseline",
-         ifelse(day == 7, "Follow-up", NA_character_))
+  ifelse(week == 1, "Baseline",
+         ifelse(week == 3, "Follow-up", NA_character_))
 )
 sample_counts <- data.frame(
   race = factor(c("White", "Black", "Latino", "Asian"),
@@ -109,13 +105,13 @@ sample_counts <- data.frame(
   n = c(400, 400, 400, 400)
 )
 
-# ---- Compact theme base size for small output ----
+
 base_size <- 9
 
 
-p_timeline <- ggplot(timeline_df, aes(x = day, y = 1)) +
+p_timeline <- ggplot(timeline_df, aes(x = week, y = 1)) +
   # horizontal baseline from day 1 to 7
-  geom_segment(aes(x = 1, xend = 7, y = 1, yend = 1),
+  geom_segment(aes(x = 1, xend = 3, y = 1, yend = 1),
                color = "gray60", size = 0.6) +
 
   # only plot points where duration_min is NOT NA
@@ -133,87 +129,254 @@ p_timeline <- ggplot(timeline_df, aes(x = day, y = 1)) +
             aes(label = paste0(duration_min, " min"), y = 0.85),
             size = 3.5) +
 
-  scale_x_continuous(breaks = 1:7, labels = 1:7, limits = c(0.5, 7.5)) +
+  scale_x_continuous(breaks = 1:3, labels = 1:3, limits = c(0.5, 3.5)) +
   scale_size_continuous(range = c(4, 8), guide = "none") +
 
-  labs(x = "Day", y = NULL, title = "Study timeline (days 1–7)") +
-  theme_minimal() +
+  labs(x = "Week", y = NULL, title = "Study timeline (Week 1–3)") +
+  plot_aes +
   theme(
     axis.text.y = element_blank(),
     axis.ticks = element_blank(),
     panel.grid = element_blank(),
     plot.title = element_text(size = 12, face = "bold",hjust = 0.5)
-  )
+  ) 
 
-# ---- Sample counts plot (compact) ----
 p_counts <- ggplot(sample_counts, aes(x = race, y = n, fill = race)) +
   geom_col(width = 0.6, show.legend = FALSE) +
   geom_text(aes(label = n), vjust = -0.4, size = 3) +
   scale_y_continuous(expand = expansion(mult = c(0, 0.03)), limits = c(0, 440)) +
   labs(x = NULL, y = "N (participants)", title = "Planned sample by race / ethnicity") +
   theme_minimal(base_size = base_size) +
+  scale_fill_manual(values = palette) +
+  plot_aes + 
   theme(
-    plot.title = element_text(size = base_size + 1, face = "bold"),
     axis.text.x = element_text(face = "bold", size = base_size),
     axis.title.y = element_text(size = base_size),
+    plot.title = element_text(size = 12, face = "bold",hjust = 0.5),
     plot.margin = margin(6, 6, 6, 6)
-  )
+  ) 
 
-# ---- Combine and save at 4 x 6 inches ----
 combined <- p_timeline / p_counts + plot_layout(heights = c(0.9, 1.25))
 
 combined
 ```
 
+
 # Measures
+
+---
+
+## Depression-related Open-ended Questions
+-   Assessed via written response
+
+```{r}
+library(DT)
+
+# Create the data frame
+depression_questions <- data.frame(
+  Question_Order = 1:9,
+  Question_Wording = c(
+    "Could you describe your general mood in the past 2 weeks? Has your mood been higher or lower than usual? Are there any particular emotions that you have been feeling a lot lately?",
+    "How would you describe your level of interest in these things in the past 2 weeks? Has it been higher or lower than usual?",
+    "How have you been eating in the past 2 weeks? Is there anything that has been different compared to usual (e.g., eating more or less than usual)?",
+    "How would you describe your sleep patterns lately? Is there anything that has been different compared to usual?",
+    "In the past 2 weeks, has sitting still, moving, or talking been harder or easier than usual?",
+    "Sometimes we feel tired and exhausted, and sometimes we feel full of energy. How would you describe your energy level in the past 2 weeks?",
+    "How have you been feeling about yourself in the past 2 weeks?",
+    "How would you describe your thinking, concentration, and decision making in the past 2 weeks? Is there anything that has been harder or easier than usual?",
+    "Think about your life overall. Is there anything that you are particularly satisfied or dissatisfied with?"
+  ),
+  stringsAsFactors = FALSE
+)
+
+# Render as a DT table
+datatable(
+  depression_questions,
+  options = list(
+    scrollX = TRUE,      # allow horizontal scrolling
+     scrollY = "300px",   # vertical scrolling height
+    pageLength = 9,      # show all 9 questions at once
+    autoWidth = TRUE
+  ),
+  rownames = FALSE
+)
+```
+
+--- 
+
+## Main Outcomes
+-   **GAD-7 (anxiety; measured at both time points)** 
+-   **PHQ-8 (depression; measured at both time points)**
+
+---
+
+## Demographics
+
+::::: panel-tabset
+
+### Age
+- **Age:** ___
+- **State of residence:** ___
+
+### Gender 
+:::: {.scrollable}
+```{r}
+gender_df <- tibble::tibble(
+  Question = c(
+    "Sex assigned at birth",
+    "Identify with a gender different from sex assigned at birth?",
+    "Gender identity",
+    "Sexual identity/orientation (select all)"
+  ),
+  Options = c(
+    "Male; Female; Other (specify); I prefer not to answer",
+    "Yes; No; Unsure; Prefer not to answer",
+    "Male; Female; Non-binary; Unsure; Other (specify); Prefer not to answer",
+    "Straight/heterosexual; Gay / Lesbian / Homosexual; Bisexual / Pansexual / Queer; Asexual / Unsure / Other (specify); Prefer not to answer"
+  )
+)
+
+# Render as a DT table
+datatable(
+  gender_df,
+  rownames = FALSE,
+  escape = FALSE,
+  options = list(
+    scrollX = TRUE,       # horizontal scrolling
+    scrollY = "400px",    # vertical scrolling
+    paging = FALSE,       # show all rows in scrollable panel
+    autoWidth = TRUE
+  )
+)
+```
+
+::::
+
+### Race 
+:::: {.scrollable}
+```{r}
+race_df <- tibble::tibble(
+  Question = c(
+    "Race (select all)",
+    "Ethnicity"
+  ),
+  Options = c(
+    "White; Black or African American; Asian or Asian American; American Indian or Alaska Native; Middle Eastern; Native Hawaiian or Other Pacific Islander; Other (specify); Prefer not to answer",
+    "Hispanic/Latino; Not Hispanic/Latino; Prefer not to answer"
+  )
+)
+
+# Render as a DT table
+datatable(
+  race_df,
+  rownames = FALSE,
+  escape = FALSE,
+  options = list(
+    scrollX = TRUE,        # horizontal scrolling
+    scrollY = "300px",     # vertical scrolling
+    paging = FALSE,        # show all rows
+    autoWidth = TRUE
+  )
+)
+```
+
+
+::::
+
+### SES 
+:::: {.scrollable}
+
+```{r}
+ses_df <- tibble::tibble(
+  Question = c(
+    "Education (highest degree attained)",
+    "Household income",
+    "Household composition"
+  ),
+  Options = c(
+    "Less than high school; High school / GED; Associate’s; Bachelor’s; Master’s; Professional (MD, JD, etc.); Doctorate; Other (specify)",
+    "< $5,000 … > $200,000; Don’t know / Prefer not to answer",
+    "# people in household; # children; # adults; # adults bringing in income"
+  )
+)
+
+# Render as a DT table
+datatable(
+  ses_df,
+  rownames = FALSE,
+  escape = FALSE,
+  options = list(
+    scrollX = TRUE,        # horizontal scrolling
+    scrollY = "400px",     # vertical scrolling
+    paging = FALSE,        # show all rows
+    autoWidth = TRUE
+  )
+)
+```
+
+::::
+
+:::::
+
+## Other Measures...
+-   **Social media use (follow-up only)**
+-   **Satisfaction with Life Short Scale (both timepoints)**
+-   **UCLA Loneliness Scale (both time points)**
+-   **Social Media derived Language-based Assessments**
+-   **Billingual-ism**
+
+# Aim 1 — Sensitivity Across Groups
+
 ::::{.inline-fragment}
+
 :::{.fragment}
--   *Text data: Free-text responses to prompts*\n(e.g., mood, motivation, sleep; e.g., Could you describe your general mood in the past 2 weeks? Has your mood been higher or lower than usual?)
+**Goal:** Test prediction of current and future anxiety/depression across four racial/ethnic groups (N_total = 1,600; 400 per group).  
+**Hypothesis:** Reduced sensitivity for Black, Latino, and Asian participants vs. White participants.
 :::
+
 :::{.fragment}
--   *Mental Health Outcomes:* GAD-7 (anxiety), PHQ-8 (depression).
-:::
-:::{.fragment}
--   *Other covariates:* Age, gender, SES proxies?
-:::
-:::{.fragment}
--   *Pilot:* N = 240 to validate prompts, retention, and preprocessing pipelines.
+**Primary Analyses:**  
+
+- Moderation: `lm(symptoms ~ race * ling_feat, data = data)`  
+- Linguistic features include (see [Eichstaedt et al., 2021](https://psycnet.apa.org/record/2021-99502-001), [Kern et al., 2016](https://pubmed.ncbi.nlm.nih.gov/27505683/) for more info):  
+  - Sentiment, pronouns, emotion words (LIWC)  
+  - LLM-based inferences (e.g., GPT-4, LLaMA)  
+  - Contextual embeddings (e.g., BERT, RoBERTa)  
+
 :::
 ::::
 
-# Data processing & Features
+---
+
+# Aim 2 — Markers in Minority Groups
+
 ::::{.inline-fragment}
-:::{.fragment}
-**Lexicon-based features:** LIWC categories (I-usage, negative emotion, temporal focus), sentiment scores.
-:::
-:::{.fragment}
-**LLM-based features:** Contextual embeddings from pre-trained/fine-tuned foundation models, Language-based predictions
-:::
-:::{.fragment}
-**Derived DVs / PVs:**
 
--   DVs: GAD-7 score, PHQ-8 score, \~1-week change.
+:::{.fragment}
+**Goal:** Exploratory/descriptive identification of linguistic markers in minority groups.  
 
--   PVs: Lexicon counts (%), sentiment, embedding vectors, demographic variables
+- Sentiment, pronouns, emotion words (LIWC)  
+- LLM-derived inferences
 :::
+
+:::{.fragment}
+**Analyses:**  
+- Descriptive statistics of linguistic features by racial/ethnic group  
+- Identify features associated with higher/lower symptom levels  
+- Exploratory correlations and regressions for hypothesis generation
+:::
+
 ::::
-# Analyses
-::::{.inline-fragment}
-:::{.fragment}
--   **Primary Analyses**
 
-    -   Moderation: test race × linguistic-feature interaction predicting GAD-7/PHQ-8
-:::
-:::{.fragment}
--   **Secondary Analyses**
 
-    -   LLM-based predictions vs. lexicon-based methods
 
-    -   Head-to-head comparisons (e.g., GPT v. LlaMA, vs. BERT embeddings, etc/)
+# Questions we have for you
 
-    -   Exploring other NLP Analyses
-:::
-::::
+-   What other demographic factors should we consider?
+-   What other ways should we measure race?
+-   What are the current best practices for assessing race and ethnicity in psychological research?
+-   How to handle people with multi-racial identities in modeling 
+
 
 # Brain Storm 
 
