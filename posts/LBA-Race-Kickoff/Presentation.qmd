@@ -32,7 +32,7 @@ execute:
 -   Access to care is unequal, especially for racial and ethnic minority groups.
 :::
 :::{.fragment} 
--   Language-based assessments promise scalable screening\n but recent evidence shows reduced performance for minority groups — risking widened disparities (see [Rai et al., 2024](https://www.pnas.org/doi/10.1073/pnas.2319837121)).
+-   Language-based assessments promise scalable screening but recent evidence shows reduced performance for minority groups — risking widened disparities (see [Rai et al., 2024](https://www.pnas.org/doi/10.1073/pnas.2319837121)).
 :::
 :::{.fragment}
 <a href="https://docs.google.com/document/d/1HglipIcEimjoXzj3AxEaWgLA2uyAOKWmJkqRe-2fgYc/edit?tab=t.0"
