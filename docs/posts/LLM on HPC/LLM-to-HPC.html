@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Steven Mesquiti">
 
-<title>Steven Mesquiti</title>
+<title>LLM to HPC Tutorial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,21 +24,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f38260bc0185ec0d701b99598976dbca.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-0063d04294f35071145263a56bfbe081.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,7 +69,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -83,25 +85,25 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">Steven Mesquiti</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./publications.html"> 
+    <a class="nav-link" href="../../publications.html"> 
 <span class="menu-text">Publications &amp; Preprints</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./CV.html"> 
+    <a class="nav-link" href="../../CV.html"> 
 <span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./posts.html"> 
+    <a class="nav-link" href="../../posts.html"> 
 <span class="menu-text">Posts</span></a>
   </li>  
 </ul>
@@ -118,106 +120,215 @@ ul.task-list li input[type="checkbox"] {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
+   
   <ul>
-  <li><a href="#research-interests" id="toc-research-interests" class="nav-link active" data-scroll-target="#research-interests">🧠 Research Interests</a></li>
-  <li><a href="#education" id="toc-education" class="nav-link" data-scroll-target="#education">🎓 Education</a></li>
+  <li><a href="#how-to-download-and-set-up-meta-llama-3-models-on-hpc-adroit" id="toc-how-to-download-and-set-up-meta-llama-3-models-on-hpc-adroit" class="nav-link active" data-scroll-target="#how-to-download-and-set-up-meta-llama-3-models-on-hpc-adroit">How to Download and Set Up Meta LLaMA 3 Models on HPC (Adroit)</a>
+  <ul class="collapse">
+  <li><a href="#step-1-configure-the-hugging-face-cache-directory" id="toc-step-1-configure-the-hugging-face-cache-directory" class="nav-link" data-scroll-target="#step-1-configure-the-hugging-face-cache-directory">Step 1: Configure the Hugging Face Cache Directory</a></li>
+  <li><a href="#step-2-get-authentication-access-from-meta-required-for-llama-models" id="toc-step-2-get-authentication-access-from-meta-required-for-llama-models" class="nav-link" data-scroll-target="#step-2-get-authentication-access-from-meta-required-for-llama-models">Step 2: Get Authentication Access from Meta (Required for LLaMA Models)</a></li>
+  <li><a href="#step-3-log-in-to-hugging-face-cli-on-hpc" id="toc-step-3-log-in-to-hugging-face-cli-on-hpc" class="nav-link" data-scroll-target="#step-3-log-in-to-hugging-face-cli-on-hpc">Step 3: Log In to Hugging Face CLI on HPC</a></li>
+  <li><a href="#step-4-download-the-llama-3-model-on-the-login-node" id="toc-step-4-download-the-llama-3-model-on-the-login-node" class="nav-link" data-scroll-target="#step-4-download-the-llama-3-model-on-the-login-node">Step 4: Download the LLaMA 3 Model on the Login Node</a></li>
+  <li><a href="#step-5-test-the-downloaded-model" id="toc-step-5-test-the-downloaded-model" class="nav-link" data-scroll-target="#step-5-test-the-downloaded-model">Step 5: Test the downloaded Model</a>
+  <ul class="collapse">
+  <li><a href="#a.-create-a-python-script-for-testing-run_test_llama.py" id="toc-a.-create-a-python-script-for-testing-run_test_llama.py" class="nav-link" data-scroll-target="#a.-create-a-python-script-for-testing-run_test_llama.py">5a. Create a Python script for testing (<code>run_test_llama.py</code>)</a></li>
+  <li><a href="#b.-create-a-slurm-job-script-llama3-textgen.slurm" id="toc-b.-create-a-slurm-job-script-llama3-textgen.slurm" class="nav-link" data-scroll-target="#b.-create-a-slurm-job-script-llama3-textgen.slurm">5b. Create a Slurm job script (llama3-textgen.slurm)</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<div class="quarto-about-trestles">
-  <div class="about-entity">
-    <img src="profile.jpg" class="about-image
-  rounded " style="width: 20em;">
+<main class="content" id="quarto-document-content">
+
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Steven Mesquiti</h1>
-<p class="subtitle lead">PhD Student | Department of Psychology | Princeton University</p>
-</div>
+<h1 class="title">LLM to HPC Tutorial</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Coding</div>
+    <div class="quarto-category">Tutorial</div>
+  </div>
+  </div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Steven Mesquiti </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Princeton University
+          </p>
+      </div>
+  </div>
+
 <div class="quarto-title-meta">
+
+      
+  
+    
   </div>
+  
+
+
 </header>
-    <div class="about-links">
-  <a href="/CV.html" class="about-link" rel="" target="">
-     <span class="about-link-text">CV</span>
-  </a>
-  <a href="https://bsky.app/profile/smesquiti.bsky.social" class="about-link" rel="" target="">
-     <span class="about-link-text">Bluesky</span>
-  </a>
-  <a href="https://scholar.google.com/citations?user=jMPn4hoAAAAJ&amp;hl=en&amp;inst=10749622055976013885" class="about-link" rel="" target="">
-    <i class="bi bi-google scholar"></i>
-     <span class="about-link-text">Google Scholar</span>
-  </a>
-  <a href="https://github.com/scm1210" class="about-link" rel="" target="">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">GitHub</span>
-  </a>
-  <a href="mailto:sm9518@princeton.edu" class="about-link" rel="" target="">
-    <i class="bi bi-envelope"></i>
-     <span class="about-link-text">Email</span>
-  </a>
-</div>
-  </div>
-  <div class="about-contents"><main class="content" id="quarto-document-content">
 
-<p>My name is Steven Mesquiti! I’m a <a href="https://lemolab.princeton.edu/people/steven-mesquiti">second-year</a> PhD Student in the Department of Psychology at Princeton University advised by <a href="https://lemolab.princeton.edu/people/erik-c-nook-phd">Erik Nook</a>.</p>
-<p>I study how we can use Natural Language Processing techniques and Artificial Intelligence to better understand people’s mental health.</p>
-<p>Before Princeton, I worked as a Lab Manager for Emily Falk in the <a href="https://www.asc.upenn.edu/research/centers/communication-neuroscience-lab">Communication Neuroscience Lab</a> at the University of Pennsylvania. Along the way, I have worked with excessively generous scientists like Jamie Pennebaker to answer questions at the nexus of Computer Science, Computational Linguistics, and Psychology.</p>
-<hr>
-<section id="research-interests" class="level2">
-<h2 data-anchor-id="research-interests">🧠 Research Interests</h2>
-<ul>
-<li>Natural Language Processing</li>
-<li>Mental Health</li>
-<li>Language-based Assessments of Mental Health</li>
-<li>Artificial Intelligence</li>
-</ul>
-<hr>
+
+<section id="how-to-download-and-set-up-meta-llama-3-models-on-hpc-adroit" class="level1">
+<h1>How to Download and Set Up Meta LLaMA 3 Models on HPC (Adroit)</h1>
+<p>This guide walks you through configuring your environment, authenticating access, and downloading the LLaMA 3 models from Hugging Face on the Adroit HPC system. It assumes you have basic familiarity with command line, Python, and HPC usage.</p>
+<p>This process is infinitely easier if you have connected <code>VSCode</code> to the adroit cluster. <a href="https://researchcomputing.princeton.edu/support/knowledge-base/vs-code">Here</a> is some info on that. IT also runs help sessions on this, which are very useful.</p>
+<section id="step-1-configure-the-hugging-face-cache-directory" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-configure-the-hugging-face-cache-directory">Step 1: Configure the Hugging Face Cache Directory</h2>
+<p>By default, Hugging Face stores downloaded models in your home directory (e.g., <code>/home/username/.cache/huggingface</code>), which may have limited storage on HPC systems. Redirect the cache to your scratch directory for ample space.</p>
+<p>You can do that by using the <code>checkquota</code> command in the terminal to find out how much space you have in your scratch directory.</p>
+<ol type="1">
+<li><strong>Set the environment variable <code>HF_HOME</code> to your scratch directory:</strong></li>
+</ol>
+<p>On the <strong>Adroit login node</strong>, run this command to append the export statement to your <code>.bashrc</code>:</p>
+<pre><code>echo "export HF_HOME=/scratch/network/$USER/.cache/huggingface/" &gt;&gt; $HOME/.bashrc</code></pre>
+<ol start="2" type="1">
+<li><strong>Reload your shell configuration:</strong></li>
+</ol>
+<pre><code>source ~/.bashrc</code></pre>
+<ol start="3" type="1">
+<li><strong>Verify the variable is set:</strong></li>
+</ol>
+<pre><code>echo $HF_HOME</code></pre>
+<p>The excpected output should be:</p>
+<pre><code>/scratch/network/&lt;YourNetID&gt;/.cache/huggingface/</code></pre>
 </section>
-<section id="education" class="level2">
-<h2 data-anchor-id="education">🎓 Education</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 10%">
-<col style="width: 38%">
-<col style="width: 18%">
-<col style="width: 32%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Degree</th>
-<th>Field</th>
-<th>Year(s)</th>
-<th>Institution</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Ph.D.</td>
-<td>Psychology</td>
-<td>2024–Present</td>
-<td>Princeton University</td>
-</tr>
-<tr class="even">
-<td>M.A.</td>
-<td>Psychological Research</td>
-<td>2019–2022</td>
-<td>Texas State University</td>
-</tr>
-<tr class="odd">
-<td>B.A.</td>
-<td>Psychology (Minor: Spanish)</td>
-<td>2015–2019</td>
-<td>Southwestern University</td>
-</tr>
-</tbody>
-</table>
+<section id="step-2-get-authentication-access-from-meta-required-for-llama-models" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-get-authentication-access-from-meta-required-for-llama-models">Step 2: Get Authentication Access from Meta (Required for LLaMA Models)</h2>
+<p>Meta requires users to accept a license and gain explicit access to the LLaMA 3 models on Hugging Face. So, this means you’ll need sign up for a <a href="https://huggingface.co/join">Hugging Face account</a> and request access to the LLaMA 3 models.</p>
+<ol type="1">
+<li><p>Go to the LLaMA 3 model page on Hugging Face: https://huggingface.co/meta-llama/Llama-3.1-8B (or whatever model you want access to)</p></li>
+<li><p>Log in or create a Hugging Face account if you haven’t already.</p></li>
+<li><p>Accept the model license terms: Click the “Access repository” button and agree to the license to request access.</p></li>
+<li><p>Wait for access to be granted. This should be relatively quick, but may take a few minutes to a few hours depending on demand.</p></li>
+</ol>
+</section>
+<section id="step-3-log-in-to-hugging-face-cli-on-hpc" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-log-in-to-hugging-face-cli-on-hpc">Step 3: Log In to Hugging Face CLI on HPC</h2>
+<p>Once access is granted, authenticate your HPC environment to allow downloading protected models.</p>
+<ol type="1">
+<li><strong>Log in to Hugging Face CLI:</strong></li>
+</ol>
+<p>On the <strong>Adroit login node</strong>, run the following command:</p>
+<pre><code>huggingface-cli login</code></pre>
+<ol start="2" type="1">
+<li><strong>Enter your Hugging Face token:</strong></li>
+</ol>
+<p>You will be prompted to enter your Hugging Face access token. You can find this token in your Hugging Face account settings under “Access Tokens”. Copy and paste it into the terminal when prompted. Make sure not to share this with anyone since this is a personal access token that allows downloading models.</p>
+</section>
+<section id="step-4-download-the-llama-3-model-on-the-login-node" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-download-the-llama-3-model-on-the-login-node">Step 4: Download the LLaMA 3 Model on the Login Node</h2>
+<p>Now that you have authenticated, you can download the LLaMA 3 model to your scratch directory.</p>
+<ol type="1">
+<li><strong>Create a Python script download_llama3.py with this content:</strong></li>
+</ol>
+<p>Make sure to replace <code>meta-llama/Llama-3.1-8B</code> with the specific model you want<br>
+to download if different. Also, make sure you have <code>transformers</code> installed in your Python environment.</p>
+<pre><code>from transformers import AutoTokenizer, AutoModelForCausalLM
+
+model_id = "meta-llama/Llama-3.1-8B"
+cache_path = "/scratch/network/sm9518/.cache/huggingface"  # replace with your actual NetID
+
+# Download model and tokenizer to cache
+AutoTokenizer.from_pretrained(model_id, cache_dir=cache_path)
+AutoModelForCausalLM.from_pretrained(model_id, cache_dir=cache_path)
+
+print(f"{model_id} Downloaded Successfully! to {cache_path}")</code></pre>
+<ol start="2" type="1">
+<li><strong>Run the script on the login node:</strong></li>
+</ol>
+<pre><code>python download_llama3.py</code></pre>
+<ol start="3" type="1">
+<li><strong>This will download all necessary model files into your scratch cache directory set by HF_HOME.</strong></li>
+</ol>
+</section>
+<section id="step-5-test-the-downloaded-model" class="level2">
+<h2 class="anchored" data-anchor-id="step-5-test-the-downloaded-model">Step 5: Test the downloaded Model</h2>
+<p>Now that you have downloaded the LLaMA 3 model to your scratch directory, you can run inference on an HPC compute node.</p>
+<section id="a.-create-a-python-script-for-testing-run_test_llama.py" class="level3">
+<h3 class="anchored" data-anchor-id="a.-create-a-python-script-for-testing-run_test_llama.py">5a. Create a Python script for testing (<code>run_test_llama.py</code>)</h3>
+<p>Save the following code to <code>/scratch/network/$USER/python_test/run_test_llama.py</code>. This script loads the model and runs a short text generation example using the transformers pipeline API.</p>
+<pre><code>from transformers import pipeline
+import torch
+import os
+
+print(f"CUDA Available: {torch.cuda.is_available()}")
+
+if not torch.cuda.is_available():
+    raise ValueError(
+        "CUDA is not available. Make sure you are running this on a GPU node. "
+        "For example, run with Slurm requesting GPU:\n\n"
+        "\tsalloc -t 0:10:00 --ntasks=1 --gres=gpu:1 python run_test_llama.py"
+    )
+
+model_path = "/scratch/network/$USER/.cache/huggingface/models--meta-llama--Llama-3.1-8B/snapshots/d04e592bb4f6aa9cfee91e2e20afa771667e1d4b"
+
+print("CUDA_VISIBLE_DEVICES =", os.environ.get("CUDA_VISIBLE_DEVICES"))
+
+pipe = pipeline("text-generation", model=model_path, tokenizer=model_path)
+
+prompt = "You are an expert psychologist. Tell me something interesting about psychology regarding Erik Nook's research:"
+output = pipe(prompt, max_new_tokens=50)
+
+print("\nModel output:\n", output)</code></pre>
+<blockquote class="blockquote">
+<p>Make sure to replace $USER in the path with your actual NetID or use a variable if running programmatically.</p>
+</blockquote>
+</section>
+<section id="b.-create-a-slurm-job-script-llama3-textgen.slurm" class="level3">
+<h3 class="anchored" data-anchor-id="b.-create-a-slurm-job-script-llama3-textgen.slurm">5b. Create a Slurm job script (llama3-textgen.slurm)</h3>
+<p>This Slurm batch script requests one A100 GPU on the Adroit cluster and runs the above Python test script.</p>
+<pre><code>#!/bin/bash
+#SBATCH --job-name=llama3-textgen           # Job name
+#SBATCH --nodes=1                           # Use one node
+#SBATCH --ntasks=1                          # One task
+#SBATCH --cpus-per-task=1                   # One CPU core
+#SBATCH --mem=36G                          # Memory request # can be ess
+#SBATCH --gres=gpu:1                        # Request 1 GPU
+#SBATCH --time=00:10:00                     # Max runtime (adjust as needed)
+#SBATCH --constraint=a100                   # Use A100 GPU
+#SBATCH --nodelist=adroit-h11g1             # Run on node with free GPUs
+#SBATCH --mail-type=ALL                     # Email on start, end, fail
+#SBATCH --mail-user=sm9518@princeton.edu   # Your email
+
+module purge
+module load anaconda3/2024.6
+module load cudatoolkit/11.8 
+
+source activate talkspaceMADS
+
+cd /scratch/network/$USER/python_test
+
+echo "Job started at $(date)"
+
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+
+python run_test_llama.py
+
+echo "Job completed at $(date)"</code></pre>
+<blockquote class="blockquote">
+<p><strong>💡 Check GPU Node Usage Before Selecting a Node or GPU.</strong></p>
+<p>Before submitting your job or manually specifying a GPU node (e.g., with <code>#SBATCH --nodelist=adroit-h11g1</code>).</p>
+<p>It’s a good idea to check which nodes and GPUs have free memory or are under low load. Otherwise, your job might be assigned to a GPU that is already fully used, causing CUDA out-of-memory errors.</p>
+</blockquote>
+<p>On Adroit, you can use commands like these from the login node to check GPU availability:</p>
+<pre><code># Show GPU status and free GPUs per node 
+shownodes -p gpu</code></pre>
+<p>If you don’t specify a node, Slurm will pick one for you, but it might not always be the best choice if GPUs on that node are busy.</p>
 
 
 </section>
-</main></div>
-</div>
- <!-- /main -->
+</section>
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -238,6 +349,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
   const isCodeAnnotation = (el) => {
     for (const clz of el.classList) {
       if (clz.startsWith('code-annotation-')) {                     

@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Steven Mesquiti">
 
-<title>Steven Mesquiti</title>
+<title>Publications and Preprints</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,14 +31,17 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f38260bc0185ec0d701b99598976dbca.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-0063d04294f35071145263a56bfbe081.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -65,7 +69,65 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-authors','listing-journal','listing-doi','listing-pdf',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -73,7 +135,7 @@ ul.task-list li input[type="checkbox"] {
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
             <div id="quarto-search" class="" title="Search"></div>
@@ -93,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./publications.html"> 
+    <a class="nav-link active" href="./publications.html" aria-current="page"> 
 <span class="menu-text">Publications &amp; Preprints</span></a>
   </li>  
   <li class="nav-item">
@@ -112,112 +174,133 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">Publications and Preprints</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Steven Mesquiti </p>
+            </div>
+    </div>
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
+   
   <ul>
-  <li><a href="#research-interests" id="toc-research-interests" class="nav-link active" data-scroll-target="#research-interests">🧠 Research Interests</a></li>
-  <li><a href="#education" id="toc-education" class="nav-link" data-scroll-target="#education">🎓 Education</a></li>
+  <li><a href="#publications-and-preprints" id="toc-publications-and-preprints" class="nav-link active" data-scroll-target="#publications-and-preprints">Publications and Preprints</a></li>
   </ul>
 </nav>
-    </div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="QUktYmFzZWQlMjBBc3Nlc3NtZW50">AI-based Assessment <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QXV0b25vbXk=">Autonomy <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QmxhY2slMjBMaXZlcyUyME1hdHRlcg==">Black Lives Matter <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q0VPcw==">CEOs <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q09WSUQtMTk=">COVID-19 <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Q29tcGFzc2lvbg==">Compassion <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RW1wYXRoeQ==">Empathy <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SGVscGluZw==">Helping <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TElXQw==">LIWC <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TGFuZ3VhZ2U=">Language <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TGFuZ3VhZ2UtYmFzZWQlMjBBc3Nlc3NtZW50cw==">Language-based Assessments <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TmFycmF0aXZlcw==">Narratives <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TmF0dXJhbCUyMExhbmd1YWdlJTIwUHJvY2Vzc2luZw==">Natural Language Processing <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UG9zaXRpdmUlMjBhZmZlY3Q=">Positive affect <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHJvc29jaWFs">Prosocial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHN5Y2hvbG9naWNhbCUyMFdlbGwtYmVpbmc=">Psychological Well-being <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVkZGl0">Reddit <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Um9lJTIwdi4lMjBXYWRl">Roe v. Wade <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U29jaWFsJTIwTWVkaWE=">Social Media <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U29jaWFsJTIwc3VwcG9ydA==">Social support <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3ViamVjdGl2ZSUyMFdlbGwtYmVpbmc=">Subjective Well-being <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VXBoZWF2YWxz">Upheavals <span class="quarto-category-count">(1)</span></div><div class="category" data-category="V2VsbC1iZWluZw==">Well-being <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YnVzaW5lc3MlMjBsZWFkZXJzaGlw">business leadership <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29nbml0aXZlJTIwbG9hZA==">cognitive load <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29sbGVjdGl2ZS1mb2N1c2VkJTIwbGFuZ3VhZ2U=">collective-focused language <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZGVjaXNpb24tbWFraW5n">decision-making <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bGFuZ3VhZ2UlMjBhbmFseXNpcw==">language analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHN5Y2hvbG9naWNhbCUyMGltcGFjdHM=">psychological impacts <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
-<div class="quarto-about-trestles">
-  <div class="about-entity">
-    <img src="profile.jpg" class="about-image
-  rounded " style="width: 20em;">
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Steven Mesquiti</h1>
-<p class="subtitle lead">PhD Student | Department of Psychology | Princeton University</p>
-</div>
-<div class="quarto-title-meta">
-  </div>
-</header>
-    <div class="about-links">
-  <a href="/CV.html" class="about-link" rel="" target="">
-     <span class="about-link-text">CV</span>
-  </a>
-  <a href="https://bsky.app/profile/smesquiti.bsky.social" class="about-link" rel="" target="">
-     <span class="about-link-text">Bluesky</span>
-  </a>
-  <a href="https://scholar.google.com/citations?user=jMPn4hoAAAAJ&amp;hl=en&amp;inst=10749622055976013885" class="about-link" rel="" target="">
-    <i class="bi bi-google scholar"></i>
-     <span class="about-link-text">Google Scholar</span>
-  </a>
-  <a href="https://github.com/scm1210" class="about-link" rel="" target="">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">GitHub</span>
-  </a>
-  <a href="mailto:sm9518@princeton.edu" class="about-link" rel="" target="">
-    <i class="bi bi-envelope"></i>
-     <span class="about-link-text">Email</span>
-  </a>
-</div>
-  </div>
-  <div class="about-contents"><main class="content" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
-<p>My name is Steven Mesquiti! I’m a <a href="https://lemolab.princeton.edu/people/steven-mesquiti">second-year</a> PhD Student in the Department of Psychology at Princeton University advised by <a href="https://lemolab.princeton.edu/people/erik-c-nook-phd">Erik Nook</a>.</p>
-<p>I study how we can use Natural Language Processing techniques and Artificial Intelligence to better understand people’s mental health.</p>
-<p>Before Princeton, I worked as a Lab Manager for Emily Falk in the <a href="https://www.asc.upenn.edu/research/centers/communication-neuroscience-lab">Communication Neuroscience Lab</a> at the University of Pennsylvania. Along the way, I have worked with excessively generous scientists like Jamie Pennebaker to answer questions at the nexus of Computer Science, Computational Linguistics, and Psychology.</p>
-<hr>
-<section id="research-interests" class="level2">
-<h2 data-anchor-id="research-interests">🧠 Research Interests</h2>
-<ul>
-<li>Natural Language Processing</li>
-<li>Mental Health</li>
-<li>Language-based Assessments of Mental Health</li>
-<li>Artificial Intelligence</li>
-</ul>
-<hr>
-</section>
-<section id="education" class="level2">
-<h2 data-anchor-id="education">🎓 Education</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 10%">
-<col style="width: 38%">
-<col style="width: 18%">
-<col style="width: 32%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Degree</th>
-<th>Field</th>
-<th>Year(s)</th>
-<th>Institution</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Ph.D.</td>
-<td>Psychology</td>
-<td>2024–Present</td>
-<td>Princeton University</td>
-</tr>
-<tr class="even">
-<td>M.A.</td>
-<td>Psychological Research</td>
-<td>2019–2022</td>
-<td>Texas State University</td>
-</tr>
-<tr class="odd">
-<td>B.A.</td>
-<td>Psychology (Minor: Spanish)</td>
-<td>2015–2019</td>
-<td>Southwestern University</td>
-</tr>
-</tbody>
-</table>
+
+
+
+
+<section id="publications-and-preprints" class="level1">
+<h1>Publications and Preprints</h1>
+
 
 
 </section>
-</main></div>
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+       <option value="" disabled="" selected="" hidden="">Order By</option>
+       <option value="index" data-direction="asc">Default</option>
+         <option value="listing-title" data-direction="asc">
+          Title
+        </option>
+     </select>
+  </div>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
 </div>
- <!-- /main -->
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="RW1wYXRoeSUyQ0NvbXBhc3Npb24lMkNQb3NpdGl2ZSUyMGFmZmVjdCUyQ1Byb3NvY2lhbCUyQ1NvY2lhbCUyMHN1cHBvcnQlMkNOYXJyYXRpdmVzJTJDSGVscGluZw==" data-listing-file-modified-sort="1746021138027" data-listing-reading-time-sort="2" data-listing-word-count-sort="217">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./publications/empathy-and-helping-the-role-of-affect-in-response-to-others-suffering/index.html" class="no-external">Empathy and helping: the role of affect in response to others’ suffering</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./publications/empathy-and-helping-the-role-of-affect-in-response-to-others-suffering/index.html" class="no-external"></a>
+</div>
+</div>
+<div class="metadata">
+<p><a href="./publications/empathy-and-helping-the-role-of-affect-in-response-to-others-suffering/index.html" class="no-external"></a></p><a href="./publications/empathy-and-helping-the-role-of-affect-in-response-to-others-suffering/index.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="VXBoZWF2YWxzJTJDTElXQyUyQ1NvY2lhbCUyME1lZGlhJTJDUmVkZGl0JTJDTGFuZ3VhZ2UlMkNDT1ZJRC0xOSUyQ0JsYWNrJTIwTGl2ZXMlMjBNYXR0ZXIlMkNSb2UlMjB2LiUyMFdhZGU=" data-listing-file-modified-sort="1746021116319" data-listing-reading-time-sort="2" data-listing-word-count-sort="279">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./publications/analysis-of-social-media-language-reveals-the-psychological-interaction-of-three-successive-upheavals/index.html" class="no-external">Analysis of social media language reveals the psychological interaction of three successive upheavals</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./publications/analysis-of-social-media-language-reveals-the-psychological-interaction-of-three-successive-upheavals/index.html" class="no-external"></a>
+</div>
+</div>
+<div class="metadata">
+<p><a href="./publications/analysis-of-social-media-language-reveals-the-psychological-interaction-of-three-successive-upheavals/index.html" class="no-external"></a></p><a href="./publications/analysis-of-social-media-language-reveals-the-psychological-interaction-of-three-successive-upheavals/index.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="V2VsbC1iZWluZyUyQ0xhbmd1YWdlLWJhc2VkJTIwQXNzZXNzbWVudHMlMkNQc3ljaG9sb2dpY2FsJTIwV2VsbC1iZWluZyUyQ0F1dG9ub215JTJDTmF0dXJhbCUyMExhbmd1YWdlJTIwUHJvY2Vzc2luZyUyQ1N1YmplY3RpdmUlMjBXZWxsLWJlaW5nJTJDQUktYmFzZWQlMjBBc3Nlc3NtZW50" data-listing-file-modified-sort="1757430549461" data-listing-reading-time-sort="2" data-listing-word-count-sort="253">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./publications/predicting-psychological-and-subjective-well-being-through-language-based-assessment/index.html" class="no-external">Predicting Psychological and Subjective Well-being through Language-based Assessment</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./publications/predicting-psychological-and-subjective-well-being-through-language-based-assessment/index.html" class="no-external"></a>
+</div>
+</div>
+<div class="metadata">
+<p><a href="./publications/predicting-psychological-and-subjective-well-being-through-language-based-assessment/index.html" class="no-external"></a></p><a href="./publications/predicting-psychological-and-subjective-well-being-through-language-based-assessment/index.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-categories="Q09WSUQtMTklMkNidXNpbmVzcyUyMGxlYWRlcnNoaXAlMkNDRU9zJTJDcHN5Y2hvbG9naWNhbCUyMGltcGFjdHMlMkNsYW5ndWFnZSUyMGFuYWx5c2lzJTJDZGVjaXNpb24tbWFraW5nJTJDY29nbml0aXZlJTIwbG9hZCUyQ2NvbGxlY3RpdmUtZm9jdXNlZCUyMGxhbmd1YWdl" data-listing-file-modified-sort="1746021180158" data-listing-reading-time-sort="2" data-listing-word-count-sort="209">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./publications/the-psychological-impacts-of-the-covid-19-pandemic-on-business-leadership/index.html" class="no-external">The psychological impacts of the COVID-19 pandemic on business leadership</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./publications/the-psychological-impacts-of-the-covid-19-pandemic-on-business-leadership/index.html" class="no-external"></a>
+</div>
+</div>
+<div class="metadata">
+<p><a href="./publications/the-psychological-impacts-of-the-covid-19-pandemic-on-business-leadership/index.html" class="no-external"></a></p><a href="./publications/the-psychological-impacts-of-the-covid-19-pandemic-on-business-leadership/index.html" class="no-external">
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -238,6 +321,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
   const isCodeAnnotation = (el) => {
     for (const clz of el.classList) {
       if (clz.startsWith('code-annotation-')) {                     
