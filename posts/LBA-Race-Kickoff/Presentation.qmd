@@ -78,8 +78,6 @@ execute:
 ----
 
 ```{r}
-#| fig-height: 6
-#| fig-width: 6
 #| paged-print: false
 library(ggplot2)
 library(patchwork)
