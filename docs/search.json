@@ -126,11 +126,95 @@
     "text": "Abstract\nDecades of research hold that empathy is a multifaceted construct. A related challenge in empathy research is to describe how each subcomponent of empathy uniquely contributes to social outcomes. Here, we examined distinct mechanisms through which different components of empathy—Empathic Concern, Perspective Taking, and Personal Distress—may relate to prosociality. Participants (N = 77) watched a prerecorded video of a person sharing an emotional real-life story and provided verbal support in response. The listeners then reported how positive and negative they felt while listening to the story. We found that individuals with greater tendencies to experience Empathic Concern and Perspective Taking felt more positive (e.g., connected, compassionate), whereas those with higher Personal Distress felt more negative (e.g., nervous, anxious) in response to another’s suffering. We also observed indirect relationships between Empathic Concern / Perspective Taking and the tendency to help others through positive affective responses to the other’s suffering. These findings build upon the growing literature that distinguishes different components of empathy and their mechanisms that relate to divergent behavioral consequences. Results also highlight the role of positive affect that may motivate prosociality in the face of others’ suffering.\nCitation: Kang, Y., Mesquiti, S., Baik, E. S., & Falk, E. B. (2025). Empathy and helping: the role of affect in response to others’ suffering. Scientific Reports, 15(1), 3256. https://doi.org/10.1038/s41598-025-87221-2"
   },
   {
-    "objectID": "posts/Federal research funding cuts will stall scientific progress, hurt Texas students/Federal research funding cuts will stall scientific progress, hurt Texas students.html",
-    "href": "posts/Federal research funding cuts will stall scientific progress, hurt Texas students/Federal research funding cuts will stall scientific progress, hurt Texas students.html",
-    "title": "Federal research funding cuts will stall scientific progress, hurt Texas students",
-    "section": "",
-    "text": "This piece was published as an Op-ed in the San Antonio Express News\nScientific progress in the United States faces a series of threats. These disruptions have slashed federal research funding; upended the scientific process; dismantled diversity, equity and inclusion — DEI — initiatives; and endangered the careers of future and current scientists.\nIn particular, the federal government has frozen billions in funding for the National Institutes of Health and the National Science Foundation — both of which provide substantial medical and economic benefits to San Antonio and Texas.\nLast year, the NIH awarded nearly $2 billion in funding to Texan institutes, which supported more than 30,000 Texan jobs and generated more than $6 billion in economic activity.\nAs a scientist, I am deeply concerned about these funding cuts. I strongly believe in the direct and indirect opportunities that science provides to improve the lives of our community members.\nI am a Mexican American who was born and raised on San Antonio’s West Side, where programs like the Pre-Freshman Engineering Program, or PREP, gave me early exposure to careers in science and laid the foundation for my academic journey.\nToday, I am fortunate enough to be a psychology doctoral student at Princeton University, where I am conducting research showing how to identify individuals struggling with poor mental health by examining patterns in their language use.\nPrograms like PREP provided my first introduction to research, which was further developed in labs at Texas State University, the University of Texas at Austin and the University of Pennsylvania — all institutions supported by grants from the NIH and NSF.\nPrograms like PREP, often labeled as “DEI initiatives,” are not about exclusion. They are about giving everyone a shot at the American Dream. They ensure young people without built-in academic connections or financial resources have opportunities to pursue careers in science.\nWithout these programs, countless students — regardless of race, gender or political affiliation — will lose their chance to break into fields that shape our nation’s future.\nStripping funding from anything perceived as “DEI-adjacent” harms us all. It reduces available jobs in the state, freezes life-changing research and shuts the door on talented, hardworking students.\nTo make matters worse, recent government budget cuts have slashed funding for universities, including critical “indirect costs” that fund lab space, technical support, and salaries for scientists and staff.\nUniversities across the country, including the University of Texas at San Antonio, have already begun reducing graduate admissions. This disruption will shrink the pipeline of trained scientists, limit opportunities for young San Antonians, and jeopardize scientific progress in Texas and beyond.\nDue to decades of federally funded research, we have breakthroughs like revolutionary cancer treatments and lifesaving vaccines. Similar advancements have been made in our ability to detect mental health issues with language and provide more personalized support — progress that can save countless lives.\nThese advancements depend on continued support from institutions like the NIH and NSF, which drive our economy, research and the training of future scientists.\nPrograms that provide early exposure to science — especially for underrepresented students — ensure that the next generation is prepared to tackle issues like the mental health epidemic.\nCutting funding for research and training will stall progress and limit opportunities for young minds. Now more than ever, we must fight to protect science and its future to build a healthier, more resilient society for everyone.\n\nAbout the Author\nSteven Mesquiti was born and raised in San Antonio’s West Side. He completed his undergraduate studies at Southwestern University, has a master’s degree from Texas State University and is a doctoral student at Princeton University."
+    "objectID": "posts/I-projections/Post.html#under-the-hood",
+    "href": "posts/I-projections/Post.html#under-the-hood",
+    "title": "I-Projection Results",
+    "section": "Under the hood",
+    "text": "Under the hood\nWhat this analysis does\n\nLoads a RoBERTa (a LLM) to embed participant text into high-dimensional vectors.\nDefines psychological axes (valence, ability) using controlled “I am” / “I feel” statements; each axis is the normalized difference between mean embeddings of positive vs. negative statements.\nThis allows us to capture the psychological dimensions of interest in the embedding space (i.e., good-bad and able-unable).\nProjects target words (e.g., I, me, my) onto these axes by computing the dot product between each word’s embedding and the axis vector, capturing how strongly that word aligns with a psychological dimension.\nAggregates these projections at the text level to create text-level measures of valence and ability projections for each participant, which we can then use for down-stream analyses."
+  },
+  {
+    "objectID": "posts/I-projections/Post.html#first_person_sing_valence_combined",
+    "href": "posts/I-projections/Post.html#first_person_sing_valence_combined",
+    "title": "I-Projection Results",
+    "section": "first_person_sing_valence_combined",
+    "text": "first_person_sing_valence_combined"
+  },
+  {
+    "objectID": "posts/I-projections/Post.html#first_person_sing_ability_combined",
+    "href": "posts/I-projections/Post.html#first_person_sing_ability_combined",
+    "title": "I-Projection Results",
+    "section": "first_person_sing_ability_combined",
+    "text": "first_person_sing_ability_combined"
+  },
+  {
+    "objectID": "posts/I-projections/Post.html#valence-projection",
+    "href": "posts/I-projections/Post.html#valence-projection",
+    "title": "I-Projection Results",
+    "section": "Valence Projection",
+    "text": "Valence Projection\n\n\nNon-disaggregatedDisaggregated"
+  },
+  {
+    "objectID": "posts/I-projections/Post.html#ability-projection",
+    "href": "posts/I-projections/Post.html#ability-projection",
+    "title": "I-Projection Results",
+    "section": "Ability Projection",
+    "text": "Ability Projection\n\n\nNon-disaggregatedDisaggregated"
+  },
+  {
+    "objectID": "posts/I-projections/Post.html#words",
+    "href": "posts/I-projections/Post.html#words",
+    "title": "I-Projection Results",
+    "section": "% words",
+    "text": "% words\nControlling for freq. of words used to construct our axes."
+  },
+  {
+    "objectID": "posts/I-projections/Post.html#valence-projections",
+    "href": "posts/I-projections/Post.html#valence-projections",
+    "title": "I-Projection Results",
+    "section": "Valence Projections",
+    "text": "Valence Projections\n\n\nNon-disaggregated (Valence)Disaggregated (valence)"
+  },
+  {
+    "objectID": "posts/I-projections/Post.html#ability-projections",
+    "href": "posts/I-projections/Post.html#ability-projections",
+    "title": "I-Projection Results",
+    "section": "Ability Projections",
+    "text": "Ability Projections\n\n\nNon-disaggregated (Ability)Disaggregated (ability)"
+  },
+  {
+    "objectID": "posts/I-projections/Post.html#sentiment-and-total-wc",
+    "href": "posts/I-projections/Post.html#sentiment-and-total-wc",
+    "title": "I-Projection Results",
+    "section": "Sentiment and Total WC",
+    "text": "Sentiment and Total WC\nControlling for sentiment scores, emotion words (LIWC), and total word count."
+  },
+  {
+    "objectID": "posts/I-projections/Post.html#valence-projections-1",
+    "href": "posts/I-projections/Post.html#valence-projections-1",
+    "title": "I-Projection Results",
+    "section": "Valence Projections",
+    "text": "Valence Projections\n\n\nNon-disaggregated (valence)Disaggregated (valence)"
+  },
+  {
+    "objectID": "posts/I-projections/Post.html#ability-projections-1",
+    "href": "posts/I-projections/Post.html#ability-projections-1",
+    "title": "I-Projection Results",
+    "section": "Ability projections",
+    "text": "Ability projections\n\n\nNon-disaggregated (ability)Disaggregated (ability)"
+  },
+  {
+    "objectID": "posts/I-projections/Post.html#good-bad",
+    "href": "posts/I-projections/Post.html#good-bad",
+    "title": "I-Projection Results",
+    "section": "Good-bad",
+    "text": "Good-bad"
+  },
+  {
+    "objectID": "posts/I-projections/Post.html#able-unable",
+    "href": "posts/I-projections/Post.html#able-unable",
+    "title": "I-Projection Results",
+    "section": "Able-Unable",
+    "text": "Able-Unable"
   },
   {
     "objectID": "posts/LBA-Race-Kickoff/Presentation.html#depression-related-open-ended-questions",
@@ -159,6 +243,13 @@
     "title": "Data-Driven Approaches to Building Equitable Language-Based Mental Health Assessments",
     "section": "Other Measures…",
     "text": "Other Measures…\n\nSocial media use (follow-up only)\nSatisfaction with Life Short Scale (both timepoints)\nUCLA Loneliness Scale (both time points)\nSocial Media derived Language-based Assessments\nBillingual-ism (initial timepoint using LEAP-Q)"
+  },
+  {
+    "objectID": "posts/Federal research funding cuts will stall scientific progress, hurt Texas students/Federal research funding cuts will stall scientific progress, hurt Texas students.html",
+    "href": "posts/Federal research funding cuts will stall scientific progress, hurt Texas students/Federal research funding cuts will stall scientific progress, hurt Texas students.html",
+    "title": "Federal research funding cuts will stall scientific progress, hurt Texas students",
+    "section": "",
+    "text": "This piece was published as an Op-ed in the San Antonio Express News\nScientific progress in the United States faces a series of threats. These disruptions have slashed federal research funding; upended the scientific process; dismantled diversity, equity and inclusion — DEI — initiatives; and endangered the careers of future and current scientists.\nIn particular, the federal government has frozen billions in funding for the National Institutes of Health and the National Science Foundation — both of which provide substantial medical and economic benefits to San Antonio and Texas.\nLast year, the NIH awarded nearly $2 billion in funding to Texan institutes, which supported more than 30,000 Texan jobs and generated more than $6 billion in economic activity.\nAs a scientist, I am deeply concerned about these funding cuts. I strongly believe in the direct and indirect opportunities that science provides to improve the lives of our community members.\nI am a Mexican American who was born and raised on San Antonio’s West Side, where programs like the Pre-Freshman Engineering Program, or PREP, gave me early exposure to careers in science and laid the foundation for my academic journey.\nToday, I am fortunate enough to be a psychology doctoral student at Princeton University, where I am conducting research showing how to identify individuals struggling with poor mental health by examining patterns in their language use.\nPrograms like PREP provided my first introduction to research, which was further developed in labs at Texas State University, the University of Texas at Austin and the University of Pennsylvania — all institutions supported by grants from the NIH and NSF.\nPrograms like PREP, often labeled as “DEI initiatives,” are not about exclusion. They are about giving everyone a shot at the American Dream. They ensure young people without built-in academic connections or financial resources have opportunities to pursue careers in science.\nWithout these programs, countless students — regardless of race, gender or political affiliation — will lose their chance to break into fields that shape our nation’s future.\nStripping funding from anything perceived as “DEI-adjacent” harms us all. It reduces available jobs in the state, freezes life-changing research and shuts the door on talented, hardworking students.\nTo make matters worse, recent government budget cuts have slashed funding for universities, including critical “indirect costs” that fund lab space, technical support, and salaries for scientists and staff.\nUniversities across the country, including the University of Texas at San Antonio, have already begun reducing graduate admissions. This disruption will shrink the pipeline of trained scientists, limit opportunities for young San Antonians, and jeopardize scientific progress in Texas and beyond.\nDue to decades of federally funded research, we have breakthroughs like revolutionary cancer treatments and lifesaving vaccines. Similar advancements have been made in our ability to detect mental health issues with language and provide more personalized support — progress that can save countless lives.\nThese advancements depend on continued support from institutions like the NIH and NSF, which drive our economy, research and the training of future scientists.\nPrograms that provide early exposure to science — especially for underrepresented students — ensure that the next generation is prepared to tackle issues like the mental health epidemic.\nCutting funding for research and training will stall progress and limit opportunities for young minds. Now more than ever, we must fight to protect science and its future to build a healthier, more resilient society for everyone.\n\nAbout the Author\nSteven Mesquiti was born and raised in San Antonio’s West Side. He completed his undergraduate studies at Southwestern University, has a master’s degree from Texas State University and is a doctoral student at Princeton University."
   },
   {
     "objectID": "posts/LLM on HPC/LLM-to-HPC.html",
@@ -228,6 +319,6 @@
     "href": "posts.html",
     "title": "Posts",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nLLM to HPC Tutorial\n\n\n\n\n\n\nCoding\n\n\nTutorial\n\n\n\n\n\n\n\n\n\nSteven Mesquiti\n\n\n\n\n\n\n\n\n\n\n\n\nData-Driven Approaches to Building Equitable Language-Based Mental Health Assessments\n\n\n\n\n\n\n\n\n\n\n\nInvalid Date\n\n\nSteven\n\n\n\n\n\n\n\n\n\n\n\n\nFederal research funding cuts will stall scientific progress, hurt Texas students\n\n\n\n\n\n\nOpinion\n\n\nScience Policy\n\n\n\n\n\n\n\n\n\nMar 17, 2025\n\n\nSteven Mesquiti\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nLLM to HPC Tutorial\n\n\n\n\n\n\nCoding\n\n\nTutorial\n\n\n\n\n\n\n\n\n\nSteven Mesquiti\n\n\n\n\n\n\n\n\n\n\n\n\nData-Driven Approaches to Building Equitable Language-Based Mental Health Assessments\n\n\n\n\n\n\n\n\n\n\n\nInvalid Date\n\n\nSteven\n\n\n\n\n\n\n\n\n\n\n\n\nFederal research funding cuts will stall scientific progress, hurt Texas students\n\n\n\n\n\n\nOpinion\n\n\nScience Policy\n\n\n\n\n\n\n\n\n\nMar 17, 2025\n\n\nSteven Mesquiti\n\n\n\n\n\n\n\n\n\n\n\n\nI-Projection Results\n\n\n\n\n\n\n\n\n\n\n\nInvalid Date\n\n\nSteven\n\n\n\n\n\n\nNo matching items"
   }
 ]
