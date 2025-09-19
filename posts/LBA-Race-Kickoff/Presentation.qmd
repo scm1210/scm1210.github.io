@@ -56,21 +56,30 @@ execute:
 
 
 # Design
-
+::::{.inline-fragment}
+:::{.fragment}
 -  Two-session online longitudinal study.
     -   Baseline: open-text responses about mood, motivation, sleep (≈25 min) + GAD-7 + PHQ-8.
     -   Follow-up (3 week): repeat assessments (≈10 min) and collect information on posts from social media.
-  
+
+:::
+
+:::{.fragment}
 -   N = 1,600 (ages 18–40), balanced by race/ethnicity (White, Black, Latino, Asian).
+:::
+
+:::{.fragment}
 <!-- -->
 -   **Recruitment platform:** Online panel (e.g., Prolific/CloudResearch) with demographic quotas.
 -   Pilot: *N = 240 to validate prompts, retention, and preprocessing pipelines.*
+:::
+::::
 
 ----
 
 ```{r}
-#| fig-height: 8
-#| fig-width: 8
+#| fig-height: 6
+#| fig-width: 6
 #| paged-print: false
 library(ggplot2)
 library(patchwork)
@@ -167,7 +176,7 @@ combined
 ---
 
 ## Depression-related Open-ended Questions
--   Assessed via written response
+-   Assessed via **written** response
 
 ```{r}
 library(DT)
@@ -214,7 +223,7 @@ datatable(
 
 ::::: panel-tabset
 
-### Age
+### Age & Residence
 - **Age:** ___
 - **State of residence:** ___
 
@@ -323,7 +332,7 @@ datatable(
 -   **Satisfaction with Life Short Scale (both timepoints)**
 -   **UCLA Loneliness Scale (both time points)**
 -   **Social Media derived Language-based Assessments**
--   **Billingual-ism**
+-   **Billingual-ism (initial timepoint using [LEAP-Q](https://pubmed.ncbi.nlm.nih.gov/33628083/))**
 
 # Aim 1 — Sensitivity Across Groups
 
@@ -346,23 +355,21 @@ datatable(
 :::
 ::::
 
----
-
 # Aim 2 — Markers in Minority Groups
 
 ::::{.inline-fragment}
 
 :::{.fragment}
-**Goal:** Exploratory/descriptive identification of linguistic markers in minority groups.  
+**Goal:** Exploratory/descriptive identification of linguistic markers of mental illness in minority groups.  
 
 - Sentiment, pronouns, emotion words (LIWC)  
-- LLM-derived inferences
+- LLM-derived inferences (e.g., embeddings, LLM-based ratings, etc.)
 :::
 
 :::{.fragment}
 **Analyses:**  
 - Descriptive statistics of linguistic features by racial/ethnic group  
-- Identify features associated with higher/lower symptom levels  
+- Identify features associated with higher/lower symptom levels for each group 
 - Exploratory correlations and regressions for hypothesis generation
 :::
 
@@ -373,8 +380,9 @@ datatable(
 # Questions we have for you
 
 -   What other demographic factors should we consider?
--   What other ways should we measure race?
+-   Are there other ways in which we should we be measuring race?
 -   What are the current best practices for assessing race and ethnicity in psychological research?
+-   Given the scope of the grant should we consider other demographic factors (e.g., SES/social class)? Worried about statistical power limitations here.
 -   How to handle people with multi-racial identities in modeling 
 
 
