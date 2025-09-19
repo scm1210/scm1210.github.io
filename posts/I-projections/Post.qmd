@@ -1,0 +1,1567 @@
+---
+title: "I-Projection Results"
+author: "Steven"
+date: "`r Sys.Date()`"
+format: 
+  revealjs:
+    css: styles.css
+    center: true  
+    scrollable: true
+    smaller: true
+    controls: true
+    progress: true
+    keyboard: true
+    slide-number: true 
+    slideNumberFormat: "%current% / %total%"
+    navigationMode: 'linear'
+    transition: "slide"
+    transitionSpeed: "fast"
+    touch: true  
+execute:
+  fig-width: 5
+  fig-height: 3
+---
+
+```{r load packages and installize conda environment, include=FALSE}
+if (!require("pacman")) install.packages("pacman") #run this if you don't have pacman 
+library(pacman)
+pacman::p_load( DT, lmerTest, lme4, reactable,
+  broom.mixed, knitr, kableExtra, ggrepel,
+  ggeffects, patchwork, ggpubr, flexmix,
+  effectsize, Rmisc,tidyverse,
+  install = TRUE
+)
+
+good_palette <- c(
+  "#772e25", "#c44536", "#ee9b00", "#197278", "#283d3b", 
+  "#9CC5A1", "#6195C6", "#ADA7C9", "#4D4861", "grey50",
+  "#d4a373", "#8a5a44", "#4a6a74", "#5c80a8", "#a9c5a0",
+  "#7b9b8e", "#e1b16a", "#a69b7c", "#9d94c4", "#665c54")
+
+able_palette <- c(
+  "#ED553B",  # reddish-orange
+  "#3CAEA3",  # teal
+  "#20639B",  # deep blue
+  "#173F5F",  # navy
+  "#FFD166",  # soft yellow
+  "#6A4C93",  # purple
+  "#FF6F61",  # coral
+  "#88B04B",  # olive green
+  "#92A8D1"   # dusty blue
+)
+
+palette_condition = c("#ee9b00", "#c44536","#005f73", "#283d3b", "#9CC5A1", "#6195C6", "#ADA7C9", "#4D4861")
+plot_aes = theme_minimal() +
+  theme(legend.position = "bottom",
+        legend.text = element_text(size = 12),
+        text = element_text(size = 12, family = "Futura Medium"),
+        axis.text = element_text(color = "black"),
+        axis.ticks.y = element_blank())
+
+```
+
+```{r helper functions}
+table_model <- function(model, reference = "Intercept", dv_name = "dependent_variable") {
+  # Extract the tidy data from the model directly
+  model_data <- tidy(model, conf.int = TRUE)
+  
+  # Process the model data
+  model_table <- model_data %>%
+    filter(effect == "fixed") %>%
+   dplyr::rename("SE" = std.error,
+           "t" = statistic,
+           "p" = p.value) %>%
+   dplyr::select(-group, -effect) %>%
+    dplyr::mutate(across(where(is.numeric), ~round(., 3))) %>%
+    dplyr::mutate(
+      term = gsub("\\(Intercept\\)", !!reference, term),
+      term = gsub(":", " x ", term),
+      term = gsub("ethnicity", "", term),
+      p_original = p,
+      p = ifelse(p < .001, "< .001",
+                 ifelse(p == 1, "1.000", gsub("0.(.*)", ".\\1", sprintf("%.3f", p)))),
+      `b [95% CI]` = sprintf("%.4f [%0.4f, %.4f]", estimate, conf.low, conf.high),  # Changed estimate to 4 decimal places
+      significance = case_when(
+        p_original < 0.001 ~ "***",
+        p_original < 0.01 ~ "**",
+        p_original < 0.05 ~ "*",
+        p_original < 0.10 ~ "+",
+        TRUE ~ ""
+      )
+    ) %>%
+    dplyr::select(term, `b [95% CI]`, df, SE, t, p, significance)
+  
+  # Create a datatable for displaying results
+  dt_table <- datatable(
+    model_table,
+    caption = htmltools::tags$caption(
+      style = 'caption-side: top; text-align: center; color: black; font-size: 14px; font-weight: bold;',
+      paste('Linear Mixed Model Results for', dv_name)  # Dynamic DV in caption
+    ),
+    options = list(
+      pageLength = 20,
+      dom = 't',
+      columnDefs = list(list(className = 'dt-center', targets = 1:5))
+    ),
+    rownames = FALSE
+  ) %>%
+    formatStyle(
+      'term',
+      fontWeight = 'bold'
+    ) %>%
+    formatStyle(
+      'p',
+      color = styleInterval(c(0.001, 0.01, 0.05), c('darkred', 'red', 'orange', 'black'))
+    )
+  
+  return(dt_table)
+}
+
+
+extract_lmer_data <- function(model) {
+  # Ensure the broom.mixed package is available
+  if (!requireNamespace("broom.mixed", quietly = TRUE)) {
+    stop("Please install the 'broom.mixed' package to use this function.")
+  }
+  
+  # Extract fixed effects with 95% confidence intervals
+  fixed_effects <- broom.mixed::tidy(model, effects = "fixed", conf.int = TRUE)
+  
+  # Add the 'outcome' column with the value "Internalizing"
+  fixed_effects <- fixed_effects %>%
+    dplyr::mutate(outcome = "Internalizing")
+  
+  return(fixed_effects)
+}
+
+palette_counter <- 1  # start index
+
+run_lmer_and_plot <- function(data, dv, iv = "daysSinceFirstText", group_var = "room_id",
+                              title = "Change in Projection Over Time", ylab = "Projection") {
+  # Use color from palette and increment counter
+  color <- good_palette[palette_counter]
+  palette_counter <<- ifelse(palette_counter < length(good_palette), 
+                             palette_counter + 1, 1)  # cycle back to start
+  
+  formula <- as.formula(paste(dv, "~", iv, "+ (1|", group_var, ")"))
+  
+  model <- lmer(formula, data = data)
+  
+  # Predictions
+  pred <- ggpredict(model, terms = iv)
+  
+  # Line + ribbon plot
+  plot1 <- ggplot() +
+  geom_line(data = data,
+              aes_string(x = iv, y = dv, group = group_var),
+              color = color, alpha = 0.01) +
+ geom_line(data = pred, aes(x = x, y = predicted),
+            color = color, size = 1.05, inherit.aes = FALSE) +
+    geom_ribbon(data = pred,
+                aes(x = x, ymin = conf.low, ymax = conf.high),
+                fill = color, alpha = 0.2) +
+    labs(
+      title = title,
+      x = iv,
+      y = ylab
+    ) + plot_aes
+  
+  # Spline-only plot
+  plot2 <- ggplot(data, aes_string(x = iv, y = dv)) +
+    geom_smooth(method = "gam", formula = y ~ s(x, k = 5),
+                color = color, fill = color, alpha = 0.2) +
+    labs(
+      title = paste(title, "\n(Spline Fit)"),
+      x = iv,
+      y = ylab
+    ) + plot_aes
+  
+  return(list(model = model, pred = pred, plot_line = plot1, plot_spline = plot2, color = color))
+}
+
+data_dir = "/Users/sm9518/Library/CloudStorage/Box-Box/Talkspace_ErikNook_HarvardPrinceton/Data/Processed/Mesquiti_LBA_2024/Talkspace-LBA"
+
+```
+
+```{r}
+data = read_csv(file.path(data_dir, "I-representations/data/text-level/MADS_roberta_results_Indy_am_v_feel.csv"))
+data = data %>%
+  dplyr::rename(
+    Internalizing = internalizing,
+    daysSinceFirstText = days_since_first_text
+  ) %>% 
+  filter(bin < 5)  %>% 
+ dplyr:: mutate(
+    # Recode Llama_rating_4: 1 = "Preamble", else "Not Preamble"
+    Llama_rating_4 = ifelse(Llama_rating_4 == 1, "Preamble", "Not Preamble"),
+    Llama_rating_4 = factor(Llama_rating_4, levels = c("Not Preamble", "Preamble")),
+    
+    # Recode Llama_rating similarly if needed
+    Llama_rating = ifelse(Llama_rating == 1, "Preamble", "Not Preamble"),
+    Llama_rating = factor(Llama_rating, levels = c("Not Preamble", "Preamble")) ,
+    first_person_sing_valence_am = rowMeans(select(., I_projection_valence_am, me_projection_valence_am, my_projection_valence_am), na.rm = TRUE),
+    first_person_sing_valence_feel = rowMeans(select(., I_projection_valence_feel, me_projection_valence_feel, my_projection_valence_feel), na.rm = TRUE),
+    first_person_sing_valence_combined = rowMeans(select(., I_projection_valence_combined, me_projection_valence_combined, my_projection_valence_combined), na.rm = TRUE),
+    first_person_sing_ability_am = rowMeans(select(., I_projection_ability_am, me_projection_ability_am, my_projection_ability_am), na.rm = TRUE),
+    first_person_sing_ability_feel = rowMeans(select(., I_projection_ability_feel, me_projection_ability_feel, my_projection_ability_feel), na.rm = TRUE),
+    first_person_sing_ability_combined = rowMeans(select(., I_projection_ability_combined, me_projection_ability_combined, my_projection_ability_combined), na.rm = TRUE)
+    )
+
+
+good_bad_data_small =  data |> 
+  dplyr::group_by(room_id,daysSinceFirstText) %>%
+  dplyr::summarise(across(
+    where(is.numeric),
+    mean,
+    na.rm = TRUE
+  ), .groups = "drop") |> 
+  dplyr::filter(n_total > 20)
+
+```
+
+# Overview
+
+## Under the hood
+
+***What this analysis does***
+
+-   Loads a RoBERTa (a LLM) to embed participant text into high-dimensional vectors.
+
+-   Defines psychological axes (valence, ability) using controlled “I am” / “I feel” statements; each axis is the normalized difference between mean embeddings of positive vs. negative statements.
+
+-   This allows us to capture the psychological dimensions of interest in the embedding space (i.e., good-bad and able-unable).
+
+-   Projects target words (e.g., I, me, my) onto these axes by computing the dot product between each word’s embedding and the axis vector, capturing how strongly that word aligns with a psychological dimension. 
+
+-   Aggregates these projections at the text level to create text-level measures of valence and ability projections for each participant, which we can then use for down-stream analyses.
+
+# Do projections move closer to the positive end of the axis over time?
+
+*Note.* Data are aggregated at the assessment level and coefficients are unstandardized.\n First person sing. = means of I, me, and my projections for each participant.
+
+## first_person_sing_valence_combined
+
+```{r}
+res3 <- run_lmer_and_plot(good_bad_data_small, dv = "first_person_sing_valence_combined")
+res3$model %>% table_model(dv_name = "first_person_sing_valence_combined")
+```
+
+------------------------------------------------------------------------
+
+### first_person_sing_valence_combined individual variation
+
+```{r}
+res3$plot_line
+```
+
+------------------------------------------------------------------------
+
+### first_person_sing_valence_combined spline fit
+
+```{r}
+res3$plot_spline
+```
+
+# First-person sing. able projections (am, feel, & combined)
+
+*Note.* Data are aggregated at the assessment level and coefficients are unstandardized.\n First person sing. = means of I, me, and my projections for each participant.
+
+## first_person_sing_ability_combined
+
+```{r}
+res4 <- run_lmer_and_plot(good_bad_data_small, dv = "first_person_sing_ability_combined")
+res4$model %>% table_model(dv_name = "first_person_sing_ability_combined")
+```
+
+------------------------------------------------------------------------
+
+### first_person_sing_ability_combined individual variation
+
+```{r}
+res4$plot_line
+```
+
+------------------------------------------------------------------------
+
+### first_person_sing_ability_combined spline fit
+
+```{r}
+res4$plot_spline
+```
+
+
+# Do our projection measures predict changes in internalizing symptoms over time?
+
+Results are condensed to be for the first-person singular valence and ability projections only (combined).
+
+```{r}
+#| label: disaggregate and standardize
+#### create disaggregated data 
+between <- good_bad_data_small %>%
+  tidyr::gather(item, value,first_person_sing_valence_combined,first_person_sing_ability_combined,
+         n_i,n_good,n_bad,pct_i,pct_good,pct_bad,n_total,tone_pos,tone_neg,emo_pos,emo_neg,pct_able,pct_unable
+  ) %>%
+  select(user_id, item, value) %>%
+  unique() %>%
+  group_by(user_id, item) %>%
+  summarize(mean = mean(value, na.rm = TRUE)) %>%
+  mutate(item = sprintf("%s_between", item)) %>%
+  group_by(item) %>%
+  mutate(mean = scale(mean, center = TRUE, scale = TRUE)) %>%
+  spread(item, mean)
+
+# Within-person variation
+within <- good_bad_data_small %>%
+  gather(item, value,first_person_sing_valence_combined,first_person_sing_ability_combined,
+         n_i,n_good,n_bad,pct_i,pct_good,pct_bad,n_total,tone_pos,tone_neg,emo_pos,emo_neg,,pct_able,pct_unable) %>%
+  group_by(user_id, item) %>%
+  mutate(value = scale(value, center = TRUE, scale = TRUE),
+         item = sprintf("%s_within", item)) %>%
+  spread(item, value)
+
+# Combine both within-person and between-person variation
+disaggregated_good_bad <- within |> 
+  left_join(between, by = "user_id") |> 
+  select(1:14,daysSinceFirstText,Internalizing,first_person_sing_valence_combined_within,first_person_sing_valence_combined_between,
+         first_person_sing_ability_combined_within, first_person_sing_ability_combined_between,n_i_within,
+         n_i_between,n_good_within,n_good_between,n_bad_within,n_bad_between, pct_i_between,pct_i_within,pct_good_between,
+         pct_good_within,pct_bad_between,pct_bad_within,n_total_within,n_total_between,tone_pos_within,tone_pos_between,tone_neg_within,
+         tone_neg_between,emo_pos_within,emo_pos_between,emo_neg_within,emo_neg_between,pct_able_within,pct_able_between,pct_unable_within,pct_unable_between
+  ) 
+
+
+
+# Scale all the variables
+good_bad_data_small <- good_bad_data_small|> 
+  mutate(
+    daysSinceFirstText = scale(daysSinceFirstText),
+    Internalizing = scale(Internalizing),
+    first_person_sing_valence_combined = scale(first_person_sing_valence_combined),
+    first_person_sing_ability_combined = scale(first_person_sing_ability_combined),
+    n_i = scale(n_i),
+    n_good = scale(n_good),
+    n_bad = scale(n_bad),
+    pct_i = scale(pct_i),
+    pct_good = scale(pct_good),
+    pct_bad = scale(pct_bad),
+    n_total = scale(n_total),
+    tone_pos = scale(tone_pos),
+    tone_neg = scale(tone_neg),
+    emo_pos = scale(emo_pos),
+    emo_neg = scale(emo_neg)
+  )
+
+disaggregated_good_bad$Internalizing <- scale(disaggregated_good_bad$Internalizing)
+disaggregated_good_bad$daysSinceFirstText <- scale(disaggregated_good_bad$daysSinceFirstText)
+
+```
+
+## Valence Projection
+
+:::: scrollable
+::: panel-tabset
+### Non-disaggregated
+
+```{r}
+internalizing <- lmer(Internalizing ~  first_person_sing_valence_combined + daysSinceFirstText + (1|room_id), data = good_bad_data_small)
+table_model(internalizing, dv_name = "Good-Bad Internalizing model summary (Non-disagg)")
+```
+
+### Disaggregated
+
+```{r}
+dissagg_proj <- lmer(Internalizing ~ daysSinceFirstText + first_person_sing_valence_combined_within + first_person_sing_valence_combined_between + 
+                       (1|room_id), data = disaggregated_good_bad) # need to optimize to get it to converge
+table_model(dissagg_proj, dv_name = "Good-Bad Internalizing model summary (Disagg)")
+```
+:::
+::::
+
+## Ability Projection
+
+:::: scrollable
+::: panel-tabset
+
+### Non-disaggregated
+
+```{r}
+internalizing_able <- lmer(Internalizing ~  first_person_sing_ability_combined + daysSinceFirstText + (1|room_id), data = good_bad_data_small)
+
+table_model(internalizing_able, dv_name = "Able-Unable Internalizing model summary (Non-disagg)")
+```
+
+### Disaggregated
+
+```{r}
+internalizing_able_disagg <- lmer(Internalizing ~  first_person_sing_ability_combined_between + first_person_sing_ability_combined_within + daysSinceFirstText + (1|room_id), data = disaggregated_good_bad)
+model_results_able_disagg <- extract_lmer_data(internalizing_able_disagg)
+table_model(internalizing_able_disagg, dv_name = "Able-Unable Internalizing model summary (Disagg)")
+```
+:::
+:::: 
+
+# Are these predictions robust to other linguisitic features?
+
+Results are condensed to be for the first-person singular valence and ability projections only (combined).
+
+## % words
+
+Controlling for freq. of words used to construct our axes.
+
+## Valence Projections
+
+:::: scrollable
+::: panel-tabset
+
+### Non-disaggregated (Valence)
+
+```{r}
+pct_words <- lmer(Internalizing ~  pct_i + pct_good + pct_bad + n_total + first_person_sing_valence_combined + daysSinceFirstText +  (1|room_id), data = good_bad_data_small)
+table_model(pct_words, dv_name = "% Good-bad Words model summary (Non-disagg)")
+```
+
+### Disaggregated (valence)
+
+```{r}
+pct_words_disagg <- lmer(Internalizing ~ daysSinceFirstText + first_person_sing_valence_combined_between +first_person_sing_valence_combined_within + pct_i_between + pct_i_within + pct_good_between + pct_good_within + pct_bad_between + pct_bad_within + n_total_within + n_total_between + (1|room_id), data = disaggregated_good_bad, control =
+                           lmerControl(optimizer ="bobyqa")) # need to optimize to get it to converge
+table_model(pct_words_disagg)
+```
+:::
+::::
+
+------
+
+## Ability Projections
+
+:::: scrollable
+::: panel-tabset
+
+### Non-disaggregated (Ability)
+
+```{r}
+pct_words <- lmer(Internalizing ~  pct_i + pct_good + pct_bad + n_total + first_person_sing_ability_combined + daysSinceFirstText +  (1|room_id), data = good_bad_data_small)
+table_model(pct_words, dv_name = "% Good-bad Words model summary (Non-disagg)")
+```
+
+### Disaggregated (ability)
+
+```{r}
+pct_words_disagg <- lmer(Internalizing ~ daysSinceFirstText + first_person_sing_ability_combined_between +first_person_sing_ability_combined_within + pct_i_between + pct_i_within + pct_able_between + pct_able_within + pct_unable_between + pct_unable_within + n_total_within + n_total_between + (1|room_id), data = disaggregated_good_bad, control =
+                           lmerControl(optimizer ="bobyqa")) # need to optimize to get it to converge
+table_model(pct_words_disagg, dv_name = "% Able-unable Words model summary (Disagg)")
+```
+
+:::
+::::
+
+----
+
+## Sentiment and Total WC
+
+Controlling for sentiment scores, emotion words (LIWC), and total word count.
+
+## Valence Projections
+
+:::: scrollable
+::: panel-tabset
+
+### Non-disaggregated (valence)
+
+```{r}
+emo_wc <- lmer(Internalizing ~  first_person_sing_valence_combined + emo_pos + emo_neg + tone_pos + tone_neg + daysSinceFirstText + n_total + (1|room_id), data = good_bad_data_small)
+table_model(emo_wc, dv_name = "Good-Bad Sentiment and Total WC model summary (Non-disagg)")
+```
+
+### Disaggregated (valence)
+
+```{r}
+#disagg
+emo_wc_disagg <- lmer(Internalizing ~ daysSinceFirstText + first_person_sing_valence_combined_between + first_person_sing_valence_combined_within + emo_pos_within + emo_pos_between + emo_neg_within + emo_neg_between +
+                        tone_pos_within + tone_pos_between + tone_neg_within + tone_neg_between + n_total_within + n_total_between + (1|room_id), data = disaggregated_good_bad, control =
+                        lmerControl(optimizer ="bobyqa")) # need to optimize to get it to converge
+table_model(emo_wc_disagg) 
+```
+:::
+::::
+
+----
+
+## Ability projections
+
+:::: scrollable
+::: panel-tabset
+
+### Non-disaggregated (ability)
+
+```{r}
+emo_wc <- lmer(Internalizing ~  first_person_sing_ability_combined + emo_pos + emo_neg + tone_pos + tone_neg + daysSinceFirstText + n_total + (1|room_id), data = good_bad_data_small)
+table_model(emo_wc, dv_name = "Able-Unable Sentiment and Total WC model summary (Non-disagg)")
+```
+
+### Disaggregated (ability)
+
+```{r}
+emo_wc_disagg <- lmer(Internalizing ~ daysSinceFirstText + first_person_sing_ability_combined_between + first_person_sing_ability_combined_within + emo_pos_within + emo_pos_between + emo_neg_within + emo_neg_between +
+                        tone_pos_within + tone_pos_between + tone_neg_within + tone_neg_between + n_total_within + n_total_between + (1|room_id), data = disaggregated_good_bad, control =
+                        lmerControl(optimizer ="bobyqa")) # need to optimize to get it to converge
+table_model(emo_wc_disagg, dv_name = "Able-Unable Sentiment and Total WC model summary (Disagg)")
+```
+:::
+::::
+
+# Cluster based on Projection Scores 
+
+-----
+
+## Good-bad
+
+```{r}
+#| include: false
+data = read_csv(file.path(data_dir, "I-representations/data/text-level/MADS_roberta_results_Indy_am_v_feel.csv"))
+data = data %>%
+  dplyr::rename( # make sure to use dplyr explicitly 
+    Internalizing = internalizing,
+    daysSinceFirstText = days_since_first_text
+  ) %>% 
+  filter(bin < 5)  %>% 
+  mutate(
+    # Recode Llama_rating_4: 1 = "Preamble", else "Not Preamble"
+    Llama_rating_4 = ifelse(Llama_rating_4 == 1, "Preamble", "Not Preamble"),
+    Llama_rating_4 = factor(Llama_rating_4, levels = c("Not Preamble", "Preamble")),
+    
+    # Recode Llama_rating similarly if needed
+    Llama_rating = ifelse(Llama_rating == 1, "Preamble", "Not Preamble"),
+    Llama_rating = factor(Llama_rating, levels = c("Not Preamble", "Preamble")) ,
+    first_person_sing_valence_am = rowMeans(select(., I_projection_valence_am, me_projection_valence_am, my_projection_valence_am), na.rm = TRUE),
+    first_person_sing_valence_feel = rowMeans(select(., I_projection_valence_feel, me_projection_valence_feel, my_projection_valence_feel), na.rm = TRUE),
+    first_person_sing_valence_combined = rowMeans(select(., I_projection_valence_combined, me_projection_valence_combined, my_projection_valence_combined), na.rm = TRUE),
+    first_person_sing_ability_am = rowMeans(select(., I_projection_ability_am, me_projection_ability_am, my_projection_ability_am), na.rm = TRUE),
+    first_person_sing_ability_feel = rowMeans(select(., I_projection_ability_feel, me_projection_ability_feel, my_projection_ability_feel), na.rm = TRUE),
+    first_person_sing_ability_combined = rowMeans(select(., I_projection_ability_combined, me_projection_ability_combined, my_projection_ability_combined), na.rm = TRUE)
+    )
+
+dw = read_csv("/Users/sm9518/Library/CloudStorage/Box-Box/Talkspace_ErikNook_HarvardPrinceton/Data/Processed/Mesquiti_LBA_2024/Talkspace-LBA/data/TalkSpaceData_wide_exploration.csv")
+data_cluster <- data %>%
+  select(4:33,first_person_sing_valence_combined) %>%
+  unique() %>%
+  drop_na(first_person_sing_valence_combined) # drop NAs for the given variable we want to build the model on
+
+
+file_path <- "/Users/sm9518/Library/CloudStorage/Box-Box/Talkspace_ErikNook_HarvardPrinceton/Data/Processed/Mesquiti_LBA_2024/Talkspace-LBA/data/models/1st_person_valence_model.rds"
+
+# Check if the file exists
+if (file.exists(file_path)) {
+  # If it exists, load the dataset
+  bestcombMixModelLin <- readRDS(file_path)
+  message("Data loaded from file.")
+} else {
+
+combMixModelsLin <- stepFlexmix(first_person_sing_valence_combined ~ daysSinceFirstText|room_id, k = 1:4, data = data_cluster, nrep=10)
+bestcombMixModelLin <- getModel(combMixModelsLin, "BIC")
+
+# save the model 
+  saveRDS(bestcombMixModelLin, file = file_path)
+  message("Data saved to file.")
+}
+
+# Combine with dataset
+data_cluster$clusterComb <- factor(
+  bestcombMixModelLin@cluster,
+  levels = sort(unique(bestcombMixModelLin@cluster)),  # ensures correct ordering
+  labels = paste0("Cluster_", sort(unique(bestcombMixModelLin@cluster)))  # gives readable labels
+)
+dw$clusterComb <- NULL
+dw$clusterComb <- left_join(dw, data_cluster[!duplicated(data_cluster$room_id),], by="room_id")$clusterComb
+```
+
+
+```{r}
+dw %>%
+  dplyr::count(clusterComb, name = "n") %>%
+  filter(!is.na(clusterComb)) %>%
+  datatable()
+```
+
+---
+
+### Map Change over time in each cluster
+
+:::: scrollable
+::: panel-tabset
+
+#### Cluster 1
+
+```{r}
+clust1 <- lmer(first_person_sing_valence_combined ~ daysSinceFirstText + (1|room_id), data = data_cluster[data_cluster$clusterComb=="Cluster_1",]); 
+standardize_parameters(clust1, method = "pseudo", ci_method = "satterthwaite")
+```
+
+#### Cluster 2
+
+```{r}
+clust2 <- lmer(first_person_sing_valence_combined ~ daysSinceFirstText + (1|room_id), data = data_cluster[data_cluster$clusterComb=="Cluster_2",]); 
+standardize_parameters(clust2, method = "pseudo", ci_method = "satterthwaite")
+```
+
+#### Cluster 3
+
+```{r}
+clust3 <- lmer(first_person_sing_valence_combined ~ daysSinceFirstText + (1|room_id), data = data_cluster[data_cluster$clusterComb=="Cluster_3",]); 
+standardize_parameters(clust3, method = "pseudo", ci_method = "satterthwaite")
+```
+
+
+#### Plot trajectories for each cluster 
+
+```{r}
+smallerFontSize <- 12
+
+# Extract standardized coefficients for all three clusters
+clusters <- list(clust1, clust2, clust3)
+cluster_names <- c("Cluster 1", "Cluster 2", "Cluster 3")
+
+sig_df <- lapply(seq_along(clusters), function(i) {
+  fe <- extract_lmer_data(clusters[[i]])  # your function
+  fe_day <- fe %>% dplyr::filter(term == "daysSinceFirstText")
+  fe_day$cluster <- cluster_names[i]
+  fe_day <- fe_day %>%
+    dplyr::mutate(signif = dplyr::case_when(
+      p.value < 0.001 ~ "***",
+      p.value < 0.01  ~ "**",
+      p.value < 0.05  ~ "*",
+      p.value < 0.10  ~ "+",
+      p.value >= 0.10 ~ "n.s.",
+      TRUE ~ ""
+    ))
+  return(fe_day)
+}) %>% dplyr::bind_rows()
+
+
+predicted_list <- lapply(clusters, function(mod) {
+  ggpredict(mod, terms = "daysSinceFirstText [0:84]") %>% 
+    data.frame()
+})
+
+# Add cluster names to predicted data
+for (i in seq_along(predicted_list)) {
+  predicted_list[[i]]$cluster <- cluster_names[i]
+}
+
+predicted_df <- do.call(rbind, predicted_list)
+
+
+
+sig_df <- sig_df %>%
+  rename(cluster = cluster) %>%
+  mutate(cluster = as.character(cluster) %>% str_trim())
+
+x_star <- 42.5
+
+mid_points <- predicted_df %>%
+  group_by(cluster) %>%
+  filter(x == round(x_star)) %>%  # or use nearest value if x_star not exact
+  slice(1) %>%                    # in case multiple rows
+  select(cluster, y_max = predicted) %>%
+  left_join(sig_df %>% select(cluster, signif), by = "cluster")
+
+# Plot predicted trajectories
+fig9a <- ggplot(predicted_df, aes(x = x, y = predicted, color = cluster, fill = cluster, group = cluster)) +
+  geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = 0.2) +
+  geom_text(
+    data = mid_points,
+    aes(x = x_star, y = y_max + 0.01, label = signif),
+    color = "black",   # <- force black color
+    size = 6,
+    show.legend = FALSE
+  ) +
+  geom_line(size = 1.5) +
+  xlab("Days in Therapy") +
+  ylab("1st-Person Projection\n(Good-Bad)") +
+  scale_color_manual(values = good_palette) +
+  scale_fill_manual(values = good_palette) +
+  theme_minimal() +
+  theme(axis.text = element_text(size = smallerFontSize, color = "black"),
+        axis.title = element_text(size = smallerFontSize+1),
+        panel.background = element_rect(fill = "white"),
+        axis.line = element_line(color = "black", size = 1)) +
+  plot_aes
+fig9a
+```
+
+:::
+::::
+
+----
+
+### Differences in Symptoms Across Clusters {.tabset}
+
+```{r}
+
+#create Internalizing composites 
+dw = dw |> 
+  mutate(bSx = bPHQ + bGAD,
+         fSx = fPHQ + fGAD,
+         fdSx = fdPHQ + fdGAD,
+         clusterComb = factor(clusterComb, levels = c("Cluster_1", "Cluster_2", "Cluster_3"))
+  )
+```
+
+:::: scrollable
+::: panel-tabset
+
+#### Baseline Symptoms 
+
+::::: panel-tabset
+##### Main Effects
+
+```{r}
+M1 <- aov(bSx ~ clusterComb, data = dw)
+
+M1 |> 
+  extract_lmer_data() |> 
+  select(-outcome) |>
+  mutate(across(where(is.numeric), ~round(., 3))) |>
+  DT::datatable()
+
+emm1 <- emmeans::emmeans(M1, specs = "clusterComb")
+pw1 <- pairs(emm1) %>% as.data.frame()
+```
+
+----
+
+##### Pairwise Comparisons
+
+```{r}
+# Create a "signif" column based on p.value
+pw1 <- pw1 %>%
+  mutate(signif = case_when(
+    p.value < 0.001 ~ "***",
+    p.value < 0.01 ~ "**",
+    p.value < 0.05 ~ "*",
+    TRUE ~ ""
+  ))
+
+pw1 |> 
+  mutate(across(where(is.numeric), ~round(., 3))) |>
+  DT::datatable()
+```
+
+:::::
+
+#### Final Symptoms
+
+::::: panel-tabset
+##### Main Effects
+
+```{r}
+# Differences in final internalizing symptoms by cluster
+M2 <- aov(fSx ~ clusterComb, data = dw)
+
+
+M2 |> 
+  extract_lmer_data() |> 
+  select(-outcome) |>
+  mutate(across(where(is.numeric), ~round(., 3))) |>
+  DT::datatable()
+
+emm2 <- emmeans::emmeans(M2, specs = "clusterComb")
+pw2 <- pairs(emm2) %>% as.data.frame()
+```
+
+##### Pairwise Comparisons
+
+```{r}
+# Create a "signif" column based on p.value
+pw2 <- pw2 %>%
+  mutate(signif = case_when(
+    p.value < 0.001 ~ "***",
+    p.value < 0.01 ~ "**",
+    p.value < 0.05 ~ "*",
+    TRUE ~ ""
+  ))
+
+pw2 |> 
+  mutate(across(where(is.numeric), ~round(., 3))) |>
+  DT::datatable()
+```
+
+:::::
+
+#### Change in Symptoms
+
+Controlling for baseline symptoms
+
+::::: panel-tabset
+
+##### Main Effects
+
+
+```{r}
+# Differences in change in internalizing symptoms by cluster
+M3 <- lm(fdSx ~ clusterComb + bSx, data = dw) 
+extract_lmer_data(M3) |> 
+  select(-outcome) |>
+  mutate(across(where(is.numeric), ~round(., 3))) |>
+  DT::datatable()
+
+
+
+#estimated marginal means
+emm3 <- emmeans::emmeans(M3, specs = "clusterComb")
+
+pw3 <- pairs(emm3) %>% as.data.frame()
+```
+
+##### Pairwise Comparisons
+
+```{r}
+# Create a "signif" column based on p.value
+pw3 <- pw3 %>%
+  mutate(signif = case_when(
+    p.value < 0.001 ~ "***",
+    p.value < 0.01 ~ "**",
+    p.value < 0.05 ~ "*",
+    TRUE ~ ""
+  ))
+
+pw3 |> 
+  mutate(across(where(is.numeric), ~round(., 3))) |>
+  DT::datatable()
+```
+:::::
+
+:::
+::::
+
+----
+
+#### Plot
+
+```{r}
+#| warning: false
+#| fig-height: 6
+#| fig-width: 6
+# Bar plots for baseline (bSx), final (fSx), and change (fdSx) symptoms
+plotDat_bsx <- summarySE(dw, measurevar = "bSx", groupvars = "clusterComb") %>% 
+  filter(!is.na(clusterComb))
+
+# Example: set y_pos a little above the bar
+plotDat_bsx <- plotDat_bsx %>%
+  mutate(y_pos = bSx + ci + 0.1)  # adjust 0.1 as needed
+
+# Add significance manually for now
+# If you want to show the pairwise stars on top of each bar, you can assign based on Tukey/emmeans
+plotDat_bsx$signif <- c("***", "***", "")  # adjust based on pw1
+
+
+pw1_sig_labels <- pw1 %>%
+  mutate(
+    group1 = sub(" - .*", "", contrast),
+    group2 = sub(".* - ", "", contrast),
+    y.position = max(plotDat_bsx$bSx + (plotDat_bsx$ci %||% 0), na.rm = TRUE) + (row_number() - 1) * 0.2,  # stagger positions
+    label = case_when(
+      p.value < 0.001 ~ "***",
+      p.value < 0.01  ~ "**",
+      p.value < 0.05  ~ "*",
+      TRUE ~ "ns"
+    )
+  ) %>%
+  filter(label != "ns")
+
+
+fig9b <- ggplot(plotDat_bsx, aes(x = clusterComb, y = bSx, fill = clusterComb)) + 
+  geom_bar(stat = "identity", position = position_dodge(), show.legend = FALSE) +
+  geom_errorbar(aes(ymin = bSx - ci, ymax = bSx + ci), width = 0.2, position = position_dodge(0.9)) +
+  scale_fill_manual(values = good_palette) +
+  xlab("Cluster") + ylab("Baseline Symptoms") +
+  theme_minimal() + 
+  theme(axis.text = element_text(size = smallerFontSize, color = "black"),
+        axis.title = element_text(size = smallerFontSize),
+        panel.background = element_rect(fill = "white", color = NA)) +
+  stat_pvalue_manual(
+    pw1_sig_labels, 
+    bracket.size = 1,
+    label.size = 8,
+     label = "label",
+     xmin = "group1", 
+     xmax = "group2", 
+     y.position = "y.position",
+     tip.length = 0.0) +
+  plot_aes
+
+plotDat_fsx <- summarySE(dw, measurevar = "fSx", groupvars = "clusterComb")
+
+plotDat_fsx = plotDat_fsx |> 
+  filter(!is.na(clusterComb))
+
+
+
+pw2sig_labels <- pw2 %>%
+  mutate(
+    group1 = sub(" - .*", "", contrast),
+    group2 = sub(".* - ", "", contrast),
+    y.position = max(plotDat_fsx$fsx + (plotDat_fsx$ci %||% 0), na.rm = TRUE) + (row_number() - 1) * 0.2,  # stagger positions
+    label = case_when(
+      p.value < 0.001 ~ "***",
+      p.value < 0.01  ~ "**",
+      p.value < 0.05  ~ "*",
+      TRUE ~ "ns"
+    )
+  ) %>%
+  filter(label != "ns")
+
+fig9c <- ggplot(plotDat_fsx, aes(x = clusterComb, y = fSx, fill = clusterComb)) + 
+  geom_bar(stat = "identity", position = position_dodge(), show.legend = FALSE) +
+  geom_errorbar(aes(ymin = fSx - ci, ymax = fSx + ci), width = 0.2, position = position_dodge(0.9)) +
+  scale_fill_manual(values = good_palette) +
+  xlab("Cluster") + ylab("Final Symptoms") +
+  theme_minimal() + 
+  theme(axis.text = element_text(size = smallerFontSize, color = "black"),
+        axis.title = element_text(size = smallerFontSize),
+        panel.background = element_rect(fill = "white", color = NA)) +
+  stat_pvalue_manual(
+    pw2sig_labels, 
+    bracket.size = 1,
+    label.size = 8,
+     label = "label",
+     xmin = "group1", 
+     xmax = "group2", 
+     y.position = "y.position",
+     tip.length = 0.0) +
+  plot_aes
+
+
+
+plotDat_fdSx <- as.data.frame(emm3); 
+names(plotDat_fdSx)[2] <- "fdSx"
+
+
+pw3sig_labels <- pw3 %>%
+  mutate(
+    group1 = sub(" - .*", "", contrast),
+    group2 = sub(".* - ", "", contrast),
+    y.position = max(plotDat_fdSx$fdSx - (plotDat_fdSx$ci %||% 0), na.rm = TRUE) - (row_number() + 8) * 0.2,  # stagger positions
+    label = case_when(
+      p.value < 0.001 ~ "***",
+      p.value < 0.01  ~ "**",
+      p.value < 0.05  ~ "*",
+      TRUE ~ "ns"
+    )
+  ) %>%
+  filter(label != "ns")
+
+fig9d <- ggplot(plotDat_fdSx, aes(x = clusterComb, y = fdSx, fill = clusterComb)) +
+  geom_bar(stat="identity", position=position_dodge(), show.legend = FALSE) +
+  geom_errorbar(aes(ymin = lower.CL , ymax = upper.CL), width = 0.2, position = position_dodge(0.9)) +
+  scale_fill_manual(values = good_palette) +
+  xlab("Cluster") + ylab("Change in Symptoms") +
+  theme_minimal() +
+  theme(axis.text = element_text(size = smallerFontSize, color = "black"),
+        axis.title = element_text(size = smallerFontSize),
+        panel.background = element_rect(fill = "white", color = NA)) + 
+  stat_pvalue_manual(
+    pw3sig_labels, 
+    bracket.size = 1,
+    label.size = 8,
+     label = "label",
+     xmin = "group1", 
+     xmax = "group2", 
+     y.position = "y.position",
+     tip.length = 0.0) +
+  plot_aes
+
+# Arrange all figures
+blankfig <- ggplot() + theme_void()
+
+ggarrange(
+  ggarrange(fig9b, fig9c, fig9d, labels = c("B", "C", "D"), ncol = 3, widths = c(1,1,1)),
+  nrow = 1
+) + plot_aes
+```
+
+
+---- 
+
+### Do clusters moderate?
+
+`model = lmer(Internalizing ~ first_person_sing_valence_combined * clusterComb + daysSinceFirstText + (1|room_id), data = data_cluster)`
+
+#### Table
+
+::: scrollable
+
+```{r}
+
+data_cluster = data_cluster |> 
+  mutate(Internalizing = PHQ + GAD)
+
+model = lmer(Internalizing ~ first_person_sing_valence_combined * clusterComb + daysSinceFirstText + (1|room_id), data = data_cluster)
+
+model |> 
+  table_model(reference = "Cluster_1", dv_name = "Internalizing")
+```
+
+:::
+
+----
+
+#### Plot
+
+```{r}
+#| fig-height: 6
+#| fig-width: 8
+predicted <- ggeffects::ggpredict(
+  model,
+  terms = c("first_person_sing_valence_combined [-1, 0, 1]", "clusterComb")  # Match variable names in model
+) |> 
+data.frame() |> 
+  dplyr::mutate(
+    x = recode(x, "-1" = "-1 SD", "0" = "Mean", "1" = "+1 SD"),
+    x = factor(x, levels = c("-1 SD", "Mean", "+1 SD"))
+  )
+
+# Plot the predicted values
+ggplot(predicted, aes(x = x, y = predicted, color = group, group = group)) +
+  geom_pointrange(
+    aes(ymin = conf.low, ymax = conf.high),
+    position = position_dodge(0.05),
+    size = 0.5
+  ) +
+  geom_line(position = position_dodge(0.05), size = 1.5) +
+  scale_color_manual(values = good_palette, name = "Cluster") +  
+  labs(title = "Interaction b/w Projection and Cluster\nPredicting Symptoms", x = "Projection Score", y = "Predicted Internalizing Score") +
+  plot_aes 
+```
+
+---
+
+### All plots together 
+
+::: scrollable
+
+```{r}
+#| warning: false
+#| fig-height: 7.5
+#| fig-width: 10
+blankfig <- ggplot() + theme_void()
+
+ggarrange(
+  ggarrange(blankfig, fig9a, blankfig, labels = c("", "A", ""), ncol = 3, widths = c(1,2,1)),
+  ggarrange(fig9b, fig9c, fig9d, labels = c("B", "C", "D"), ncol = 3, widths = c(1,1,1)),
+  nrow = 2
+) + plot_aes
+```
+
+:::
+
+## Able-Unable
+
+```{r}
+# re-load in the data
+dw = read_csv("/Users/sm9518/Library/CloudStorage/Box-Box/Talkspace_ErikNook_HarvardPrinceton/Data/Processed/Mesquiti_LBA_2024/Talkspace-LBA/data/TalkSpaceData_wide_exploration.csv")
+data_cluster <- data %>%
+  select(4:33,first_person_sing_ability_combined) %>%
+  unique() %>%
+  drop_na(first_person_sing_ability_combined) # drop NAs for the given variable we want to build the model on
+
+```
+
+```{r build ability model}
+
+file_path <- "/Users/sm9518/Library/CloudStorage/Box-Box/Talkspace_ErikNook_HarvardPrinceton/Data/Processed/Mesquiti_LBA_2024/Talkspace-LBA/data/models/1st_person_ability_model.rds"
+
+# Check if the file exists
+if (file.exists(file_path)) {
+  # If it exists, load the dataset
+  bestcombMixModelLin <- readRDS(file_path)
+  message("Data loaded from file.")
+} else {
+
+combMixModelsLin <- stepFlexmix(first_person_sing_ability_combined ~ daysSinceFirstText|room_id, k = 1:4, data = data_cluster, nrep=10)
+bestcombMixModelLin <- getModel(combMixModelsLin, "BIC")
+
+# save the model 
+  saveRDS(bestcombMixModelLin, file = file_path)
+  message("Data saved to file.")
+}
+
+# Combine with dataset
+data_cluster$clusterComb <- factor(
+  bestcombMixModelLin@cluster,
+  levels = sort(unique(bestcombMixModelLin@cluster)),  # ensures correct ordering
+  labels = paste0("Cluster_", sort(unique(bestcombMixModelLin@cluster)))  # gives readable labels
+)
+dw$clusterComb <- NULL
+dw$clusterComb <- left_join(dw, data_cluster[!duplicated(data_cluster$room_id),], by="room_id")$clusterComb
+
+# Ns in each cluster
+dw %>%
+  dplyr::count(clusterComb) |>
+  filter(!is.na(clusterComb)) |>
+  DT::datatable()
+
+```
+
+---
+
+### Map Change over time in each cluster
+
+:::: scrollable
+::: panel-tabset
+
+#### Cluster 1
+
+```{r}
+clust1 <- lmer(first_person_sing_ability_combined ~ daysSinceFirstText + (1|room_id), data = data_cluster[data_cluster$clusterComb=="Cluster_1",]); 
+standardize_parameters(clust1, method = "pseudo", ci_method = "satterthwaite") 
+```
+
+#### Cluster 2
+
+```{r}
+clust2 <- lmer(first_person_sing_ability_combined ~ daysSinceFirstText + (1|room_id), data = data_cluster[data_cluster$clusterComb=="Cluster_2",]); 
+standardize_parameters(clust2, method = "pseudo", ci_method = "satterthwaite")
+```
+
+#### Cluster 3
+
+```{r}
+clust3 <- lmer(first_person_sing_ability_combined ~ daysSinceFirstText + (1|room_id), data = data_cluster[data_cluster$clusterComb=="Cluster_3",]); 
+standardize_parameters(clust3, method = "pseudo", ci_method = "satterthwaite")
+```
+
+
+#### Cluster 4
+
+```{r}
+clust4 <- lmer(first_person_sing_ability_combined ~ daysSinceFirstText + (1|room_id), data = data_cluster[data_cluster$clusterComb=="Cluster_4",]); 
+standardize_parameters(clust3, method = "pseudo", ci_method = "satterthwaite")
+```
+
+#### Plot trajectories for each cluster 
+
+```{r}
+smallerFontSize <- 8
+
+# Extract standardized coefficients for all three clusters
+clusters <- list(clust1, clust2, clust3,clust4)
+cluster_names <- c("Cluster 1", "Cluster 2", "Cluster 3","Cluster 4")
+
+sig_df <- lapply(seq_along(clusters), function(i) {
+  fe <- extract_lmer_data(clusters[[i]])  # your function
+  fe_day <- fe %>% dplyr::filter(term == "daysSinceFirstText")
+  fe_day$cluster <- cluster_names[i]
+  fe_day <- fe_day %>%
+    dplyr::mutate(signif = dplyr::case_when(
+      p.value < 0.001 ~ "***",
+      p.value < 0.01  ~ "**",
+      p.value < 0.05  ~ "*",
+      p.value < 0.10  ~ "+",
+      p.value >= 0.10 ~ "n.s.",
+      TRUE ~ ""
+    ))
+  return(fe_day)
+}) %>% dplyr::bind_rows()
+
+
+predicted_list <- lapply(clusters, function(mod) {
+  ggpredict(mod, terms = "daysSinceFirstText [0:84]") %>% 
+    data.frame()
+})
+
+# Add cluster names to predicted data
+for (i in seq_along(predicted_list)) {
+  predicted_list[[i]]$cluster <- cluster_names[i]
+}
+
+predicted_df <- do.call(rbind, predicted_list)
+
+
+sig_df <- sig_df %>%
+  rename(cluster = cluster) %>%
+  mutate(cluster = as.character(cluster) %>% str_trim())
+
+x_star <- 42.5
+
+mid_points <- predicted_df %>%
+  group_by(cluster) %>%
+  filter(x == round(x_star)) %>%  # or use nearest value if x_star not exact
+  slice(1) %>%                    # in case multiple rows
+  select(cluster, y_max = predicted) %>%
+  left_join(sig_df %>% select(cluster, signif), by = "cluster")
+
+# Plot predicted trajectories
+fig9a <- ggplot(predicted_df, aes(x = x, y = predicted, color = cluster, fill = cluster, group = cluster)) +
+  geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = 0.2) +
+  geom_text(
+    data = mid_points,
+    aes(x = x_star, y = y_max + 0.01, label = signif),
+    color = "black",   # <- force black color
+    size = 6,
+    show.legend = FALSE
+  ) +
+  geom_line(size = 1.5) +
+  xlab("Days in Therapy") +
+  ylab("1st-Person Projection\n(Able-Unable)") +
+  scale_color_manual(values = able_palette) +
+  scale_fill_manual(values = able_palette) +
+  theme_minimal() +
+  theme(axis.text = element_text(size = smallerFontSize, color = "black"),
+        axis.title = element_text(size = smallerFontSize+1),
+        panel.background = element_rect(fill = "white"),
+        axis.line = element_line(color = "black", size = 1)) +
+  plot_aes
+fig9a
+```
+
+:::
+::::
+
+----
+
+### Differences in Symptoms Across Clusters {.tabset}
+
+```{r}
+dw = dw |> 
+  mutate(bSx = bPHQ + bGAD,
+         fSx = fPHQ + fGAD,
+         fdSx = fdPHQ + fdGAD,
+         clusterComb = factor(clusterComb, levels = c("Cluster_1", "Cluster_2", "Cluster_3","Cluster_4"))
+  )
+```
+
+:::: scrollable
+::: panel-tabset
+
+#### Baseline Symptoms 
+
+::::: panel-tabset
+##### Main Effects
+
+```{r}
+M1 <- aov(bSx ~ clusterComb, data = dw)
+
+M1 |> 
+  extract_lmer_data() |> 
+  select(-outcome) |>
+  mutate(across(where(is.numeric), ~round(., 3))) |>
+  DT::datatable()
+emm1 <- emmeans::emmeans(M1, specs = "clusterComb")
+pw1 <- pairs(emm1) %>% as.data.frame()
+
+```
+
+----
+
+##### Pairwise Comparisons
+
+```{r}
+# Create a "signif" column based on p.value
+pw1 <- pw1 %>%
+  mutate(signif = case_when(
+    p.value < 0.001 ~ "***",
+    p.value < 0.01 ~ "**",
+    p.value < 0.05 ~ "*",
+    TRUE ~ ""
+  ))
+
+pw1 |> 
+  mutate(across(where(is.numeric), ~round(., 3))) |>
+  DT::datatable()
+```
+
+:::::
+
+#### Final Symptoms
+
+::::: panel-tabset
+##### Main Effects
+
+```{r}
+# Differences in final internalizing symptoms by cluster
+M2 <- aov(fSx ~ clusterComb, data = dw)
+
+
+M2 |> 
+  extract_lmer_data() |> 
+  select(-outcome) |>
+  mutate(across(where(is.numeric), ~round(., 3))) |>
+  DT::datatable()
+
+emm2 <- emmeans::emmeans(M2, specs = "clusterComb")
+pw2 <- pairs(emm2) %>% as.data.frame()
+```
+
+##### Pairwise Comparisons
+
+```{r}
+# Create a "signif" column based on p.value
+pw2 <- pw2 %>%
+  mutate(signif = case_when(
+    p.value < 0.001 ~ "***",
+    p.value < 0.01 ~ "**",
+    p.value < 0.05 ~ "*",
+    TRUE ~ ""
+  ))
+
+pw2 |> 
+  mutate(across(where(is.numeric), ~round(., 3))) |>
+  DT::datatable()
+```
+
+:::::
+
+#### Change in Symptoms
+
+::::: panel-tabset
+
+##### Main Effects
+
+```{r}
+# Differences in change in internalizing symptoms by cluster
+M3 <- lm(fdSx ~ clusterComb + bSx, data = dw) 
+extract_lmer_data(M3) |> 
+  select(-outcome) |>
+  mutate(across(where(is.numeric), ~round(., 3))) |>
+  DT::datatable()
+
+
+
+#estimated marginal means
+emm3 <- emmeans::emmeans(M3, specs = "clusterComb")
+
+pw3 <- pairs(emm3) %>% as.data.frame()
+```
+
+##### Pairwise Comparisons
+
+```{r}
+# Create a "signif" column based on p.value
+pw3 <- pw3 %>%
+  mutate(signif = case_when(
+    p.value < 0.001 ~ "***",
+    p.value < 0.01 ~ "**",
+    p.value < 0.05 ~ "*",
+    TRUE ~ ""
+  ))
+
+pw3 |> 
+  mutate(across(where(is.numeric), ~round(., 3))) |>
+  DT::datatable()
+```
+:::::
+
+:::
+::::
+
+----
+
+#### Plot
+
+```{r}
+#| warning: false
+#| fig-height: 6
+#| fig-width: 6
+#Bar plots for baseline (bSx), final (fSx), and change (fdSx) symptoms
+plotDat_bsx <- summarySE(dw, measurevar = "bSx", groupvars = "clusterComb") %>% 
+  filter(!is.na(clusterComb))
+
+# Example: set y_pos a little above the bar
+plotDat_bsx <- plotDat_bsx %>%
+  mutate(y_pos = bSx + ci + 0.1)  # adjust 0.1 as needed
+
+# Add significance manually for now
+# If you want to show the pairwise stars on top of each bar, you can assign based on Tukey/emmeans
+plotDat_bsx$signif <- c("***", "***", "***","***")  # adjust based on pw1
+
+
+pw1_sig_labels <- pw1 %>%
+  mutate(
+    group1 = sub(" - .*", "", contrast),
+    group2 = sub(".* - ", "", contrast),
+    y.position = max(plotDat_bsx$fSx + (plotDat_fsx$ci %||% 0), na.rm = TRUE) + (row_number() - 1) * 0.2,  # stagger positions
+    label = case_when(
+      p.value < 0.001 ~ "***",
+      p.value < 0.01  ~ "**",
+      p.value < 0.05  ~ "*",
+      TRUE ~ "ns"
+    )
+  ) %>%
+  filter(label != "ns")
+
+fig9b <- ggplot(plotDat_bsx, aes(x = clusterComb, y = bSx, fill = clusterComb)) + 
+  geom_bar(stat = "identity", position = position_dodge(), show.legend = FALSE) +
+  geom_errorbar(aes(ymin = bSx - ci, ymax = bSx + ci), width = 0.2, position = position_dodge(0.9)) +
+  scale_fill_manual(values = able_palette) +
+  xlab("Cluster") + ylab("Baseline Symptoms") +
+  theme_minimal() + 
+  theme(axis.text = element_text(size = smallerFontSize, color = "black", angle = 45),
+        axis.title = element_text(size = smallerFontSize),
+        panel.background = element_rect(fill = "white", color = NA)) +
+  plot_aes
+
+plotDat_fsx <- summarySE(dw, measurevar = "fSx", groupvars = "clusterComb")
+
+plotDat_fsx = plotDat_fsx |> 
+  filter(!is.na(clusterComb))
+
+pw2_sig_labels <- pw2 %>%
+  mutate(
+    group1 = sub(" - .*", "", contrast),
+    group2 = sub(".* - ", "", contrast),
+    y.position = max(plotDat_fsx$fSx + (plotDat_fsx$ci %||% 0), na.rm = TRUE) + (row_number() - 1) * 0.2,  # stagger positions
+    label = case_when(
+      p.value < 0.001 ~ "***",
+      p.value < 0.01  ~ "**",
+      p.value < 0.05  ~ "*",
+      TRUE ~ "ns"
+    )
+  ) %>%
+  filter(label != "ns")
+
+fig9c <- ggplot(plotDat_fsx, aes(x = clusterComb, y = fSx, fill = clusterComb)) + 
+  geom_bar(stat = "identity", position = position_dodge(), show.legend = FALSE) +
+  geom_errorbar(aes(ymin = fSx - ci, ymax = fSx + ci), width = 0.2, position = position_dodge(0.9)) +
+  scale_fill_manual(values = able_palette) +
+  xlab("Cluster") + ylab("Final Symptoms") +
+  theme_minimal() + 
+  theme(axis.text = element_text(size = smallerFontSize, color = "black",angle = 45),
+        axis.title = element_text(size = smallerFontSize),
+        panel.background = element_rect(fill = "white", color = NA)) +
+  stat_pvalue_manual(
+    pw2_sig_labels, 
+    bracket.size = 1,
+    label.size = 8,
+    label = "label",
+    xmin = "group1", 
+    xmax = "group2", 
+    y.position = "y.position",
+    tip.length = 0.0
+  )+
+  plot_aes
+
+
+
+plotDat_fdSx <- as.data.frame(emm3); 
+names(plotDat_fdSx)[2] <- "fdSx"
+
+
+
+pw3_sig_labels <- pw3 %>%
+  mutate(
+    group1 = sub(" - .*", "", contrast),
+    group2 = sub(".* - ", "", contrast),
+    y.position = min(plotDat_fdSx$fdSx - (plotDat_fdSx$ci %||% 0), na.rm = TRUE) - (row_number() + 1) * 0.2,  # stagger positions
+    label = case_when(
+      p.value < 0.001 ~ "***",
+      p.value < 0.01  ~ "**",
+      p.value < 0.05  ~ "*",
+      TRUE ~ "ns"
+    )
+  ) %>%
+  filter(label != "ns")
+
+fig9d <- ggplot(plotDat_fdSx, aes(x = clusterComb, y = fdSx, fill = clusterComb)) +
+  geom_bar(stat="identity", position=position_dodge(), show.legend = FALSE) +
+  geom_errorbar(aes(ymin = lower.CL , ymax = upper.CL), width = 0.2, position = position_dodge(0.9)) +
+  
+  scale_fill_manual(values = able_palette) +
+  xlab("Cluster") + ylab("Change in Symptoms") +
+  theme_minimal() +
+  theme(axis.text = element_text(size = smallerFontSize, color = "black",angle = 45),
+        axis.title = element_text(size = smallerFontSize),
+        panel.background = element_rect(fill = "white", color = NA)) +
+   stat_pvalue_manual(
+    pw3_sig_labels, 
+    bracket.size = 1,
+    label.size = 8,
+    label = "label",
+    xmin = "group1", 
+    xmax = "group2", 
+    y.position = "y.position",
+    tip.length = 0.0
+  )+
+  plot_aes
+
+# Arrange all figures
+blankfig <- ggplot() + theme_void()
+
+ggarrange(
+  ggarrange(fig9b, fig9c, fig9d, labels = c("B", "C", "D"), ncol = 3, widths = c(1,1,1)),
+  nrow = 1
+) + plot_aes
+
+```
+
+
+---- 
+
+### Do clusters moderate?
+
+#### Table
+
+::: scrollable
+
+```{r}
+data_cluster = data_cluster |> 
+  mutate(Internalizing = PHQ + GAD)
+
+model = lmer(Internalizing ~ first_person_sing_ability_combined * clusterComb + daysSinceFirstText + (1|room_id), data = data_cluster)
+
+model |> 
+  table_model(reference = "Cluster_1", dv_name = "Internalizing")
+```
+
+::: 
+
+---
+
+#### Plot
+
+```{r}
+#| fig-height: 6
+#| fig-width: 8
+predicted <- ggeffects::ggpredict(
+  model,
+  terms = c("first_person_sing_ability_combined [-1, 0, 1]", "clusterComb")  # Match variable names in model
+) |> 
+data.frame() |> 
+  dplyr::mutate(
+    x = recode(x, "-1" = "-1 SD", "0" = "Mean", "1" = "+1 SD"),
+    x = factor(x, levels = c("-1 SD", "Mean", "+1 SD"))
+  )
+
+# Plot the predicted values
+ggplot(predicted, aes(x = x, y = predicted, color = group, group = group)) +
+  geom_pointrange(
+    aes(ymin = conf.low, ymax = conf.high),
+    position = position_dodge(0.05),
+    size = 0.5
+  ) +
+  geom_line(position = position_dodge(0.05), size = 1.5) +
+  scale_color_manual(values = able_palette, name = "Cluster") +  
+  labs(title = "Interaction b/w Projection and Cluster\nPredicting Symptoms", x = "Projection Score", y = "Predicted Internalizing Score") +
+  plot_aes 
+```
+
+----
+
+### All plots together
+
+::: scrollable
+
+```{r}
+#| warning: false
+#| fig-height: 7.5
+#| fig-width: 10
+blankfig <- ggplot() + theme_void()
+
+ggarrange(
+  ggarrange(blankfig, fig9a, blankfig, labels = c("", "A", ""), ncol = 3, widths = c(1,2,1)),
+  ggarrange(fig9b, fig9c, fig9d, labels = c("B", "C", "D"), ncol = 3, widths = c(1,1,1)),
+  nrow = 2
+) + plot_aes
+```
+
+:::
