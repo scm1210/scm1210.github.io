@@ -17,6 +17,8 @@ website:
         href: CV.qmd
       - text: Posts
         href: posts.qmd
+      - text: Coding Guide
+        href: coding.qmd
   page-footer:
     left: "© 2025 Steven Mesquiti"
     right: "[MIT License](LICENSE)"

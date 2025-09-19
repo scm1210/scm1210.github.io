@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Steven">
+<meta name="dcterms.date" content="2025-09-19">
+
+<title>🎨 R Data Visualization Adventure</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-5009e20aefcf5197937674b7925ce3c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">Steven Mesquiti</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../publications.html"> 
+<span class="menu-text">Publications &amp; Preprints</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../CV.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts.html"> 
+<span class="menu-text">Posts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../coding.html"> 
+<span class="menu-text">Coding Guide</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#getting-everything-set-up" id="toc-getting-everything-set-up" class="nav-link active" data-scroll-target="#getting-everything-set-up">Getting everything set up</a>
+  <ul class="collapse">
+  <li><a href="#set-working-directory" id="toc-set-working-directory" class="nav-link" data-scroll-target="#set-working-directory">Set Working Directory</a></li>
+  <li><a href="#loading-datasets" id="toc-loading-datasets" class="nav-link" data-scroll-target="#loading-datasets">Loading datasets</a></li>
+  <li><a href="#data-exploration" id="toc-data-exploration" class="nav-link" data-scroll-target="#data-exploration">Data Exploration</a></li>
+  </ul></li>
+  <li><a href="#basic-plots" id="toc-basic-plots" class="nav-link" data-scroll-target="#basic-plots">Basic Plots</a>
+  <ul class="collapse">
+  <li><a href="#the-plot-function" id="toc-the-plot-function" class="nav-link" data-scroll-target="#the-plot-function">The <code>Plot</code> function</a></li>
+  <li><a href="#using-arguments-with-the-plot-function" id="toc-using-arguments-with-the-plot-function" class="nav-link" data-scroll-target="#using-arguments-with-the-plot-function">Using arguments with the <code>plot()</code> function</a></li>
+  <li><a href="#barplot" id="toc-barplot" class="nav-link" data-scroll-target="#barplot">Barplot</a></li>
+  <li><a href="#histogram" id="toc-histogram" class="nav-link" data-scroll-target="#histogram">Histogram</a></li>
+  <li><a href="#boxplot" id="toc-boxplot" class="nav-link" data-scroll-target="#boxplot">Boxplot</a></li>
+  <li><a href="#grid-of-charts" id="toc-grid-of-charts" class="nav-link" data-scroll-target="#grid-of-charts">Grid of Charts</a></li>
+  </ul></li>
+  <li><a href="#visualization-libraries-packages-in-r" id="toc-visualization-libraries-packages-in-r" class="nav-link" data-scroll-target="#visualization-libraries-packages-in-r">Visualization libraries (packages) in R</a>
+  <ul class="collapse">
+  <li><a href="#ggplot2" id="toc-ggplot2" class="nav-link" data-scroll-target="#ggplot2"><code>Ggplot2</code></a></li>
+  </ul></li>
+  <li><a href="#higher-level-examples" id="toc-higher-level-examples" class="nav-link" data-scroll-target="#higher-level-examples">Higher Level Examples</a>
+  <ul class="collapse">
+  <li><a href="#load-packages" id="toc-load-packages" class="nav-link" data-scroll-target="#load-packages">Load Packages</a></li>
+  <li><a href="#get-our-plot-aesthetics-set-up" id="toc-get-our-plot-aesthetics-set-up" class="nav-link" data-scroll-target="#get-our-plot-aesthetics-set-up">Get our plot aesthetics set-up</a></li>
+  <li><a href="#load-up-the-data" id="toc-load-up-the-data" class="nav-link" data-scroll-target="#load-up-the-data">Load up the data</a></li>
+  </ul></li>
+  <li><a href="#make-some-plots-with-ggplot2" id="toc-make-some-plots-with-ggplot2" class="nav-link" data-scroll-target="#make-some-plots-with-ggplot2">Make some plots with <code>ggplot2</code></a>
+  <ul class="collapse">
+  <li><a href="#basic-density" id="toc-basic-density" class="nav-link" data-scroll-target="#basic-density">Basic Density</a></li>
+  <li><a href="#styling-basic-density" id="toc-styling-basic-density" class="nav-link" data-scroll-target="#styling-basic-density">Styling Basic Density</a></li>
+  <li><a href="#overlay-two-different-geom-wrappers" id="toc-overlay-two-different-geom-wrappers" class="nav-link" data-scroll-target="#overlay-two-different-geom-wrappers">Overlay two different <code>geom</code> wrappers</a></li>
+  </ul></li>
+  <li><a href="#showing-change-over-time" id="toc-showing-change-over-time" class="nav-link" data-scroll-target="#showing-change-over-time">Showing change over time</a>
+  <ul class="collapse">
+  <li><a href="#load-in-the-data" id="toc-load-in-the-data" class="nav-link" data-scroll-target="#load-in-the-data">Load in the Data</a></li>
+  <li><a href="#build-our-graphs" id="toc-build-our-graphs" class="nav-link" data-scroll-target="#build-our-graphs">Build our Graphs</a></li>
+  </ul></li>
+  <li><a href="#package-citations" id="toc-package-citations" class="nav-link" data-scroll-target="#package-citations">Package Citations</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">🎨 R Data Visualization Adventure</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Steven </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 19, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="getting-everything-set-up" class="level1 tabset">
+<h1 class="tabset">Getting everything set up</h1>
+<section id="set-working-directory" class="level2">
+<h2 class="anchored" data-anchor-id="set-working-directory">Set Working Directory</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"~/Desktop/Coding-Boot-Camp/Data-viz-basics"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> <span class="co">#change to your own WD. you can do that by modifying the file path or go session (on the upper bar) --&gt; set working directory)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="loading-datasets" class="level2">
+<h2 class="anchored" data-anchor-id="loading-datasets">Loading datasets</h2>
+<p>Datasets can either be built-in or can be loaded from external sources in R.</p>
+<p>Built-in datasets refer to the datasets already provided within R. For the first part, we will be using a dataset called the <strong>air quality dataset</strong>, which pertains to the daily air quality measurements in New York from May to September 1973. <strong>This dataset consists of more than 100 observations for 6 variables</strong></p>
+<ul>
+<li><p><code>Ozone</code>(mean parts per billion)</p></li>
+<li><p><code>Solar.R</code>(Solar Radiation)</p></li>
+<li><p><code>Wind</code>(Average wind speed)</p></li>
+<li><p><code>Temp</code>(maximum daily temperature in Fahrenheit)</p></li>
+<li><p><code>Month</code>(month of observation)</p></li>
+<li><p><code>Day</code>(Day of the month)</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(airquality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In case of an <strong>External data source</strong> (CSV, Excel, text, HTML file etc.), simply set the folder containing the data as the working directory with the <code>setwd()</code> command. Alternatively, you can set the path to the file if you don’t want to change your directory, but this is <em>not</em> recommended.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"~/Desktop/Coding-Boot-Camp/Data-viz-basics"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, load the file with the help of the <code>read</code> command. In this case, data is in the form of a CSV file named <code>airquality.csv</code> which can be downloaded from <a href="https://github.com/parulnith/Data-Visualisation-with-R/blob/master/airquality.csv">here</a>.</p>
+<p><code>airquality &lt;- read.csv('airquality.csv',header=TRUE, sep=",")</code></p>
+<p>One small (but important) thing to note is that you can name objects in R using both <code>&lt;-</code> and <code>=</code> which basically tells the computer “save the csv under this name”. In our case save <strong>‘airquality.csv’</strong> as <code>airquality</code></p>
+<p>The above code reads the file <strong>airquality.csv</strong> into a data frame <code>airquality</code>. <code>Header=TRUE</code> specifies that the data includes a header and <code>sep=”,”</code> specifies that the values in data are separated by commas.</p>
+</section>
+<section id="data-exploration" class="level2">
+<h2 class="anchored" data-anchor-id="data-exploration">Data Exploration</h2>
+<p>Once the data has been loaded into the global environment (workspace), we need to explore it to get an idea about its structure and what we have to work with.</p>
+<p>To do so, we can use several different functions within R</p>
+<ul>
+<li><code>str</code> displays the internal structure of an R object and gives a quick overview of the rows and columns of the dataset.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(airquality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   153 obs. of  6 variables:
+ $ Ozone  : int  41 36 12 18 NA 28 23 19 8 NA ...
+ $ Solar.R: int  190 118 149 313 NA NA 299 99 19 194 ...
+ $ Wind   : num  7.4 8 12.6 11.5 14.3 14.9 8.6 13.8 20.1 8.6 ...
+ $ Temp   : int  67 72 74 62 56 66 65 59 61 69 ...
+ $ Month  : int  5 5 5 5 5 5 5 5 5 5 ...
+ $ Day    : int  1 2 3 4 5 6 7 8 9 10 ...</code></pre>
+</div>
+</div>
+<ul>
+<li><code>head(data,n)</code> and <code>tail(data,n)</code> The head outputs the top n elements in the dataset while the tail method outputs the bottom n.&nbsp;The default value for n in R is 10 but you can obviously specify it to be something else if needed :).</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(airquality) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Ozone Solar.R Wind Temp Month Day
+1    41     190  7.4   67     5   1
+2    36     118  8.0   72     5   2
+3    12     149 12.6   74     5   3
+4    18     313 11.5   62     5   4
+5    NA      NA 14.3   56     5   5
+6    28      NA 14.9   66     5   6</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(airquality) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Ozone Solar.R Wind Temp Month Day
+148    14      20 16.6   63     9  25
+149    30     193  6.9   70     9  26
+150    NA     145 13.2   77     9  27
+151    14     191 14.3   75     9  28
+152    18     131  8.0   76     9  29
+153    20     223 11.5   68     9  30</code></pre>
+</div>
+</div>
+<ul>
+<li><code>summary(airquality)</code>The summary method displays descriptive statistics for every variable in the dataset, depending upon the type of the variable. We can see at a glance the mean, median, max and the quartile values of the variables, as well as an missing observations which is especially valuable.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(airquality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Ozone          Solar.R         Wind            Temp          Month     
+ Min.   :  1.0   Min.   :  7   Min.   : 1.70   Min.   :56.0   Min.   :5.00  
+ 1st Qu.: 18.0   1st Qu.:116   1st Qu.: 7.40   1st Qu.:72.0   1st Qu.:6.00  
+ Median : 31.5   Median :205   Median : 9.70   Median :79.0   Median :7.00  
+ Mean   : 42.1   Mean   :186   Mean   : 9.96   Mean   :77.9   Mean   :6.99  
+ 3rd Qu.: 63.2   3rd Qu.:259   3rd Qu.:11.50   3rd Qu.:85.0   3rd Qu.:8.00  
+ Max.   :168.0   Max.   :334   Max.   :20.70   Max.   :97.0   Max.   :9.00  
+ NA's   :37      NA's   :7                                                  
+      Day      
+ Min.   : 1.0  
+ 1st Qu.: 8.0  
+ Median :16.0  
+ Mean   :15.8  
+ 3rd Qu.:23.0  
+ Max.   :31.0  
+               </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="basic-plots" class="level1 tabset">
+<h1 class="tabset">Basic Plots</h1>
+<p>The <code>graphics</code> package is used for plotting base graphs like scatter plot, box plot etc. and is already build into R. A complete list of functions with help pages can be obtained by typing : <code>library(help = "graphics").</code></p>
+<section id="the-plot-function" class="level2">
+<h2 class="anchored" data-anchor-id="the-plot-function">The <code>Plot</code> function</h2>
+<p>The plot() function is a generic function for plotting of R objects. When we run the code below, we get a scatter/dot plot here wherein each dot represents the value of the Ozone in mean parts per billion.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(airquality<span class="sc">$</span>Ozone)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figs/data-viz/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Let’s now advance this some and plot a graph between the Ozone and Wind values to study the relationship between the two. The plot shows that Wind and Ozone values have a somewhat negative correlation.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(airquality<span class="sc">$</span>Ozone, airquality<span class="sc">$</span>Wind)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figs/data-viz/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>What happens when we use <code>plot</code> command with the entire dataset without selecting any particular columns?</p>
+<p>We get a matrix of scatterplots which is a correlation matrix of all the columns. The plot above instantly shows that:</p>
+<ul>
+<li><p>The level of Ozone and Temperature is correlated positively.</p></li>
+<li><p>Wind speed is negatively correlated to both Temperature and Ozone level.</p></li>
+</ul>
+<p><strong>We can quickly discover the relationship between variables by merely looking at the plots drawn between them.</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(airquality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figs/data-viz/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="using-arguments-with-the-plot-function" class="level2">
+<h2 class="anchored" data-anchor-id="using-arguments-with-the-plot-function">Using arguments with the <code>plot()</code> function</h2>
+<p>We can easily style our charts by playing with the arguments of the <code>plot()</code> function.</p>
+<p>The <code>plot</code> function has an argument called <code>type</code> which can take in values like <code>p</code>: points, <code>l</code>: lines, <code>b</code>: both etc. This decides the shape of the output graph.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># points and lines </span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">plot</span>(airquality<span class="sc">$</span>Ozone, <span class="at">type=</span> <span class="st">"b"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figs/data-viz/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># high density vertical lines.</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">plot</span>(airquality<span class="sc">$</span>Ozone, <span class="at">type=</span> <span class="st">"h"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figs/data-viz/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Labels and Titles</strong></p>
+<p>We can also label the X and the Y axis and give a title to our plot. Additionally, we also have the option of giving color to the plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(airquality<span class="sc">$</span>Ozone, <span class="at">xlab =</span> <span class="st">'ozone Concentration'</span>, <span class="at">ylab =</span> <span class="st">'No of Instances'</span>, <span class="at">main =</span> <span class="st">'Ozone levels in NY city'</span>, <span class="at">col =</span> <span class="st">'green'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figs/data-viz/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="barplot" class="level2">
+<h2 class="anchored" data-anchor-id="barplot">Barplot</h2>
+<p>In a bar plot, data is represented in the form of rectangular bars and the length of the bar is proportional to the value of the variable or column in the dataset. Both horizontal, as well as a vertical bar chart, can be generated by tweaking the <code>horiz</code> parameter.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Horizontal bar plot</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">barplot</span>(airquality<span class="sc">$</span>Ozone, <span class="at">main =</span> <span class="st">'Ozone Concenteration in air'</span>,<span class="at">xlab =</span> <span class="st">'ozone levels'</span>, <span class="at">col=</span> <span class="st">'green'</span>,<span class="at">horiz =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figs/data-viz/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Vertical Barplot</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Horizontal bar plot</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">barplot</span>(airquality<span class="sc">$</span>Ozone, <span class="at">main =</span> <span class="st">'Ozone Concenteration in air'</span>,<span class="at">xlab =</span> <span class="st">'ozone levels'</span>, <span class="at">col=</span> <span class="st">'green'</span>,<span class="at">horiz =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figs/data-viz/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="histogram" class="level2">
+<h2 class="anchored" data-anchor-id="histogram">Histogram</h2>
+<p>A histogram is quite similar to a bar chart except that it groups values into continuous ranges. A histogram represents the frequencies of values of a variable bucketed into ranges. We get a histogram of the Solar.R values with <code>hist(airquality$Solar.R)</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(airquality<span class="sc">$</span>Solar.R)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figs/data-viz/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>By giving an appropriate value for the color argument (e.g., <code>col='red'</code>), we can obtain a colored histogram as well.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(airquality<span class="sc">$</span>Solar.R, <span class="at">main =</span> <span class="st">'Solar Radiation values in air'</span>,<span class="at">xlab =</span> <span class="st">'Solar rad.'</span>, <span class="at">col=</span><span class="st">'red'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figs/data-viz/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="boxplot" class="level2">
+<h2 class="anchored" data-anchor-id="boxplot">Boxplot</h2>
+<p>We have seen how the <code>summary()</code> command in R can display the descriptive statistics for every variable in the dataset. Boxplot does the same albeit graphically in the form of quartiles (e.g.,lowest 25% of the data, the middle 50% of the data, and the highest 25% of the data). It is again very straightforward to plot a boxplot in R.</p>
+<p><strong>Making a single box plot</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Single box plot</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(airquality<span class="sc">$</span>Solar.R)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figs/data-viz/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Making multiple box plots</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiple box plots</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(airquality[,<span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>], <span class="at">main=</span><span class="st">'Multiple Box plots'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figs/data-viz/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="grid-of-charts" class="level2">
+<h2 class="anchored" data-anchor-id="grid-of-charts">Grid of Charts</h2>
+<p>There is a very interesting feature in R which enables us to plot multiple charts at once. This comes in very handy during the EDA since the need to plot multiple graphs one by one is eliminated. For drawing a grid, the first argument should specify certain attributes like the margin of the grid(<code>mar</code>), no of rows and columns(<code>mfrow</code>), whether a border is to be included(<code>bty</code>) and position of the labels(<code>las</code>: 1 for horizontal, <code>las</code>: 0 for vertical).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">1</span>), <span class="at">las=</span><span class="dv">1</span>, <span class="at">bty=</span><span class="st">"n"</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(airquality<span class="sc">$</span>Ozone)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(airquality<span class="sc">$</span>Ozone, airquality<span class="sc">$</span>Wind)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(airquality<span class="sc">$</span>Ozone, <span class="at">type=</span> <span class="st">"c"</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(airquality<span class="sc">$</span>Ozone, <span class="at">type=</span> <span class="st">"s"</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(airquality<span class="sc">$</span>Ozone, <span class="at">type=</span> <span class="st">"h"</span>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(airquality<span class="sc">$</span>Ozone, <span class="at">main =</span> <span class="st">'Ozone Concenteration in air'</span>,<span class="at">xlab =</span> <span class="st">'ozone levels'</span>, <span class="at">col=</span><span class="st">'green'</span>,<span class="at">horiz =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(airquality<span class="sc">$</span>Solar.R)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(airquality<span class="sc">$</span>Solar.R)</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(airquality[,<span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>], <span class="at">main=</span><span class="st">'Multiple Box plots'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figs/data-viz/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="visualization-libraries-packages-in-r" class="level1">
+<h1>Visualization libraries (packages) in R</h1>
+<p>R comes equipped with sophisticated visualization libraries having great capabilities. In this section, we will use the built-in <code>mtcars</code> dataset to show the use of the <code>ggplot2</code> library (many data scientists’ personal favorite). This dataset has been extracted from the 1974 Motor Trend US magazine.</p>
+<section id="ggplot2" class="level2 tabset">
+<h2 class="tabset anchored" data-anchor-id="ggplot2"><code>Ggplot2</code></h2>
+<p>The ggplot2 package is one of the most widely used visualization packages in R. It enables the users to create sophisticated visualizations with little code The popularity of ggplot2 has increased tremendously in recent years since it makes it possible to create graphs that contain both univariate and multivariate data in a very simple manner.</p>
+<p><strong>Install and Load Package and Data</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Installing &amp; Loading the package </span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("ggplot2") uncomment this to install</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Loading the dataset</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(mtcars)</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co"># create factors with value labels </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="scatterplots" class="level3">
+<h3 class="anchored" data-anchor-id="scatterplots">Scatterplots</h3>
+<p><code>geom_point()</code> is used to create scatterplots and geom can have many variations like <code>geom_jitter()</code>, <code>geom_count()</code>, etc. Here, we use it to create a scatterplot for weight and mpg of cars. Notice how we specify what variables we want on our X and Y axes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figs/data-viz/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="styling-scatterplots" class="level3">
+<h3 class="anchored" data-anchor-id="styling-scatterplots">Styling Scatterplots</h3>
+<p>We can also style our scatterplots. For example, we can introduce an aesthetic that colors the points on the graph by some type of factor (e.g.&nbsp;number of cylinders)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg, <span class="at">color =</span> <span class="fu">as.factor</span>(cyl))) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figs/data-viz/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The color parameter is used to differentiate between different factor level of the <code>cyl</code> variable.</p>
+<p>Additionally, we can introduce things like size</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg, <span class="at">size =</span> qsec)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figs/data-viz/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In the above example, the value of <code>qsec</code> indicates the acceleration which decides the size of the points.</p>
+<p>We can also use different symbols to specify different things, as well.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>p  <span class="ot">&lt;-</span>  <span class="fu">ggplot</span>(mtcars,<span class="fu">aes</span>(mpg, wt, <span class="at">shape  =</span>  <span class="fu">factor</span>(cyl)))</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour  =</span>  <span class="fu">factor</span>(cyl)), <span class="at">size  =</span>  <span class="dv">4</span>) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">colour  =</span>  <span class="st">"grey90"</span>, <span class="at">size  =</span>  <span class="fl">1.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figs/data-viz/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="higher-level-examples" class="level1 tabset">
+<h1 class="tabset">Higher Level Examples</h1>
+<p>So now that we have some of the basic examples down, I want to show you how we can really take things to the next level with our data visualizations. In this section, we are going to use a few different examples. I’ll do my best to breakdown what we graph and how we do it. It’s ok if what we are doing doesn’t make complete sense at first–that’s why we learn. If you need help or anything hit my email with any questions: <a href="smesquiti@falklab.org">smesquiti@falklab.org</a>.</p>
+<p>Let’s get started by loading in all of our relevant materials.</p>
+<section id="load-packages" class="level2">
+<h2 class="anchored" data-anchor-id="load-packages">Load Packages</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"pacman"</span>)) <span class="fu">install.packages</span>(<span class="st">"pacman"</span>) <span class="co">#run this if you don't have pacman </span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, ggpubr, rstatix,plotrix, caret, broom, kableExtra, reactable, Hmisc, datarium, car,<span class="at">install =</span> T) </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co">#use pacman to load packages quickly </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>One of the great things about R is its ability to be super flexible. This comes from R’s ability to use different <code>packages</code>. You can load packages into your current <code>work environment</code> by using the <code>library(PACKAGE)</code> function. It is important to note that in order to <code>library</code> a package you must first have it installed. To install a package you can use the <code>install.packages("PACKAGE")</code> command. You can learn more about the different types of packages hosted on the Comprehensive R Archive Network (CRAN) <a href="https://cran.r-project.org/">here</a>! One other important thing is that some packages often have similar commands (e.g., <code>plyr</code> and <code>hmisc</code> both use <code>summarize</code>) that are masked meaning that you will call a function and may not get the function you expect. To get around this you can use <code>PACKAGE::FUNCTION</code> to call package-specific function.</p>
+<p>For this part of the script, and here forward, we use <code>pacman</code> to load in all of our packages rather than using the iterative <code>if (!require("PACKAGE")) install.packages("PACKAGE")</code> set-up. There’s still some merit to using that if loading in packages in a certain order creates issues (e.g.,<code>tidyverse</code> and <code>brms</code> in a certain fashion; I’ve had issues with this in the past -_-).</p>
+</section>
+<section id="get-our-plot-aesthetics-set-up" class="level2">
+<h2 class="anchored" data-anchor-id="get-our-plot-aesthetics-set-up">Get our plot aesthetics set-up</h2>
+<p>This is a super quick and easy way to style our plots without introducing a vile amount of code lines to each chunk! Let’s break down what we are working with:</p>
+<ul>
+<li><p><code>theme_classic()</code> let’s us style our plot with a transparent back drop, rather than the grey, and use some other styling features.</p></li>
+<li><p><code>theme()</code> allows us to specify other parameters which are discussed below</p></li>
+<li><p><code>legend.position</code> we can specify where we want our graph’s legend to be. We can set it to: <code>left, right, bottom, or top</code></p></li>
+<li><p><code>text</code> let’s us style our text. We can specify things like the <code>size</code>, <code>color</code>, <code>adjustment</code>, <code>margins</code>, etc.</p></li>
+<li><p><code>axis.text</code> allows us to style the axis text similar to above</p></li>
+<li><p><code>axis.line</code> permits for the styling of the axis lines (e.g., <code>color</code>, etc.)</p></li>
+<li><p><code>axis.ticks.x or y</code> allows us to style the x and y axes</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>plot_aes <span class="ot">=</span> <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">family =</span> <span class="st">"Futura Medium"</span>)) <span class="sc">+</span> </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title.position =</span> <span class="st">'plot'</span>, </span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>)) <span class="sc">+</span> </span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">16</span>),</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>,<span class="at">face=</span><span class="st">"bold"</span>))<span class="sc">+</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title.position =</span> <span class="st">'plot'</span>, </span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">20</span>)) <span class="sc">+</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>,<span class="at">face=</span><span class="st">"bold"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="load-up-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="load-up-the-data">Load up the data</h2>
+<p>Since we are using existing datasets in R and on github, we don’t need to do anything fancy here. However, when normally load in data you can use a few different approaches. In most reproducible scripts, you’ll see people use nomenclature similar to: <code>df</code>, <code>data</code>, <code>dataframe</code>, etc. to denote a dataframe. If you are working with multiple datasets, it’s advisable to call stuff by a intuitive name that allows you to know what the data actually is. For example, if I am working with two different corpora (e.g., Atlantic and NYT Best-Sellers) I will probably call the Atlantic dataframe <code>atlantic</code> and the NYT Best-sellers <code>NYT</code> for simplicity and so I don’t accidentally write over my files.</p>
+<p>For example, if your WD is already set and the data exists within said directory you can use: <code>df &lt;- read_csv(MY_CSV.csv)</code></p>
+<p>If the data is on something like <code>Github</code> you can use: <code>df &lt;- read_csv('https://raw.githubusercontent.com/scm1210/Language_Lab_Repro/main/Atlantic_Cleaned_all_vars.csv') #read in the data</code>.</p>
+<p>If you are working in one directory and need to call something for another directory you can do something like: <code>Atlantic_FK &lt;- read_csv("~/Desktop/working-with-lyle/Atlantic/Atlantic_flesch_kinkaid_scores.csv")</code></p>
+<p>There are also other packages/functions that allow you to read in files with different extensions such as <code>haven::read_sav()</code> to read in a file from SPSS or <code>rjson:: fromJSON(file="data.json")</code>to read in a json file. If you want to learn more about how to read in different files you can take a peek at <a href="https://www.datafiles.samhsa.gov/get-help/format-specific-issues/how-do-i-read-data-r">this site</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"genderweight"</span>, <span class="at">package =</span> <span class="st">"datarium"</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>genderweight <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(genderweight)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Show a sample of the data by group</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="make-some-plots-with-ggplot2" class="level1 tabset">
+<h1 class="tabset">Make some plots with <code>ggplot2</code></h1>
+<p>Now we we’ll focus on making a variety of different plots using <code>ggplot2</code> to demonstrate its flexibility. You can read more about <code>ggplot2</code> <a href="https://ggplot2.tidyverse.org/">here</a> and find its cheat sheet <a href="https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf">here</a>. Cheat sheets are great for quickly figuring out what you need to implement certain things, although ChatGPT has probably surpased them at this pont.</p>
+<section id="basic-density" class="level2">
+<h2 class="anchored" data-anchor-id="basic-density">Basic Density</h2>
+<p>To check the distribution of the data we can use density plots in the <code>ggplot</code> within <code>tidyverse</code> to visualize this. In the first part of the code, we tell <code>ggplot</code> to get our data from the <code>genderweight</code> dataset and use the <code>weight</code> variable. Using <code>geom_denisty</code> we then tell it we want to color our plot <code>dodgerblue</code> (my favorite R palette :) ), as well as fill it with that color using <code>color="dodgerblue4", fill="dodgerblue3"</code>. We then add our <code>plot_aes</code> object (usually doesn’t matter too much where we add this). Next we add a vertical line to our denisty plot using <code>geom_vline</code>, tell it that we want it to be at the mean value of the <code>weight</code> variable (which <em>must</em> be a continuous variable) and then style it <code>color="dodgerblue3", linetype="dashed", size=1</code>, telling R we want a blue, dashed line.</p>
+<p>Lastly, we annotate the graph using <code>annotate_figure</code>. We feed in the object we want to annotate first (in this case <code>p</code>) and then tell R what we want for the top and bottom annotations!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(genderweight, <span class="fu">aes</span>(<span class="at">x=</span>weight)) <span class="sc">+</span> </span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color=</span><span class="st">"dodgerblue4"</span>, <span class="at">fill=</span><span class="st">"dodgerblue3"</span>, <span class="at">alpha=</span><span class="fl">0.2</span>) <span class="sc">+</span> plot_aes <span class="sc">+</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept=</span><span class="fu">mean</span>(weight)),</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">color=</span><span class="st">"dodgerblue3"</span>, <span class="at">linetype=</span><span class="st">"dashed"</span>, <span class="at">size=</span><span class="dv">1</span>) </span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">annotate_figure</span>(p,</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">top =</span> <span class="fu">text_grob</span>(<span class="st">"Density Plots for both genders"</span>,  <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">20</span>),</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">bottom =</span> <span class="fu">text_grob</span>(<span class="st">"Vertical line represents mean value."</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>                                   , <span class="at">color =</span> <span class="st">"Black"</span>,</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">hjust =</span> <span class="fl">1.1</span>, <span class="at">x =</span> <span class="dv">1</span>, <span class="at">face =</span> <span class="st">"italic"</span>, <span class="at">size =</span> <span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figs/data-viz/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="styling-basic-density" class="level2">
+<h2 class="anchored" data-anchor-id="styling-basic-density">Styling Basic Density</h2>
+<p>We can also have the densities by gender. We do so by adding <code>color=group, fill=group</code> to our code, letting R know to color things by our grouping variable (<code>gender</code>, called <code>group</code> in the dataset).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="fu">ggplot</span>(genderweight, <span class="fu">aes</span>(<span class="at">x=</span>weight, <span class="at">color=</span>group, <span class="at">fill=</span>group, <span class="at">alpha=</span><span class="fl">0.1</span>)) <span class="sc">+</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()<span class="sc">+</span><span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept=</span><span class="fu">mean</span>(weight)),</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">color=</span><span class="st">"blue"</span>, <span class="at">linetype=</span><span class="st">"dashed"</span>, <span class="at">size=</span><span class="dv">1</span>) <span class="sc">+</span> plot_aes </span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="fu">annotate_figure</span>(p,</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">top =</span> <span class="fu">text_grob</span>(<span class="st">"Density Plots for both genders"</span>,  <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">20</span>),</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">bottom =</span> <span class="fu">text_grob</span>(<span class="st">"Verical line represents mean value."</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>                                   , <span class="at">color =</span> <span class="st">"Black"</span>,</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">hjust =</span> <span class="fl">1.1</span>, <span class="at">x =</span> <span class="dv">1</span>, <span class="at">face =</span> <span class="st">"italic"</span>, <span class="at">size =</span> <span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figs/data-viz/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="overlay-two-different-geom-wrappers" class="level2">
+<h2 class="anchored" data-anchor-id="overlay-two-different-geom-wrappers">Overlay two different <code>geom</code> wrappers</h2>
+<p>With <code>ggplot2</code>, we can also overlay different types of <code>geom</code> wrappers.</p>
+<p>For example, we can overlay scatter plots (using <code>geom_jitter</code>) and boxplots (using <code>geom_boxplot</code>). Notice how we introduce grouping variables, plot title, and axis labels</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a> <span class="co"># Create a box plot with jittered data points</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(genderweight, <span class="fu">aes</span>(<span class="at">x =</span> group, <span class="at">y =</span> weight,<span class="at">color =</span> group)) <span class="sc">+</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">size =</span> <span class="dv">2</span>,<span class="at">alpha=</span><span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add axis labels</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Groups"</span>) <span class="sc">+</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Weight"</span>) <span class="sc">+</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  plot_aes <span class="sc">+</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add plot title</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Weight by Groups"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figs/data-viz/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="showing-change-over-time" class="level1">
+<h1>Showing change over time</h1>
+<p>We can use a variety of functions within <code>ggplot2</code> to show how things change over time, one of which is line graphs. To do so, we can <code>tidy</code> our data (one observation per row using a package like <code>dplyr</code>. Now, I’ll demonstrate how to do some using data from a project I worked on in Jamie Pennebaker’s lab using Linguistic Inquiry and Word Count (LIWC; pronounced Luke).</p>
+<section id="load-in-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="load-in-the-data">Load in the Data</h2>
+<p>First, we load in the raw data from github. Second, we subset the data for a range of dates we are interested in (March 2019-March 2021). We then filter out word counts that are too noisy. Since LIWC is a bag of words program, we want to make sure our observations aren’t too noisy or large. For example, in the sentence “I love you” pronouns take up about 66% of the words the sentence and doing any type of analyses with that would not be very informative. We can get more into LIWC at a later time</p>
+<p>One we have formatted our data appropriately, we can move to tidy it up. That is, we get the 4 variables of interest and use dplyr to group them by the month of their observation and then summarize them by getting the means and standard errors for each variable within each month</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/scm1210/Summer-Coding/main/data/Big_CEO.csv"</span>) <span class="co">#read in the data from github </span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(WC<span class="sc">&lt;=</span><span class="dv">5400</span>)   <span class="sc">%&gt;%</span> </span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(WC<span class="sc">&gt;=</span><span class="dv">25</span>)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>month_year <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="fu">as.Date</span>(df<span class="sc">$</span>Date), <span class="st">"%Y-%m"</span>) <span class="do">###extracting month and year to build fiscal quarter graphs, need a new variable bc if not it'll give us issues</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span><span class="co">#converting our dates to quarterly dates </span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(month_year) <span class="sc">%&gt;%</span> <span class="do">###grouping by the Top100 tag and date </span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_at</span>(<span class="fu">vars</span>(<span class="st">"Date"</span>,<span class="st">"WC"</span>,<span class="st">"Analytic"</span>,<span class="st">"cogproc"</span>,<span class="st">'we'</span>,<span class="st">'i'</span>),  <span class="fu">funs</span>(mean, std.error),) <span class="co">#pulling the means and SEs for our variables of interest</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> df2[<span class="st">"2019-01"</span><span class="sc">&lt;=</span> df2<span class="sc">$</span>month_year <span class="sc">&amp;</span> df2<span class="sc">$</span>month_year <span class="sc">&lt;=</span> <span class="st">"2021-03"</span>,] <span class="co">#covid dates </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s take a look at our data structure so you get an idea of what we’re working with using <code>head()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 13
+  month_year Date_mean  WC_mean Analytic_mean cogproc_mean we_mean i_mean
+  &lt;chr&gt;      &lt;date&gt;       &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+1 2019-01    2019-01-25   1774.          39.2         11.5    5.76   1.77
+2 2019-02    2019-02-15   1711.          40.8         11.4    5.69   1.66
+3 2019-03    2019-03-11   1427.          40.8         11.3    5.71   1.60
+4 2019-04    2019-04-23   1691.          39.3         11.4    5.67   1.77
+5 2019-05    2019-05-08   1527.          40.3         11.4    5.58   1.64
+6 2019-06    2019-06-13   1763.          40.8         11.4    5.85   1.65
+# ℹ 6 more variables: Date_std.error &lt;dbl&gt;, WC_std.error &lt;dbl&gt;,
+#   Analytic_std.error &lt;dbl&gt;, cogproc_std.error &lt;dbl&gt;, we_std.error &lt;dbl&gt;,
+#   i_std.error &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="build-our-graphs" class="level2 tabset">
+<h2 class="tabset anchored" data-anchor-id="build-our-graphs">Build our Graphs</h2>
+<p>Now, we’ll run our code. Here’s a general explanation of what each line does using our first example:</p>
+<p><code>Analytic &lt;- ggplot(data=df2, aes(x=Date_mean, y=Analytic_mean, group=1)) +</code> creates a ggplot object and names it <code>Analytic</code>. We have <code>Date_mean</code> as our X axis and <code>Analytic_mean</code> as our y variable</p>
+<p><code>geom_line(colour = "dodgerblue3") +</code> writes our line graph using the parameters we specified above</p>
+<p><code>scale_x_date(date_breaks = "3 month", date_labels = "%Y-%m") +</code> Tells the graph we want 3 month partitions on our X-axis using the format <code>"%Y-%m"</code></p>
+<p><code>geom_ribbon(aes(ymin=Analytic_mean-Analytic_std.error, ymax=Analytic_mean+Analytic_std.error), alpha=0.2) +</code> Graphs the standard error around our linegraph</p>
+<p><code>ggtitle("Analytic Thinking") +</code> titles our plot</p>
+<p><code>labs(x = "Month", y = 'Standardized score') +</code> adds our x and y axis labels</p>
+<p><code>plot_aes +</code> here’s our plot aes object</p>
+<p><code>geom_vline(xintercept = as.numeric(as.Date("2020-03-01")), linetype = 1) +</code> specifying we want a vertical line at this specific date</p>
+<p><code>geom_rect(data = df2, #summer surge</code> give us a rectangle using the data</p>
+<p><code>aes(xmin = as.Date("2020-06-15", "%Y-%m-%d"),</code> let the lower bound on the x plane be this date</p>
+<p><code>xmax = as.Date("2020-07-20",  "%Y-%m-%d"),</code> let the upper bound on the x plane be this date</p>
+<p><code>ymin = -Inf,</code> let the lower bound on the y plane be this value</p>
+<p><code>ymax = Inf),</code> let the upper bound on the x plane be this value</p>
+<p><code>fill = "gray",</code> color it grey</p>
+<p><code>alpha = 0.009) +</code> let it be pretty transparent</p>
+<p><code>geom_rect(data = df2, #winter surge</code> give us a rectangle using the data</p>
+<p><code>aes(xmin = as.Date("2020-11-15", "%Y-%m-%d"),</code> let the lower bound on the x plane be this date</p>
+<p><code>xmax = as.Date("2021-01-01",  "%Y-%m-%d"),</code> let the upper bound on the x plane be this date</p>
+<p><code>ymin = -Inf,</code> let the lower bound on the y plane be this value</p>
+<p><code>ymax = Inf),</code> let the upper bound on the x plane be this value</p>
+<p><code>fill = "gray",</code> color it grey</p>
+<p><code>alpha = 0.009)</code>let it be pretty transparent</p>
+<p><code>Analytic &lt;- Analytic + annotate(geom="text",x=as.Date("2020-07-01"),</code> save a new object called Analytic and write text at this specific date on the x plane</p>
+<p><code>y=43,label="Summer 2020 surge", size = 3) +</code> specifying what our label is, what the y plane value is and font size</p>
+<p><code>annotate(geom="text",x=as.Date("2020-12-03"),</code> his specific date on the x plane</p>
+<p><code>y=43,label="Winter 2020 surge", size = 3)</code> specifying what our label is, what the y plane value is and font size</p>
+<p>We can use the <code>{r fig.height=6, fig.width=8}</code> in the block of code to specify the dimensions of our figures. This is super helpful when building stuff for presentations, project, etc. I forgot to mention earlier that in the <code>set-up</code> chunk we used <code>fig.path = "figs/data-viz/"</code> to specify where our figures to output to within our working directroy. So, if you go to wherever your directorty is you should be able to find them in that file path :).</p>
+<section id="analytic-thinking" class="level3">
+<h3 class="anchored" data-anchor-id="analytic-thinking">Analytic Thinking</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>Analytic <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>df2, <span class="fu">aes</span>(<span class="at">x=</span>Date_mean, <span class="at">y=</span>Analytic_mean, <span class="at">group=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">"dodgerblue3"</span>) <span class="sc">+</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"3 month"</span>, <span class="at">date_labels =</span> <span class="st">"%Y-%m"</span>) <span class="sc">+</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>Analytic_mean<span class="sc">-</span>Analytic_std.error, <span class="at">ymax=</span>Analytic_mean<span class="sc">+</span>Analytic_std.error), <span class="at">alpha=</span><span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Analytic Thinking"</span>) <span class="sc">+</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Month"</span>, <span class="at">y =</span> <span class="st">'Standardized score'</span>) <span class="sc">+</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  plot_aes <span class="sc">+</span> <span class="co">#here's our plot aes object</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">as.numeric</span>(<span class="fu">as.Date</span>(<span class="st">"2020-03-01"</span>)), <span class="at">linetype =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rect</span>(<span class="at">data =</span> df2, <span class="co">#summer surge</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">xmin =</span> <span class="fu">as.Date</span>(<span class="st">"2020-06-15"</span>, <span class="st">"%Y-%m-%d"</span>), </span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">xmax =</span> <span class="fu">as.Date</span>(<span class="st">"2020-07-20"</span>,  <span class="st">"%Y-%m-%d"</span>),</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">ymin =</span> <span class="sc">-</span><span class="cn">Inf</span>, </span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">ymax =</span> <span class="cn">Inf</span>),</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"gray"</span>, </span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.009</span>) <span class="sc">+</span></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rect</span>(<span class="at">data =</span> df2, <span class="co">#winter surge</span></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">xmin =</span> <span class="fu">as.Date</span>(<span class="st">"2020-11-15"</span>, <span class="st">"%Y-%m-%d"</span>), </span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>                <span class="at">xmax =</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>,  <span class="st">"%Y-%m-%d"</span>),</span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>                <span class="at">ymin =</span> <span class="sc">-</span><span class="cn">Inf</span>, </span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>                <span class="at">ymax =</span> <span class="cn">Inf</span>),</span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"gray"</span>, </span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.009</span>)</span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a>Analytic <span class="ot">&lt;-</span> Analytic <span class="sc">+</span> <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">"text"</span>,<span class="at">x=</span><span class="fu">as.Date</span>(<span class="st">"2020-07-01"</span>),</span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a>                                <span class="at">y=</span><span class="dv">43</span>,<span class="at">label=</span><span class="st">"Summer 2020 surge"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">"text"</span>,<span class="at">x=</span><span class="fu">as.Date</span>(<span class="st">"2020-12-03"</span>),</span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a>           <span class="at">y=</span><span class="dv">43</span>,<span class="at">label=</span><span class="st">"Winter 2020 surge"</span>, <span class="at">size =</span> <span class="dv">3</span>)</span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a>Analytic</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figs/data-viz/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="1200"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cogproc" class="level3">
+<h3 class="anchored" data-anchor-id="cogproc">Cogproc</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>Cogproc <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>df2, <span class="fu">aes</span>(<span class="at">x=</span>Date_mean, <span class="at">y=</span>cogproc_mean, <span class="at">group=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">"dodgerblue3"</span>) <span class="sc">+</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"3 month"</span>, <span class="at">date_labels =</span> <span class="st">"%Y-%m"</span>) <span class="sc">+</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>cogproc_mean<span class="sc">-</span>cogproc_std.error, <span class="at">ymax=</span>cogproc_mean<span class="sc">+</span>cogproc_std.error), <span class="at">alpha=</span><span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Cognitive Processing"</span>) <span class="sc">+</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Month"</span>, <span class="at">y =</span> <span class="st">'% Total Words'</span>) <span class="sc">+</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  plot_aes <span class="sc">+</span> <span class="co">#here's our plot aes object</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">as.numeric</span>(<span class="fu">as.Date</span>(<span class="st">"2020-03-01"</span>)), <span class="at">linetype =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rect</span>(<span class="at">data =</span> df2, <span class="co">#summer surge</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">xmin =</span> <span class="fu">as.Date</span>(<span class="st">"2020-06-15"</span>, <span class="st">"%Y-%m-%d"</span>), </span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">xmax =</span> <span class="fu">as.Date</span>(<span class="st">"2020-07-20"</span>,  <span class="st">"%Y-%m-%d"</span>),</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">ymin =</span> <span class="sc">-</span><span class="cn">Inf</span>, </span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">ymax =</span> <span class="cn">Inf</span>),</span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"gray"</span>, </span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.009</span>) <span class="sc">+</span></span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rect</span>(<span class="at">data =</span> df2, <span class="co">#winter surge</span></span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">xmin =</span> <span class="fu">as.Date</span>(<span class="st">"2020-11-15"</span>, <span class="st">"%Y-%m-%d"</span>), </span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a>                <span class="at">xmax =</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>,  <span class="st">"%Y-%m-%d"</span>),</span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a>                <span class="at">ymin =</span> <span class="sc">-</span><span class="cn">Inf</span>, </span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a>                <span class="at">ymax =</span> <span class="cn">Inf</span>),</span>
+<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"gray"</span>, </span>
+<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.009</span>)</span>
+<span id="cb40-23"><a href="#cb40-23" aria-hidden="true" tabindex="-1"></a>Cogproc <span class="ot">&lt;-</span> Cogproc <span class="sc">+</span> <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">"text"</span>,<span class="at">x=</span><span class="fu">as.Date</span>(<span class="st">"2020-07-01"</span>),</span>
+<span id="cb40-24"><a href="#cb40-24" aria-hidden="true" tabindex="-1"></a>                                <span class="at">y=</span><span class="fl">12.5</span>,<span class="at">label=</span><span class="st">"Summer 2020 surge"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb40-25"><a href="#cb40-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">"text"</span>,<span class="at">x=</span><span class="fu">as.Date</span>(<span class="st">"2020-12-03"</span>),</span>
+<span id="cb40-26"><a href="#cb40-26" aria-hidden="true" tabindex="-1"></a>           <span class="at">y=</span><span class="fl">12.5</span>,<span class="at">label=</span><span class="st">"Winter 2020 surge"</span>, <span class="at">size =</span> <span class="dv">3</span>)</span>
+<span id="cb40-27"><a href="#cb40-27" aria-hidden="true" tabindex="-1"></a>Cogproc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figs/data-viz/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="1200"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="i-words" class="level3">
+<h3 class="anchored" data-anchor-id="i-words">I-words</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>df2, <span class="fu">aes</span>(<span class="at">x=</span>Date_mean, <span class="at">y=</span>i_mean, <span class="at">group=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">"dodgerblue3"</span>) <span class="sc">+</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"3 month"</span>, <span class="at">date_labels =</span> <span class="st">"%Y-%m"</span>) <span class="sc">+</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>i_mean<span class="sc">-</span>i_std.error, <span class="at">ymax=</span>i_mean<span class="sc">+</span>i_std.error), <span class="at">alpha=</span><span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"I-usage"</span>) <span class="sc">+</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Month"</span>, <span class="at">y =</span> <span class="st">'% Total Words'</span>) <span class="sc">+</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  plot_aes <span class="sc">+</span> <span class="co">#here's our plot aes object</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">as.numeric</span>(<span class="fu">as.Date</span>(<span class="st">"2020-03-01"</span>)), <span class="at">linetype =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rect</span>(<span class="at">data =</span> df2, <span class="co">#summer surge</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">xmin =</span> <span class="fu">as.Date</span>(<span class="st">"2020-06-15"</span>, <span class="st">"%Y-%m-%d"</span>), </span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">xmax =</span> <span class="fu">as.Date</span>(<span class="st">"2020-07-20"</span>,  <span class="st">"%Y-%m-%d"</span>),</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">ymin =</span> <span class="sc">-</span><span class="cn">Inf</span>, </span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">ymax =</span> <span class="cn">Inf</span>),</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"gray"</span>, </span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.009</span>) <span class="sc">+</span></span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rect</span>(<span class="at">data =</span> df2, <span class="co">#winter surge</span></span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">xmin =</span> <span class="fu">as.Date</span>(<span class="st">"2020-11-15"</span>, <span class="st">"%Y-%m-%d"</span>), </span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>                <span class="at">xmax =</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>,  <span class="st">"%Y-%m-%d"</span>),</span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a>                <span class="at">ymin =</span> <span class="sc">-</span><span class="cn">Inf</span>, </span>
+<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a>                <span class="at">ymax =</span> <span class="cn">Inf</span>),</span>
+<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"gray"</span>, </span>
+<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.009</span>)</span>
+<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> i <span class="sc">+</span> <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">"text"</span>,<span class="at">x=</span><span class="fu">as.Date</span>(<span class="st">"2020-07-01"</span>),</span>
+<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a>                                <span class="at">y=</span><span class="fl">1.95</span>,<span class="at">label=</span><span class="st">"Summer 2020 surge"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">"text"</span>,<span class="at">x=</span><span class="fu">as.Date</span>(<span class="st">"2020-12-03"</span>),</span>
+<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a>           <span class="at">y=</span><span class="fl">1.95</span>,<span class="at">label=</span><span class="st">"Winter 2020 surge"</span>, <span class="at">size =</span> <span class="dv">3</span>)</span>
+<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a>i</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figs/data-viz/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="1200"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="we-words" class="level3">
+<h3 class="anchored" data-anchor-id="we-words">We-words</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>we <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>df2, <span class="fu">aes</span>(<span class="at">x=</span>Date_mean, <span class="at">y=</span>we_mean, <span class="at">group=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">"dodgerblue3"</span>) <span class="sc">+</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"3 month"</span>, <span class="at">date_labels =</span> <span class="st">"%Y-%m"</span>) <span class="sc">+</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>we_mean<span class="sc">-</span>we_std.error, <span class="at">ymax=</span>we_mean<span class="sc">+</span>we_std.error), <span class="at">alpha=</span><span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"We-usage"</span>) <span class="sc">+</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Month"</span>, <span class="at">y =</span> <span class="st">'% Total Words'</span>) <span class="sc">+</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  plot_aes <span class="sc">+</span> <span class="co">#here's our plot aes object</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">as.numeric</span>(<span class="fu">as.Date</span>(<span class="st">"2020-03-01"</span>)), <span class="at">linetype =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rect</span>(<span class="at">data =</span> df2, <span class="co">#summer surge</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">xmin =</span> <span class="fu">as.Date</span>(<span class="st">"2020-06-15"</span>, <span class="st">"%Y-%m-%d"</span>), </span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">xmax =</span> <span class="fu">as.Date</span>(<span class="st">"2020-07-20"</span>,  <span class="st">"%Y-%m-%d"</span>),</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">ymin =</span> <span class="sc">-</span><span class="cn">Inf</span>, </span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">ymax =</span> <span class="cn">Inf</span>),</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"gray"</span>, </span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.009</span>) <span class="sc">+</span></span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rect</span>(<span class="at">data =</span> df2, <span class="co">#winter surge</span></span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">xmin =</span> <span class="fu">as.Date</span>(<span class="st">"2020-11-15"</span>, <span class="st">"%Y-%m-%d"</span>), </span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>                <span class="at">xmax =</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>,  <span class="st">"%Y-%m-%d"</span>),</span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>                <span class="at">ymin =</span> <span class="sc">-</span><span class="cn">Inf</span>, </span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>                <span class="at">ymax =</span> <span class="cn">Inf</span>),</span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"gray"</span>, </span>
+<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.009</span>)</span>
+<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a>we <span class="ot">&lt;-</span> we <span class="sc">+</span> <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">"text"</span>,<span class="at">x=</span><span class="fu">as.Date</span>(<span class="st">"2020-07-01"</span>),</span>
+<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a>                                <span class="at">y=</span><span class="fl">6.5</span>,<span class="at">label=</span><span class="st">"Summer 2020 surge"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">"text"</span>,<span class="at">x=</span><span class="fu">as.Date</span>(<span class="st">"2020-12-03"</span>),</span>
+<span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a>           <span class="at">y=</span><span class="fl">6.5</span>,<span class="at">label=</span><span class="st">"Winter 2020 surge"</span>, <span class="at">size =</span> <span class="dv">3</span>)</span>
+<span id="cb42-27"><a href="#cb42-27" aria-hidden="true" tabindex="-1"></a>we</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figs/data-viz/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="1200"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="tie-them-all-together" class="level3">
+<h3 class="anchored" data-anchor-id="tie-them-all-together">Tie them all together</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>graphs <span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">ggarrange</span>(Analytic,Cogproc,i,we,<span class="at">ncol=</span><span class="dv">2</span>, <span class="at">nrow=</span><span class="dv">2</span>, <span class="at">common.legend =</span> <span class="cn">TRUE</span>, <span class="at">legend =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">annotate_figure</span>(graphs,</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">top =</span> <span class="fu">text_grob</span>(<span class="st">"CEOs' Language Change"</span>,  <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">20</span>),</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">bottom =</span> <span class="fu">text_grob</span>(<span class="st">"Note. Vertical Line Represents the onset of the pandemic. </span><span class="sc">\n</span><span class="st">\ Horizontal shading represents Standard Error. Vertical bars represent virus surges."</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>                                   , <span class="at">color =</span> <span class="st">"Black"</span>,</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">hjust =</span> <span class="fl">1.1</span>, <span class="at">x =</span> <span class="dv">1</span>, <span class="at">face =</span> <span class="st">"italic"</span>, <span class="at">size =</span> <span class="dv">16</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figs/data-viz/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="2100"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="package-citations" class="level1">
+<h1>Package Citations</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>report<span class="sc">::</span><span class="fu">cite_packages</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  - Fox J, Weisberg S (2019). _An R Companion to Applied Regression_, Third edition. Sage, Thousand Oaks CA. &lt;https://www.john-fox.ca/Companion/&gt;.
+  - Fox J, Weisberg S, Price B (2022). _carData: Companion to Applied Regression Data Sets_. doi:10.32614/CRAN.package.carData &lt;https://doi.org/10.32614/CRAN.package.carData&gt;, R package version 3.0-5, &lt;https://CRAN.R-project.org/package=carData&gt;.
+  - Grolemund G, Wickham H (2011). "Dates and Times Made Easy with lubridate." _Journal of Statistical Software_, *40*(3), 1-25. &lt;https://www.jstatsoft.org/v40/i03/&gt;.
+  - Harrell Jr F (2025). _Hmisc: Harrell Miscellaneous_. doi:10.32614/CRAN.package.Hmisc &lt;https://doi.org/10.32614/CRAN.package.Hmisc&gt;, R package version 5.2-3, &lt;https://CRAN.R-project.org/package=Hmisc&gt;.
+  - J L (2006). "Plotrix: a package in the red light district of R." _R-News_, *6*(4), 8-12.
+  - Kassambara A (2019). _datarium: Data Bank for Statistical Analysis and Visualization_. doi:10.32614/CRAN.package.datarium &lt;https://doi.org/10.32614/CRAN.package.datarium&gt;, R package version 0.1.0, &lt;https://CRAN.R-project.org/package=datarium&gt;.
+  - Kassambara A (2023). _rstatix: Pipe-Friendly Framework for Basic Statistical Tests_. doi:10.32614/CRAN.package.rstatix &lt;https://doi.org/10.32614/CRAN.package.rstatix&gt;, R package version 0.7.2, &lt;https://CRAN.R-project.org/package=rstatix&gt;.
+  - Kassambara A (2025). _ggpubr: 'ggplot2' Based Publication Ready Plots_. doi:10.32614/CRAN.package.ggpubr &lt;https://doi.org/10.32614/CRAN.package.ggpubr&gt;, R package version 0.6.1, &lt;https://CRAN.R-project.org/package=ggpubr&gt;.
+  - Kuhn, Max (2008). "Building Predictive Models in R Using the caret Package." _Journal of Statistical Software_, *28*(5), 1–26. doi:10.18637/jss.v028.i05 &lt;https://doi.org/10.18637/jss.v028.i05&gt;, &lt;https://www.jstatsoft.org/index.php/jss/article/view/v028i05&gt;.
+  - Lin G (2023). _reactable: Interactive Data Tables for R_. doi:10.32614/CRAN.package.reactable &lt;https://doi.org/10.32614/CRAN.package.reactable&gt;, R package version 0.4.4, &lt;https://CRAN.R-project.org/package=reactable&gt;.
+  - Müller K, Wickham H (2025). _tibble: Simple Data Frames_. doi:10.32614/CRAN.package.tibble &lt;https://doi.org/10.32614/CRAN.package.tibble&gt;, R package version 3.3.0, &lt;https://CRAN.R-project.org/package=tibble&gt;.
+  - R Core Team (2025). _R: A Language and Environment for Statistical Computing_. R Foundation for Statistical Computing, Vienna, Austria. &lt;https://www.R-project.org/&gt;.
+  - Rinker TW, Kurkiewicz D (2018). _pacman: Package Management for R_. version 0.5.0, &lt;http://github.com/trinker/pacman&gt;.
+  - Robinson D, Hayes A, Couch S (2025). _broom: Convert Statistical Objects into Tidy Tibbles_. doi:10.32614/CRAN.package.broom &lt;https://doi.org/10.32614/CRAN.package.broom&gt;, R package version 1.0.10, &lt;https://CRAN.R-project.org/package=broom&gt;.
+  - Sarkar D (2008). _Lattice: Multivariate Data Visualization with R_. Springer, New York. ISBN 978-0-387-75968-5, &lt;http://lmdvr.r-forge.r-project.org&gt;.
+  - Wickham H (2016). _ggplot2: Elegant Graphics for Data Analysis_. Springer-Verlag New York. ISBN 978-3-319-24277-4, &lt;https://ggplot2.tidyverse.org&gt;.
+  - Wickham H (2023). _forcats: Tools for Working with Categorical Variables (Factors)_. doi:10.32614/CRAN.package.forcats &lt;https://doi.org/10.32614/CRAN.package.forcats&gt;, R package version 1.0.0, &lt;https://CRAN.R-project.org/package=forcats&gt;.
+  - Wickham H (2025). _stringr: Simple, Consistent Wrappers for Common String Operations_. doi:10.32614/CRAN.package.stringr &lt;https://doi.org/10.32614/CRAN.package.stringr&gt;, R package version 1.5.2, &lt;https://CRAN.R-project.org/package=stringr&gt;.
+  - Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R, Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V, Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). "Welcome to the tidyverse." _Journal of Open Source Software_, *4*(43), 1686. doi:10.21105/joss.01686 &lt;https://doi.org/10.21105/joss.01686&gt;.
+  - Wickham H, François R, Henry L, Müller K, Vaughan D (2023). _dplyr: A Grammar of Data Manipulation_. doi:10.32614/CRAN.package.dplyr &lt;https://doi.org/10.32614/CRAN.package.dplyr&gt;, R package version 1.1.4, &lt;https://CRAN.R-project.org/package=dplyr&gt;.
+  - Wickham H, Henry L (2025). _purrr: Functional Programming Tools_. doi:10.32614/CRAN.package.purrr &lt;https://doi.org/10.32614/CRAN.package.purrr&gt;, R package version 1.1.0, &lt;https://CRAN.R-project.org/package=purrr&gt;.
+  - Wickham H, Hester J, Bryan J (2024). _readr: Read Rectangular Text Data_. doi:10.32614/CRAN.package.readr &lt;https://doi.org/10.32614/CRAN.package.readr&gt;, R package version 2.1.5, &lt;https://CRAN.R-project.org/package=readr&gt;.
+  - Wickham H, Vaughan D, Girlich M (2024). _tidyr: Tidy Messy Data_. doi:10.32614/CRAN.package.tidyr &lt;https://doi.org/10.32614/CRAN.package.tidyr&gt;, R package version 1.3.1, &lt;https://CRAN.R-project.org/package=tidyr&gt;.
+  - Zhu H (2024). _kableExtra: Construct Complex Table with 'kable' and Pipe Syntax_. doi:10.32614/CRAN.package.kableExtra &lt;https://doi.org/10.32614/CRAN.package.kableExtra&gt;, R package version 1.4.0, &lt;https://CRAN.R-project.org/package=kableExtra&gt;.</code></pre>
+</div>
+</div>
+<p>All credit goes to the great Dani Cosme for teaching me how to make these! You can find her <a href="https://github.com/dcosme">github</a> here!</p>
+<p>Parts of this script were adapted from this <a href="https://towardsdatascience.com/a-guide-to-data-visualisation-in-r-for-beginners-ef6d41a34174">article</a> by <a href="https://pandeyparul.medium.com/?source=---two_column_layout_sidebar----------------------------------">Parul Pandey</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2025 Steven Mesquiti</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p><a href="LICENSE">MIT License</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -1,0 +1,481 @@
+---
+title: "Simple Correlation examples for students "
+author: "Steven"
+date: "`r Sys.Date()`"
+format: 
+  html:
+    code-folding: hide
+    toc: true
+    toc-depth: 2
+    theme: united
+    css: styles.css   # <-- add your custom CSS here
+
+---
+
+
+```{r setup, include=F, message=FALSE}
+# set chunk options for the document
+# include=FALSE means that this chunk will not show up in the report
+
+knitr::opts_chunk$set(
+	echo = TRUE,
+	fig.path = "figs/correlation_",
+	message = FALSE,
+	warning = FALSE,
+	cache = FALSE,
+	dpi = 150
+)
+ 
+# echo = TRUE means that the source code will be displayed
+# message = FALSE suppresses messages
+# warning = FALSE suppresses warnings
+# cache = FALSE recompiles from scratch each time you knit 
+# dpi = 150 sets the figure resolution
+# fig.path specifies a directory where figures will be output
+
+options(digits = 4) 
+set.seed(123) #set seed for random number generation
+```
+
+# Getting everything set up {.tabset}
+
+## Set working directory 
+
+```{r}
+setwd("~/Desktop/Coding-Boot-Camp/correlation") #change to your own WD. you can do that by modifying the file path or go session (on the upper bar) --> set working directory)
+```
+
+**Change to your own working directory (WD) to save things like plots**. You
+can do that by modifying the file path or go session (on the upper bar)
+--\> set working directory). Working directories are important in R
+because they tell the computer where to look to grab information and
+save things like results. This can vary by project, script, etc. so it's
+important to consistently have the appropriate WD. If you are unsure
+what your current WD is, you can use the `getwd` command in the console
+(usually the lower left hand pane) to get your WD.
+
+## Load Packages
+
+```{r}
+if (!require("pacman")) install.packages("pacman") #run this if you don't have pacman 
+library(pacman)
+pacman::p_load(tidyverse, ggpubr, rstatix, zoo, rlang,caret, broom, kableExtra, reactable, Hmisc, datarium, car,corrplot, plotrix, install = T) 
+#use pacman to load packages quickly 
+```
+
+For this script, and here forward, We use `pacman` to load in all of our
+packages rather than using the iterative
+`if (!require("PACKAGE")) install.packages("PACKAGE")` set-up. There's
+still some merit to using that if loading in packages in a certain order creates issues
+(e.g.,`tidyverse` and `brms` in a certain fashion).
+
+
+## Get our plot aesthetics set-up
+
+This is a super quick and easy way to style our plots without introduce
+a vile amount of code lines to each chunk!
+
+```{r, include=T}
+palette_map = c("#3B9AB2", "#EBCC2A", "#F21A00")
+palette_condition = c("#ee9b00", "#bb3e03", "#005f73")
+
+plot_aes = theme_classic() + # 
+  theme(legend.position = "top",
+        legend.text = element_text(size = 12),
+        text = element_text(size = 16, family = "Futura Medium"),
+        axis.text = element_text(color = "black"),
+        axis.line = element_line(colour = "black"),
+        axis.ticks.y = element_blank())
+```
+
+## Build Relevant Functions
+
+Using stuff like summary functions allows for us to present results in a
+clean, organized manner. For example, we can trim superfluous
+information from model output when sharing with collaborators among
+other things.
+
+```{r}
+
+#summary stats function 
+
+mystats_df <- function(df, na.omit=FALSE) {
+  if (na.omit) {
+    df <- df[complete.cases(df), ]
+  }
+  
+  stats_df <- data.frame(
+    n = rep(NA, ncol(df)),
+    mean = rep(NA, ncol(df)),
+    stdev = rep(NA, ncol(df)),
+    skew = rep(NA, ncol(df)),
+    kurtosis = rep(NA, ncol(df))
+  )
+  
+  for (i in seq_along(df)) {
+    x <- df[[i]]
+    m <- mean(x)
+    n <- length(x)
+    s <- sd(x)
+    skew <- sum((x-m)^3/s^3)/n
+    kurt <- sum((x-m)^4/s^4)/n - 3
+    stats_df[i, ] <- c(n, m, s, skew, kurt)
+  }
+  
+  row.names(stats_df) <- colnames(df)
+  return(stats_df)
+}
+
+
+# correlation table function 
+
+apply_if <- function(mat, p, f) {
+  # Fill NA with FALSE
+  p[is.na(p)] <- FALSE
+  mat[p] <- f(mat[p])
+  mat
+}
+
+corr_table <- function(mat, corrtype = "pearson") {
+  matCorr <- mat
+  if (class(matCorr) != "rcorr") {
+    matCorr <- rcorr(mat, type = corrtype)
+  }
+  
+  # Remove upper diagonal
+  matCorr$r[upper.tri(matCorr$r)] <- NA
+  matCorr$P[upper.tri(matCorr$P)] <- NA
+
+  # Add one star for each p < 0.05, 0.01, 0.001
+  stars <- apply_if(round(matCorr$r, 2), matCorr$P < 0.05, function(x) paste0(x, "*"))
+  stars <- apply_if(stars, matCorr$P < 0.01, function(x) paste0(x, "*"))
+  stars <- apply_if(stars, matCorr$P < 0.001, function(x) paste0(x, "*"))
+  
+  # Put - on diagonal and blank on upper diagonal
+  stars[upper.tri(stars, diag = T)] <- "-"
+  stars[upper.tri(stars, diag = F)] <- ""
+  n <- length(stars[1,])
+  colnames(stars) <- 1:n
+  # Remove _ and convert to title case
+  row.names(stars) <- tools::toTitleCase(sapply(row.names(stars), gsub, pattern="_", replacement = " "))
+  # Add index number to row names
+  row.names(stars) <- paste(paste0(1:n,"."), row.names(stars))
+  kable(stars) %>% 
+    kableExtra::kable_styling()
+}
+
+```
+
+## Load data
+
+Since we are using an existing dataset in R, we don't need to do
+anything fancy here. However, when normally load in data you can use a
+few different approaches. In most reproducible scripts you'll see people
+use nomenclature similar to `df`, `data`, `dataframe`, etc. to denote a
+dataframe. If you are working with multiple datasets, it's advisable to
+call stuff by a intuitive name that allows you to know what the data
+actually is. For example, if I am working with two different corpora
+(e.g., Atlantic and NYT Best-Sellers) I will probably call the Atlantic
+dataframe `atlantic` and the NYT Best-sellers `NYT` for simplicity and
+so I don't accidentally write over files.
+
+For example, if your WD is already set and the data exists within said directory you can use:
+`df <- read_csv(MY_CSV.csv)`
+
+If the data is on something like `Github` you can use:
+`df <- read_csv('https://raw.githubusercontent.com/scm1210/Language_Lab_Repro/main/Atlantic_Cleaned_all_vars.csv') #read in the data`.
+
+If you are working in one directory and need to call something for
+another directory you can do something like:
+`Atlantic_FK <- read_csv("~/Desktop/working-with-lyle/Atlantic/Atlantic_flesch_kinkaid_scores.csv")`
+
+There are also other packages/functions that allow you to read in files
+with different extensions such as `haven::read_sav()` to read in a file
+from SPSS or `rjson:: fromJSON(file="data.json")`to read in a json file.
+If you want to learn more about how to reading in different files you
+can take a peek at [this
+site](https://www.datafiles.samhsa.gov/get-help/format-specific-issues/how-do-i-read-data-r).
+
+For the first half, we are going to be using the `mtcars` dataset which is built into R and we are going to call it `df`. 
+
+```{r}
+# Load the data
+data("mtcars")
+```
+
+# Brief Description 
+
+Now that we got everything set up, we are going to get into our
+analyses.Today we are going to look at Simple Correlations. **A correlation test is used to evaluate the association between two or more variables.** For instance, if we are interested to know whether there is a relationship between the weight and fuel efficiency of cars, a correlation coefficient can be calculated to answer this question. If there is no relationship between the two variables (weight and MPG), the average MPG should be the same regardless of the weight of the car and vice versa. For the first part we are going to look how different car qualities relate to each other!
+
+## Some other things 
+
+- **Simple Correlation tests can only be calculated between continuous variables**. However, there are other types of correlations tests that can be used to deal with different data types (that's outside the scope of this tutorial). 
+
+- **Spurious correlations exist (i.e., correlations != causation)!** Just because something appears to be related, due to it's correlation coefficient, doesn't mean there's actually a relationship there. For example, consumption of ice cream and boating accidents are often related. However, does eating more ice cream reallyyyy lead to people having boat accidents? Think about it. Also, if we are going to infer causation we have to manipulate variables experimentally. We often do not do that in studies where we use correlational analyses.
+
+- **You should become familiar with how to interpret correlation coefficients (esp within your specific field).** That is, what is a small, medium, and large correlation? At what point is a correlation coefficient *too* large (e.g., are you measuring the same construct)? Here's an [article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3576830/) that may help!
+
+## Statistical Assumptions {.tabset}
+
+Assumption are also important. That is, data need to possess certain
+qualities for us to be able to use this type of test. For a t-test these
+are: 
+
+- The data are continuous (not ordinal or nominal). 
+
+- Data from both variables follow normal distributions.
+
+- Your data have no outliers.
+
+- Your data is from a random or representative sample.
+
+- You expect a linear relationship between the two variables.
+
+Click through the tabs to see how to check each assumption.
+
+### Continuous
+
+We can check this by looking at the structure of our data using the `str` function (for all the
+variables in our dataset). We can see what variables R is treating as continuous and move forward with our analyses! 
+
+```{r}
+str(mtcars)
+```
+
+### Randomly Sampled
+
+This is something you do when you design the study--we can't do anything
+in R to check this.
+
+### No outliers 
+
+We can use the QQ-plot to inspect for outliers, which is in the `ggpubr` package. To do this we are going to utilize R's ability to write `functions` and `for loops`. First, we grab all of the names of the variables we want to get qq-plots for using `vars <- colnames(mtcars)` and save them as a list in R. This will allow us to specify what variables we want to graph. Depending on what datset we are working with, that can be as few as 2 or as many as the entire dataset! Second, we write our `qqplot_all` function which allows us to write the same graph as many times as we want without having to write out graphing code every. single. time. This is especially useful when graphs don't need unique customizations. Next, we write out `for loop` which allows us to use the `qqplot_all` function for each of the 11 graphs and save them as 11 unique objects named `qq_var[i]`. We then arrange all 11 using `ggarrange` so we can take a look. Lastly, we use Markdown's customizability to specify how large (or small) we want out figure to be. Here we go with a 10 x 10 figure. We can see that the variable don't have any observations > abs(3) and therefore no outliers.
+
+```{r, height=10, fig.width=10}
+vars <- colnames(mtcars)
+
+qqplot_all <- function(data) {
+  vars <- names(data)
+  n_vars <- length(vars)
+  
+  for(i in 1:n_vars) {
+    qqplot <- ggqqplot(data[[i]], ylab = vars[i],color = "dodgerblue") + plot_aes
+    assign(paste0("qq_", vars[i]), qqplot, envir = .GlobalEnv)
+  }
+}
+
+qqplot_all(mtcars) # create QQ plots for all variables
+
+ggarrange(qq_am,qq_carb,qq_cyl,qq_disp,qq_drat,qq_gear,qq_hp,qq_mpg,qq_qsec,qq_vs,qq_wt, common.legend = T, legend = 'right')
+
+```
+
+### Normal Distribution 
+
+To check the distribution of the data we can use density plots in the
+`ggplot` within `tidyverse` to visualize this. It's also important to
+get some statistics behind this, and to do that we can look at skewness
+and kurtosis via the `mystats` function that we wrote earlier. You can
+also use `psych::describe` to get similar information. For skewness and
+kurtosis, we want values of skewness fall between − 3 and + 3, and
+kurtosis is appropriate from a range of − 10 to + 10. 
+
+For this example we are also going to visualize **all** of the variables in the dataset! To do this we are going to agian utilize R's ability to write `functions` and `for loops`. First, we grab all of the names of the variables we want to get density plots for using `vars <- colnames(mtcars)` and save them as a list in R. Second, we write our `density` function which allows us to write the same graph as many times as we want without having to write out graphing code every. single. time. Next, we write out `for loop` which allows us to use the `density` function for each of the 11 graphs and save them as 11 unique objects named `d[i]`. We then arrange all 11 using `ggarrange` so we can take a look. Lastly, we use Markdown's customizability to specify how large (or small) we want out figure to be.
+
+```{r fig.height=10, fig.width=10}
+#names <- select(data,14:130) #get names of certain variables 
+#names <- colnames(df) #if you wanna graph ALL the variables
+
+vars <- colnames(mtcars)
+
+#loop to create density plots 
+
+density <- function(data, x, y){ #create graphing function 
+ggplot(data = data) +
+  geom_density(aes_string(x = vars[i]),
+               adjust = 1.5, 
+               alpha = 0.5, fill = "dodgerblue") + plot_aes
+}
+
+for(i in 1:11) { #loop use graphing function 11 times
+  nam <- paste("d", i, sep = "")
+  assign(nam, density(mtcars,vars[i]))
+}
+ggarrange(d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11, common.legend = T, legend = 'right')
+```
+
+### You expect a linear relationship between the two variables.
+
+To check this assumption you can plot a scatter and plot between two variables and plot a line of best fit using `ggplot`. Since we have a bunch of variables in our dataset that we might be interested in, we are only ging to do a few for simplicity's sake (weight and MPG).
+
+```{r}
+ggplot(data = mtcars, aes(x = mpg, y = wt, color = cyl)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "black") +
+  scale_color_gradient(low = "blue", high = "red") +
+  labs(x = "Miles/(US) gallon", y = "Weight (1000 lbs)") +
+  plot_aes
+```
+
+# Summary Statistics {.tabset}
+
+It's also important for us to get some summary statistics for our data
+(e.g., N's, Means, SDs).
+
+## Sample Size, Means, Standard Deviations, etc.!
+
+```{r}
+mtcars %>%
+  get_summary_stats(type = "full") %>% 
+  reactable::reactable(striped = TRUE)
+```
+
+## Get summary stats for entire dataframe
+
+Also can grab things like skewness and kurtosis!
+
+```{r}
+mystats_df(mtcars)
+```
+
+# Main Analyses {.tabset}
+
+## Simple example 
+
+Now, we'll conduct our correlation analyses. For simplicity, we'll again start with just two variables (weight and mpg) and then scale up.
+
+From inspecting our output we can see there is a significant, large, negative correlation between mpg and car weight [*r* = -0.8677, *p* < .001]. 
+
+```{r}
+res <- cor.test(mtcars$wt, mtcars$mpg, 
+                    method = "pearson")
+res
+```
+
+## Scaling!
+
+Now that we've seen how to conduct a correlation between two variables, let's scale it.  R is flexible and can let us run a correlation between every variable in the dataset or just a select few. Since `mtcars` is a nice dataset to work with, we'll do the entire dataset using `corr <- rcorr(as.matrix(mtcars[1:11]))` saving our output as an object. However, when inspect our object we get the r-values (correlation coefficients) and p-values in two separate matricies. Having these in two separate matricies is ok. However, it doesn't do much for us in terms of trying to make sense of our data. So, let's visualize it. 
+
+```{r}
+corr <- rcorr(as.matrix(mtcars[1:11]))
+corr
+```
+
+## Visualize using corrplot
+
+We can use the `corrplot` package to visualize our matrix. This is a great package for using **shapes and colors** to indicate the strength and direction of variable relationships. 
+
+Now we'll breakdown what each part of this function does:
+
+- `corr$r` Allows us to feed in the correlation coefficients from our matrix
+
+- `type="upper"` Specifies we want the upper diagonal for our matrix 
+
+- `bg = "white"` Set the background to white 
+
+- `method = "number"` Lets us use numbers as a way to visualize the results. We can also use things liek squares, circles, etc. 
+
+- `number.cex = 15/ncol(corr)`Allows for us to tinker with the size of the numbers to make them fit.
+
+- `insig = "blank"` Let the correlations that are *p* > .05 be blank (or whatever threshold you specify). 
+
+```{r warning=FALSE}
+#Visualize 
+corrplot(corr$r, type="upper",bg = "white", method = "number",number.cex= 15/ncol(corr),insig = "blank")
+
+
+
+```
+
+## Build a table 
+
+While building a data visualiaton is cool, sometimes we want to build a professional table. We can do this using a function and `kable styling` to make it very pretty and presentable :). We do some by feeding our correlation objcet into our `corr_table` function. This not only gives us the correlation coefficients, but also the p-value thresholds they are are significant at.
+
+```{r}
+corr_table(corr)
+```
+
+# High-level example {.tabset}
+
+Now, we'll see what look to scale example at the highest level. For this script we are going to take a look at how different language variables from Presidential Inaugural Addresses correlate with one another. These speeches were retrieved from the `NLTK` corpus via python and analyzed using ``LIWC``, `spaCY`, and `NLTK`. 
+
+## Load the data 
+
+```{r}
+inaug <- read_csv('https://raw.githubusercontent.com/scm1210/Summer-Coding/main/data/Inaug_ALL_VARS.csv') #read in the data
+
+inaug <- inaug %>% mutate(we_i_ratio = we/i) 
+
+tidy_df_Inaug<- inaug %>%
+ group_by(year) %>% ###grouping by the year 
+   summarise_at(vars("WPS","readability","grade_level",'i','we','pronoun','det','syllables_per_word','syllables_per_sentence', "% words POS possessive","% words 'of'", "Contractions","we_i_ratio"),  funs(mean, std.error),) #pulling the means and SEs for our variables of interest
+# Get the mean values for the first year in the dataset
+year_means <- tidy_df_Inaug %>%
+  filter(year == 1789) 
+```
+
+## Variable Description 
+
+**Flesch-Kincaid Ease of Readability**: higher scores indicate material that is easier to read; lower numbers mark passages that are more difficult to read. Calculated using `spaCy` in python.
+
+**The Flesch–Kincaid Grade Level Score**: presents a score as a U.S. grade level, making it easier for teachers, parents, librarians, and others to judge the readability level of various books and texts.Calculated using `spaCy` in python.
+
+**I-usage**: First-person singular pronoun usage (% of total words). Calculated using `LIWC`.
+
+**We-usage**: First-person plural pronoun usage (% of total words). Calculated using `LIWC`.
+
+**Pronoun-usage**: Overall pronoun usage (% of total words). Calculated using `LIWC`.
+
+**Possessive-usage**:First-person singular pronoun usage (% of total words). Calculated using `NLTK POS, PRP, and PRP$` parser
+
+**Of-usage**: Usage of the word 'of' (% of total words). Calculated using `NLTK` parser.
+
+**Contraction-usage**: Usage of 85 most common contractions in English (% of total words). Calculated using custom `LIWC` dictionary.
+
+**Determiners-usage**: Determiner usage (% of total words). Calculated using `LIWC`.
+
+# Summary Stats {.tabset}
+
+## Dates
+
+```{r}
+inaug %>% 
+  select(year) %>% 
+  range()
+```
+
+## Raw count of Speeches
+
+```{r}
+inaug %>%
+  select(Filename) %>%
+  dplyr::summarize(n = n()) %>%
+  reactable::reactable(striped = TRUE)
+```
+
+## Speeches per year
+
+```{r}
+articles_year <- inaug %>%
+  select(Filename,year) %>%
+  unique() %>%
+  group_by(year) %>%
+  dplyr::summarize(n = n()) %>%
+  reactable::reactable(striped = TRUE)
+ articles_year
+```
+
+# Correlations 
+
+```{r}
+inaug_corr <- rcorr(as.matrix(tidy_df_Inaug[1:14]))
+corr_table(inaug_corr)
+```
+
+# Package Citations 
+
+```{r}
+report::cite_packages()
+```
+

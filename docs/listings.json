@@ -1,5 +1,14 @@
 [
   {
+    "listing": "/coding.html",
+    "items": [
+      "/coding/correlation/Correlations.html",
+      "/coding/t-test/T-tests.html",
+      "/coding/Regression/Regression.html",
+      "/coding/Data-viz-basics/Data-viz.html"
+    ]
+  },
+  {
     "listing": "/publications.html",
     "items": [
       "/publications/empathy-and-helping-the-role-of-affect-in-response-to-others-suffering/index.html",
