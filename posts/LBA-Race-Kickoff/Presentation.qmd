@@ -24,58 +24,60 @@ execute:
 
 # The Problem
 
-:::: {.inline-fragment}
-:::{.fragment}
--   The U.S. is experiencing a mental health crisis (anxiety & depression). 
+::::::: inline-fragment
+::: fragment
+-   The U.S. is experiencing a mental health crisis (anxiety & depression).
 :::
-:::{.fragment}
+
+::: fragment
 -   Access to care is unequal, especially for racial and ethnic minority groups.
 :::
-:::{.fragment} 
+
+::: fragment
 -   Language-based assessments promise scalable screening but recent evidence shows reduced performance for minority groups — risking widened disparities (see [Rai et al., 2024](https://www.pnas.org/doi/10.1073/pnas.2319837121)).
 :::
-:::{.fragment}
+
+::: fragment
 <a href="https://docs.google.com/document/d/1HglipIcEimjoXzj3AxEaWgLA2uyAOKWmJkqRe-2fgYc/edit?tab=t.0"
    target="_blank" rel="noopener noreferrer"
-   style="display:inline-block;padding:10px 16px;border-radius:6px;background:#197278;color:#fff;text-decoration:none;font-weight:600;">
-  Open Original Proposal (new tab)
-</a>
+   style="display:inline-block;padding:10px 16px;border-radius:6px;background:#197278;color:#fff;text-decoration:none;font-weight:600;"> Open Original Proposal (new tab) </a>
 :::
-::::
-
+:::::::
 
 # Gap in the Literature
-::::{.inline-fragment}
-:::{.fragment}
+
+::::: inline-fragment
+::: fragment
 -   Limited research testing whether language-based tools (especially modern LLMs) are equally sensitive across racial/ethnic groups.
 :::
-:::{.fragment}
+
+::: fragment
 -   Identify linguistic markers of distress within minority groups to inform equitable tools.
 :::
-::::
-
+:::::
 
 # Design
-::::{.inline-fragment}
-:::{.fragment}
--  Two-session online longitudinal study.
+
+:::::: inline-fragment
+::: fragment
+-   Two-session online longitudinal study.
     -   Baseline: open-text responses about mood, motivation, sleep (≈25 min) + GAD-7 + PHQ-8.
     -   Follow-up (3 week): repeat assessments (≈10 min) and collect information on posts from social media.
-
 :::
 
-:::{.fragment}
+::: fragment
 -   N = 1,600 (ages 18–40), balanced by race/ethnicity (White, Black, Latino, Asian).
 :::
 
-:::{.fragment}
+::: fragment
 <!-- -->
+
 -   **Recruitment platform:** Online panel (e.g., Prolific/CloudResearch) with demographic quotas.
 -   Pilot: *N = 240 to validate prompts, retention, and preprocessing pipelines.*
 :::
-::::
+::::::
 
-----
+------------------------------------------------------------------------
 
 ```{r}
 #| paged-print: false
@@ -168,12 +170,12 @@ combined <- p_timeline / p_counts + plot_layout(heights = c(0.9, 1.25))
 combined
 ```
 
-
 # Measures
 
----
+------------------------------------------------------------------------
 
 ## Depression-related Open-ended Questions
+
 -   Assessed via **written** response
 
 ```{r}
@@ -209,24 +211,26 @@ datatable(
 )
 ```
 
---- 
+------------------------------------------------------------------------
 
 ## Main Outcomes
--   **GAD-7 (anxiety; measured at both time points)** 
+
+-   **GAD-7 (anxiety; measured at both time points)**
 -   **PHQ-8 (depression; measured at both time points)**
 
----
+------------------------------------------------------------------------
 
 ## Demographics
 
-::::: panel-tabset
-
+:::::: panel-tabset
 ### Age & Residence
-- **Age:** ___
-- **State of residence:** ___
 
-### Gender 
-:::: {.scrollable}
+-   **Age:** \_\_\_
+-   **State of residence:** \_\_\_
+
+### Gender
+
+::: scrollable
 ```{r}
 gender_df <- tibble::tibble(
   Question = c(
@@ -256,11 +260,11 @@ datatable(
   )
 )
 ```
+:::
 
-::::
+### Race
 
-### Race 
-:::: {.scrollable}
+::: scrollable
 ```{r}
 race_df <- tibble::tibble(
   Question = c(
@@ -286,13 +290,11 @@ datatable(
   )
 )
 ```
+:::
 
+### SES
 
-::::
-
-### SES 
-:::: {.scrollable}
-
+::: scrollable
 ```{r}
 ses_df <- tibble::tibble(
   Question = c(
@@ -320,12 +322,11 @@ datatable(
   )
 )
 ```
-
-::::
-
-:::::
+:::
+::::::
 
 ## Other Measures...
+
 -   **Social media use (follow-up only)**
 -   **Satisfaction with Life Short Scale (both timepoints)**
 -   **UCLA Loneliness Scale (both time points)**
@@ -334,46 +335,39 @@ datatable(
 
 # Aim 1 — Sensitivity Across Groups
 
-::::{.inline-fragment}
-
-:::{.fragment}
-**Goal:** Test prediction of current and future anxiety/depression across four racial/ethnic groups (N_total = 1,600; 400 per group).  
+::::: inline-fragment
+::: fragment
+**Goal:** Test prediction of current and future anxiety/depression across four racial/ethnic groups (N_total = 1,600; 400 per group).\
 **Hypothesis:** Reduced sensitivity for Black, Latino, and Asian participants vs. White participants.
 :::
 
-:::{.fragment}
-**Primary Analyses:**  
+::: fragment
+**Primary Analyses:**
 
-- Moderation: `lm(symptoms ~ race * ling_feat, data = data)`  
-- Linguistic features include (see [Eichstaedt et al., 2021](https://psycnet.apa.org/record/2021-99502-001), [Kern et al., 2016](https://pubmed.ncbi.nlm.nih.gov/27505683/) for more info):  
-  - Sentiment, pronouns, emotion words (LIWC)  
-  - LLM-based inferences (e.g., GPT-4, LLaMA)  
-  - Contextual embeddings (e.g., BERT, RoBERTa)  
-
+-   Moderation: `lm(symptoms ~ race * ling_feat, data = data)`\
+-   Linguistic features include (see [Eichstaedt et al., 2021](https://psycnet.apa.org/record/2021-99502-001), [Kern et al., 2016](https://pubmed.ncbi.nlm.nih.gov/27505683/) for more info):
+    -   Sentiment, pronouns, emotion words (LIWC)\
+    -   LLM-based inferences (e.g., GPT-4, LLaMA)\
+    -   Contextual embeddings (e.g., BERT, RoBERTa)
 :::
-::::
+:::::
 
 # Aim 2 — Markers in Minority Groups
 
-::::{.inline-fragment}
+::::: inline-fragment
+::: fragment
+**Goal:** Exploratory/descriptive identification of linguistic markers of mental illness in minority groups.
 
-:::{.fragment}
-**Goal:** Exploratory/descriptive identification of linguistic markers of mental illness in minority groups.  
-
-- Sentiment, pronouns, emotion words (LIWC)  
-- LLM-derived inferences (e.g., embeddings, LLM-based ratings, etc.)
+-   Sentiment, pronouns, emotion words (LIWC)\
+-   LLM-derived inferences (e.g., embeddings, LLM-based ratings, etc.)
 :::
 
-:::{.fragment}
-**Analyses:**  
-- Descriptive statistics of linguistic features by racial/ethnic group  
-- Identify features associated with higher/lower symptom levels for each group 
-- Exploratory correlations and regressions for hypothesis generation
+::: fragment
+**Analyses:**\
+- Descriptive statistics of linguistic features by racial/ethnic group\
+- Identify features associated with higher/lower symptom levels for each group - Exploratory correlations and regressions for hypothesis generation
 :::
-
-::::
-
-
+:::::
 
 # Questions we have for you
 
@@ -381,20 +375,19 @@ datatable(
 -   Are there other ways in which we should we be measuring race?
 -   What are the current best practices for assessing race and ethnicity in psychological research?
 -   Given the scope of the grant should we consider other demographic factors (e.g., SES/social class)? Worried about statistical power limitations here.
--   How to handle people with multi-racial identities in modeling 
+-   How to handle people with multi-racial identities in modeling
 
-
-# Brain Storm 
+# Brain Storm
 
 <a href="https://docs.google.com/document/d/1raGwbmpaFNkE00qS63XdQwie429FW71E889Kod-NV0M/edit"
    target="_blank" rel="noopener noreferrer"
-   style="display:inline-block;padding:10px 16px;border-radius:6px;background:#197278;color:#fff;text-decoration:none;font-weight:600;">
-  Open Google Doc (new tab)
-</a>
+   style="display:inline-block;padding:10px 16px;border-radius:6px;background:#197278;color:#fff;text-decoration:none;font-weight:600;"> Open Google Doc (new tab) </a>
 
-::: 
+::: {.scrollable}
 <iframe
   src="https://docs.google.com/document/d/1raGwbmpaFNkE00qS63XdQwie429FW71E889Kod-NV0M/preview"
-  width="100%" height="750" frameborder="0">
+  width="100%"
+  height="750"
+  frameborder="0">
 </iframe>
 :::

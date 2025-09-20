@@ -92,28 +92,37 @@ table_model <- function(model, reference = "Intercept", dv_name = "dependent_var
     dplyr::select(term, `b [95% CI]`, df, SE, t, p, significance)
   
   # Create a datatable for displaying results
-  dt_table <- datatable(
-    model_table,
-    caption = htmltools::tags$caption(
-      style = 'caption-side: top; text-align: center; color: black; font-size: 14px; font-weight: bold;',
-      paste('Linear Mixed Model Results for', dv_name)  # Dynamic DV in caption
-    ),
-    options = list(
-      pageLength = 20,
-      dom = 't',
-      columnDefs = list(list(className = 'dt-center', targets = 1:5))
-    ),
-    rownames = FALSE
+dt_table <- datatable(
+  model_table,
+  caption = htmltools::tags$caption(
+    style = 'caption-side: top; text-align: center; 
+             color: var(--q-text-color); font-size: 14px; font-weight: bold;',
+    paste('Linear Mixed Model Results for', dv_name)
+  ),
+  options = list(
+    pageLength = 20,
+    dom = 't',
+    columnDefs = list(list(className = 'dt-center', targets = 1:5))
+  ),
+  rownames = FALSE
+) %>%
+  formatStyle(
+    'term',
+    fontWeight = 'bold',
+    color = 'var(--q-text-color)'
   ) %>%
-    formatStyle(
-      'term',
-      fontWeight = 'bold'
-    ) %>%
-    formatStyle(
-      'p',
-      color = styleInterval(c(0.001, 0.01, 0.05), c('darkred', 'red', 'orange', 'black'))
+  formatStyle(
+    c('b [95% CI]', 'df', 'SE', 't', 'p', 'significance'),
+    color = 'var(--q-text-color)'   # <- applies theme color to all text columns
+  ) %>%
+  formatStyle(
+    'p',
+    color = styleInterval(
+      c(0.001, 0.01, 0.05),
+      c('var(--highlight)', 'var(--q-secondary)', 'orange', 'var(--q-text-color)')
     )
-  
+  )
+
   return(dt_table)
 }
 
@@ -231,7 +240,7 @@ good_bad_data_small =  data |>
 
 -   This allows us to capture the psychological dimensions of interest in the embedding space (i.e., good-bad and able-unable).
 
--   Projects target words (e.g., I, me, my) onto these axes by computing the dot product between each word’s embedding and the axis vector, capturing how strongly that word aligns with a psychological dimension. 
+-   Projects target words (e.g., I, me, my) onto these axes by computing the dot product between each word’s embedding and the axis vector, capturing how strongly that word aligns with a psychological dimension.
 
 -   Aggregates these projections at the text level to create text-level measures of valence and ability projections for each participant, which we can then use for down-stream analyses.
 
@@ -288,7 +297,6 @@ res4$plot_line
 ```{r}
 res4$plot_spline
 ```
-
 
 # Do our projection measures predict changes in internalizing symptoms over time?
 
@@ -381,7 +389,6 @@ table_model(dissagg_proj, dv_name = "Good-Bad Internalizing model summary (Disag
 
 :::: scrollable
 ::: panel-tabset
-
 ### Non-disaggregated
 
 ```{r}
@@ -398,7 +405,7 @@ model_results_able_disagg <- extract_lmer_data(internalizing_able_disagg)
 table_model(internalizing_able_disagg, dv_name = "Able-Unable Internalizing model summary (Disagg)")
 ```
 :::
-:::: 
+::::
 
 # Are these predictions robust to other linguisitic features?
 
@@ -412,7 +419,6 @@ Controlling for freq. of words used to construct our axes.
 
 :::: scrollable
 ::: panel-tabset
-
 ### Non-disaggregated (Valence)
 
 ```{r}
@@ -430,13 +436,12 @@ table_model(pct_words_disagg)
 :::
 ::::
 
-------
+------------------------------------------------------------------------
 
 ## Ability Projections
 
 :::: scrollable
 ::: panel-tabset
-
 ### Non-disaggregated (Ability)
 
 ```{r}
@@ -451,11 +456,10 @@ pct_words_disagg <- lmer(Internalizing ~ daysSinceFirstText + first_person_sing_
                            lmerControl(optimizer ="bobyqa")) # need to optimize to get it to converge
 table_model(pct_words_disagg, dv_name = "% Able-unable Words model summary (Disagg)")
 ```
-
 :::
 ::::
 
-----
+------------------------------------------------------------------------
 
 ## Sentiment and Total WC
 
@@ -465,7 +469,6 @@ Controlling for sentiment scores, emotion words (LIWC), and total word count.
 
 :::: scrollable
 ::: panel-tabset
-
 ### Non-disaggregated (valence)
 
 ```{r}
@@ -485,13 +488,12 @@ table_model(emo_wc_disagg)
 :::
 ::::
 
-----
+------------------------------------------------------------------------
 
 ## Ability projections
 
 :::: scrollable
 ::: panel-tabset
-
 ### Non-disaggregated (ability)
 
 ```{r}
@@ -510,9 +512,9 @@ table_model(emo_wc_disagg, dv_name = "Able-Unable Sentiment and Total WC model s
 :::
 ::::
 
-# Cluster based on Projection Scores 
+# Cluster based on Projection Scores
 
------
+------------------------------------------------------------------------
 
 ## Good-bad
 
@@ -575,7 +577,6 @@ dw$clusterComb <- NULL
 dw$clusterComb <- left_join(dw, data_cluster[!duplicated(data_cluster$room_id),], by="room_id")$clusterComb
 ```
 
-
 ```{r}
 dw %>%
   dplyr::count(clusterComb, name = "n") %>%
@@ -583,13 +584,12 @@ dw %>%
   datatable()
 ```
 
----
+------------------------------------------------------------------------
 
 ### Map Change over time in each cluster
 
 :::: scrollable
 ::: panel-tabset
-
 #### Cluster 1
 
 ```{r}
@@ -611,8 +611,7 @@ clust3 <- lmer(first_person_sing_valence_combined ~ daysSinceFirstText + (1|room
 standardize_parameters(clust3, method = "pseudo", ci_method = "satterthwaite")
 ```
 
-
-#### Plot trajectories for each cluster 
+#### Plot trajectories for each cluster
 
 ```{r}
 smallerFontSize <- 12
@@ -688,11 +687,10 @@ fig9a <- ggplot(predicted_df, aes(x = x, y = predicted, color = cluster, fill = 
   plot_aes
 fig9a
 ```
-
 :::
 ::::
 
-----
+------------------------------------------------------------------------
 
 ### Differences in Symptoms Across Clusters {.tabset}
 
@@ -707,12 +705,11 @@ dw = dw |>
   )
 ```
 
-:::: scrollable
+::::::: scrollable
+:::::: panel-tabset
+#### Baseline Symptoms
+
 ::: panel-tabset
-
-#### Baseline Symptoms 
-
-::::: panel-tabset
 ##### Main Effects
 
 ```{r}
@@ -728,7 +725,7 @@ emm1 <- emmeans::emmeans(M1, specs = "clusterComb")
 pw1 <- pairs(emm1) %>% as.data.frame()
 ```
 
-----
+------------------------------------------------------------------------
 
 ##### Pairwise Comparisons
 
@@ -746,12 +743,11 @@ pw1 |>
   mutate(across(where(is.numeric), ~round(., 3))) |>
   DT::datatable()
 ```
-
-:::::
+:::
 
 #### Final Symptoms
 
-::::: panel-tabset
+::: panel-tabset
 ##### Main Effects
 
 ```{r}
@@ -785,17 +781,14 @@ pw2 |>
   mutate(across(where(is.numeric), ~round(., 3))) |>
   DT::datatable()
 ```
-
-:::::
+:::
 
 #### Change in Symptoms
 
 Controlling for baseline symptoms
 
-::::: panel-tabset
-
+::: panel-tabset
 ##### Main Effects
-
 
 ```{r}
 # Differences in change in internalizing symptoms by cluster
@@ -829,12 +822,11 @@ pw3 |>
   mutate(across(where(is.numeric), ~round(., 3))) |>
   DT::datatable()
 ```
-:::::
-
 :::
-::::
+::::::
+:::::::
 
-----
+------------------------------------------------------------------------
 
 #### Plot
 
@@ -980,8 +972,7 @@ ggarrange(
 ) + plot_aes
 ```
 
-
----- 
+------------------------------------------------------------------------
 
 ### Do clusters moderate?
 
@@ -990,7 +981,6 @@ ggarrange(
 #### Table
 
 ::: scrollable
-
 ```{r}
 
 data_cluster = data_cluster |> 
@@ -1001,10 +991,9 @@ model = lmer(Internalizing ~ first_person_sing_valence_combined * clusterComb + 
 model |> 
   table_model(reference = "Cluster_1", dv_name = "Internalizing")
 ```
-
 :::
 
-----
+------------------------------------------------------------------------
 
 #### Plot
 
@@ -1034,12 +1023,11 @@ ggplot(predicted, aes(x = x, y = predicted, color = group, group = group)) +
   plot_aes 
 ```
 
----
+------------------------------------------------------------------------
 
-### All plots together 
+### All plots together
 
 ::: scrollable
-
 ```{r}
 #| warning: false
 #| fig-height: 7.5
@@ -1052,7 +1040,6 @@ ggarrange(
   nrow = 2
 ) + plot_aes
 ```
-
 :::
 
 ## Able-Unable
@@ -1103,13 +1090,12 @@ dw %>%
 
 ```
 
----
+------------------------------------------------------------------------
 
 ### Map Change over time in each cluster
 
 :::: scrollable
 ::: panel-tabset
-
 #### Cluster 1
 
 ```{r}
@@ -1131,7 +1117,6 @@ clust3 <- lmer(first_person_sing_ability_combined ~ daysSinceFirstText + (1|room
 standardize_parameters(clust3, method = "pseudo", ci_method = "satterthwaite")
 ```
 
-
 #### Cluster 4
 
 ```{r}
@@ -1139,7 +1124,7 @@ clust4 <- lmer(first_person_sing_ability_combined ~ daysSinceFirstText + (1|room
 standardize_parameters(clust3, method = "pseudo", ci_method = "satterthwaite")
 ```
 
-#### Plot trajectories for each cluster 
+#### Plot trajectories for each cluster
 
 ```{r}
 smallerFontSize <- 8
@@ -1214,11 +1199,10 @@ fig9a <- ggplot(predicted_df, aes(x = x, y = predicted, color = cluster, fill = 
   plot_aes
 fig9a
 ```
-
 :::
 ::::
 
-----
+------------------------------------------------------------------------
 
 ### Differences in Symptoms Across Clusters {.tabset}
 
@@ -1231,12 +1215,11 @@ dw = dw |>
   )
 ```
 
-:::: scrollable
+::::::: scrollable
+:::::: panel-tabset
+#### Baseline Symptoms
+
 ::: panel-tabset
-
-#### Baseline Symptoms 
-
-::::: panel-tabset
 ##### Main Effects
 
 ```{r}
@@ -1252,7 +1235,7 @@ pw1 <- pairs(emm1) %>% as.data.frame()
 
 ```
 
-----
+------------------------------------------------------------------------
 
 ##### Pairwise Comparisons
 
@@ -1270,12 +1253,11 @@ pw1 |>
   mutate(across(where(is.numeric), ~round(., 3))) |>
   DT::datatable()
 ```
-
-:::::
+:::
 
 #### Final Symptoms
 
-::::: panel-tabset
+::: panel-tabset
 ##### Main Effects
 
 ```{r}
@@ -1309,13 +1291,11 @@ pw2 |>
   mutate(across(where(is.numeric), ~round(., 3))) |>
   DT::datatable()
 ```
-
-:::::
+:::
 
 #### Change in Symptoms
 
-::::: panel-tabset
-
+::: panel-tabset
 ##### Main Effects
 
 ```{r}
@@ -1350,12 +1330,11 @@ pw3 |>
   mutate(across(where(is.numeric), ~round(., 3))) |>
   DT::datatable()
 ```
-:::::
-
 :::
-::::
+::::::
+:::::::
 
-----
+------------------------------------------------------------------------
 
 #### Plot
 
@@ -1494,15 +1473,13 @@ ggarrange(
 
 ```
 
-
----- 
+------------------------------------------------------------------------
 
 ### Do clusters moderate?
 
 #### Table
 
 ::: scrollable
-
 ```{r}
 data_cluster = data_cluster |> 
   mutate(Internalizing = PHQ + GAD)
@@ -1512,10 +1489,9 @@ model = lmer(Internalizing ~ first_person_sing_ability_combined * clusterComb + 
 model |> 
   table_model(reference = "Cluster_1", dv_name = "Internalizing")
 ```
+:::
 
-::: 
-
----
+------------------------------------------------------------------------
 
 #### Plot
 
@@ -1545,12 +1521,11 @@ ggplot(predicted, aes(x = x, y = predicted, color = group, group = group)) +
   plot_aes 
 ```
 
-----
+------------------------------------------------------------------------
 
 ### All plots together
 
 ::: scrollable
-
 ```{r}
 #| warning: false
 #| fig-height: 7.5
@@ -1563,5 +1538,4 @@ ggarrange(
   nrow = 2
 ) + plot_aes
 ```
-
 :::

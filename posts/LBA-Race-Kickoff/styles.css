@@ -14,23 +14,6 @@
   --highlight: #39AC4C;
 }
 
-/* Dark mode variables */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --q-primary: #121212;
-    --q-secondary: #5c80a8;
-    --q-font-family-base: 'Arial', sans-serif;
-    --q-heading-font-family: 'Georgia', serif;
-    --q-text-color: #fff;
-    --q-background-color: #121212;
-    --q-accent: #b3b3b3;
-    --q-accent-light: #333;
-
-    --background: #121212;
-    --highlight: #5c80a8;
-  }
-}
-
 /* General body styles */
 body {
   font-family: var(--q-font-family-base);
@@ -185,6 +168,7 @@ th, td {
   border: 1px solid #ddd;
   padding: 0.75em;
   text-align: left;
+  color: var(--q-text-color); /* ensure text is always theme color */
 }
 
 th {
@@ -197,7 +181,7 @@ tr:nth-child(even) {
   background-color: #f5f5f5;
 }
 
-/* Scrollable container (updated style) */
+/* Scrollable container */
 .scrollable {
   max-height: 75vh;
   overflow-y: auto;
@@ -248,20 +232,6 @@ pre, code {
   font-size: 1em;
 }
 
-/* Dark mode adjustments */
-@media (prefers-color-scheme: dark) {
-  pre, code {
-    background-color: #1e1e1e;
-    color: #e0e0e0;
-  }
-  .scrollable {
-    background-color: #121212;
-  }
-  tr:nth-child(even) {
-    background-color: #1a1a1a;
-  }
-}
-
 /* Responsive adjustments */
 @media (max-width: 600px) {
   .navbar {
@@ -286,14 +256,14 @@ pre, code {
   margin-right: auto;
 }
 
-/* ===== NEW: Make font smaller in scrollable panels ===== */
+/* Make font smaller in scrollable panels */
 .scrollable {
-  font-size: 0.8em; /* adjust as needed */
+  font-size: 0.8em;
 }
 
 /* Ensure scrollable panels in tabsets have fixed height and scroll */
 .panel-tabset .scrollable {
-  max-height: 60vh;      /* adjust as needed */
+  max-height: 60vh;
   overflow-y: auto;
   padding-right: 1em;
   box-sizing: border-box;
