@@ -92,36 +92,7 @@ table_model <- function(model, reference = "Intercept", dv_name = "dependent_var
     dplyr::select(term, `b [95% CI]`, df, SE, t, p, significance)
   
   # Create a datatable for displaying results
-dt_table <- datatable(
-  model_table,
-  caption = htmltools::tags$caption(
-    style = 'caption-side: top; text-align: center; 
-             color: var(--q-text-color); font-size: 14px; font-weight: bold;',
-    paste('Linear Mixed Model Results for', dv_name)
-  ),
-  options = list(
-    pageLength = 20,
-    dom = 't',
-    columnDefs = list(list(className = 'dt-center', targets = 1:5))
-  ),
-  rownames = FALSE
-) %>%
-  formatStyle(
-    'term',
-    fontWeight = 'bold',
-    color = 'var(--q-text-color)'
-  ) %>%
-  formatStyle(
-    c('b [95% CI]', 'df', 'SE', 't', 'p', 'significance'),
-    color = 'var(--q-text-color)'   # <- applies theme color to all text columns
-  ) %>%
-  formatStyle(
-    'p',
-    color = styleInterval(
-      c(0.001, 0.01, 0.05),
-      c('var(--highlight)', 'var(--q-secondary)', 'orange', 'var(--q-text-color)')
-    )
-  )
+dt_table <- datatable(model_table)
 
   return(dt_table)
 }
