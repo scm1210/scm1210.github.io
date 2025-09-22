@@ -224,6 +224,7 @@ datatable(
 
 -   **GAD-7 (anxiety; measured at both time points)**
 -   **PHQ-8 (depression; measured at both time points)**
+    - If highly correlated, will collapse.
 
 ------------------------------------------------------------------------
 
