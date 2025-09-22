@@ -564,7 +564,7 @@
     "href": "posts/LBA-Race-Kickoff/Presentation.html#depression-related-open-ended-questions",
     "title": "Data-Driven Approaches to Building Equitable Language-Based Mental Health Assessments",
     "section": "Depression-related Open-ended Questions",
-    "text": "Depression-related Open-ended Questions\n\nAssessed via written response"
+    "text": "Depression-related Open-ended Questions\n\n\nAt initial time point, participants will provide written responses to 9 open-ended questions about mood, motivation, sleep, energy, self-perception, and life satisfaction (≈150 words total; see below for full list of questions).\nAdapted from Hur et al. (2024)"
   },
   {
     "objectID": "posts/LBA-Race-Kickoff/Presentation.html#main-outcomes",
@@ -585,7 +585,7 @@
     "href": "posts/LBA-Race-Kickoff/Presentation.html#other-measures",
     "title": "Data-Driven Approaches to Building Equitable Language-Based Mental Health Assessments",
     "section": "Other Measures…",
-    "text": "Other Measures…\n\nSocial media use (follow-up only)\nSatisfaction with Life Short Scale (both timepoints)\nUCLA Loneliness Scale (both time points)\nSocial Media derived Language-based Assessments\nBillingual-ism (initial timepoint using LEAP-Q)"
+    "text": "Other Measures…\n\nInitial Timepoint\n\nBilingualism (using LEAP-Q)\n\nBoth Timepoints\n\nSatisfaction with Life Short Scale\n\nUCLA Loneliness Scale\n\nFollow-up Only\n\nSocial Media Use\n\nSocial Media–derived Language-based Assessments"
   },
   {
     "objectID": "posts/I-projections/Post.html#under-the-hood",
@@ -1132,5 +1132,33 @@
     "title": "Regression",
     "section": "All Graphs",
     "text": "All Graphs\n\ntidy_smooth_graphs &lt;- ggpubr::ggarrange(i,we,pronouns, WPS,determiners, possessives, of, contractions,\n                                        ncol=4, nrow=2, common.legend = TRUE, legend = \"top\")\nannotate_figure(tidy_smooth_graphs,\n                top = text_grob(\"LIWC Variables\",  color = \"black\", face = \"bold\", size = 20),\n                 bottom = text_grob(\"Horizontal line represents Fisher Corpus\",  color = \"black\", size = 14))"
+  },
+  {
+    "objectID": "posts/LBA-Race-Kickoff/Presentation.html#standard-demographics",
+    "href": "posts/LBA-Race-Kickoff/Presentation.html#standard-demographics",
+    "title": "Data-Driven Approaches to Building Equitable Language-Based Mental Health Assessments",
+    "section": "Standard Demographics",
+    "text": "Standard Demographics\nAssessed at initial timepoint\n\nAge & ResidenceGenderRaceSES\n\n\n\nAge: ___\nState of residence: ___"
+  },
+  {
+    "objectID": "posts/LBA-Race-Kickoff/Presentation.html#primary-mental-health-measures",
+    "href": "posts/LBA-Race-Kickoff/Presentation.html#primary-mental-health-measures",
+    "title": "Data-Driven Approaches to Building Equitable Language-Based Mental Health Assessments",
+    "section": "Primary Mental Health Measures",
+    "text": "Primary Mental Health Measures\n\nGAD-7 (anxiety; measured at both time points)\nPHQ-8 (depression; measured at both time points)"
+  },
+  {
+    "objectID": "posts/LBA-Race-Kickoff/Presentation.html#description",
+    "href": "posts/LBA-Race-Kickoff/Presentation.html#description",
+    "title": "Data-Driven Approaches to Building Equitable Language-Based Mental Health Assessments",
+    "section": "Description",
+    "text": "Description\n\nTwo-session online longitudinal study.\n\nBaseline: open-text responses about mood, motivation, sleep (≈25 min) + GAD-7 + PHQ-8.\nFollow-up (3 weeks later): repeat assessments (≈10 min) and collect information on posts from social media."
+  },
+  {
+    "objectID": "posts/LBA-Race-Kickoff/Presentation.html#flow",
+    "href": "posts/LBA-Race-Kickoff/Presentation.html#flow",
+    "title": "Data-Driven Approaches to Building Equitable Language-Based Mental Health Assessments",
+    "section": "Flow",
+    "text": "Flow"
   }
 ]

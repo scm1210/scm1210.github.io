@@ -22,7 +22,14 @@ execute:
   fig-height: 4
 ---
 
-# The Problem
+# Outline
+
+-   Background
+-   Research Aims
+-   Design/Measures
+-   Questions for you
+
+# Background
 
 ::::::: inline-fragment
 ::: fragment
@@ -44,15 +51,29 @@ execute:
 :::
 :::::::
 
-# Gap in the Literature
+# Rai et al. (2024) Figures
+
+:::: panel-tabset
+## Fig 1
+
+![](images/Rai-fig-1.jpg){fig-align="center"}
+
+## Fig 2
+
+::: scrollable
+![](images/rai-fig-2.jpg){fig-align="center" width="6in"}
+:::
+::::
+
+# Research Aims
 
 ::::: inline-fragment
 ::: fragment
--   Limited research testing whether language-based tools (especially modern LLMs) are equally sensitive across racial/ethnic groups.
+-   **Aim 1:** Test the sensitivity of language-based mental health assessments across a diverse set of racial and ethnic groups (i.e., White, Black, Latino, and Asian) in predicting current and future anxiety and depression symptoms.
 :::
 
 ::: fragment
--   Identify linguistic markers of distress within minority groups to inform equitable tools.
+-   **Aim 2:** Explore the linguistic markers of anxiety and depression in racial and ethnic minorities.
 :::
 :::::
 
@@ -60,9 +81,7 @@ execute:
 
 :::::: inline-fragment
 ::: fragment
--   Two-session online longitudinal study.
-    -   Baseline: open-text responses about mood, motivation, sleep (≈25 min) + GAD-7 + PHQ-8.
-    -   Follow-up (3 week): repeat assessments (≈10 min) and collect information on posts from social media.
+**Description** - Two-session online longitudinal study. - Baseline: open-text responses about mood, motivation, sleep (≈25 min) + GAD-7 + PHQ-8. - Follow-up (3 weeks later): repeat assessments (≈10 min) and collect information on posts from social media.
 :::
 
 ::: fragment
@@ -79,12 +98,19 @@ execute:
 
 ------------------------------------------------------------------------
 
+**Flow**
+
 ```{r}
-#| paged-print: false
 library(ggplot2)
-library(patchwork)
+plot_aes = theme_minimal() +
+  theme(legend.position = "bottom",
+        legend.text = element_text(size = 12),
+        text = element_text(size = 12, family = "Futura Medium"),
+        axis.text = element_text(color = "black"),
+        axis.ticks.y = element_blank())
 
-
+library(ggplot2)
+library(grid)  # for arrow()
 
 plot_aes = theme_minimal() +
   theme(legend.position = "bottom",
@@ -94,80 +120,58 @@ plot_aes = theme_minimal() +
         axis.ticks.y = element_blank())
 
 palette <- c("#197278", "#9a2a2b", "#f18f01", "#ffd500")
-
-
-# ---- Data ----
-timeline_df <- data.frame(week = 1:3)
+timeline_df <- data.frame(week = 1:4)
 
 timeline_df$duration_min <- with(timeline_df,
   ifelse(week == 1, 25,
-         ifelse(week == 3, 10, NA_real_))
+         ifelse(week == 4, 10, NA_real_))
 )
 
 timeline_df$session <- with(timeline_df,
   ifelse(week == 1, "Baseline",
-         ifelse(week == 3, "Follow-up", NA_character_))
-)
-sample_counts <- data.frame(
-  race = factor(c("White", "Black", "Latino", "Asian"),
-                levels = c("White", "Black", "Latino", "Asian")),
-  n = c(400, 400, 400, 400)
+         ifelse(week == 4, "Follow-up", NA_character_))
 )
 
-
-base_size <- 9
-
+# Define measures per session
+timeline_df$measures <- c(
+  "Mental Health\nDemographics\nBilingualism",
+  NA, NA,
+  "Mental Health\nSWLS\nUCLA Loneliness\nSocial Media Use\nSocial Media Data"
+)
 
 p_timeline <- ggplot(timeline_df, aes(x = week, y = 1)) +
-  # horizontal baseline from day 1 to 7
-  geom_segment(aes(x = 1, xend = 3, y = 1, yend = 1),
-               color = "gray60", size = 0.6) +
-
-  # only plot points where duration_min is NOT NA
+  # session points
   geom_point(data = subset(timeline_df, !is.na(duration_min)),
              aes(size = duration_min),
-             color = "#197278") +
-
-  # label sessions (only for non-NA rows)
+             color = "#197278",) +
   geom_text(data = subset(timeline_df, !is.na(duration_min)),
             aes(label = session, y = 1.15),
             size = 4, fontface = "bold") +
-
-  # label durations
   geom_text(data = subset(timeline_df, !is.na(duration_min)),
             aes(label = paste0(duration_min, " min"), y = 0.85),
             size = 3.5) +
+  geom_text(data = subset(timeline_df, !is.na(measures)),
+            aes(label = measures, y = 0.75),
+            size = 3.5, lineheight = 0.9, hjust = 0.5) +
+  geom_segment(aes(x = 1, xend = 4, y = 0.6, yend = 0.6),
+               color = "black",
+               arrow = arrow(length = unit(0.2, "cm"), ends = "both", type = "closed"),
+               size = 0.8) +
+  annotate("text", x = 2.5, y = 0.5, label = "3-week gap", color = "black", size = 3.5, fontface = "italic") +
 
-  scale_x_continuous(breaks = 1:3, labels = 1:3, limits = c(0.5, 3.5)) +
+  scale_x_continuous(breaks = 1:4, labels = 1:4, limits = c(0.5, 4.5)) +
   scale_size_continuous(range = c(4, 8), guide = "none") +
-
-  labs(x = "Week", y = NULL, title = "Study timeline (Week 1–3)") +
+  labs(x = "Week", y = NULL, title = "Study Timeline (Week 1–4)") +
   plot_aes +
   theme(
     axis.text.y = element_blank(),
     axis.ticks = element_blank(),
     panel.grid = element_blank(),
-    plot.title = element_text(size = 12, face = "bold",hjust = 0.5)
-  ) 
+    plot.title = element_text(size = 12, face = "bold", hjust = 0.5)
+  )
 
-p_counts <- ggplot(sample_counts, aes(x = race, y = n, fill = race)) +
-  geom_col(width = 0.6, show.legend = FALSE) +
-  geom_text(aes(label = n), vjust = -0.4, size = 3) +
-  scale_y_continuous(expand = expansion(mult = c(0, 0.03)), limits = c(0, 440)) +
-  labs(x = NULL, y = "N (participants)", title = "Planned sample by race / ethnicity") +
-  theme_minimal(base_size = base_size) +
-  scale_fill_manual(values = palette) +
-  plot_aes + 
-  theme(
-    axis.text.x = element_text(face = "bold", size = base_size),
-    axis.title.y = element_text(size = base_size),
-    plot.title = element_text(size = 12, face = "bold",hjust = 0.5),
-    plot.margin = margin(6, 6, 6, 6)
-  ) 
+p_timeline
 
-combined <- p_timeline / p_counts + plot_layout(heights = c(0.9, 1.25))
-
-combined
 ```
 
 # Measures
@@ -176,7 +180,9 @@ combined
 
 ## Depression-related Open-ended Questions
 
--   Assessed via **written** response
+::: scrollable
+-   At initial time point, participants will provide **written** responses to 9 open-ended questions about mood, motivation, sleep, energy, self-perception, and life satisfaction (≈150 words total; see below for full list of questions).
+-   Adapted from [Hur et al. (2024)](https://www.pnas.org/doi/10.1073/pnas.2321321121)
 
 ```{r}
 library(DT)
@@ -210,17 +216,20 @@ datatable(
   rownames = FALSE
 )
 ```
+:::
 
 ------------------------------------------------------------------------
 
-## Main Outcomes
+## Primary Mental Health Measures
 
 -   **GAD-7 (anxiety; measured at both time points)**
 -   **PHQ-8 (depression; measured at both time points)**
 
 ------------------------------------------------------------------------
 
-## Demographics
+## Standard Demographics
+
+**Assessed at initial timepoint**
 
 :::::: panel-tabset
 ### Age & Residence
@@ -327,17 +336,21 @@ datatable(
 
 ## Other Measures...
 
--   **Social media use (follow-up only)**
--   **Satisfaction with Life Short Scale (both timepoints)**
--   **UCLA Loneliness Scale (both time points)**
--   **Social Media derived Language-based Assessments**
--   **Billingual-ism (initial timepoint using [LEAP-Q](https://pubmed.ncbi.nlm.nih.gov/33628083/))**
+-   **Initial Timepoint**
+    -   Bilingualism (using [LEAP-Q](https://pubmed.ncbi.nlm.nih.gov/33628083/))
+-   **Both Timepoints**
+    -   Satisfaction with Life Short Scale\
+    -   UCLA Loneliness Scale
+-   **Follow-up Only**
+    -   Social Media Use\
+    -   Social Media–derived Language-based Assessments
 
 # Aim 1 — Sensitivity Across Groups
 
 ::::: inline-fragment
 ::: fragment
-**Goal:** Test prediction of current and future anxiety/depression across four racial/ethnic groups (N_total = 1,600; 400 per group).\
+**Goal:** Test prediction of current and future anxiety/depression across four racial/ethnic groups
+
 **Hypothesis:** Reduced sensitivity for Black, Latino, and Asian participants vs. White participants.
 :::
 
@@ -371,11 +384,15 @@ datatable(
 
 # Questions we have for you
 
--   What other demographic factors should we consider?
--   Are there other ways in which we should we be measuring race?
--   What are the current best practices for assessing race and ethnicity in psychological research?
--   Given the scope of the grant should we consider other demographic factors (e.g., SES/social class)? Worried about statistical power limitations here.
--   How to handle people with multi-racial identities in modeling
+::: scrollable
+-   We are worried about the racial groups being treated as monoliths and thus want to capture (i) finer-grained racial/ethnic/cultural identities and (ii) relevant cultural dimensions that might relate to our research questions. This project can inform how culture shapes the linguistic markers of psychopathology, a question we’d love your help to address! Any thoughts welcome, but in particular:
+    -   Any advice for best ways to assess racial/ethnic/cultural identities at a fine grained level than standard approach?
+    -   Any other demographic factors should we consider?
+    -   We would like to consider SES/class in particular:
+        -   Any advice on measures?
+        -   Should we worry about statistical power / diversity of online sample? How to handle multi-racial identities in modeling?
+        -   What theories should we read to inform overall research question? What scales should we include to capture relevant cultural dimensions?
+:::
 
 # Brain Storm
 
@@ -383,11 +400,8 @@ datatable(
    target="_blank" rel="noopener noreferrer"
    style="display:inline-block;padding:10px 16px;border-radius:6px;background:#197278;color:#fff;text-decoration:none;font-weight:600;"> Open Google Doc (new tab) </a>
 
-::: {.scrollable}
-<iframe
-  src="https://docs.google.com/document/d/1raGwbmpaFNkE00qS63XdQwie429FW71E889Kod-NV0M/preview"
-  width="100%"
-  height="750"
-  frameborder="0">
+::: scrollable
+<iframe src="https://docs.google.com/document/d/1raGwbmpaFNkE00qS63XdQwie429FW71E889Kod-NV0M/preview" width="100%" height="750" frameborder="0">
+
 </iframe>
 :::
