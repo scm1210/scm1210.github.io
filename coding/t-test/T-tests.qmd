@@ -9,7 +9,6 @@ format:
     toc-depth: 2
     theme: united
     css: styles.css   # <-- add your custom CSS here
-
 ---
 
 ```{r setup, include=F, message=FALSE}
@@ -36,56 +35,32 @@ options(digits = 4)
 set.seed(123) #set seed for random number generation
 ```
 
-
 # Getting everything set up {.tabset}
 
 ```{r}
 setwd("~/Desktop/Coding-Boot-Camp/Data-viz-basics")
 ```
 
-## Set Working Directory 
+## Set Working Directory
 
-**Change to your own working directory (WD) to save things like plots**. You
-can do that by modifying the file path or go session (on the upper bar)
---\> set working directory). Working directories are important in R
-because they tell the computer where to look to grab information and
-save things like results. This can vary by project, script, etc. so it's
-important to consistently have the appropriate WD. If you are unsure
-what your current WD is, you can use the `getwd` command in the console
-(usually the lower left hand pane) to get your WD.
+**Change to your own working directory (WD) to save things like plots**. You can do that by modifying the file path or go session (on the upper bar) --\> set working directory). Working directories are important in R because they tell the computer where to look to grab information and save things like results. This can vary by project, script, etc. so it's important to consistently have the appropriate WD. If you are unsure what your current WD is, you can use the `getwd` command in the console (usually the lower left hand pane) to get your WD.
 
 ## Load Packages
 
 ```{r}
 if (!require("pacman")) install.packages("pacman") #run this if you don't have pacman 
 library(pacman)
-pacman::p_load(tidyverse, ggpubr, rstatix, caret, broom, kableExtra, reactable, Hmisc, datarium, car,install = T) 
+pacman::p_load(tidyverse, ggpubr, rstatix, caret, broom, kableExtra, reactable, Hmisc, datarium, car, DT,install = T) 
 #use pacman to load packages quickly 
 ```
 
-One of the great things about R is its ability to be super flexible.
-This comes from R's ability to use different `packages`. You can load
-packages into your current `work environment` by using the `library(PACKAGE)`
-function. It is important to note that in order to `library` a package
-you must first have it installed. To install a package you can use the
-`install.packages("PACKAGE")` command. You can learn more about the
-different types of packages hosted on the Comprehensive R Archive
-Network (CRAN) [here](https://cran.r-project.org/)! One other important
-thing is that some packages often have similar commands (e.g., `plyr`
-and `hmisc` both use `summarize`) that are masked meaning that you will call a function and may not get the function you expect. To get around this you
-can use `PACKAGE::FUNCTION` to call package-specific function.
+One of the great things about R is its ability to be super flexible. This comes from R's ability to use different `packages`. You can load packages into your current `work environment` by using the `library(PACKAGE)` function. It is important to note that in order to `library` a package you must first have it installed. To install a package you can use the `install.packages("PACKAGE")` command. You can learn more about the different types of packages hosted on the Comprehensive R Archive Network (CRAN) [here](https://cran.r-project.org/)! One other important thing is that some packages often have similar commands (e.g., `plyr` and `hmisc` both use `summarize`) that are masked meaning that you will call a function and may not get the function you expect. To get around this you can use `PACKAGE::FUNCTION` to call package-specific function.
 
-For this script, and here forward, We use `pacman` to load in all of our
-packages rather than using the iterative
-`if (!require("PACKAGE")) install.packages("PACKAGE")` set-up. There's
-still some merit to using that if loading in packages in a certain order creates issues
-(e.g.,`tidyverse` and `brms` in a certain fashion).
-
+For this script, and here forward, We use `pacman` to load in all of our packages rather than using the iterative `if (!require("PACKAGE")) install.packages("PACKAGE")` set-up. There's still some merit to using that if loading in packages in a certain order creates issues (e.g.,`tidyverse` and `brms` in a certain fashion).
 
 ## Get our plot aesthetics set-up
 
-This is a super quick and easy way to style our plots without introduce
-a vile amount of code lines to each chunk!
+This is a super quick and easy way to style our plots without introduce a vile amount of code lines to each chunk!
 
 ```{r, include=T}
 palette_map = c("#3B9AB2", "#EBCC2A", "#F21A00")
@@ -102,10 +77,7 @@ plot_aes = theme_classic() + #
 
 ## Build Relevant Functions
 
-Using stuff like summary functions allows for us to present results in a
-clean, organized manner. For example, we can trim superfluous
-information from model output when sharing with collaborators among
-other things.
+Using stuff like summary functions allows for us to present results in a clean, organized manner. For example, we can trim superfluous information from model output when sharing with collaborators among other things.
 
 ```{r}
 mystats <- function(x, na.omit=FALSE){
@@ -123,33 +95,15 @@ mystats <- function(x, na.omit=FALSE){
 
 ## Load data
 
-Since we are using an existing dataset in R, we don't need to do
-anything fancy here. However, when normally load in data you can use a
-few different approaches. In most reproducible scripts you'll see people
-use nomenclature similar to `df`, `data`, `dataframe`, etc. to denote a
-dataframe. If you are working with multiple datasets, it's advisable to
-call stuff by a intuitive name that allows you to know what the data
-actually is. For example, if I am working with two different corpora
-(e.g., Atlantic and NYT Best-Sellers) I will probably call the Atlantic
-dataframe `atlantic` and the NYT Best-sellers `NYT` for simplicity and
-so I don't accidentally write over files.
+Since we are using an existing dataset in R, we don't need to do anything fancy here. However, when normally load in data you can use a few different approaches. In most reproducible scripts you'll see people use nomenclature similar to `df`, `data`, `dataframe`, etc. to denote a dataframe. If you are working with multiple datasets, it's advisable to call stuff by a intuitive name that allows you to know what the data actually is. For example, if I am working with two different corpora (e.g., Atlantic and NYT Best-Sellers) I will probably call the Atlantic dataframe `atlantic` and the NYT Best-sellers `NYT` for simplicity and so I don't accidentally write over files.
 
-For example, if your WD is already set and the data exists within said directory you can use:
-`df <- read_csv(MY_CSV.csv)`
+For example, if your WD is already set and the data exists within said directory you can use: `df <- read_csv(MY_CSV.csv)`
 
-If the data is on something like `Github` you can use:
-`df <- read_csv('https://raw.githubusercontent.com/scm1210/Language_Lab_Repro/main/Atlantic_Cleaned_all_vars.csv') #read in the data`.
+If the data is on something like `Github` you can use: `df <- read_csv('https://raw.githubusercontent.com/scm1210/Language_Lab_Repro/main/Atlantic_Cleaned_all_vars.csv') #read in the data`.
 
-If you are working in one directory and need to call something for
-another directory you can do something like:
-`Atlantic_FK <- read_csv("~/Desktop/working-with-lyle/Atlantic/Atlantic_flesch_kinkaid_scores.csv")`
+If you are working in one directory and need to call something for another directory you can do something like: `Atlantic_FK <- read_csv("~/Desktop/working-with-lyle/Atlantic/Atlantic_flesch_kinkaid_scores.csv")`
 
-There are also other packages/functions that allow you to read in files
-with different extensions such as `haven::read_sav()` to read in a file
-from SPSS or `rjson:: fromJSON(file="data.json")`to read in a json file.
-If you want to learn more about how to reading in different files you
-can take a peek at [this
-site](https://www.datafiles.samhsa.gov/get-help/format-specific-issues/how-do-i-read-data-r).
+There are also other packages/functions that allow you to read in files with different extensions such as `haven::read_sav()` to read in a file from SPSS or `rjson:: fromJSON(file="data.json")`to read in a json file. If you want to learn more about how to reading in different files you can take a peek at [this site](https://www.datafiles.samhsa.gov/get-help/format-specific-issues/how-do-i-read-data-r).
 
 ```{r}
 # Load the data
@@ -159,54 +113,35 @@ genderweight <- as.data.frame(genderweight)
 # Show a sample of the data by group
 ```
 
-# Brief Description 
+# Brief Description
 
-Now that we got everything set up, we are going to get into our
-analyses. For the first part we are going to be looking at gender differences between
-males and females in weight using the `genderweight` dataset from the
-`Datarium` package in R! To this quantify this, we'll use an
-**Independent T-test**. An Independent T-test is when we have one IV
-with **only** two levels or categories (e.g., gender: Male and Female) and one DV that
-is continuous (e.g., weight ranging from 0 to 250). If the IV has
-more than two levels we need to use another type of test called ANOVA;
-more on that later :).
+Now that we got everything set up, we are going to get into our analyses. For the first part we are going to be looking at gender differences between males and females in weight using the `genderweight` dataset from the `Datarium` package in R! To this quantify this, we'll use an **Independent T-test**. An Independent T-test is when we have one IV with **only** two levels or categories (e.g., gender: Male and Female) and one DV that is continuous (e.g., weight ranging from 0 to 250). If the IV has more than two levels we need to use another type of test called ANOVA; more on that later :).
 
-Some other things: 
+Some other things:
 
-- Two means calculated from two samples Null
-hypothesis: Means from two samples are similar 
+-   Two means calculated from two samples Null hypothesis: Means from two samples are similar
 
-- Alternative hypothesis:
-Means from two samples are different 
+-   Alternative hypothesis: Means from two samples are different
 
-- The bigger the observed difference between sample means = More likely sample means differ
-(capture this with effect size).
+-   The bigger the observed difference between sample means = More likely sample means differ (capture this with effect size).
 
 ## Statistical Assumptions {.tabset}
 
-Assumption are also important. That is, data need to possess certain
-qualities for us to be able to use this type of test. For a t-test these
-are: 
+Assumption are also important. That is, data need to possess certain qualities for us to be able to use this type of test. For a t-test these are:
 
-- The DV data are continuous (not ordinal or nominal). 
+-   The DV data are continuous (not ordinal or nominal).
 
-- The sample
-data have been randomly sampled from a population. 
+-   The sample data have been randomly sampled from a population.
 
-- There is
-homogeneity of variance (i.e., the variability of the data in each group
-is similar). 
+-   There is homogeneity of variance (i.e., the variability of the data in each group is similar).
 
-- The distribution is approximately normal.
+-   The distribution is approximately normal.
 
 Click through the tabs to see how to check each assumption.
 
 ### Continuous
 
-We can check this by looking at the structure of our data using the
-`class` function (for one variable) or `str` function (for all the
-variables in our dataset). We can see that weight is `numeric` and
-therefore continuous! Therefore, we can move forward with our analyses. 
+We can check this by looking at the structure of our data using the `class` function (for one variable) or `str` function (for all the variables in our dataset). We can see that weight is `numeric` and therefore continuous! Therefore, we can move forward with our analyses.
 
 ```{r}
 class(genderweight$weight)
@@ -218,18 +153,11 @@ str(genderweight)
 
 ### Randomly Sampled
 
-This is something you do when you design the study--we can't do anything
-in R to check this.
+This is something you do when you design the study--we can't do anything in R to check this.
 
 ### Homogeneity of Variance
 
-We need to make sure the variability of the data in each group is
-similar. We can use something called Levene's Test for equality of error
-variances to do this. If we violate this assumption (p \<. 05 in our
-test) we will have to use a Welch's T-test. We violate this assumption
-so if we were actually doing a meaningful project we would need to use a
-different statistical test. For the sake of brevity we'll pretend we are
-ok for now.
+We need to make sure the variability of the data in each group is similar. We can use something called Levene's Test for equality of error variances to do this. If we violate this assumption (p \<. 05 in our test) we will have to use a Welch's T-test. We violate this assumption so if we were actually doing a meaningful project we would need to use a different statistical test. For the sake of brevity we'll pretend we are ok for now.
 
 ```{r}
 leveneTest(genderweight$weight ~ genderweight$group)
@@ -237,13 +165,7 @@ leveneTest(genderweight$weight ~ genderweight$group)
 
 ### The distribution is approximately normal.
 
-To check the distribution of the data we can use density plots in the
-`ggplot` within `tidyverse` to visualize this. It's also important to
-get some statistics behind this, and to do that we can look at skewness
-and kurtosis via the `mystats` function that we wrote earlier. You can
-also use `psych::describe` to get similar information. For skewness and
-kurtosis, we want values of skewness fall between − 3 and + 3, and
-kurtosis is appropriate from a range of − 10 to + 10
+To check the distribution of the data we can use density plots in the `ggplot` within `tidyverse` to visualize this. It's also important to get some statistics behind this, and to do that we can look at skewness and kurtosis via the `mystats` function that we wrote earlier. You can also use `psych::describe` to get similar information. For skewness and kurtosis, we want values of skewness fall between − 3 and + 3, and kurtosis is appropriate from a range of − 10 to + 10
 
 ```{r}
 # Basic density
@@ -258,8 +180,7 @@ annotate_figure(p,
                                    hjust = 1.1, x = 1, face = "italic", size = 12))
 ```
 
-We can also have the densities by gender. Looks like we should have some
-interesting results!
+We can also have the densities by gender. Looks like we should have some interesting results!
 
 ```{r}
 p<-ggplot(genderweight, aes(x=weight, color=group, fill=group, alpha=0.1)) +
@@ -279,8 +200,7 @@ mystats(genderweight$weight)
 
 # Summary Statistics {.tabset}
 
-It's also important for us to get some summary statistics for our data
-(e.g., N's, Means, SDs).
+It's also important for us to get some summary statistics for our data (e.g., N's, Means, SDs).
 
 ## Sample Size, Means, and Standard Deviations
 
@@ -293,8 +213,7 @@ genderweight %>%
 
 ## Build a simple graph to visualize
 
-We also visualize our data with a box plot, while overlaying the
-scatter plots!
+We also visualize our data with a box plot, while overlaying the scatter plots!
 
 ```{r}
  # Create a box plot with jittered data points
@@ -311,16 +230,11 @@ ggplot(genderweight, aes(x = group, y = weight,color = group)) +
 
 # Main Analyses {.tabset}
 
-Now, we'll conduct our independent t-test to see if there are gender
-differences in weight, as well as getting the proportion of variance
-accounted for/Magnitude of the effect (Cohen's D).
+Now, we'll conduct our independent t-test to see if there are gender differences in weight, as well as getting the proportion of variance accounted for/Magnitude of the effect (Cohen's D).
 
 ## Independent T-test
 
-We can see that we have a significant effect
-of gender on weight. That is, when conducting our independent t-test we
-observed a large effect [*t*(26.87) =-20.79, *p* \< .001, d =
--6.575], such that Men (M = 85.826, SD = 4.354) possessed significantly greater body weight compared to their female counterparts (M = 63.499, SD = 2.028).
+We can see that we have a significant effect of gender on weight. That is, when conducting our independent t-test we observed a large effect \[*t*(26.87) =-20.79, *p* \< .001, d = -6.575\], such that Men (M = 85.826, SD = 4.354) possessed significantly greater body weight compared to their female counterparts (M = 63.499, SD = 2.028).
 
 ```{r}
 stat.test <- genderweight %>% 
@@ -366,37 +280,15 @@ annotate_figure(plot,
 
 Next we will see what this looks like at the highest level.
 
-This part of the tutorial uses data and reproduces a subset of analyses reported in
-the following manuscript:
+This part of the tutorial uses data and reproduces a subset of analyses reported in the following manuscript:
 
-[Mesquiti & Seraj. (Preprint) The Psychological Impacts of the COVID-19
-Pandemic on Corporate Leadership](https://psyarxiv.com/kvar9/)
+[Mesquiti & Seraj. (Preprint) The Psychological Impacts of the COVID-19 Pandemic on Corporate Leadership](https://psyarxiv.com/kvar9/)
 
-You can find this project's github
-[here](https://github.com/scm1210/Language_Lab_Repro).
+You can find this project's github [here](https://github.com/scm1210/Language_Lab_Repro).
 
 ## Abstract
 
-The COVID-19 pandemic sent shockwaves across the fabric of our society.
-Examining the impact of the pandemic on business leadership is
-particularly important to understanding how this event affected their
-decision-making. The present study documents the psychological effects
-of the COVID-19 pandemic on chief executive officers (CEOs). This was
-accomplished by analyzing CEOs' language from quarterly earnings calls
-(N = 19,536) for a year before and after lockdown. CEOs had large shifts
-in language in the months immediately following the start of the
-pandemic lockdowns. Analytic thinking plummeted after the world went
-into lockdown, with CEOs' language becoming less technical and more
-personal and intuitive. In parallel, CEOs' language showed signs of
-increased cognitive load, as they were processing the effect of the
-pandemic on their business practices. Business leaders' use of
-collective-focused language (we-usage) dropped substantially after the
-pandemic began, perhaps suggesting CEOs felt disconnected from their
-companies. Self-focused (I-usage) language increased, showing the
-increased preoccupation of business leaders. The size of the observed
-shifts in language during the pandemic also dwarfed responses to other
-events that occurred dating back to 2010, with the effect lasting around
-seven months.
+The COVID-19 pandemic sent shockwaves across the fabric of our society. Examining the impact of the pandemic on business leadership is particularly important to understanding how this event affected their decision-making. The present study documents the psychological effects of the COVID-19 pandemic on chief executive officers (CEOs). This was accomplished by analyzing CEOs' language from quarterly earnings calls (N = 19,536) for a year before and after lockdown. CEOs had large shifts in language in the months immediately following the start of the pandemic lockdowns. Analytic thinking plummeted after the world went into lockdown, with CEOs' language becoming less technical and more personal and intuitive. In parallel, CEOs' language showed signs of increased cognitive load, as they were processing the effect of the pandemic on their business practices. Business leaders' use of collective-focused language (we-usage) dropped substantially after the pandemic began, perhaps suggesting CEOs felt disconnected from their companies. Self-focused (I-usage) language increased, showing the increased preoccupation of business leaders. The size of the observed shifts in language during the pandemic also dwarfed responses to other events that occurred dating back to 2010, with the effect lasting around seven months.
 
 # Prep data {.tabset}
 
@@ -580,13 +472,9 @@ df2 <- df2["2019-01"<= df2$month_year & df2$month_year <= "2021-03",] #covid dat
 
 # Write our Stats Functions {.tabset}
 
-We were interested in how language changed relative to baseline one year
-pre-pandemic, as well as how language changed after the Pandemic.
+We were interested in how language changed relative to baseline one year pre-pandemic, as well as how language changed after the Pandemic.
 
-As a result we ran two separate set of analyses comparing t(time zero)
-to t[i] and t(12 months after our centered data point) to t + 1. The
-groups you see will be centered on 03/2019. That is, 12 = 03/2020, 13 =
-04/2020, etc. etc.
+As a result we ran two separate set of analyses comparing t(time zero) to t\[i\] and t(12 months after our centered data point) to t + 1. The groups you see will be centered on 03/2019. That is, 12 = 03/2020, 13 = 04/2020, etc. etc.
 
 ## Analytic Thinking
 
@@ -676,8 +564,7 @@ Data transformations
 
 Exclusions
 
--   Excluded texts that were shorter than \*\* 25 words \*\* and greater
-    than \*\* 5,400 words \*\*!
+-   Excluded texts that were shorter than \*\* 25 words \*\* and greater than \*\* 5,400 words \*\*!
 
 # Summary of the Data {.tabset}
 
@@ -694,7 +581,7 @@ speakers <- data %>%
   select(Speaker) %>%
   unique() %>%
   dplyr::summarize(n = n()) %>%
-  reactable::reactable(striped = TRUE)
+  DT::datatable()
 speakers
 ```
 
@@ -704,7 +591,8 @@ speakers
 transcripts <- data %>%
   select(1) %>%
   dplyr::summarize(n = n()) %>%
-  reactable::reactable(striped = TRUE)
+  DT::datatable()
+
 transcripts
 ```
 
@@ -714,7 +602,7 @@ transcripts
 word_count <- data %>%
   select(WC) %>%
   dplyr::summarize(mean = mean(WC)) %>%
-  reactable::reactable(striped = TRUE)
+  DT::datatable()
 word_count
 ```
 
@@ -1054,5 +942,4 @@ annotate_figure(graphs,
 report::cite_packages()
 ```
 
-All credit goes to the great Dani Cosme for teaching me how to make
-these! You can find her [github](https://github.com/dcosme) here!
+All credit goes to the great Dani Cosme for teaching me how to make these! You can find her [github](https://github.com/dcosme) here!

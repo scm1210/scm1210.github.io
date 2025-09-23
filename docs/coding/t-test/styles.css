@@ -197,7 +197,7 @@ tr:nth-child(even) {
   background-color: #f5f5f5;
 }
 
-/* Scrollable container (updated style) */
+/* Scrollable container */
 .scrollable {
   max-height: 75vh;
   overflow-y: auto;
@@ -205,6 +205,7 @@ tr:nth-child(even) {
   box-sizing: border-box;
   border-radius: var(--q-border-radius);
   background-color: var(--q-background-color);
+  font-size: 0.8em; /* smaller font for scrollable panels */
 }
 
 .scrollable > * {
@@ -248,17 +249,50 @@ pre, code {
   font-size: 1em;
 }
 
+/* Black x- and y axes / general plot responsiveness */
+.reveal .slides section img,
+.reveal .slides section svg,
+.reveal .slides section canvas {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Dark mode adjustments */
 @media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--q-background-color);
+    color: var(--q-text-color);
+  }
+
   pre, code {
     background-color: #1e1e1e;
     color: #e0e0e0;
   }
+
   .scrollable {
     background-color: #121212;
   }
-  tr:nth-child(even) {
+
+  table {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+
+  th {
+    background-color: #283d3b;
+    color: #fff;
+  }
+
+  td {
     background-color: #1a1a1a;
+    color: #e0e0e0;
+  }
+
+  tr:nth-child(even) {
+    background-color: #222;
   }
 }
 
@@ -273,20 +307,4 @@ pre, code {
   th, td {
     padding: 0.5em;
   }
-}
-
-/* Make plots scale responsively on all slides */
-.reveal .slides section img,
-.reveal .slides section svg,
-.reveal .slides section canvas {
-  max-width: 100% !important;
-  height: auto !important;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* ===== NEW: Make font smaller in scrollable panels ===== */
-.scrollable {
-  font-size: 0.8em; /* adjust as needed */
 }

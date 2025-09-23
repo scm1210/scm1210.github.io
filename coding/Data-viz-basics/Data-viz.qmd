@@ -9,7 +9,6 @@ format:
     toc-depth: 2
     theme: united
     css: styles.css   # <-- add your custom CSS here
-
 ---
 
 ```{r setup, include=F, message=FALSE}
@@ -36,10 +35,9 @@ options(digits = 4)
 set.seed(123) #set seed for random number generation
 ```
 
-
 # Getting everything set up {.tabset}
 
-## Set Working Directory 
+## Set Working Directory
 
 ```{r}
 setwd("~/Desktop/Coding-Boot-Camp/Data-viz-basics")
@@ -50,25 +48,25 @@ setwd("~/Desktop/Coding-Boot-Camp/Data-viz-basics")
 
 Datasets can either be built-in or can be loaded from external sources in R.
 
-Built-in datasets refer to the datasets already provided within R. For the first part, we will be using a dataset called the **air quality dataset**, which pertains to the daily air quality measurements in New York from May to September 1973. **This dataset consists of more than 100 observations for 6 variables** 
+Built-in datasets refer to the datasets already provided within R. For the first part, we will be using a dataset called the **air quality dataset**, which pertains to the daily air quality measurements in New York from May to September 1973. **This dataset consists of more than 100 observations for 6 variables**
 
-- `Ozone`(mean parts per billion)
+-   `Ozone`(mean parts per billion)
 
-- `Solar.R`(Solar Radiation) 
+-   `Solar.R`(Solar Radiation)
 
-- `Wind`(Average wind speed)
+-   `Wind`(Average wind speed)
 
-- `Temp`(maximum daily temperature in Fahrenheit)
+-   `Temp`(maximum daily temperature in Fahrenheit)
 
-- `Month`(month of observation) 
+-   `Month`(month of observation)
 
-- `Day`(Day of the month)
+-   `Day`(Day of the month)
 
 ```{r echo=TRUE}
 data(airquality)
 ```
 
-In case of an **External data source** (CSV, Excel, text, HTML file etc.), simply set the folder containing the data as the working directory with the `setwd()` command. Alternatively, you can set the path to the file if you don't want to change your directory, but this is *not* recommended. 
+In case of an **External data source** (CSV, Excel, text, HTML file etc.), simply set the folder containing the data as the working directory with the `setwd()` command. Alternatively, you can set the path to the file if you don't want to change your directory, but this is *not* recommended.
 
 ```{r echo=TRUE}
 setwd("~/Desktop/Coding-Boot-Camp/Data-viz-basics")
@@ -80,22 +78,21 @@ Now, load the file with the help of the `read` command. In this case, data is in
 
 One small (but important) thing to note is that you can name objects in R using both `<-` and `=` which basically tells the computer "save the csv under this name". In our case save **'airquality.csv'** as `airquality`
 
-
 The above code reads the file **airquality.csv** into a data frame `airquality`. `Header=TRUE` specifies that the data includes a header and `sep=”,”` specifies that the values in data are separated by commas.
 
-## Data Exploration 
+## Data Exploration
 
-Once the data has been loaded into the global environment (workspace), we need to explore it to get an idea about its structure and what we have to work with. 
+Once the data has been loaded into the global environment (workspace), we need to explore it to get an idea about its structure and what we have to work with.
 
 To do so, we can use several different functions within R
 
-- `str` displays the internal structure of an R object and gives a quick overview of the rows and columns of the dataset.
+-   `str` displays the internal structure of an R object and gives a quick overview of the rows and columns of the dataset.
 
 ```{r echo=T}
 str(airquality)
 ```
 
-- `head(data,n)` and `tail(data,n)` The head outputs the top n elements in the dataset while the tail method outputs the bottom n. The default value for n in R is 10 but you can obviously specify it to be something else if needed :). 
+-   `head(data,n)` and `tail(data,n)` The head outputs the top n elements in the dataset while the tail method outputs the bottom n. The default value for n in R is 10 but you can obviously specify it to be something else if needed :).
 
 ```{r echo=T}
 head(airquality) 
@@ -105,7 +102,7 @@ head(airquality)
 tail(airquality) 
 ```
 
-- `summary(airquality)`The summary method displays descriptive statistics for every variable in the dataset, depending upon the type of the variable. We can see at a glance the mean, median, max and the quartile values of the variables, as well as an missing observations which is especially valuable. 
+-   `summary(airquality)`The summary method displays descriptive statistics for every variable in the dataset, depending upon the type of the variable. We can see at a glance the mean, median, max and the quartile values of the variables, as well as an missing observations which is especially valuable.
 
 ```{r echo=T}
 summary(airquality)
@@ -113,9 +110,9 @@ summary(airquality)
 
 # Basic Plots {.tabset}
 
-The `graphics` package is used for plotting base graphs like scatter plot, box plot etc. and is already build into R. A complete list of functions with help pages can be obtained by typing : `library(help = "graphics").` 
+The `graphics` package is used for plotting base graphs like scatter plot, box plot etc. and is already build into R. A complete list of functions with help pages can be obtained by typing : `library(help = "graphics").`
 
-## The `Plot` function 
+## The `Plot` function
 
 The plot() function is a generic function for plotting of R objects. When we run the code below, we get a scatter/dot plot here wherein each dot represents the value of the Ozone in mean parts per billion.
 
@@ -133,9 +130,9 @@ What happens when we use `plot` command with the entire dataset without selectin
 
 We get a matrix of scatterplots which is a correlation matrix of all the columns. The plot above instantly shows that:
 
-- The level of Ozone and Temperature is correlated positively.
+-   The level of Ozone and Temperature is correlated positively.
 
-- Wind speed is negatively correlated to both Temperature and Ozone level.
+-   Wind speed is negatively correlated to both Temperature and Ozone level.
 
 **We can quickly discover the relationship between variables by merely looking at the plots drawn between them.**
 
@@ -143,7 +140,7 @@ We get a matrix of scatterplots which is a correlation matrix of all the columns
 plot(airquality)
 ```
 
-## Using arguments with the `plot()` function 
+## Using arguments with the `plot()` function
 
 We can easily style our charts by playing with the arguments of the `plot()` function.
 
@@ -159,7 +156,7 @@ The `plot` function has an argument called `type` which can take in values like 
  plot(airquality$Ozone, type= "h")
 ```
 
-**Labels and Titles** 
+**Labels and Titles**
 
 We can also label the X and the Y axis and give a title to our plot. Additionally, we also have the option of giving color to the plot.
 
@@ -167,7 +164,7 @@ We can also label the X and the Y axis and give a title to our plot. Additionall
 plot(airquality$Ozone, xlab = 'ozone Concentration', ylab = 'No of Instances', main = 'Ozone levels in NY city', col = 'green')
 ```
 
-## Barplot 
+## Barplot
 
 In a bar plot, data is represented in the form of rectangular bars and the length of the bar is proportional to the value of the variable or column in the dataset. Both horizontal, as well as a vertical bar chart, can be generated by tweaking the `horiz` parameter.
 
@@ -183,7 +180,7 @@ In a bar plot, data is represented in the form of rectangular bars and the lengt
  barplot(airquality$Ozone, main = 'Ozone Concenteration in air',xlab = 'ozone levels', col= 'green',horiz = F)
 ```
 
-## Histogram 
+## Histogram
 
 A histogram is quite similar to a bar chart except that it groups values into continuous ranges. A histogram represents the frequencies of values of a variable bucketed into ranges. We get a histogram of the Solar.R values with `hist(airquality$Solar.R)`.
 
@@ -236,11 +233,10 @@ boxplot(airquality[,0:4], main='Multiple Box plots')
 
 R comes equipped with sophisticated visualization libraries having great capabilities. In this section, we will use the built-in `mtcars` dataset to show the use of the `ggplot2` library (many data scientists' personal favorite). This dataset has been extracted from the 1974 Motor Trend US magazine.
 
-##  `Ggplot2` {.tabset}
+## `Ggplot2` {.tabset}
 
-The ggplot2 package is one of the most widely used visualization packages in R. It enables the users to create sophisticated visualizations with little code 
-The popularity of ggplot2 has increased tremendously in recent years since it makes it possible to create graphs that contain both univariate and multivariate data in a very simple manner.
- 
+The ggplot2 package is one of the most widely used visualization packages in R. It enables the users to create sophisticated visualizations with little code The popularity of ggplot2 has increased tremendously in recent years since it makes it possible to create graphs that contain both univariate and multivariate data in a very simple manner.
+
 **Install and Load Package and Data**
 
 ```{r echo}
@@ -272,7 +268,7 @@ ggplot(data = mtcars, mapping = aes(x = wt, y = mpg, color = as.factor(cyl))) + 
 
 The color parameter is used to differentiate between different factor level of the `cyl` variable.
 
-Additionally, we can introduce things like size 
+Additionally, we can introduce things like size
 
 ```{r echo=T}
 ggplot(data = mtcars, mapping = aes(x = wt, y = mpg, size = qsec)) + geom_point()
@@ -280,7 +276,7 @@ ggplot(data = mtcars, mapping = aes(x = wt, y = mpg, size = qsec)) + geom_point(
 
 In the above example, the value of `qsec` indicates the acceleration which decides the size of the points.
 
-We can also use different symbols to specify different things, as well. 
+We can also use different symbols to specify different things, as well.
 
 ```{r}
 p  <-  ggplot(mtcars,aes(mpg, wt, shape  =  factor(cyl)))
@@ -289,9 +285,9 @@ p  <-  ggplot(mtcars,aes(mpg, wt, shape  =  factor(cyl)))
 
 # Higher Level Examples {.tabset}
 
-So now that we have some of the basic examples down, I want to show you how we can really take things to the next level with our data visualizations. In this section, we are going to use a few different examples. I'll do my best to breakdown what we graph and how we do it. It's ok if what we are doing doesn't make complete sense at first--that's why we learn. If you need help or anything hit my email with any questions: [smesquiti@falklab.org](smesquiti@falklab.org).
+So now that we have some of the basic examples down, I want to show you how we can really take things to the next level with our data visualizations. In this section, we are going to use a few different examples. I'll do my best to breakdown what we graph and how we do it. It's ok if what we are doing doesn't make complete sense at first--that's why we learn. If you need help or anything hit my email with any questions: [smesquiti\@falklab.org](smesquiti@falklab.org).
 
-Let's get started by loading in all of our relevant materials. 
+Let's get started by loading in all of our relevant materials.
 
 ## Load Packages
 
@@ -302,42 +298,27 @@ pacman::p_load(tidyverse, ggpubr, rstatix,plotrix, caret, broom, kableExtra, rea
 #use pacman to load packages quickly 
 ```
 
-One of the great things about R is its ability to be super flexible.
-This comes from R's ability to use different `packages`. You can load
-packages into your current `work environment` by using the `library(PACKAGE)`
-function. It is important to note that in order to `library` a package
-you must first have it installed. To install a package you can use the
-`install.packages("PACKAGE")` command. You can learn more about the
-different types of packages hosted on the Comprehensive R Archive
-Network (CRAN) [here](https://cran.r-project.org/)! One other important
-thing is that some packages often have similar commands (e.g., `plyr`
-and `hmisc` both use `summarize`) that are masked meaning that you will call a function and may not get the function you expect. To get around this you
-can use `PACKAGE::FUNCTION` to call package-specific function.
+One of the great things about R is its ability to be super flexible. This comes from R's ability to use different `packages`. You can load packages into your current `work environment` by using the `library(PACKAGE)` function. It is important to note that in order to `library` a package you must first have it installed. To install a package you can use the `install.packages("PACKAGE")` command. You can learn more about the different types of packages hosted on the Comprehensive R Archive Network (CRAN) [here](https://cran.r-project.org/)! One other important thing is that some packages often have similar commands (e.g., `plyr` and `hmisc` both use `summarize`) that are masked meaning that you will call a function and may not get the function you expect. To get around this you can use `PACKAGE::FUNCTION` to call package-specific function.
 
-For this part of the script, and here forward, we use `pacman` to load in all of our
-packages rather than using the iterative
-`if (!require("PACKAGE")) install.packages("PACKAGE")` set-up. There's
-still some merit to using that if loading in packages in a certain order creates issues
-(e.g.,`tidyverse` and `brms` in a certain fashion; I've had issues with this in the past -_-).
+For this part of the script, and here forward, we use `pacman` to load in all of our packages rather than using the iterative `if (!require("PACKAGE")) install.packages("PACKAGE")` set-up. There's still some merit to using that if loading in packages in a certain order creates issues (e.g.,`tidyverse` and `brms` in a certain fashion; I've had issues with this in the past -\_-).
 
 ## Get our plot aesthetics set-up
 
-This is a super quick and easy way to style our plots without introducing
-a vile amount of code lines to each chunk! Let's break down what we are working with:  
+This is a super quick and easy way to style our plots without introducing a vile amount of code lines to each chunk! Let's break down what we are working with:
 
-- `theme_classic()` let's us style our plot with a transparent back drop, rather than the grey, and use some other styling features.
+-   `theme_classic()` let's us style our plot with a transparent back drop, rather than the grey, and use some other styling features.
 
-- `theme()` allows us to specify other parameters which are discussed below
+-   `theme()` allows us to specify other parameters which are discussed below
 
-- `legend.position` we can specify where we want our graph's legend to be. We can set it to: `left, right, bottom, or top`
+-   `legend.position` we can specify where we want our graph's legend to be. We can set it to: `left, right, bottom, or top`
 
-- `text` let's us style our text. We can specify things like the `size`, `color`, `adjustment`, `margins`, etc.
+-   `text` let's us style our text. We can specify things like the `size`, `color`, `adjustment`, `margins`, etc.
 
-- `axis.text` allows us to style the axis text similar to above
+-   `axis.text` allows us to style the axis text similar to above
 
-- `axis.line` permits for the styling of the axis lines (e.g., `color`, etc.)
+-   `axis.line` permits for the styling of the axis lines (e.g., `color`, etc.)
 
-- `axis.ticks.x or y` allows us to style the x and y axes
+-   `axis.ticks.x or y` allows us to style the x and y axes
 
 ```{r}
 plot_aes = theme_classic() +
@@ -355,32 +336,15 @@ plot_aes = theme_classic() +
 
 ## Load up the data
 
-Since we are using existing datasets in R and on github, we don't need to do
-anything fancy here. However, when normally load in data you can use a
-few different approaches. In most reproducible scripts, you'll see people
-use nomenclature similar to: `df`, `data`, `dataframe`, etc. to denote a
-dataframe. If you are working with multiple datasets, it's advisable to
-call stuff by a intuitive name that allows you to know what the data
-actually is. For example, if I am working with two different corpora
-(e.g., Atlantic and NYT Best-Sellers) I will probably call the Atlantic
-dataframe `atlantic` and the NYT Best-sellers `NYT` for simplicity and
-so I don't accidentally write over my files.
+Since we are using existing datasets in R and on github, we don't need to do anything fancy here. However, when normally load in data you can use a few different approaches. In most reproducible scripts, you'll see people use nomenclature similar to: `df`, `data`, `dataframe`, etc. to denote a dataframe. If you are working with multiple datasets, it's advisable to call stuff by a intuitive name that allows you to know what the data actually is. For example, if I am working with two different corpora (e.g., Atlantic and NYT Best-Sellers) I will probably call the Atlantic dataframe `atlantic` and the NYT Best-sellers `NYT` for simplicity and so I don't accidentally write over my files.
 
-For example, if your WD is already set and the data exists within said directory you can use:
-`df <- read_csv(MY_CSV.csv)`
+For example, if your WD is already set and the data exists within said directory you can use: `df <- read_csv(MY_CSV.csv)`
 
-If the data is on something like `Github` you can use:
-`df <- read_csv('https://raw.githubusercontent.com/scm1210/Language_Lab_Repro/main/Atlantic_Cleaned_all_vars.csv') #read in the data`.
+If the data is on something like `Github` you can use: `df <- read_csv('https://raw.githubusercontent.com/scm1210/Language_Lab_Repro/main/Atlantic_Cleaned_all_vars.csv') #read in the data`.
 
-If you are working in one directory and need to call something for
-another directory you can do something like:
-`Atlantic_FK <- read_csv("~/Desktop/working-with-lyle/Atlantic/Atlantic_flesch_kinkaid_scores.csv")`
+If you are working in one directory and need to call something for another directory you can do something like: `Atlantic_FK <- read_csv("~/Desktop/working-with-lyle/Atlantic/Atlantic_flesch_kinkaid_scores.csv")`
 
-There are also other packages/functions that allow you to read in files
-with different extensions such as `haven::read_sav()` to read in a file
-from SPSS or `rjson:: fromJSON(file="data.json")`to read in a json file.
-If you want to learn more about how to read in different files you
-can take a peek at [this site](https://www.datafiles.samhsa.gov/get-help/format-specific-issues/how-do-i-read-data-r).
+There are also other packages/functions that allow you to read in files with different extensions such as `haven::read_sav()` to read in a file from SPSS or `rjson:: fromJSON(file="data.json")`to read in a json file. If you want to learn more about how to read in different files you can take a peek at [this site](https://www.datafiles.samhsa.gov/get-help/format-specific-issues/how-do-i-read-data-r).
 
 ```{r}
 # Load the data
@@ -392,12 +356,11 @@ genderweight <- as.data.frame(genderweight)
 
 # Make some plots with `ggplot2` {.tabset}
 
-Now we we'll focus on making a variety of different plots using `ggplot2` to demonstrate its flexibility. You can read more about `ggplot2` [here](https://ggplot2.tidyverse.org/) and find its cheat sheet [here](https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf). Cheat sheets are great for quickly figuring out what you need to implement certain things, although ChatGPT has probably surpased them at this pont. 
+Now we we'll focus on making a variety of different plots using `ggplot2` to demonstrate its flexibility. You can read more about `ggplot2` [here](https://ggplot2.tidyverse.org/) and find its cheat sheet [here](https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf). Cheat sheets are great for quickly figuring out what you need to implement certain things, although ChatGPT has probably surpased them at this pont.
 
-## Basic Density 
+## Basic Density
 
-To check the distribution of the data we can use density plots in the
-`ggplot` within `tidyverse` to visualize this. In the first part of the code, we tell `ggplot` to get our data from the `genderweight` dataset and use the `weight` variable. Using `geom_denisty` we then tell it we want to color our plot `dodgerblue` (my favorite R palette :) ), as well as fill it with that color using `color="dodgerblue4", fill="dodgerblue3"`. We then add our `plot_aes` object (usually doesn't matter too much where we add this). Next we add a vertical line to our denisty plot using `geom_vline`, tell it that we want it to be at the mean value of the `weight` variable (which *must* be a continuous variable) and then style it `color="dodgerblue3", linetype="dashed", size=1`, telling R we want a blue, dashed line. 
+To check the distribution of the data we can use density plots in the `ggplot` within `tidyverse` to visualize this. In the first part of the code, we tell `ggplot` to get our data from the `genderweight` dataset and use the `weight` variable. Using `geom_denisty` we then tell it we want to color our plot `dodgerblue` (my favorite R palette :) ), as well as fill it with that color using `color="dodgerblue4", fill="dodgerblue3"`. We then add our `plot_aes` object (usually doesn't matter too much where we add this). Next we add a vertical line to our denisty plot using `geom_vline`, tell it that we want it to be at the mean value of the `weight` variable (which *must* be a continuous variable) and then style it `color="dodgerblue3", linetype="dashed", size=1`, telling R we want a blue, dashed line.
 
 Lastly, we annotate the graph using `annotate_figure`. We feed in the object we want to annotate first (in this case `p`) and then tell R what we want for the top and bottom annotations!
 
@@ -413,7 +376,7 @@ annotate_figure(p,
                                    hjust = 1.1, x = 1, face = "italic", size = 12))
 ```
 
-## Styling Basic Density 
+## Styling Basic Density
 
 We can also have the densities by gender. We do so by adding `color=group, fill=group` to our code, letting R know to color things by our grouping variable (`gender`, called `group` in the dataset).
 
@@ -431,7 +394,7 @@ annotate_figure(p,
 
 ## Overlay two different `geom` wrappers
 
-With `ggplot2`, we can also overlay different types of `geom` wrappers. 
+With `ggplot2`, we can also overlay different types of `geom` wrappers.
 
 For example, we can overlay scatter plots (using `geom_jitter`) and boxplots (using `geom_boxplot`). Notice how we introduce grouping variables, plot title, and axis labels
 
@@ -448,13 +411,13 @@ ggplot(genderweight, aes(x = group, y = weight,color = group)) +
   ggtitle("Weight by Groups") + theme(plot.title = element_text(hjust = 0.5))
 ```
 
-# Showing change over time 
+# Showing change over time
 
 We can use a variety of functions within `ggplot2` to show how things change over time, one of which is line graphs. To do so, we can `tidy` our data (one observation per row using a package like `dplyr`. Now, I'll demonstrate how to do some using data from a project I worked on in Jamie Pennebaker's lab using Linguistic Inquiry and Word Count (LIWC; pronounced Luke).
 
 ## Load in the Data
 
-First, we load in the raw data from github. Second, we subset the data for a range of dates we are interested in (March 2019-March 2021). We then filter out word counts that are too noisy. Since LIWC is a bag of words program, we want to make sure our observations aren't too noisy or large. For example, in the sentence "I love you" pronouns take up about 66% of the words the sentence and doing any type of analyses with that would not be very informative. We can get more into LIWC at a later time 
+First, we load in the raw data from github. Second, we subset the data for a range of dates we are interested in (March 2019-March 2021). We then filter out word counts that are too noisy. Since LIWC is a bag of words program, we want to make sure our observations aren't too noisy or large. For example, in the sentence "I love you" pronouns take up about 66% of the words the sentence and doing any type of analyses with that would not be very informative. We can get more into LIWC at a later time
 
 One we have formatted our data appropriately, we can move to tidy it up. That is, we get the 4 variables of interest and use dplyr to group them by the month of their observation and then summarize them by getting the means and standard errors for each variable within each month
 
@@ -472,7 +435,7 @@ df2 <- df %>%#converting our dates to quarterly dates
 df2 <- df2["2019-01"<= df2$month_year & df2$month_year <= "2021-03",] #covid dates 
 ```
 
-Let's take a look at our data structure so you get an idea of what we're working with using `head()`. 
+Let's take a look at our data structure so you get an idea of what we're working with using `head()`.
 
 ```{r}
 head(df2)
@@ -482,60 +445,59 @@ head(df2)
 
 Now, we'll run our code. Here's a general explanation of what each line does using our first example:
 
-`Analytic <- ggplot(data=df2, aes(x=Date_mean, y=Analytic_mean, group=1)) +`  creates a ggplot object and names it `Analytic`. We have `Date_mean` as our X axis and `Analytic_mean` as our y variable
+`Analytic <- ggplot(data=df2, aes(x=Date_mean, y=Analytic_mean, group=1)) +` creates a ggplot object and names it `Analytic`. We have `Date_mean` as our X axis and `Analytic_mean` as our y variable
 
-`geom_line(colour = "dodgerblue3") +` writes our line graph using the parameters we specified above  
-  
-`scale_x_date(date_breaks = "3 month", date_labels = "%Y-%m") + ` Tells the graph we want 3 month partitions on our X-axis using the format `"%Y-%m"`
-  
+`geom_line(colour = "dodgerblue3") +` writes our line graph using the parameters we specified above
+
+`scale_x_date(date_breaks = "3 month", date_labels = "%Y-%m") +` Tells the graph we want 3 month partitions on our X-axis using the format `"%Y-%m"`
+
 `geom_ribbon(aes(ymin=Analytic_mean-Analytic_std.error, ymax=Analytic_mean+Analytic_std.error), alpha=0.2) +` Graphs the standard error around our linegraph
-  
-`ggtitle("Analytic Thinking") +` titles our plot 
-  
-`labs(x = "Month", y = 'Standardized score') +` adds our x and y axis labels
-  
-`plot_aes +` here's our plot aes object
-  
-`geom_vline(xintercept = as.numeric(as.Date("2020-03-01")), linetype = 1) +` specifying we want a vertical line at this specific date
-  
-`geom_rect(data = df2, #summer surge` give us a rectangle using the data
-  
-`aes(xmin = as.Date("2020-06-15", "%Y-%m-%d"),` let the lower bound on the x plane be this date
-            
-`xmax = as.Date("2020-07-20",  "%Y-%m-%d"),` let the upper bound on the x plane be this date
-                
-`ymin = -Inf,` let the lower bound on the y plane be this value
-               
-`ymax = Inf),` let the upper bound on the x plane be this value
-                
-`fill = "gray",` color it grey 
-            
-`alpha = 0.009) +` let it be pretty transparent
-            
-`geom_rect(data = df2, #winter surge` give us a rectangle using the data
-  
-`aes(xmin = as.Date("2020-11-15", "%Y-%m-%d"),` let the lower bound on the x plane be this date
-            
-`xmax = as.Date("2021-01-01",  "%Y-%m-%d"),` let the upper bound on the x plane be this date
-                
-`ymin = -Inf,`  let the lower bound on the y plane be this value
-                
-`ymax = Inf),` let the upper bound on the x plane be this value
-                
-`fill = "gray",` color it grey 
 
-`alpha = 0.009)`let it be pretty transparent 
-            
+`ggtitle("Analytic Thinking") +` titles our plot
+
+`labs(x = "Month", y = 'Standardized score') +` adds our x and y axis labels
+
+`plot_aes +` here's our plot aes object
+
+`geom_vline(xintercept = as.numeric(as.Date("2020-03-01")), linetype = 1) +` specifying we want a vertical line at this specific date
+
+`geom_rect(data = df2, #summer surge` give us a rectangle using the data
+
+`aes(xmin = as.Date("2020-06-15", "%Y-%m-%d"),` let the lower bound on the x plane be this date
+
+`xmax = as.Date("2020-07-20",  "%Y-%m-%d"),` let the upper bound on the x plane be this date
+
+`ymin = -Inf,` let the lower bound on the y plane be this value
+
+`ymax = Inf),` let the upper bound on the x plane be this value
+
+`fill = "gray",` color it grey
+
+`alpha = 0.009) +` let it be pretty transparent
+
+`geom_rect(data = df2, #winter surge` give us a rectangle using the data
+
+`aes(xmin = as.Date("2020-11-15", "%Y-%m-%d"),` let the lower bound on the x plane be this date
+
+`xmax = as.Date("2021-01-01",  "%Y-%m-%d"),` let the upper bound on the x plane be this date
+
+`ymin = -Inf,` let the lower bound on the y plane be this value
+
+`ymax = Inf),` let the upper bound on the x plane be this value
+
+`fill = "gray",` color it grey
+
+`alpha = 0.009)`let it be pretty transparent
+
 `Analytic <- Analytic + annotate(geom="text",x=as.Date("2020-07-01"),` save a new object called Analytic and write text at this specific date on the x plane
 
-`y=43,label="Summer 2020 surge", size = 3) +` specifying what our label is,  what the y plane value is and font size
-                                
-`annotate(geom="text",x=as.Date("2020-12-03"),` his specific date on the x plane
-  
+`y=43,label="Summer 2020 surge", size = 3) +` specifying what our label is, what the y plane value is and font size
 
-`y=43,label="Winter 2020 surge", size = 3)` specifying what our label is,  what the y plane value is and font size
-           
-We can use the `{r fig.height=6, fig.width=8}` in the block of code to specify the dimensions of our figures. This is super helpful when building stuff for presentations, project, etc. I forgot to mention earlier that in the `set-up` chunk we used `fig.path = "figs/data-viz/"` to specify where our figures to output to within our working directroy. So, if you go to wherever your directorty is you should be able to find them in that file path :). 
+`annotate(geom="text",x=as.Date("2020-12-03"),` his specific date on the x plane
+
+`y=43,label="Winter 2020 surge", size = 3)` specifying what our label is, what the y plane value is and font size
+
+We can use the `{r fig.height=6, fig.width=8}` in the block of code to specify the dimensions of our figures. This is super helpful when building stuff for presentations, project, etc. I forgot to mention earlier that in the `set-up` chunk we used `fig.path = "figs/data-viz/"` to specify where our figures to output to within our working directroy. So, if you go to wherever your directorty is you should be able to find them in that file path :).
 
 ### Analytic Thinking
 
@@ -676,13 +638,13 @@ annotate_figure(graphs,
                                    , color = "Black",
                                    hjust = 1.1, x = 1, face = "italic", size = 16))
 ```
+
 # Package Citations
 
 ```{r}
 report::cite_packages()
 ```
 
-All credit goes to the great Dani Cosme for teaching me how to make
-these! You can find her [github](https://github.com/dcosme) here!
+All credit goes to the great Dani Cosme for teaching me how to make these! You can find her [github](https://github.com/dcosme) here!
 
 Parts of this script were adapted from this [article](https://towardsdatascience.com/a-guide-to-data-visualisation-in-r-for-beginners-ef6d41a34174) by [Parul Pandey](https://pandeyparul.medium.com/?source=---two_column_layout_sidebar----------------------------------)

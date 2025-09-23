@@ -134,7 +134,7 @@ timeline_df$session <- with(timeline_df,
 
 # Define measures per session
 timeline_df$measures <- c(
-  "Mental Health\nDemographics\nBilingualism",
+  "Mental Health\nDemographics\nBilingualism\nLanguage Assessments",
   NA, NA,
   "Mental Health\nSWLS\nUCLA Loneliness\nSocial Media Use\nSocial Media Data"
 )
@@ -183,6 +183,7 @@ p_timeline
 ::: scrollable
 -   At initial time point, participants will provide **written** responses to 9 open-ended questions about mood, motivation, sleep, energy, self-perception, and life satisfaction (≈150 words total; see below for full list of questions).
 -   Adapted from [Hur et al. (2024)](https://www.pnas.org/doi/10.1073/pnas.2321321121)
+-   Conducted **before** mental health measures to avoid biasing responses.
 
 ```{r}
 library(DT)
@@ -224,7 +225,7 @@ datatable(
 
 -   **GAD-7 (anxiety; measured at both time points)**
 -   **PHQ-8 (depression; measured at both time points)**
-    - If highly correlated, will collapse.
+    -   If highly correlated, will collapse.
 
 ------------------------------------------------------------------------
 
@@ -310,12 +311,14 @@ ses_df <- tibble::tibble(
   Question = c(
     "Education (highest degree attained)",
     "Household income",
-    "Household composition"
+    "Household composition",
+    "Perceived SES"
   ),
   Options = c(
     "Less than high school; High school / GED; Associate’s; Bachelor’s; Master’s; Professional (MD, JD, etc.); Doctorate; Other (specify)",
     "< $5,000 … > $200,000; Don’t know / Prefer not to answer",
-    "# people in household; # children; # adults; # adults bringing in income"
+    "# people in household; # children; # adults; # adults bringing in income",
+    "MacArthur Scale of Subjective Social Status"
   )
 )
 
