@@ -546,6 +546,13 @@ data_cluster$clusterComb <- factor(
 )
 dw$clusterComb <- NULL
 dw$clusterComb <- left_join(dw, data_cluster[!duplicated(data_cluster$room_id),], by="room_id")$clusterComb
+
+plot_aes = theme_minimal() +
+  theme(legend.position = "bottom",
+        legend.text = element_text(size = 12),
+        text = element_text(size = 12, family = "Futura Medium"),
+        axis.text = element_text(color = "black",size = 8,angle = 45),
+        axis.ticks.y = element_blank())
 ```
 
 ```{r}
@@ -1023,6 +1030,8 @@ data_cluster <- data %>%
   unique() %>%
   drop_na(first_person_sing_ability_combined) # drop NAs for the given variable we want to build the model on
 
+
+
 ```
 
 ```{r build ability model}
@@ -1036,7 +1045,7 @@ if (file.exists(file_path)) {
   message("Data loaded from file.")
 } else {
 
-combMixModelsLin <- stepFlexmix(first_person_sing_ability_combined ~ daysSinceFirstText|room_id, k = 1:4, data = data_cluster, nrep=10)
+combMixModelsLin <- stepFlexmix(first_person_sing_ability_combined ~ daysSinceFirstText|room_id, k = 1:5, data = data_cluster, nrep=10)
 bestcombMixModelLin <- getModel(combMixModelsLin, "BIC")
 
 # save the model 
@@ -1092,8 +1101,15 @@ standardize_parameters(clust3, method = "pseudo", ci_method = "satterthwaite")
 
 ```{r}
 clust4 <- lmer(first_person_sing_ability_combined ~ daysSinceFirstText + (1|room_id), data = data_cluster[data_cluster$clusterComb=="Cluster_4",]); 
-standardize_parameters(clust3, method = "pseudo", ci_method = "satterthwaite")
+standardize_parameters(clust4, method = "pseudo", ci_method = "satterthwaite")
 ```
+#### Cluster 5
+
+```{r}
+clust5 <- lmer(first_person_sing_ability_combined ~ daysSinceFirstText + (1|room_id), data = data_cluster[data_cluster$clusterComb=="Cluster_5",]); 
+standardize_parameters(clust5, method = "pseudo", ci_method = "satterthwaite")
+```
+
 
 #### Plot trajectories for each cluster
 
@@ -1101,8 +1117,8 @@ standardize_parameters(clust3, method = "pseudo", ci_method = "satterthwaite")
 smallerFontSize <- 8
 
 # Extract standardized coefficients for all three clusters
-clusters <- list(clust1, clust2, clust3,clust4)
-cluster_names <- c("Cluster 1", "Cluster 2", "Cluster 3","Cluster 4")
+clusters <- list(clust1, clust2, clust3,clust4,clust5)
+cluster_names <- c("1", "2", "3","4","5")
 
 sig_df <- lapply(seq_along(clusters), function(i) {
   fe <- extract_lmer_data(clusters[[i]])  # your function
@@ -1170,6 +1186,7 @@ fig9a <- ggplot(predicted_df, aes(x = x, y = predicted, color = cluster, fill = 
   plot_aes
 fig9a
 ```
+
 :::
 ::::
 
@@ -1182,7 +1199,7 @@ dw = dw |>
   mutate(bSx = bPHQ + bGAD,
          fSx = fPHQ + fGAD,
          fdSx = fdPHQ + fdGAD,
-         clusterComb = factor(clusterComb, levels = c("Cluster_1", "Cluster_2", "Cluster_3","Cluster_4"))
+         clusterComb = factor(clusterComb, levels = c("Cluster_1", "Cluster_2", "Cluster_3","Cluster_4","Cluster_5"))
   )
 ```
 
@@ -1269,6 +1286,8 @@ pw2 |>
 ::: panel-tabset
 ##### Main Effects
 
+Cluster predicting `fdSx` controlling for `bSx`
+
 ```{r}
 # Differences in change in internalizing symptoms by cluster
 M3 <- lm(fdSx ~ clusterComb + bSx, data = dw) 
@@ -1323,7 +1342,7 @@ plotDat_bsx <- plotDat_bsx %>%
 
 # Add significance manually for now
 # If you want to show the pairwise stars on top of each bar, you can assign based on Tukey/emmeans
-plotDat_bsx$signif <- c("***", "***", "***","***")  # adjust based on pw1
+plotDat_bsx$signif <- c("***","+", "***", "***","***")  # adjust based on pw1
 
 
 pw1_sig_labels <- pw1 %>%
