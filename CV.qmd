@@ -10,7 +10,6 @@ fontsize: 11pt
 title-block-banner: true
 ---
 
-
 # Steven Mesquiti, M.A.
 
 Department of Psychology\
@@ -38,6 +37,8 @@ B.A. in Psychology (Minor: Spanish)
 
 \* Denotes Shared First Authorship
 
+**Muzekari, B., Cooper, N., Resnick, A., Paul, A. M., Torres-Grillo, O. E., Andrews, M. E., Mattan, B., Scholz, C., Johnson, D., Carreras-Tartak, J., Cakar, M. E., Hao, S., Zhou, E., Beard, E., Mesquiti, S., Sayed, F., Fichman, M. A., Lydon-Staley, D. M., Barnett, I. J., … Falk, E. B.** (2025). *Naturalistic Tobacco Retail Exposure and Smoking Outcomes in Adults Who Smoke Cigarettes Daily.* JAMA Network Open. [DOI](https://doi:10.1001/jamanetworkopen.2025.30132)
+
 **Mesquiti, S., Cosme, D., Nook, E.C., Falk E.B., Burns S.** (Under Revision). *Predicting Psychological and Subjective Well-being through Language-based Assessments of Well-being.*
 
 **Mesquiti, S.,\* Seraj, S.,\* Weyland, A. H., Ashokkumar, A., Boyd, R. L., Mihalcea, R., & Pennebaker, J. W.** (2025). *Analysis of social media language reveals the psychological interaction of three successive upheavals.* *Scientific Reports, 15*(1), 5740. [DOI](https://doi.org/10.1038/s41598-025-89165-z).
@@ -57,6 +58,7 @@ B.A. in Psychology (Minor: Spanish)
 ------------------------------------------------------------------------
 
 ## Funding
+
 -   **2025**: Princeton University Data Driven Social Science Graduate Fellowship (\$1,200)
 -   **2025**: Princeton University Data Driven Social Science: *Data-Driven Approaches to Building Equitable Language-Based Mental Health Assessments* (\$4,283)
 -   **2025**: New Jersey Health Foundation: *Investigating Racial Equity of Psycholinguistic Measures of Mental Health* (PI: Erik C. Nook; \$34,867; \# PC 42-25)
