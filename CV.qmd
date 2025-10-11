@@ -36,8 +36,11 @@ B.A. in Psychology (Minor: Spanish)
 ## Publications
 
 \* Denotes Shared First Authorship
+-   **
 
-**Muzekari, B., Cooper, N., Resnick, A., Paul, A. M., Torres-Grillo, O. E., Andrews, M. E., Mattan, B., Scholz, C., Johnson, D., Carreras-Tartak, J., Cakar, M. E., Hao, S., Zhou, E., Beard, E., Mesquiti, S., Sayed, F., Fichman, M. A., Lydon-Staley, D. M., Barnett, I. J., … Falk, E. B.** (2025). *Naturalistic Tobacco Retail Exposure and Smoking Outcomes in Adults Who Smoke Cigarettes Daily.* JAMA Network Open. [DOI](https://doi:10.1001/jamanetworkopen.2025.30132)
+**Mesquiti, S. & Nook, E.C.** (Submitted). *Artificial Intelligence in Mental Health Treatment and Research.* [DOI](https://doi.org/10.31234/osf.io/jvf2z_v1)
+
+**Muzekari, B., Cooper, N., Resnick, A., Paul, A. M., Torres-Grillo, O. E., Andrews, M. E., Mattan, B., Scholz, C., Johnson, D., Carreras-Tartak, J., Cakar, M. E., Hao, S., Zhou, E., Beard, E., Mesquiti, S., Sayed, F., Fichman, M. A., Lydon-Staley, D. M., Barnett, I. J., … Falk, E. B.** (2025). *Naturalistic Tobacco Retail Exposure and Smoking Outcomes in Adults Who Smoke Cigarettes Daily.* *JAMA Network Open.* [DOI](https://doi:10.1001/jamanetworkopen.2025.30132)
 
 **Mesquiti, S., Cosme, D., Nook, E.C., Falk E.B., Burns S.** (Under Revision). *Predicting Psychological and Subjective Well-being through Language-based Assessments of Well-being.*
 
@@ -52,7 +55,6 @@ B.A. in Psychology (Minor: Spanish)
 ## Works in Progress
 
 -   **Kang, Y., Mesquiti, S. & Falk, E. B.** (in prep). *The Effect of Compassion Training on Emotional Support Giving.*
--   **Mesquiti, S. & Nook, E.C.** (in prep.) *The Implication of Artificial Intelligence on Mental Health.*
 -   **Mesquiti, S., Stade E. C., Hull, T.D., Nook, E. C.** (in prep.) *Tracking Shifts in the Latent Meaning of "I" and Its Connection to Mental Health Outcomes in a Large Therapy Dataset.*
 
 ------------------------------------------------------------------------
