@@ -1,0 +1,17 @@
+---
+title: "Artificial Intelligence in Mental Health Treatment and Research"
+categories: [large language models, deep learning, mental health, psychopathology, digital phenotyping, AI ethics]
+title-block-banner: true
+Year: 2025
+about:
+  template: marquee
+  links:
+    - text: DOI
+      href: https://doi.org/10.31234/osf.io/jvf2z_v1
+---
+
+# Abstract
+
+Mental health challenges add immensely to the global burden of disease, yet traditional approaches to psychological assessment and care remain resource-intensive and often inaccessible. There is widespread interest in testing whether advances in artificial intelligence, particularly large language models (LLMs), could address these constraints. This review focuses on LLMs, given the field’s explosive interest in testing whether their ability to generate context-sensitive language representations can aid large-scale assessment and intervention. We synthesize recent applications of LLMs, including language-based assessment of psychopathology, digital phenotyping, electronic health record analysis, and early integrations into psychotherapy. However, we highlight deep challenges of AI that loom large in the highly sensitive space of mental health treatment, including clear risks of bias, hallucinations, inappropriate (or even dangerous) therapeutic recommendations, and limited regulatory oversight. We conclude with future directions that are critical for the safe and equitable use of LLMs in mental health.
+
+**Citation**: Mesquiti, S., & Nook, E. C. (2025). Artificial Intelligence in Mental Health Treatment and Research. Artificial Intelligence and Mental Health.

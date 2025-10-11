@@ -1,6 +1,6 @@
 ---
 title: "The psychological impacts of the COVID-19 pandemic on business leadership"
-categories: [COVID-19, business leadership, CEOs, psychological impacts, language analysis, decision-making, cognitive load, collective-focused language]
+categories: [COVID-19, business leadership, CEOs, psychological impacts, language analysis, cognitive load, decision-making, collective-focused language]
 title-block-banner: true
 Year: 2023
 about:
@@ -8,12 +8,10 @@ about:
   links:
     - text: DOI
       href: https://doi.org/10.1371/journal.pone.0290621
-    - text: PDF
-      href: https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0290621&type=printable
 ---
 
 # Abstract
 
-The COVID-19 pandemic had a profound impact on business leadership, specifically on chief executive officers (CEOs). To document the psychological impacts of the pandemic on corporate leadership, this study analyzed the language of CEOs during company quarterly earnings calls (N=19,536) one year before and after the onset of the pandemic. Following the start of lockdowns, CEOs exhibited significant language shifts. Analytic thinking declined, and their language became less technical and more personal and intuitive. CEOs also showed signs of increased cognitive load as they grappled with the pandemic’s impact on their business practices. The study observed a substantial decrease in collective-focused language (we-usage) among CEOs, indicative of disconnection from their companies. Concurrently, there was an increase in self-focused (I-usage) language, suggesting heightened preoccupation among business leaders. The observed language changes reflect the unique effect of the pandemic on CEOs, which had some notable differences compared to the general population. This study sheds light on how the COVID-19 pandemic influenced business leaders’ psychological states and decision-making strategies—processes that have a substantial impact on a company’s performance. The findings underscore the importance of language data in understanding large-scale societal events.
+The COVID-19 pandemic had a profound impact on business leadership, specifically on chief executive officers (CEOs). To document the psychological impacts of the pandemic on corporate leadership, this study analyzed the language of CEOs during company quarterly earnings calls (N = 19,536) one year before and after the onset of the pandemic. Following the start of lockdowns, CEOs exhibited significant language shifts. Analytic thinking declined, and their language became less technical and more personal and intuitive. CEOs also showed signs of increased cognitive load as they grappled with the pandemic’s impact on their business practices. The study observed a substantial decrease in collective-focused language (we-usage) among CEOs, indicative of disconnection from their companies. Concurrently, there was an increase in self-focused (I-usage) language, suggesting heightened preoccupation among business leaders. The observed language changes reflect the unique effect of the pandemic on CEOs, which had some notable differences compared to the general population. This study sheds light on how the COVID-19 pandemic influenced business leaders’ psychological states and decision-making strategies—processes that have a substantial impact on a company’s performance. The findings underscore the importance of language data in understanding large-scale societal events.
 
 **Citation**: Mesquiti, S., & Seraj, S. (2023). The psychological impacts of the COVID-19 pandemic on business leadership. PLoS ONE, 18(10), e0290621. https://doi.org/10.1371/journal.pone.0290621

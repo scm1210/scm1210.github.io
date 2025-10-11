@@ -1,19 +1,17 @@
 ---
 title: "Predicting Psychological and Subjective Well-being through Language-based Assessment"
-categories: [Well-being, Language-based Assessments, Psychological Well-being, Autonomy, Natural Language Processing, Subjective Well-being, AI-based Assessment]
+categories: [Well-being, Language-based Assessments, Psychological Well-being, Autonomy, Natural Language Processing, Subjective Well-being, AI-based Transformers]
 title-block-banner: true
 Year: 2025
 about:
   template: marquee
   links:
     - text: DOI
-      href: https://doi.org/10.31234/osf.io/rfq8p_v2
-    - text: PDF
-      href: https://osf.io/rfq8p_v2/download/
+      href: https://doi.org/10.31234/osf.io/jvf2z_v1
 ---
 
 # Abstract
 
-Well-being is often defined in terms of a person’s comfort, happiness, functioning and flourishing. Scholars distinguish subjective well-being (i.e., perceiving one’s life as pleasant) from psychological well-being (i.e., perceiving one’s life as meaningful). Advances in natural language processing have yielded automated assessments of psychological states and traits from language alone, including subjective well-being. However, the strength of these tools for assessing psychological well-being remains unstudied. Across three studies (one preregistered), we examined the strength of language-based assessments of self-reported subjective and psychological well-being components. Participants gave verbal or written responses to queries regarding their satisfaction with life and autonomy, along with questionnaire measures of subjective and psychological well-being. We then tested the strength of contextual word embeddings generated from AI-based transformers applied to verbal responses in predicting self-reported satisfaction with life and psychological well-being. Predictions generated from word embeddings of open-ended assessments correlated significantly with questionnaire measures of corresponding well-being constructs (rs = .16 \< r \< .63) and they also generalized across well-being components (rs = .15 \< r \< .50). However, the strength of these relations was lower than previous studies (rs = .72 \< r \< .85), and sense of autonomy was consistently less predictable than satisfaction with life. These findings demonstrate that although linguistic measures can significantly correlate with one’s sense of autonomy, it appears to be more challenging to assess than other forms of well-being.
+Well-being is commonly defined in terms of comfort, happiness, functioning, and flourishing. Scholars distinguish between subjective well-being (i.e., perceiving life as pleasant) and psychological well-being (i.e., perceiving life as meaningful). While advances in natural language processing have enabled automated assessments of subjective well-being from language, their ability to capture psychological well-being remains underexplored. Across three studies (one preregistered), we examined how well language-based models predict self-reported subjective and psychological well-being. Participants provided verbal or written responses about their satisfaction with life and autonomy, along with standard questionnaire measures. We used contextual word embeddings from transformer-based models to predict well-being scores. Language-based predictions correlated moderately with questionnaire measures of both constructs (rs = .16–.63) and generalized across well-being domains (rs = .15–.50), though these associations were weaker than previously work (rs = .72–.85). Autonomy was consistently less predictable than satisfaction with life. Comparisons with GPT-3.5 and GPT-4 revealed that both models outperformed BERT in predicting satisfaction with life (r = .71 and .75) and modestly improved predictions of autonomy (rGPT‑4 = .49). Supervised dimension projections revealed that satisfaction with life responses clustered around positive emotion and social themes, whereas autonomy responses showed more individualized linguistic patterns. These findings suggest that language-based tools are well-suited for assessing hedonic well-being but face challenges with more abstract, eudaimonic constructs. Future research should refine modeling approaches to enhance the detection of complex psychological states while striking a balance between interpretability, accuracy, and usability.
 
 **Citation**: Mesquiti, S., Cosme, D., Nook, E. C., Falk, E. B., & Burns, S. (2025). Predicting psychological and subjective well-being through language-based assessment. Preprint.
