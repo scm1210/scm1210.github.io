@@ -36,7 +36,6 @@ B.A. in Psychology (Minor: Spanish)
 ## Publications
 
 \* Denotes Shared First Authorship
--   **
 
 **Mesquiti, S. & Nook, E.C.** (Submitted). *Artificial Intelligence in Mental Health Treatment and Research.* [DOI](https://doi.org/10.31234/osf.io/jvf2z_v1)
 
@@ -81,9 +80,9 @@ B.A. in Psychology (Minor: Spanish)
 ------------------------------------------------------------------------
 
 ## Invited Talks
-
+-   **2025**: *Predicting Mental Health Outcomes with the Latent Meaning of "I" in a Large Therapy Dataset.* DDSS Connect: Interdisciplinary Exchange.
 -   **2025**: *Tracking Shifts in the Latent Meaning of "I" and Its Connection to Mental Health Outcomes in a Large Therapy Dataset.* Social Psychology Seminar, Princeton University, Princeton, NJ.
--   **2022**: *Within-and between-person effects of autonomous motivation on goal pursuit.* Duckworth Lab, Princeton University.
+-   **2022**: *Within-and between-person effects of autonomous motivation on goal pursuit.* Duckworth Lab.
 -   **2021**: *The whole truth and nothing but the truth: an analysis of the variability of prosocial lying in the Netherlands and the United States.* Texas State University Psychology Department Brown Bag.
 -   **2021**: *The truth about prosocial lying: Cross-cultural differences in prosocial lying.* Southwestern Psychological Association (Virtual).
 
@@ -112,6 +111,8 @@ B.A. in Psychology (Minor: Spanish)
 ------------------------------------------------------------------------
 
 ## Mentorship
+
+-   Song Ting Tang \| Thesis Student \| Princeton University (2025-Present)
 
 -   Emi Yun \| Thesis Student \| Princeton University (2024-Present)
 
