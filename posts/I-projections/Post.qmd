@@ -180,7 +180,6 @@ data = data %>%
     first_person_sing_ability_combined = rowMeans(select(., I_projection_ability_combined, me_projection_ability_combined, my_projection_ability_combined), na.rm = TRUE)
     )
 
-
 good_bad_data_small =  data |> 
   dplyr::group_by(room_id,daysSinceFirstText) %>%
   dplyr::summarise(across(
@@ -189,6 +188,8 @@ good_bad_data_small =  data |>
     na.rm = TRUE
   ), .groups = "drop") |> 
   dplyr::filter(n_total > 20)
+
+length(unique(data$room_id))
 
 ```
 
@@ -271,7 +272,7 @@ Results are condensed to be for the first-person singular valence and ability pr
 #### create disaggregated data 
 between <- good_bad_data_small %>%
   tidyr::gather(item, value,first_person_sing_valence_combined,first_person_sing_ability_combined,
-         n_i,n_good,n_bad,pct_i,pct_good,pct_bad,n_total,tone_pos,tone_neg,emo_pos,emo_neg,pct_able,pct_unable
+         n_i,n_good,n_bad,pct_i,pct_good,pct_bad,n_total,tone_pos,tone_neg,emo_pos,emo_neg,pct_able,pct_unable,i
   ) %>%
   select(user_id, item, value) %>%
   unique() %>%
@@ -285,7 +286,7 @@ between <- good_bad_data_small %>%
 # Within-person variation
 within <- good_bad_data_small %>%
   gather(item, value,first_person_sing_valence_combined,first_person_sing_ability_combined,
-         n_i,n_good,n_bad,pct_i,pct_good,pct_bad,n_total,tone_pos,tone_neg,emo_pos,emo_neg,,pct_able,pct_unable) %>%
+         n_i,n_good,n_bad,pct_i,pct_good,pct_bad,n_total,tone_pos,tone_neg,emo_pos,emo_neg,,pct_able,pct_unable,i) %>%
   group_by(user_id, item) %>%
   mutate(value = scale(value, center = TRUE, scale = TRUE),
          item = sprintf("%s_within", item)) %>%
@@ -298,7 +299,7 @@ disaggregated_good_bad <- within |>
          first_person_sing_ability_combined_within, first_person_sing_ability_combined_between,n_i_within,
          n_i_between,n_good_within,n_good_between,n_bad_within,n_bad_between, pct_i_between,pct_i_within,pct_good_between,
          pct_good_within,pct_bad_between,pct_bad_within,n_total_within,n_total_between,tone_pos_within,tone_pos_between,tone_neg_within,
-         tone_neg_between,emo_pos_within,emo_pos_between,emo_neg_within,emo_neg_between,pct_able_within,pct_able_between,pct_unable_within,pct_unable_between
+         tone_neg_between,emo_pos_within,emo_pos_between,emo_neg_within,emo_neg_between,pct_able_within,pct_able_between,pct_unable_within,pct_unable_between,i_between,i_within
   ) 
 
 
@@ -320,7 +321,8 @@ good_bad_data_small <- good_bad_data_small|>
     tone_pos = scale(tone_pos),
     tone_neg = scale(tone_neg),
     emo_pos = scale(emo_pos),
-    emo_neg = scale(emo_neg)
+    emo_neg = scale(emo_neg),
+    i = scale(i)
   )
 
 disaggregated_good_bad$Internalizing <- scale(disaggregated_good_bad$Internalizing)
@@ -383,15 +385,16 @@ Results are condensed to be for the first-person singular valence and ability pr
 ### Non-disaggregated (Valence)
 
 ```{r}
-pct_words <- lmer(Internalizing ~  pct_i + pct_good + pct_bad + n_total + emo_pos + emo_neg + tone_pos + tone_neg + daysSinceFirstText +  first_person_sing_valence_combined + daysSinceFirstText +  (1|room_id), data = good_bad_data_small)
+pct_words <- lmer(Internalizing ~  i + pct_good + pct_bad + n_total  + tone_pos + tone_neg + daysSinceFirstText +  first_person_sing_valence_combined + daysSinceFirstText +  (1|room_id), data = good_bad_data_small)
 table_model(pct_words, dv_name = "Good-bad Words Controls (Non-disagg)")
 ```
+
 
 ### Disaggregated (valence)
 
 ```{r}
-pct_words_disagg <- lmer(Internalizing ~ daysSinceFirstText + first_person_sing_valence_combined_between + first_person_sing_valence_combined_within + emo_pos_within + emo_pos_between + emo_neg_within + emo_neg_between +
-                        tone_pos_within + tone_pos_between + tone_neg_within + tone_neg_between + n_total_within + n_total_between + pct_i_between + pct_i_within + pct_good_between + pct_good_within + pct_bad_between + pct_bad_within +  (1|room_id), data = disaggregated_good_bad, control =
+pct_words_disagg <- lmer(Internalizing ~ daysSinceFirstText + first_person_sing_valence_combined_between + first_person_sing_valence_combined_within + 
+                        tone_pos_within + tone_pos_between + tone_neg_within + tone_neg_between + n_total_within + n_total_between + i_between + i_within + pct_good_between + pct_good_within + pct_bad_between + pct_bad_within +  (1|room_id), data = disaggregated_good_bad, control =
                            lmerControl(optimizer ="bobyqa")) # need to optimize to get it to converge
 table_model(pct_words_disagg)
 ```
@@ -407,15 +410,15 @@ table_model(pct_words_disagg)
 ### Non-disaggregated (Ability)
 
 ```{r}
-pct_words <- lmer(Internalizing ~ pct_i + pct_good + pct_bad + n_total + emo_pos + emo_neg + tone_pos + tone_neg + daysSinceFirstText + first_person_sing_ability_combined + daysSinceFirstText +  (1|room_id), data = good_bad_data_small)
+pct_words <- lmer(Internalizing ~ i + pct_good + pct_bad + n_total + tone_pos + tone_neg + daysSinceFirstText + first_person_sing_ability_combined + daysSinceFirstText +  (1|room_id), data = good_bad_data_small)
 table_model(pct_words, dv_name = "% Good-bad Words model summary (Non-disagg)")
 ```
 
 ### Disaggregated (ability)
 
 ```{r}
-pct_words_disagg <- lmer(Internalizing ~ daysSinceFirstText + first_person_sing_ability_combined_between +first_person_sing_ability_combined_within + emo_pos_within + emo_pos_between + emo_neg_within + emo_neg_between +
-                        tone_pos_within + tone_pos_between + tone_neg_within + tone_neg_between + n_total_within + n_total_between + pct_i_between + pct_i_within + pct_good_between + pct_good_within + pct_bad_between + pct_bad_within + (1|room_id), data = disaggregated_good_bad, control =
+pct_words_disagg <- lmer(Internalizing ~ daysSinceFirstText + first_person_sing_ability_combined_between +first_person_sing_ability_combined_within + 
+                        tone_pos_within + tone_pos_between + tone_neg_within + tone_neg_between + n_total_within + n_total_between + i_between + i_within + pct_good_between + pct_good_within + pct_bad_between + pct_bad_within + (1|room_id), data = disaggregated_good_bad, control =
                            lmerControl(optimizer ="bobyqa")) # need to optimize to get it to converge
 table_model(pct_words_disagg, dv_name = "% Able-unable Words model summary (Disagg)")
 ```
@@ -455,9 +458,20 @@ data = data %>%
     first_person_sing_ability_combined = rowMeans(select(., I_projection_ability_combined, me_projection_ability_combined, my_projection_ability_combined), na.rm = TRUE)
     )
 
+
+
+data$time_dec <- sapply(strsplit(paste(data$text_time),":"),
+                                  function(x) {
+                                    x <- as.numeric(x)
+                                    (x[1]+x[2]/60+x[3]/3600)/24
+                                  }
+ )
+data$DSFT <- as.numeric(data$daysSinceFirstText + data$time_dec)
+ 
+
 dw = read_csv("/Users/sm9518/Library/CloudStorage/Box-Box/Talkspace_ErikNook_HarvardPrinceton/Data/Processed/Mesquiti_LBA_2024/Talkspace-LBA/data/TalkSpaceData_wide_exploration.csv")
 data_cluster <- data %>%
-  select(room_id,4:33,first_person_sing_valence_combined) %>%
+  select(room_id,4:33,first_person_sing_valence_combined,DSFT) %>%
   unique() %>%
   drop_na(first_person_sing_valence_combined) # drop NAs for the given variable we want to build the model on
 
@@ -471,7 +485,7 @@ if (file.exists(file_path)) {
   message("Data loaded from file.")
 } else {
 
-combMixModelsLin <- stepFlexmix(first_person_sing_valence_combined ~ daysSinceFirstText|room_id, k = 1:2, data = data_cluster, nrep=10)
+combMixModelsLin <- stepFlexmix(first_person_sing_valence_combined ~ DSFT|room_id, k = 1:2, data = data_cluster, nrep=10)
 bestcombMixModelLin <- getModel(combMixModelsLin, "BIC")
 
 # save the model 
@@ -487,6 +501,24 @@ data_cluster$clusterComb <- factor(
 )
 dw$clusterComb <- NULL
 dw$clusterComb <- left_join(dw, data_cluster[!duplicated(data_cluster$room_id),], by="room_id")$clusterComb
+
+
+cluster_means <- data_cluster %>%
+  mutate(cluster_id = bestcombMixModelLin@cluster) %>%
+  group_by(cluster_id) %>%
+  summarise(mean_val = mean(first_person_sing_valence_combined, na.rm = TRUE)) %>%
+  arrange(desc(mean_val))   # use desc() for highest → lowest, remove for lowest → highest
+
+# Extract the order of clusters
+ordered_clusters <- cluster_means$cluster_id
+
+# Relabel clusters in the dataset
+data_cluster$clusterComb <- factor(
+  bestcombMixModelLin@cluster,
+  levels = ordered_clusters,
+  labels = paste0("Cluster_", seq_along(ordered_clusters))
+)
+
 
 plot_aes = theme_minimal() +
   theme(legend.position = "bottom",
@@ -528,11 +560,11 @@ standardize_parameters(clust2, method = "pseudo", ci_method = "satterthwaite")
 #### Plot trajectories for each cluster
 
 ```{r}
-smallerFontSize <- 14
+smallerFontSize <- 18
 
 # Extract standardized coefficients for all three clusters
 clusters <- list(clust1, clust2)
-cluster_names <- c("Cluster 1", "Cluster 2")
+cluster_names <- c("1", "2")
 
 sig_df <- lapply(seq_along(clusters), function(i) {
   fe <- extract_lmer_data(clusters[[i]])  # your function
@@ -590,15 +622,15 @@ fig9a <- ggplot(predicted_df, aes(x = x, y = predicted, color = cluster, fill = 
   ) +
   geom_line(size = 1.5) +
   xlab("Days in Therapy") +
-  ylab("1st-Person Projection\n(Good-Bad)") +
+  ylab("Projection Score") +
   scale_color_manual(values = good_palette) +
   scale_fill_manual(values = good_palette) +
   theme_minimal() +
-  theme(axis.text = element_text(size = smallerFontSize, color = "black"),
-        axis.title = element_text(size = smallerFontSize+1),
+  plot_aes +
+  theme(axis.text = element_text(size = smallerFontSize-4, color = "black"),
+        axis.title = element_text(size = smallerFontSize-2),
         panel.background = element_rect(fill = "white"),
-        axis.line = element_line(color = "black", size = 1)) +
-  plot_aes
+        axis.line = element_line(color = "black", size = 1)) 
 fig9a
 ```
 :::
@@ -861,22 +893,23 @@ fig9d <- ggplot(plotDat_fdSx, aes(x = clusterComb, y = fdSx, fill = clusterComb)
   geom_bar(stat="identity", position=position_dodge(), show.legend = FALSE) +
   geom_errorbar(aes(ymin = lower.CL , ymax = upper.CL), width = 0.2, position = position_dodge(0.9)) +
   scale_fill_manual(values = good_palette) +
-  xlab("Cluster") + ylab("Change in Symptoms") +
+  xlab("Cluster") +  ylab(expression(Delta~"Symptoms (controlling for baseline)")) +
   theme_minimal() +
-  theme(axis.text = element_text(size = smallerFontSize, color = "black"),
-        axis.title = element_text(size = smallerFontSize),
+  plot_aes +
+  theme(axis.text = element_text(size = smallerFontSize-4, color = "black"),
+        axis.title = element_text(size = smallerFontSize-2),
         panel.background = element_rect(fill = "white", color = NA)) +
-    stat_pvalue_manual(
+  stat_pvalue_manual(
     pw3sig_labels, 
     bracket.size = 1,
     label.size = 8,
-     label = "label",
-     xmin = "group1", 
-     xmax = "group2", 
-     y.position = "y.position",
-     tip.length = 0.0) +
+    label = "label",
+    xmin = "group1", 
+    xmax = "group2", 
+    y.position = "y.position",
+    tip.length = 0.0
+  ) 
   
-  plot_aes
 
 # Arrange all figures
 blankfig <- ggplot() + theme_void()
@@ -955,8 +988,14 @@ good_bad_fig = ggarrange(
   nrow = 2
 ) + plot_aes
 
-
-ggsave("/Users/sm9518/Downloads/good_bad_cluster.png", good_bad_fig, width = 10, height = 7.5, dpi = 300)
+good_bad_fig <- ggarrange(
+  fig9a, fig9d,
+  ncol = 2, 
+  nrow = 1,
+  heights = c(1, 1)
+) 
+good_bad_fig
+ggsave("/Users/sm9518/Downloads/good_bad_cluster.png", good_bad_fig, width = 10, height = 6, dpi = 300)
 
 ```
 :::
@@ -967,7 +1006,7 @@ ggsave("/Users/sm9518/Downloads/good_bad_cluster.png", good_bad_fig, width = 10,
 # re-load in the data
 dw = read_csv("/Users/sm9518/Library/CloudStorage/Box-Box/Talkspace_ErikNook_HarvardPrinceton/Data/Processed/Mesquiti_LBA_2024/Talkspace-LBA/data/TalkSpaceData_wide_exploration.csv")
 data_cluster <- data %>%
-  select(room_id,4:33,first_person_sing_ability_combined) %>%
+  select(room_id,4:33,first_person_sing_ability_combined,DSFT) %>%
   unique() %>%
   drop_na(first_person_sing_ability_combined) # drop NAs for the given variable we want to build the model on
 
@@ -984,7 +1023,7 @@ if (file.exists(able_file_path)) {
   message("Data loaded from file.")
 } else {
 
-combMixModelsLin <- stepFlexmix(first_person_sing_ability_combined ~ daysSinceFirstText|room_id, k = 1:5, data = data_cluster, nrep=10)
+combMixModelsLin <- stepFlexmix(first_person_sing_ability_combined ~ DSFT|room_id, k = 1:5, data = data_cluster, nrep=10)
 bestcombMixModelLin <- getModel(combMixModelsLin, "BIC")
 
 # save the model 
@@ -992,12 +1031,22 @@ bestcombMixModelLin <- getModel(combMixModelsLin, "BIC")
   message("Data saved to file.")
 }
 
-# Combine with dataset
+cluster_means <- data_cluster %>%
+  mutate(cluster_id = bestcombMixModelLin@cluster) %>%
+  group_by(cluster_id) %>%
+  summarise(mean_val = mean(first_person_sing_ability_combined, na.rm = TRUE)) %>%
+  arrange(desc(mean_val))   # use desc() for highest → lowest, remove for lowest → highest
+
+# Extract the order of clusters
+ordered_clusters <- cluster_means$cluster_id
+
+# Relabel clusters in the dataset
 data_cluster$clusterComb <- factor(
   bestcombMixModelLin@cluster,
-  levels = sort(unique(bestcombMixModelLin@cluster)),  # ensures correct ordering
-  labels = paste0("Cluster_", sort(unique(bestcombMixModelLin@cluster)))  # gives readable labels
+  levels = ordered_clusters,
+  labels = paste0("Cluster_", seq_along(ordered_clusters))
 )
+
 dw$clusterComb <- NULL
 dw$clusterComb <- left_join(dw, data_cluster[!duplicated(data_cluster$room_id),], by="room_id")$clusterComb
 
@@ -1053,7 +1102,7 @@ standardize_parameters(clust5, method = "pseudo", ci_method = "satterthwaite")
 #### Plot trajectories for each cluster
 
 ```{r}
-smallerFontSize <- 14
+smallerFontSize <- 18
 
 # Extract standardized coefficients for all three clusters
 clusters <- list(clust1, clust2, clust3,clust4,clust5)
@@ -1102,6 +1151,12 @@ mid_points <- predicted_df %>%
   select(cluster, y_max = predicted) %>%
   left_join(sig_df %>% select(cluster, signif), by = "cluster")
 
+
+#manually edit cluster 5 label position if needed
+mid_points <- mid_points %>%
+  mutate(y_max = ifelse(cluster == "5", y_max - 0.025, y_max))
+
+
 # Plot predicted trajectories
 fig9a <- ggplot(predicted_df, aes(x = x, y = predicted, color = cluster, fill = cluster, group = cluster)) +
   geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = 0.2) +
@@ -1114,15 +1169,15 @@ fig9a <- ggplot(predicted_df, aes(x = x, y = predicted, color = cluster, fill = 
   ) +
   geom_line(size = 1.5) +
   xlab("Days in Therapy") +
-  ylab("1st-Person Projection\n(Able-Unable)") +
+  ylab("Projection Score") +
   scale_color_manual(values = able_palette) +
   scale_fill_manual(values = able_palette) +
   theme_minimal() +
-  theme(axis.text = element_text(size = smallerFontSize, color = "black"),
-        axis.title = element_text(size = smallerFontSize+1),
+  plot_aes +
+  theme(axis.text = element_text(size = smallerFontSize-4, color = "black"),
+        axis.title = element_text(size = smallerFontSize-2),
         panel.background = element_rect(fill = "white"),
-        axis.line = element_line(color = "black", size = 1)) +
-  plot_aes
+        axis.line = element_line(color = "black", size = 1)) 
 fig9a
 ```
 
@@ -1360,7 +1415,7 @@ pw3_sig_labels <- pw3 %>%
   mutate(
     group1 = sub(" - .*", "", contrast),
     group2 = sub(".* - ", "", contrast),
-    y.position = min(plotDat_fdSx$fdSx - (plotDat_fdSx$ci %||% 0), na.rm = TRUE) - (row_number() + 1) * 0.2,  # stagger positions
+    y.position = min(plotDat_fdSx$fdSx - (plotDat_fdSx$ci %||% 0), na.rm = TRUE) - (row_number() + 1) * 0.3,  # stagger positions
     label = case_when(
       p.value < 0.001 ~ "***",
       p.value < 0.01  ~ "**",
@@ -1373,24 +1428,23 @@ pw3_sig_labels <- pw3 %>%
 fig9d <- ggplot(plotDat_fdSx, aes(x = clusterComb, y = fdSx, fill = clusterComb)) +
   geom_bar(stat="identity", position=position_dodge(), show.legend = FALSE) +
   geom_errorbar(aes(ymin = lower.CL , ymax = upper.CL), width = 0.2, position = position_dodge(0.9)) +
-  
   scale_fill_manual(values = able_palette) +
-  xlab("Cluster") + ylab("Change in Symptoms") +
+  xlab("Cluster") + ylab(expression(Delta~"Symptoms (controlling for baseline)")) +
   theme_minimal() +
-  theme(axis.text = element_text(size = smallerFontSize, color = "black",angle = 45),
-        axis.title = element_text(size = smallerFontSize),
+  plot_aes +
+  theme(axis.text = element_text(size = smallerFontSize-4, color = "black",angle = 45),
+        axis.title = element_text(size = smallerFontSize-2),
         panel.background = element_rect(fill = "white", color = NA)) +
    stat_pvalue_manual(
     pw3_sig_labels, 
-    bracket.size = 1,
-    label.size = 8,
+    bracket.size = 0.5,
+    label.size = 6,
     label = "label",
     xmin = "group1", 
     xmax = "group2", 
     y.position = "y.position",
     tip.length = 0.0
-  )+
-  plot_aes
+  )
 
 # Arrange all figures
 blankfig <- ggplot() + theme_void()
@@ -1468,7 +1522,15 @@ able_fig = ggarrange(
 ) + plot_aes
 able_fig
 
-ggsave("/Users/sm9518/Downloads/able_clsuster.png", able_fig, width = 10, height = 7.5, dpi = 300)
+
+able_fig <- ggarrange(
+  fig9a, fig9d,
+  ncol = 2, 
+  nrow = 1,
+  heights = c(1, 1)
+)
+
+ggsave("/Users/sm9518/Downloads/able_clsuster.png", able_fig, width = 10, height = 6, dpi = 300)
 
 ```
 :::
@@ -1757,4 +1819,407 @@ mads_coefs |>
 ```
 :::
 ::::
+
+
+
+```{r}
+dv_list <- c(
+"first_person_sing_valence_combined",
+"first_person_sing_ability_combined"
+)
+
+
+
+mads_coefs <- map_dfr(dv_list, function(dv_base) {
+  dv_between <- paste0(dv_base, "_between")
+  dv_within  <- paste0(dv_base, "_within")
+  
+  formula_str <- paste0("Internalizing ~ daysSinceFirstText + ", 
+                        dv_between, " + ", dv_within, " + (1|room_id)")
+  
+  # Fit the model
+  model <- lmerTest::lmer(as.formula(formula_str), data = disaggregated)
+  
+  # Tidy original estimates
+  tidy_df <- broom.mixed::tidy(model, effects = "fixed", conf.int = TRUE, p.values = TRUE) %>%
+    filter(term %in% c(dv_between, dv_within))
+  
+  # Standardized coefficients
+  stan_df <- standardize_parameters(model, method = "pseudo", ci_method = "satterthwaite") %>%
+    as_tibble() %>%
+    rename(
+      term = Parameter,
+      Std_Coefficient = Std_Coefficient,
+      CI_low = CI_low,
+      CI_high = CI_high
+    ) %>%
+    select(term, Std_Coefficient, CI_low, CI_high)
+  
+  # Merge standardized coefficients into tidy_df and keep model column
+  tidy_df <- tidy_df %>%
+    left_join(stan_df, by = "term") %>%
+    mutate(
+      term = case_when(
+        term == dv_between ~ "Between",
+        term == dv_within ~ "Within"
+      ),
+      model = dv_base  # preserve model name
+    )
+  
+  tidy_df
+})
+
+disagg_plot <- mads_coefs %>%
+  mutate(
+    model = case_when(
+      model == "first_person_sing_valence_combined" ~ "I/me/my = good",
+      model == "first_person_sing_ability_combined" ~ "I/me/my = able",
+      TRUE ~ model
+    ),
+    term = case_when(
+     term == "Within" ~ "Within-Person\nEffect",
+      term == "Between" ~ "Between-Person\nEffect",
+      TRUE ~ term
+    ),
+    term = factor(term, levels = c("Between-Person\nEffect", "Within-Person\nEffect")),
+    effect_combo = paste(model, term, sep = "_")
+  ) %>%
+  ggplot(aes(
+    x = Std_Coefficient, 
+    y = term,
+    xmin = CI_low, 
+    xmax = CI_high,
+    color = term  # <-- map color here
+  )) +
+  geom_pointrange(size = 1.25, linewidth = 1.5, position = position_dodge(width = 0.5)) +
+  geom_text(aes(label = case_when(
+      p.value < 0.001 ~ "***",
+      p.value < 0.01 ~ "**",
+      p.value < 0.05 ~ "*",
+      TRUE ~ ""
+    )),
+    hjust = 0.5, vjust = -0.7, size = 5, color = "black",
+    position = position_dodge(width = 0.5)
+  ) +
+  scale_color_manual(values = good_palette) +
+  labs(
+    x = "Standardized Coefficients",
+    y = NULL,
+    color = "Effect Type"
+  ) +
+  scale_x_continuous(limits = c(-0.10, 0.10), breaks = c(-0.10, 0, 0.10)) +
+  scale_y_discrete(limits = rev) + 
+  facet_wrap(~ model, ncol = 2, scales = "fixed") +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    text = element_text(size = 24, family = "Futura Medium"),
+    axis.text = element_text(color = "black"),
+    axis.title.x = element_text(margin = margin(t = 10)),
+    axis.text.y = element_text(size = 18),
+    strip.text = element_text(face = "bold", size = 24),
+    axis.ticks.y = element_blank(),
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 28),
+     panel.spacing = unit(3, "lines")  # <-- adds extra space between facets
+  )
+
+disagg_plot
+
+ggsave("/Users/sm9518/Downloads/disagg_plot.png", disagg_plot, width = 8.5, height = 5, dpi = 300)
+
+```
+
+
+```{r}
+
+data = read_csv(file.path(data_dir, "I-representations/data/text-level/MADS_roberta_results_Indy_am_v_feel_cleaned.csv"))
+data = data %>%
+  dplyr::rename(
+    Internalizing = internalizing,
+    daysSinceFirstText = days_since_first_text
+  ) %>% 
+  filter(bin < 5)  %>% 
+ dplyr:: mutate(
+    first_person_sing_valence_am = rowMeans(select(., I_projection_valence_am, me_projection_valence_am, my_projection_valence_am), na.rm = TRUE),
+    first_person_sing_valence_feel = rowMeans(select(., I_projection_valence_feel, me_projection_valence_feel, my_projection_valence_feel), na.rm = TRUE),
+    first_person_sing_valence_combined = rowMeans(select(., I_projection_valence_combined, me_projection_valence_combined, my_projection_valence_combined), na.rm = TRUE),
+    first_person_sing_ability_am = rowMeans(select(., I_projection_ability_am, me_projection_ability_am, my_projection_ability_am), na.rm = TRUE),
+    first_person_sing_ability_feel = rowMeans(select(., I_projection_ability_feel, me_projection_ability_feel, my_projection_ability_feel), na.rm = TRUE),
+    first_person_sing_ability_combined = rowMeans(select(., I_projection_ability_combined, me_projection_ability_combined, my_projection_ability_combined), na.rm = TRUE)
+    )
+good_bad_data_small =  data |> 
+  dplyr::group_by(room_id,daysSinceFirstText) %>%
+  dplyr::summarise(across(
+    where(is.numeric),
+    mean,
+    na.rm = TRUE
+  ), .groups = "drop") |> 
+  dplyr::filter(n_total > 20)
+
+good_bad_data_small_scaled = good_bad_data_small |> 
+  mutate(
+    daysSinceFirstText = scale(daysSinceFirstText),
+    Internalizing = scale(Internalizing),
+    first_person_sing_valence_combined = scale(first_person_sing_valence_combined),
+    first_person_sing_ability_combined = scale(first_person_sing_ability_combined)
+  )
+
+data_plot = good_bad_data_small |> 
+  select(room_id, user_id,daysSinceFirstText, Internalizing, first_person_sing_valence_combined, first_person_sing_ability_combined) |> 
+  pivot_longer(cols = c(first_person_sing_valence_combined, first_person_sing_ability_combined), 
+               names_to = "projections", values_to = "distance") |> 
+  mutate(projections = ifelse(projections == "first_person_sing_valence_combined", 
+                              "I/me/my = good",  "I/me/my = able"))
+
+```
+
+```{r}
+#| eval: false
+#| include: false
+# Fit lmer model
+
+model = lmer(Internalizing ~ daysSinceFirstText + (1|room_id), data = good_bad_data_small_scaled)
+model_stan = standardize_parameters(model, method = "pseudo", ci_method = "satterthwaite") 
+model_tidy <- broom.mixed::tidy(model, effects = "fixed", conf.int = TRUE, p.values = TRUE)
+model_stan_df <- as_tibble(model_stan) %>%
+  rename(
+    term = Parameter,
+    Std_Coefficient = Std_Coefficient,
+    CI_low = CI_low,
+    CI_high = CI_high
+  ) %>%
+  select(term, Std_Coefficient, CI_low, CI_high)
+
+# Merge using left_join from dplyr
+model_merged <- model_tidy %>%
+  left_join(model_stan_df, by = "term")
+
+
+projections <- c("Internalizing")
+
+
+annotation_df <- lapply(projections, function(proj) {
+  # Fit model on scaled data
+  model <- lmer(as.formula(paste0(proj, " ~ daysSinceFirstText + (1|room_id)")),
+                data = good_bad_data_small_scaled)
+  
+  # Standardized parameters for this model
+  model_stan <- standardize_parameters(model, method = "pseudo", ci_method = "satterthwaite")
+  model_stan_df <- as_tibble(model_stan) %>%
+    rename(
+      term = Parameter,
+      Std_Coefficient = Std_Coefficient,
+      CI_low = CI_low,
+      CI_high = CI_high
+    ) %>%
+    select(term, Std_Coefficient, CI_low, CI_high)
+  
+  # Extract standardized coefficient for daysSinceFirstText
+  std_coeff <- model_stan_df %>% filter(term == "daysSinceFirstText") %>% pull(Std_Coefficient)
+  
+  # Extract p-value from the unstandardized model (still needed for significance stars)
+  p_val <- summary(model)$coefficients["daysSinceFirstText", "Pr(>|t|)"]
+  
+  # Reference x for annotation
+  ref_x <- mean(good_bad_data_small$daysSinceFirstText, na.rm = TRUE)
+  
+  # Predict fitted value at reference x (using unstandardized model)
+  fitted_y <- predict(model, newdata = data.frame(daysSinceFirstText = ref_x, room_id = NA), re.form = NA)
+  
+  # Significance label
+  sig_label <- case_when(
+    p_val < 0.001 ~ "***",
+    p_val < 0.01  ~ "**",
+    p_val < 0.05  ~ "*",
+    TRUE ~ "n.s."
+  )
+  
+  # Small offset above line (scaled)
+  offset <- 0.005 * diff(range(good_bad_data_small_scaled[[proj]], na.rm = TRUE))
+  
+  # Combine standardized coefficient and significance
+  label_text <- paste0("β = ", round(std_coeff, 3), " ", sig_label)
+  
+  data.frame(
+    label = label_text
+  )
+}) |> bind_rows()
+
+plot_gam <- data_plot |> 
+  ggplot(aes(x = daysSinceFirstText, y = Internalizing)) +
+  geom_smooth(
+    method = "lm",
+    se = TRUE,
+    size = 1.5,
+    color = good_palette[6],  # line color
+    fill = good_palette[6],   # ribbon color
+    alpha = 0.25              # transparency for ribbon
+  ) +
+  labs(y = "Internalizing\nScore", x = "Days in Therapy") +
+  plot_aes +
+  geom_text(
+    data = annotation_df,
+    aes(x = 45, y = , label = label),
+    inherit.aes = FALSE,
+    hjust = 0.5,
+    vjust = -0.5,
+    size = 12
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(hjust = 0.5, size = 24, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5, face = "bold"),
+    text = element_text(size = 24, family = "Futura Medium"),
+    plot.caption = element_text(hjust = 0, size = 20, face = "italic")
+  )
+plot_gam
+
+# Plot 2: lmer coefficient plot
+plot_coef <- model_merged |> 
+  filter(term == "daysSinceFirstText") |>
+  mutate(
+    term = case_when(
+      term == "daysSinceFirstText" ~ "Days in Therapy",
+      TRUE ~ term
+    )
+  ) |>
+  ggplot(aes(x = Std_Coefficient, y = term)) +
+  geom_pointrange(aes(xmin = CI_low, xmax = CI_high),
+                  size = 1.25, linewidth = 1.5, color = good_palette[6]) +
+  geom_text(aes(label = case_when(
+      p.value < 0.001 ~ "***",
+      p.value < 0.01  ~ "**",
+      p.value < 0.05  ~ "*",
+      TRUE ~ ""
+    )),
+    hjust = 0.5, vjust = -0.7, size = 6, color = "black"
+  ) +
+  labs(
+    x = "Standardized Coefficient",
+    y = NULL
+  ) +
+  scale_x_continuous(limits = c(-0.45, 0.1)) +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    text = element_text(size = 24, family = "Futura Medium"),
+    axis.text = element_text(color = "black"),
+    axis.title.x = element_text(margin = margin(t = 10)),
+    axis.text.y = element_text(size = 18),
+    strip.text = element_text(face = "bold", size = 24),
+    axis.ticks.y = element_blank(),
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 28)
+  )
+
+# Combine plots vertically
+combined_plot <- plot_gam / plot_coef + 
+  plot_layout(heights = c(2, 1))  # adjust relative heights
+
+combined_plot
+
+ggsave("/Users/sm9518/Downloads/symptom_plot.png", combined_plot, width = 12, height = 6, dpi = 300)
+
+
+
+```
+
+
+```{r}
+#| eval: false
+#| include: false
+projections <- c("first_person_sing_valence_combined", "first_person_sing_ability_combined")
+
+annotation_df <- lapply(projections, function(proj) {
+  # Fit model on scaled data
+  model <- lmer(as.formula(paste0(proj, " ~ daysSinceFirstText + (1|room_id)")),
+                data = good_bad_data_small_scaled)
+  
+  # Get standardized parameters
+  model_stan <- standardize_parameters(model, method = "pseudo", ci_method = "satterthwaite")
+  model_stan_df <- as_tibble(model_stan) %>%
+    rename(
+      term = Parameter,
+      Std_Coefficient = Std_Coefficient,
+      CI_low = CI_low,
+      CI_high = CI_high
+    ) %>%
+    select(term, Std_Coefficient, CI_low, CI_high)
+  
+  # Extract standardized coefficient for daysSinceFirstText
+  std_coeff <- model_stan_df %>% filter(term == "daysSinceFirstText") %>% pull(Std_Coefficient)
+  
+  # Extract p-value from the unstandardized model (for significance stars)
+  p_val <- summary(model)$coefficients["daysSinceFirstText", "Pr(>|t|)"]
+  
+  # Reference x for annotation
+  ref_x <- mean(good_bad_data_small$daysSinceFirstText, na.rm = TRUE)
+  
+  # Predict fitted value at reference x (unstandardized scale)
+  fitted_y <- predict(model, newdata = data.frame(daysSinceFirstText = ref_x, room_id = NA), re.form = NA)
+  
+  # Significance label
+  sig_label <- case_when(
+    p_val < 0.001 ~ "***",
+    p_val < 0.01  ~ "**",
+    p_val < 0.05  ~ "*",
+    TRUE ~ "n.s."
+  )
+  
+  # Small offset above line
+  offset <- 0.005 * diff(range(good_bad_data_small_scaled[[proj]], na.rm = TRUE))
+  
+  # Combine standardized coefficient and significance
+  label_text <- paste0("β = ", round(std_coeff, 3), " ", sig_label)
+  
+  data.frame(
+    projections = ifelse(proj == "first_person_sing_valence_combined", 
+                         "I/me/my = good", "I/me/my = able"),
+    x = ref_x,
+    y = fitted_y + offset,
+    label = label_text
+  )
+}) |> bind_rows()
+
+# Plot with annotations
+plot <- data_plot |> 
+  ggplot(aes(x = daysSinceFirstText, y = distance, group = user_id, color = projections)) +
+  geom_smooth(
+    aes(group = projections, fill = projections),
+    method = "lm",
+    se = TRUE,
+    size = 1.5,
+    alpha = 0.25   # makes the confidence ribbon semi-transparent
+  ) +
+  scale_color_manual(values = good_palette, name = "") +
+  scale_fill_manual(values = good_palette, name = "") +  # ensures ribbon matches line color
+  labs(y = "Projections Score", x = "Days in Therapy") +
+  plot_aes +
+  facet_wrap(~projections, scales = "free_y") +
+  geom_text(
+    data = annotation_df,
+    aes(x = 45, y = 0.3, label = label),
+    inherit.aes = FALSE,
+    hjust = 0.5,
+    vjust = -0.5,
+    size = 12
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(hjust = 0.5, size = 24, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5, face = "bold"),
+    text = element_text(size = 24, family = "Futura Medium"),
+    plot.caption = element_text(hjust = 0, size = 20, face = "italic")
+  )
+plot
+
+ggsave("/Users/sm9518/Downloads/line_plot.png", plot, width = 18, height = 6, dpi = 300)
+
+
+#ggsave("/Users/sm9518/Downloads/line_plot_points.png", plot, width = 10, height = 7.5, dpi = 300)
+
+```
 
