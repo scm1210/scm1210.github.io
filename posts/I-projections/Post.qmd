@@ -164,21 +164,20 @@ data_dir = "/Users/sm9518/Library/CloudStorage/Box-Box/Talkspace_ErikNook_Harvar
 ```
 
 ```{r}
-data = read_csv(file.path(data_dir, "I-representations/data/text-level/MADS_roberta_results_Indy_am_v_feel_cleaned.csv"))
-data = data %>%
-  dplyr::rename(
-    Internalizing = internalizing,
-    daysSinceFirstText = days_since_first_text
-  ) %>% 
-  filter(bin < 5)  %>% 
- dplyr:: mutate(
-    first_person_sing_valence_am = rowMeans(select(., I_projection_valence_am, me_projection_valence_am, my_projection_valence_am), na.rm = TRUE),
-    first_person_sing_valence_feel = rowMeans(select(., I_projection_valence_feel, me_projection_valence_feel, my_projection_valence_feel), na.rm = TRUE),
-    first_person_sing_valence_combined = rowMeans(select(., I_projection_valence_combined, me_projection_valence_combined, my_projection_valence_combined), na.rm = TRUE),
-    first_person_sing_ability_am = rowMeans(select(., I_projection_ability_am, me_projection_ability_am, my_projection_ability_am), na.rm = TRUE),
-    first_person_sing_ability_feel = rowMeans(select(., I_projection_ability_feel, me_projection_ability_feel, my_projection_ability_feel), na.rm = TRUE),
-    first_person_sing_ability_combined = rowMeans(select(., I_projection_ability_combined, me_projection_ability_combined, my_projection_ability_combined), na.rm = TRUE)
-    )
+#data = read_csv(file.path(data_dir, "I-representations/data/text-level/MADS_roberta_results_Indy_am_v_feel_cleaned.csv"))
+data = read_csv(file.path(data_dir, "I-representations/data/text-level/MADS_roberta_results_origin_full.csv"))
+
+  data = data %>%
+    dplyr::rename(
+      Internalizing = internalizing,
+      daysSinceFirstText = days_since_first_text
+    ) %>% 
+    filter(bin < 5)  %>% 
+   dplyr:: mutate(
+      first_person_sing_valence_combined = rowMeans(select(., i_projection_valence, me_projection_valence, my_projection_valence), na.rm = TRUE),
+      first_person_sing_ability_combined = rowMeans(select(., i_projection_ability, me_projection_ability, my_projection_ability), na.rm = TRUE)
+      )
+
 
 good_bad_data_small =  data |> 
   dplyr::group_by(room_id,daysSinceFirstText) %>%
@@ -189,25 +188,9 @@ good_bad_data_small =  data |>
   ), .groups = "drop") |> 
   dplyr::filter(n_total > 20)
 
-length(unique(data$room_id))
+#length(unique(data$room_id))
 
 ```
-
-# Overview
-
-## Under the hood
-
-***What this analysis does***
-
--   Loads a RoBERTa (a LLM) to embed participant text into high-dimensional vectors.
-
--   Defines psychological axes (valence, ability) using controlled “I am” / “I feel” statements; each axis is the normalized difference between mean embeddings of positive vs. negative statements.
-
--   This allows us to capture the psychological dimensions of interest in the embedding space (i.e., good-bad and able-unable).
-
--   Projects target words (e.g., I, me, my) onto these axes by computing the dot product between each word’s embedding and the axis vector, capturing how strongly that word aligns with a psychological dimension.
-
--   Aggregates these projections at the text level to create text-level measures of valence and ability projections for each participant, which we can then use for down-stream analyses.
 
 # Q1.) Do projections move closer to the positive end of the axis over time?
 
@@ -434,29 +417,19 @@ table_model(pct_words_disagg, dv_name = "% Able-unable Words model summary (Disa
 
 ```{r}
 #| include: false
-data = read_csv(file.path(data_dir, "I-representations/data/text-level/MADS_roberta_results_Indy_am_v_feel_cleaned.csv"))
+data = read_csv(file.path(data_dir, "I-representations/data/text-level/MADS_roberta_results_origin_full.csv"))
 
 data = data %>%
-  dplyr::rename( # make sure to use dplyr explicitly 
+  dplyr::rename(
     Internalizing = internalizing,
     daysSinceFirstText = days_since_first_text
   ) %>% 
   filter(bin < 5)  %>% 
-  mutate(
-    # Recode Llama_rating_4: 1 = "Preamble", else "Not Preamble"
-    Llama_rating_4 = ifelse(Llama_rating_4 == 1, "Preamble", "Not Preamble"),
-    Llama_rating_4 = factor(Llama_rating_4, levels = c("Not Preamble", "Preamble")),
-    
-    # Recode Llama_rating similarly if needed
-    Llama_rating = ifelse(Llama_rating == 1, "Preamble", "Not Preamble"),
-    Llama_rating = factor(Llama_rating, levels = c("Not Preamble", "Preamble")) ,
-    first_person_sing_valence_am = rowMeans(select(., I_projection_valence_am, me_projection_valence_am, my_projection_valence_am), na.rm = TRUE),
-    first_person_sing_valence_feel = rowMeans(select(., I_projection_valence_feel, me_projection_valence_feel, my_projection_valence_feel), na.rm = TRUE),
-    first_person_sing_valence_combined = rowMeans(select(., I_projection_valence_combined, me_projection_valence_combined, my_projection_valence_combined), na.rm = TRUE),
-    first_person_sing_ability_am = rowMeans(select(., I_projection_ability_am, me_projection_ability_am, my_projection_ability_am), na.rm = TRUE),
-    first_person_sing_ability_feel = rowMeans(select(., I_projection_ability_feel, me_projection_ability_feel, my_projection_ability_feel), na.rm = TRUE),
-    first_person_sing_ability_combined = rowMeans(select(., I_projection_ability_combined, me_projection_ability_combined, my_projection_ability_combined), na.rm = TRUE)
+ dplyr:: mutate(
+    first_person_sing_valence_combined = rowMeans(select(., i_projection_valence, me_projection_valence, my_projection_valence), na.rm = TRUE),
+    first_person_sing_ability_combined = rowMeans(select(., i_projection_ability, me_projection_ability, my_projection_ability), na.rm = TRUE)
     )
+
 
 
 
@@ -476,7 +449,7 @@ data_cluster <- data %>%
   drop_na(first_person_sing_valence_combined) # drop NAs for the given variable we want to build the model on
 
 
-file_path <- "/Users/sm9518/Library/CloudStorage/Box-Box/Talkspace_ErikNook_HarvardPrinceton/Data/Processed/Mesquiti_LBA_2024/Talkspace-LBA/data/models/1st_person_valence_model.rds"
+file_path <- "/Users/sm9518/Library/CloudStorage/Box-Box/Talkspace_ErikNook_HarvardPrinceton/Data/Processed/Mesquiti_LBA_2024/Talkspace-LBA/data/models/1st_person_valence_model_origin.rds"
 
 # Check if the file exists
 if (file.exists(file_path)) {
@@ -485,8 +458,8 @@ if (file.exists(file_path)) {
   message("Data loaded from file.")
 } else {
 
-combMixModelsLin <- stepFlexmix(first_person_sing_valence_combined ~ DSFT|room_id, k = 1:2, data = data_cluster, nrep=10)
-bestcombMixModelLin <- getModel(combMixModelsLin, "BIC")
+combMixModelsLin <- stepFlexmix(first_person_sing_valence_combined ~ DSFT|room_id, k = 1:10, data = data_cluster, nrep=10)
+bestcombMixModelLin <- getModel(combMixModelsLin, "AIC")
 
 # save the model 
   saveRDS(bestcombMixModelLin, file = file_path)
@@ -555,7 +528,19 @@ clust2 <- lmer(first_person_sing_valence_combined ~ daysSinceFirstText + (1|room
 standardize_parameters(clust2, method = "pseudo", ci_method = "satterthwaite")
 ```
 
+#### Cluster 3
 
+```{r}
+clust3 <- lmer(first_person_sing_valence_combined ~ daysSinceFirstText + (1|room_id), data = data_cluster[data_cluster$clusterComb=="Cluster_3",]); 
+standardize_parameters(clust3, method = "pseudo", ci_method = "satterthwaite")
+```
+
+#### Cluster 4
+
+```{r}
+clust4 <- lmer(first_person_sing_valence_combined ~ daysSinceFirstText + (1|room_id), data = data_cluster[data_cluster$clusterComb=="Cluster_4",]); 
+standardize_parameters(clust4, method = "pseudo", ci_method = "satterthwaite")
+```
 
 #### Plot trajectories for each cluster
 
@@ -563,8 +548,8 @@ standardize_parameters(clust2, method = "pseudo", ci_method = "satterthwaite")
 smallerFontSize <- 18
 
 # Extract standardized coefficients for all three clusters
-clusters <- list(clust1, clust2)
-cluster_names <- c("1", "2")
+clusters <- list(clust1, clust2,clust3,clust4)
+cluster_names <- c("1", "2","3","4")
 
 sig_df <- lapply(seq_along(clusters), function(i) {
   fe <- extract_lmer_data(clusters[[i]])  # your function
@@ -647,7 +632,7 @@ dw = dw |>
   mutate(bSx = bPHQ + bGAD,
          fSx = fPHQ + fGAD,
          fdSx = fdPHQ + fdGAD,
-         clusterComb = factor(clusterComb, levels = c("Cluster_1", "Cluster_2"))
+         clusterComb = factor(clusterComb, levels = c("Cluster_1", "Cluster_2", "Cluster_3", "Cluster_4"))
   )
 ```
 
@@ -1014,7 +999,7 @@ data_cluster <- data %>%
 
 ```{r build ability model}
 
-able_file_path <- "/Users/sm9518/Library/CloudStorage/Box-Box/Talkspace_ErikNook_HarvardPrinceton/Data/Processed/Mesquiti_LBA_2024/Talkspace-LBA/data/models/1st_person_ability_model.rds"
+able_file_path <- "/Users/sm9518/Library/CloudStorage/Box-Box/Talkspace_ErikNook_HarvardPrinceton/Data/Processed/Mesquiti_LBA_2024/Talkspace-LBA/data/models/1st_person_ability_model_origin.rds"
 
 # Check if the file exists
 if (file.exists(able_file_path)) {
@@ -1023,8 +1008,10 @@ if (file.exists(able_file_path)) {
   message("Data loaded from file.")
 } else {
 
-combMixModelsLin <- stepFlexmix(first_person_sing_ability_combined ~ DSFT|room_id, k = 1:5, data = data_cluster, nrep=10)
-bestcombMixModelLin <- getModel(combMixModelsLin, "BIC")
+combMixModelsLin <- stepFlexmix(first_person_sing_ability_combined ~ DSFT|room_id, k = 1:4, data = data_cluster, nrep=10)
+bestcombMixModelLin <- getModel(combMixModelsLin, "AIC")
+
+plot(combMixModelsLin)
 
 # save the model 
   saveRDS(bestcombMixModelLin, file = able_file_path)
@@ -1091,13 +1078,6 @@ standardize_parameters(clust3, method = "pseudo", ci_method = "satterthwaite")
 clust4 <- lmer(first_person_sing_ability_combined ~ daysSinceFirstText + (1|room_id), data = data_cluster[data_cluster$clusterComb=="Cluster_4",]); 
 standardize_parameters(clust4, method = "pseudo", ci_method = "satterthwaite")
 ```
-#### Cluster 5
-
-```{r}
-clust5 <- lmer(first_person_sing_ability_combined ~ daysSinceFirstText + (1|room_id), data = data_cluster[data_cluster$clusterComb=="Cluster_5",]); 
-standardize_parameters(clust5, method = "pseudo", ci_method = "satterthwaite")
-```
-
 
 #### Plot trajectories for each cluster
 
@@ -1105,8 +1085,8 @@ standardize_parameters(clust5, method = "pseudo", ci_method = "satterthwaite")
 smallerFontSize <- 18
 
 # Extract standardized coefficients for all three clusters
-clusters <- list(clust1, clust2, clust3,clust4,clust5)
-cluster_names <- c("1", "2", "3","4","5")
+clusters <- list(clust1, clust2, clust3,clust4)
+cluster_names <- c("1", "2", "3","4")
 
 sig_df <- lapply(seq_along(clusters), function(i) {
   fe <- extract_lmer_data(clusters[[i]])  # your function
@@ -1130,7 +1110,7 @@ predicted_list <- lapply(clusters, function(mod) {
     data.frame()
 })
 
-# Add cluster names to predicted data
+
 for (i in seq_along(predicted_list)) {
   predicted_list[[i]]$cluster <- cluster_names[i]
 }
@@ -1193,7 +1173,7 @@ dw = dw |>
   mutate(bSx = bPHQ + bGAD,
          fSx = fPHQ + fGAD,
          fdSx = fdPHQ + fdGAD,
-         clusterComb = factor(clusterComb, levels = c("Cluster_1", "Cluster_2", "Cluster_3","Cluster_4","Cluster_5"))
+         clusterComb = factor(clusterComb, levels = c("Cluster_1", "Cluster_2", "Cluster_3","Cluster_4"))
   )
 ```
 
@@ -1246,7 +1226,6 @@ pw1 |>
 # Differences in final internalizing symptoms by cluster
 M2 <- aov(fSx ~ clusterComb, data = dw)
 
-
 M2 |> 
   extract_lmer_data() |> 
   select(-outcome) |>
@@ -1289,8 +1268,6 @@ extract_lmer_data(M3) |>
   select(-outcome) |>
   mutate(across(where(is.numeric), ~round(., 3))) |>
   DT::datatable()
-
-
 
 #estimated marginal means
 emm3 <- emmeans::emmeans(M3, specs = "clusterComb")
@@ -1336,7 +1313,7 @@ plotDat_bsx <- plotDat_bsx %>%
 
 # Add significance manually for now
 # If you want to show the pairwise stars on top of each bar, you can assign based on Tukey/emmeans
-plotDat_bsx$signif <- c("***","+", "***", "***","***")  # adjust based on pw1
+plotDat_bsx$signif <- c("***", "***", "***","***")  # adjust based on pw1
 
 
 pw1_sig_labels <- pw1 %>%
@@ -1392,16 +1369,15 @@ fig9c <- ggplot(plotDat_fsx, aes(x = clusterComb, y = fSx, fill = clusterComb)) 
   theme(axis.text = element_text(size = smallerFontSize, color = "black",angle = 45),
         axis.title = element_text(size = smallerFontSize),
         panel.background = element_rect(fill = "white", color = NA)) +
-  stat_pvalue_manual(
-    pw2_sig_labels, 
-    bracket.size = 1,
-    label.size = 8,
-    label = "label",
-    xmin = "group1", 
-    xmax = "group2", 
-    y.position = "y.position",
-    tip.length = 0.0
-  )+
+  #stat_pvalue_manual(
+   # pw2_sig_labels, 
+    #bracket.size = 1,
+    #label.size = 8,
+    #label = "label",
+    #xmin = "group1", 
+    #xmax = "group2", 
+    #y.position = "y.position",
+    #tip.length = 0.0)+
   plot_aes
 
 
@@ -1434,17 +1410,17 @@ fig9d <- ggplot(plotDat_fdSx, aes(x = clusterComb, y = fdSx, fill = clusterComb)
   plot_aes +
   theme(axis.text = element_text(size = smallerFontSize-4, color = "black",angle = 45),
         axis.title = element_text(size = smallerFontSize-2),
-        panel.background = element_rect(fill = "white", color = NA)) +
-   stat_pvalue_manual(
-    pw3_sig_labels, 
-    bracket.size = 0.5,
-    label.size = 6,
-    label = "label",
-    xmin = "group1", 
-    xmax = "group2", 
-    y.position = "y.position",
-    tip.length = 0.0
-  )
+        panel.background = element_rect(fill = "white", color = NA)) 
+   #stat_pvalue_manual(
+    #pw3_sig_labels, 
+    #bracket.size = 0.5,
+    #label.size = 6,
+    #label = "label",
+    #xmin = "group1", 
+    #xmax = "group2", 
+    #y.position = "y.position",
+    #tip.length = 0.0
+  #)
 
 # Arrange all figures
 blankfig <- ggplot() + theme_void()
@@ -1551,29 +1527,16 @@ good_bad_data_small =  data |>
 
 # and now select only the columns we need
 
-good_bad_data_small = good_bad_data_small |> 
-  mutate(
-    daysSinceFirstText = scale(daysSinceFirstText),
-    Internalizing = scale(Internalizing),
-    first_person_sing_valence_combined = scale(first_person_sing_valence_combined),
-    first_person_sing_ability_combined = scale(first_person_sing_ability_combined),
-    a_projection_valence = scale(a_projection_valence),
-    a_projection_ability = scale(a_projection_ability),
-    and_projection_valence = scale(and_projection_valence),
-    and_projection_ability = scale(and_projection_ability),
-    the_projection_valence = scale(the_projection_valence),
-    the_projection_ability = scale(the_projection_ability)
-  )
 
 #disaggregate data
 
 between <- good_bad_data_small %>%
   gather(item, value,
          first_person_sing_valence_combined, first_person_sing_ability_combined,
+         we_projection_ability,we_projection_valence,
          a_projection_valence, a_projection_ability,
-         and_projection_valence, and_projection_ability,
-         the_projection_valence, the_projection_ability
-  ) %>%
+         an_projection_valence, an_projection_ability,
+         the_projection_valence, the_projection_ability) %>%
   select(user_id, item, value) %>%
   unique() %>%
   group_by(user_id, item) %>%
@@ -1587,8 +1550,10 @@ between <- good_bad_data_small %>%
 within <- good_bad_data_small %>%
   gather(item, value,
          first_person_sing_valence_combined, first_person_sing_ability_combined,
+         we_projection_ability,
+         we_projection_valence,
          a_projection_valence, a_projection_ability,
-         and_projection_valence, and_projection_ability,
+         an_projection_valence, an_projection_ability,
          the_projection_valence, the_projection_ability) %>%
   group_by(user_id, item) %>%
   mutate(value = scale(value, center = TRUE, scale = TRUE),
@@ -1599,9 +1564,26 @@ within <- good_bad_data_small %>%
 disaggregated <- within %>%
   left_join(between, by = "user_id") 
 
+good_bad_data_small = good_bad_data_small |> 
+  mutate(
+    daysSinceFirstText = scale(daysSinceFirstText),
+    Internalizing = scale(Internalizing),
+    first_person_sing_valence_combined = scale(first_person_sing_valence_combined),
+    first_person_sing_ability_combined = scale(first_person_sing_ability_combined),
+    we_projection_valence = scale(we_projection_valence),
+    we_projection_ability = scale(we_projection_ability),
+    a_projection_valence = scale(a_projection_valence),
+    a_projection_ability = scale(a_projection_ability),
+    an_projection_valence = scale(an_projection_valence),
+    an_projection_ability = scale(an_projection_ability),
+    the_projection_valence = scale(the_projection_valence),
+    the_projection_ability = scale(the_projection_ability)
+  )
+
+
 ```
 
-## Changes over Therapy
+## Changes in Meaning over Time
 
 ::: scrollable
 ```{r}
@@ -1612,8 +1594,10 @@ dv_list <- c(
 "first_person_sing_ability_combined",
 "a_projection_valence",
 "a_projection_ability",
-"and_projection_valence",
-"and_projection_ability",
+"we_projection_valence",
+"we_projection_ability",
+"an_projection_valence",
+"an_projection_ability",
 "the_projection_valence",
 "the_projection_ability"
 )
@@ -1653,7 +1637,6 @@ ggplot(aes(x = estimate, y = factor(outcome),
     y = NULL,
     color = "Word"
   ) +
-  scale_x_continuous(limits = c(-0.2, 0.2)) +
   geom_vline(xintercept = 0, linetype = "dashed") +
   annotate("text", x = -0.20, y = max_y, label = "← Bad/Unable", hjust = 0, size = 3, fontface = "italic") +
   annotate("text", x =  0.18, y = max_y, label = "Good/Able →", hjust = 1, size = 3, fontface = "italic") +
@@ -1683,10 +1666,12 @@ ggplot(aes(x = estimate, y = factor(outcome),
 dv_list <- c(
 "first_person_sing_valence_combined",
 "first_person_sing_ability_combined",
+"we_projection_valence",
+"we_projection_ability",
 "a_projection_valence",
 "a_projection_ability",
-"and_projection_valence",
-"and_projection_ability",
+"an_projection_valence",
+"an_projection_ability",
 "the_projection_valence",
 "the_projection_ability"
 )
@@ -1725,7 +1710,6 @@ ggplot(aes(x = estimate, y = factor(term),
     y = NULL,
     color = "Word"
   ) +
-  scale_x_continuous(limits = c(-0.2, 0.2)) +
   geom_vline(xintercept = 0, linetype = "dashed") +
   annotate("text", x = -0.2, y = max_y, label = "← Fewer Sx", hjust = 0, size = 3, fontface = "italic") +
   annotate("text", x =  0.18, y = max_y, label = "More Sx →", hjust = 1, size = 3, fontface = "italic") +
@@ -1749,10 +1733,12 @@ ggplot(aes(x = estimate, y = factor(term),
 dv_list <- c(
 "first_person_sing_valence_combined",
 "first_person_sing_ability_combined",
+"we_projection_valence",
+"we_projection_ability",
 "a_projection_valence",
 "a_projection_ability",
-"and_projection_valence",
-"and_projection_ability",
+"an_projection_valence",
+"an_projection_ability",
 "the_projection_valence",
 "the_projection_ability"
 )
@@ -1801,7 +1787,6 @@ mads_coefs |>
     y = NULL,
     color = NULL
   ) +
-  scale_x_continuous(limits = c(-0.2, 0.2)) +
   geom_vline(xintercept = 0, linetype = "dashed") +
   facet_wrap(~ model, ncol = 2, scales = "fixed") +
   theme_minimal() +
@@ -1907,7 +1892,6 @@ disagg_plot <- mads_coefs %>%
     y = NULL,
     color = "Effect Type"
   ) +
-  scale_x_continuous(limits = c(-0.10, 0.10), breaks = c(-0.10, 0, 0.10)) +
   scale_y_discrete(limits = rev) + 
   facet_wrap(~ model, ncol = 2, scales = "fixed") +
   geom_vline(xintercept = 0, linetype = "dashed") +
@@ -1973,159 +1957,6 @@ data_plot = good_bad_data_small |>
                               "I/me/my = good",  "I/me/my = able"))
 
 ```
-
-```{r}
-#| eval: false
-#| include: false
-# Fit lmer model
-
-model = lmer(Internalizing ~ daysSinceFirstText + (1|room_id), data = good_bad_data_small_scaled)
-model_stan = standardize_parameters(model, method = "pseudo", ci_method = "satterthwaite") 
-model_tidy <- broom.mixed::tidy(model, effects = "fixed", conf.int = TRUE, p.values = TRUE)
-model_stan_df <- as_tibble(model_stan) %>%
-  rename(
-    term = Parameter,
-    Std_Coefficient = Std_Coefficient,
-    CI_low = CI_low,
-    CI_high = CI_high
-  ) %>%
-  select(term, Std_Coefficient, CI_low, CI_high)
-
-# Merge using left_join from dplyr
-model_merged <- model_tidy %>%
-  left_join(model_stan_df, by = "term")
-
-
-projections <- c("Internalizing")
-
-
-annotation_df <- lapply(projections, function(proj) {
-  # Fit model on scaled data
-  model <- lmer(as.formula(paste0(proj, " ~ daysSinceFirstText + (1|room_id)")),
-                data = good_bad_data_small_scaled)
-  
-  # Standardized parameters for this model
-  model_stan <- standardize_parameters(model, method = "pseudo", ci_method = "satterthwaite")
-  model_stan_df <- as_tibble(model_stan) %>%
-    rename(
-      term = Parameter,
-      Std_Coefficient = Std_Coefficient,
-      CI_low = CI_low,
-      CI_high = CI_high
-    ) %>%
-    select(term, Std_Coefficient, CI_low, CI_high)
-  
-  # Extract standardized coefficient for daysSinceFirstText
-  std_coeff <- model_stan_df %>% filter(term == "daysSinceFirstText") %>% pull(Std_Coefficient)
-  
-  # Extract p-value from the unstandardized model (still needed for significance stars)
-  p_val <- summary(model)$coefficients["daysSinceFirstText", "Pr(>|t|)"]
-  
-  # Reference x for annotation
-  ref_x <- mean(good_bad_data_small$daysSinceFirstText, na.rm = TRUE)
-  
-  # Predict fitted value at reference x (using unstandardized model)
-  fitted_y <- predict(model, newdata = data.frame(daysSinceFirstText = ref_x, room_id = NA), re.form = NA)
-  
-  # Significance label
-  sig_label <- case_when(
-    p_val < 0.001 ~ "***",
-    p_val < 0.01  ~ "**",
-    p_val < 0.05  ~ "*",
-    TRUE ~ "n.s."
-  )
-  
-  # Small offset above line (scaled)
-  offset <- 0.005 * diff(range(good_bad_data_small_scaled[[proj]], na.rm = TRUE))
-  
-  # Combine standardized coefficient and significance
-  label_text <- paste0("β = ", round(std_coeff, 3), " ", sig_label)
-  
-  data.frame(
-    label = label_text
-  )
-}) |> bind_rows()
-
-plot_gam <- data_plot |> 
-  ggplot(aes(x = daysSinceFirstText, y = Internalizing)) +
-  geom_smooth(
-    method = "lm",
-    se = TRUE,
-    size = 1.5,
-    color = good_palette[6],  # line color
-    fill = good_palette[6],   # ribbon color
-    alpha = 0.25              # transparency for ribbon
-  ) +
-  labs(y = "Internalizing\nScore", x = "Days in Therapy") +
-  plot_aes +
-  geom_text(
-    data = annotation_df,
-    aes(x = 45, y = , label = label),
-    inherit.aes = FALSE,
-    hjust = 0.5,
-    vjust = -0.5,
-    size = 12
-  ) +
-  theme_minimal() +
-  theme(
-    legend.position = "none",
-    plot.title = element_text(hjust = 0.5, size = 24, face = "bold"),
-    plot.subtitle = element_text(hjust = 0.5, face = "bold"),
-    text = element_text(size = 24, family = "Futura Medium"),
-    plot.caption = element_text(hjust = 0, size = 20, face = "italic")
-  )
-plot_gam
-
-# Plot 2: lmer coefficient plot
-plot_coef <- model_merged |> 
-  filter(term == "daysSinceFirstText") |>
-  mutate(
-    term = case_when(
-      term == "daysSinceFirstText" ~ "Days in Therapy",
-      TRUE ~ term
-    )
-  ) |>
-  ggplot(aes(x = Std_Coefficient, y = term)) +
-  geom_pointrange(aes(xmin = CI_low, xmax = CI_high),
-                  size = 1.25, linewidth = 1.5, color = good_palette[6]) +
-  geom_text(aes(label = case_when(
-      p.value < 0.001 ~ "***",
-      p.value < 0.01  ~ "**",
-      p.value < 0.05  ~ "*",
-      TRUE ~ ""
-    )),
-    hjust = 0.5, vjust = -0.7, size = 6, color = "black"
-  ) +
-  labs(
-    x = "Standardized Coefficient",
-    y = NULL
-  ) +
-  scale_x_continuous(limits = c(-0.45, 0.1)) +
-  geom_vline(xintercept = 0, linetype = "dashed") +
-  theme_minimal() +
-  theme(
-    legend.position = "none",
-    text = element_text(size = 24, family = "Futura Medium"),
-    axis.text = element_text(color = "black"),
-    axis.title.x = element_text(margin = margin(t = 10)),
-    axis.text.y = element_text(size = 18),
-    strip.text = element_text(face = "bold", size = 24),
-    axis.ticks.y = element_blank(),
-    plot.title = element_text(hjust = 0.5, face = "bold", size = 28)
-  )
-
-# Combine plots vertically
-combined_plot <- plot_gam / plot_coef + 
-  plot_layout(heights = c(2, 1))  # adjust relative heights
-
-combined_plot
-
-ggsave("/Users/sm9518/Downloads/symptom_plot.png", combined_plot, width = 12, height = 6, dpi = 300)
-
-
-
-```
-
 
 ```{r}
 #| eval: false
@@ -2222,4 +2053,5 @@ ggsave("/Users/sm9518/Downloads/line_plot.png", plot, width = 18, height = 6, dp
 #ggsave("/Users/sm9518/Downloads/line_plot_points.png", plot, width = 10, height = 7.5, dpi = 300)
 
 ```
+
 

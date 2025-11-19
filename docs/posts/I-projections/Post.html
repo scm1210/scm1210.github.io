@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.40">
 
   <meta name="author" content="Steven">
-  <meta name="dcterms.date" content="2025-11-06">
+  <meta name="dcterms.date" content="2025-11-19">
   <title>I-Projection Results</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -150,32 +150,8 @@ Steven
 </div>
 </div>
 
-  <p class="date">2025-11-06</p>
+  <p class="date">2025-11-19</p>
 </section>
-<section class="slide level2 center">
-
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 3729</code></pre>
-</div>
-</div>
-</section>
-<section>
-<section id="overview" class="title-slide slide level1 center">
-<h1>Overview</h1>
-
-</section>
-<section id="under-the-hood" class="slide level2 center">
-<h2>Under the hood</h2>
-<p><strong><em>What this analysis does</em></strong></p>
-<ul>
-<li><p>Loads a RoBERTa (a LLM) to embed participant text into high-dimensional vectors.</p></li>
-<li><p>Defines psychological axes (valence, ability) using controlled “I am” / “I feel” statements; each axis is the normalized difference between mean embeddings of positive vs.&nbsp;negative statements.</p></li>
-<li><p>This allows us to capture the psychological dimensions of interest in the embedding space (i.e., good-bad and able-unable).</p></li>
-<li><p>Projects target words (e.g., I, me, my) onto these axes by computing the dot product between each word’s embedding and the axis vector, capturing how strongly that word aligns with a psychological dimension.</p></li>
-<li><p>Aggregates these projections at the text level to create text-level measures of valence and ability projections for each participant, which we can then use for down-stream analyses.</p></li>
-</ul>
-</section></section>
 <section>
 <section id="q1.-do-projections-move-closer-to-the-positive-end-of-the-axis-over-time" class="title-slide slide level1 center">
 <h1>Q1.) Do projections move closer to the positive end of the axis over time?</h1>
@@ -185,8 +161,8 @@ Steven
 <h2>first_person_sing_valence_combined</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-1d359ceeb423b0deb46a" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-1d359ceeb423b0deb46a">{"x":{"filter":"none","vertical":false,"data":[["1","2"],["Intercept","daysSinceFirstText"],["0.3140 [0.3090, 0.3190]","0.0000 [0.0000, 0.0000]"],[10848.359,9152.788],[0.003,0],[123.713,5.328],["&lt; .001","&lt; .001"],["***","***"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>b [95% CI]<\/th>\n      <th>df<\/th>\n      <th>SE<\/th>\n      <th>t<\/th>\n      <th>p<\/th>\n      <th>significance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"b [95% CI]","targets":2},{"name":"df","targets":3},{"name":"SE","targets":4},{"name":"t","targets":5},{"name":"p","targets":6},{"name":"significance","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-47d7a9654f770b663361" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-47d7a9654f770b663361">{"x":{"filter":"none","vertical":false,"data":[["1","2"],["Intercept","daysSinceFirstText"],["0.3480 [0.3440, 0.3510]","0.0000 [0.0000, 0.0000]"],[9238.257,8791.084000000001],[0.002,0],[204.524,13.55],["&lt; .001","&lt; .001"],["***","***"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>b [95% CI]<\/th>\n      <th>df<\/th>\n      <th>SE<\/th>\n      <th>t<\/th>\n      <th>p<\/th>\n      <th>significance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"b [95% CI]","targets":2},{"name":"df","targets":3},{"name":"SE","targets":4},{"name":"t","targets":5},{"name":"p","targets":6},{"name":"significance","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -209,8 +185,8 @@ Steven
 <h2>first_person_sing_ability_combined</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-931f77a17fdabe177439" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-931f77a17fdabe177439">{"x":{"filter":"none","vertical":false,"data":[["1","2"],["Intercept","daysSinceFirstText"],["0.2670 [0.2630, 0.2710]","0.0010 [0.0000, 0.0010]"],[9908.204,8788.181],[0.002,0],[139.881,14.821],["&lt; .001","&lt; .001"],["***","***"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>b [95% CI]<\/th>\n      <th>df<\/th>\n      <th>SE<\/th>\n      <th>t<\/th>\n      <th>p<\/th>\n      <th>significance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"b [95% CI]","targets":2},{"name":"df","targets":3},{"name":"SE","targets":4},{"name":"t","targets":5},{"name":"p","targets":6},{"name":"significance","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-8bbab0eda410914533bb" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-8bbab0eda410914533bb">{"x":{"filter":"none","vertical":false,"data":[["1","2"],["Intercept","daysSinceFirstText"],["0.0500 [0.0460, 0.0530]","0.0010 [0.0010, 0.0010]"],[8258.284,8684.388999999999],[0.002,0],[29.085,30.076],["&lt; .001","&lt; .001"],["***","***"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>b [95% CI]<\/th>\n      <th>df<\/th>\n      <th>SE<\/th>\n      <th>t<\/th>\n      <th>p<\/th>\n      <th>significance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"b [95% CI]","targets":2},{"name":"df","targets":3},{"name":"SE","targets":4},{"name":"t","targets":5},{"name":"p","targets":6},{"name":"significance","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -238,16 +214,16 @@ Steven
 <div id="tabset-1-1">
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-c4d8171f12b7a1e1c705" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-c4d8171f12b7a1e1c705">{"x":{"filter":"none","vertical":false,"data":[["1","2","3"],["Intercept","first_person_sing_valence_combined","daysSinceFirstText"],["-0.0030 [-0.0300, 0.0240]","-0.0280 [-0.0420, -0.0140]","-0.2650 [-0.2770, -0.2530]"],[3663.794,9884.128000000001,8309.205],[0.014,0.007,0.006],[-0.244,-3.85,-43.469],[".808","&lt; .001","&lt; .001"],["","***","***"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>b [95% CI]<\/th>\n      <th>df<\/th>\n      <th>SE<\/th>\n      <th>t<\/th>\n      <th>p<\/th>\n      <th>significance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"b [95% CI]","targets":2},{"name":"df","targets":3},{"name":"SE","targets":4},{"name":"t","targets":5},{"name":"p","targets":6},{"name":"significance","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-d85f74835e6c6f1c6b30" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-d85f74835e6c6f1c6b30">{"x":{"filter":"none","vertical":false,"data":[["1","2","3"],["Intercept","first_person_sing_valence_combined","daysSinceFirstText"],["-0.0020 [-0.0290, 0.0240]","-0.0730 [-0.0890, -0.0570]","-0.2560 [-0.2680, -0.2440]"],[3674.404,11223.059,8627.591],[0.014,0.008,0.006],[-0.17,-9.202999999999999,-42.639],[".865","&lt; .001","&lt; .001"],["","***","***"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>b [95% CI]<\/th>\n      <th>df<\/th>\n      <th>SE<\/th>\n      <th>t<\/th>\n      <th>p<\/th>\n      <th>significance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"b [95% CI]","targets":2},{"name":"df","targets":3},{"name":"SE","targets":4},{"name":"t","targets":5},{"name":"p","targets":6},{"name":"significance","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
 <div id="tabset-1-2">
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-d4dab3787b538cbfa01f" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-d4dab3787b538cbfa01f">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4"],["Intercept","daysSinceFirstText","first_person_sing_valence_combined_within","first_person_sing_valence_combined_between"],["-0.0010 [-0.0280, 0.0260]","-0.2660 [-0.2780, -0.2540]","-0.0250 [-0.0390, -0.0120]","-0.0420 [-0.0700, -0.0130]"],[3547.232,8245.371999999999,7798.434,3612.636],[0.014,0.006,0.007,0.015],[-0.07099999999999999,-43.466,-3.651,-2.854],[".944","&lt; .001","&lt; .001",".004"],["","***","***","**"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>b [95% CI]<\/th>\n      <th>df<\/th>\n      <th>SE<\/th>\n      <th>t<\/th>\n      <th>p<\/th>\n      <th>significance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"b [95% CI]","targets":2},{"name":"df","targets":3},{"name":"SE","targets":4},{"name":"t","targets":5},{"name":"p","targets":6},{"name":"significance","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-91fb5b48dd4d8698e892" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-91fb5b48dd4d8698e892">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4"],["Intercept","daysSinceFirstText","first_person_sing_valence_combined_within","first_person_sing_valence_combined_between"],["-0.0010 [-0.0280, 0.0260]","-0.2590 [-0.2710, -0.2470]","-0.0380 [-0.0510, -0.0240]","-0.1000 [-0.1270, -0.0720]"],[3589.413,8522.674000000001,8082.705,3642.397],[0.014,0.006,0.007,0.014],[-0.066,-42.955,-5.538,-7.016],[".947","&lt; .001","&lt; .001","&lt; .001"],["","***","***","***"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>b [95% CI]<\/th>\n      <th>df<\/th>\n      <th>SE<\/th>\n      <th>t<\/th>\n      <th>p<\/th>\n      <th>significance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"b [95% CI]","targets":2},{"name":"df","targets":3},{"name":"SE","targets":4},{"name":"t","targets":5},{"name":"p","targets":6},{"name":"significance","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -264,16 +240,16 @@ Steven
 <div id="tabset-2-1">
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-ca3dfed34ee0b57a30b6" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-ca3dfed34ee0b57a30b6">{"x":{"filter":"none","vertical":false,"data":[["1","2","3"],["Intercept","first_person_sing_ability_combined","daysSinceFirstText"],["-0.0040 [-0.0300, 0.0230]","-0.0450 [-0.0600, -0.0290]","-0.2610 [-0.2730, -0.2490]"],[3665.233,10554.059,8365.342000000001],[0.014,0.008,0.006],[-0.259,-5.743,-42.454],[".796","&lt; .001","&lt; .001"],["","***","***"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>b [95% CI]<\/th>\n      <th>df<\/th>\n      <th>SE<\/th>\n      <th>t<\/th>\n      <th>p<\/th>\n      <th>significance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"b [95% CI]","targets":2},{"name":"df","targets":3},{"name":"SE","targets":4},{"name":"t","targets":5},{"name":"p","targets":6},{"name":"significance","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-800fd530bc6053c303c3" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-800fd530bc6053c303c3">{"x":{"filter":"none","vertical":false,"data":[["1","2","3"],["Intercept","first_person_sing_ability_combined","daysSinceFirstText"],["-0.0020 [-0.0290, 0.0250]","-0.0600 [-0.0770, -0.0430]","-0.2510 [-0.2640, -0.2390]"],[3675.082,11610.504,8838.146000000001],[0.014,0.008999999999999999,0.006],[-0.142,-6.983,-40.676],[".887","&lt; .001","&lt; .001"],["","***","***"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>b [95% CI]<\/th>\n      <th>df<\/th>\n      <th>SE<\/th>\n      <th>t<\/th>\n      <th>p<\/th>\n      <th>significance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"b [95% CI]","targets":2},{"name":"df","targets":3},{"name":"SE","targets":4},{"name":"t","targets":5},{"name":"p","targets":6},{"name":"significance","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
 <div id="tabset-2-2">
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-fb36efb3a0de5e00bfcb" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-fb36efb3a0de5e00bfcb">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4"],["Intercept","first_person_sing_ability_combined_between","first_person_sing_ability_combined_within","daysSinceFirstText"],["-0.0010 [-0.0290, 0.0260]","-0.0310 [-0.0590, -0.0030]","-0.0260 [-0.0390, -0.0120]","-0.2630 [-0.2760, -0.2510]"],[3547.873,3575.327,7808.834,8255.286],[0.014,0.014,0.007,0.006],[-0.108,-2.186,-3.685,-42.603],[".914",".029","&lt; .001","&lt; .001"],["","*","***","***"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>b [95% CI]<\/th>\n      <th>df<\/th>\n      <th>SE<\/th>\n      <th>t<\/th>\n      <th>p<\/th>\n      <th>significance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"b [95% CI]","targets":2},{"name":"df","targets":3},{"name":"SE","targets":4},{"name":"t","targets":5},{"name":"p","targets":6},{"name":"significance","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-5d24b64120af7794627c" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-5d24b64120af7794627c">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4"],["Intercept","first_person_sing_ability_combined_between","first_person_sing_ability_combined_within","daysSinceFirstText"],["-0.0030 [-0.0300, 0.0240]","-0.0100 [-0.0380, 0.0170]","-0.0450 [-0.0590, -0.0320]","-0.2520 [-0.2640, -0.2400]"],[3589.077,3600.016,8114.044,8545.599],[0.014,0.014,0.007,0.006],[-0.223,-0.732,-6.417,-40.367],[".824",".464","&lt; .001","&lt; .001"],["","","***","***"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>b [95% CI]<\/th>\n      <th>df<\/th>\n      <th>SE<\/th>\n      <th>t<\/th>\n      <th>p<\/th>\n      <th>significance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"b [95% CI]","targets":2},{"name":"df","targets":3},{"name":"SE","targets":4},{"name":"t","targets":5},{"name":"p","targets":6},{"name":"significance","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -295,16 +271,16 @@ Steven
 <div id="tabset-3-1">
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-39d2db9caa167132348a" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-39d2db9caa167132348a">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9"],["Intercept","i","pct_good","pct_bad","n_total","tone_pos","tone_neg","daysSinceFirstText","first_person_sing_valence_combined"],["-0.0060 [-0.0320, 0.0200]","0.0390 [0.0220, 0.0560]","-0.0020 [-0.0150, 0.0120]","0.0020 [-0.0110, 0.0160]","0.0010 [-0.0150, 0.0180]","-0.0220 [-0.0390, -0.0050]","0.0770 [0.0610, 0.0920]","-0.2720 [-0.2840, -0.2600]","-0.0290 [-0.0440, -0.0150]"],[3599.463,11063.241,9446.168,9409.401,11073.346,10293.106,10247.134,8300.188,9915.349],[0.013,0.008999999999999999,0.007,0.007,0.008,0.008999999999999999,0.008,0.006,0.007],[-0.433,4.472,-0.215,0.349,0.152,-2.502,9.749000000000001,-44.262,-4.097],[".665","&lt; .001",".830",".727",".879",".012","&lt; .001","&lt; .001","&lt; .001"],["","***","","","","*","***","***","***"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>b [95% CI]<\/th>\n      <th>df<\/th>\n      <th>SE<\/th>\n      <th>t<\/th>\n      <th>p<\/th>\n      <th>significance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"b [95% CI]","targets":2},{"name":"df","targets":3},{"name":"SE","targets":4},{"name":"t","targets":5},{"name":"p","targets":6},{"name":"significance","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-a55c3a999d82c587f36a" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-a55c3a999d82c587f36a">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9"],["Intercept","i","pct_good","pct_bad","n_total","tone_pos","tone_neg","daysSinceFirstText","first_person_sing_valence_combined"],["-0.0030 [-0.0290, 0.0230]","0.0280 [0.0120, 0.0440]","-0.0030 [-0.0170, 0.0100]","0.0040 [-0.0090, 0.0170]","0.0000 [-0.0160, 0.0160]","-0.0210 [-0.0370, -0.0060]","0.0700 [0.0550, 0.0850]","-0.2610 [-0.2730, -0.2500]","-0.0700 [-0.0860, -0.0550]"],[3616.42,11222.728,9686.904,9614.686,11325.481,10545.141,10429.482,8618.4,11251.594],[0.013,0.008,0.007,0.007,0.008,0.008,0.008,0.006,0.008],[-0.216,3.39,-0.495,0.55,0.012,-2.672,9.276,-43.348,-8.847],[".829",".001",".620",".582",".991",".008","&lt; .001","&lt; .001","&lt; .001"],["","**","","","","**","***","***","***"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>b [95% CI]<\/th>\n      <th>df<\/th>\n      <th>SE<\/th>\n      <th>t<\/th>\n      <th>p<\/th>\n      <th>significance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"b [95% CI]","targets":2},{"name":"df","targets":3},{"name":"SE","targets":4},{"name":"t","targets":5},{"name":"p","targets":6},{"name":"significance","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
 <div id="tabset-3-2">
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-3f657da5a9dbd8a2341c" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-3f657da5a9dbd8a2341c">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["Intercept","daysSinceFirstText","first_person_sing_valence_combined_between","first_person_sing_valence_combined_within","tone_pos_within","tone_pos_between","tone_neg_within","tone_neg_between","n_total_within","n_total_between","i_between","i_within","pct_good_between","pct_good_within","pct_bad_between","pct_bad_within"],["-0.0050 [-0.0320, 0.0220]","-0.2670 [-0.2800, -0.2550]","-0.0470 [-0.0760, -0.0180]","-0.0260 [-0.0400, -0.0120]","-0.0320 [-0.0460, -0.0170]","-0.0700 [-0.1040, -0.0360]","0.0250 [0.0110, 0.0390]","0.1850 [0.1540, 0.2160]","0.0100 [-0.0040, 0.0240]","-0.0120 [-0.0390, 0.0150]","0.0880 [0.0580, 0.1180]","0.0020 [-0.0120, 0.0160]","0.0010 [-0.0290, 0.0320]","-0.0020 [-0.0160, 0.0120]","-0.0010 [-0.0290, 0.0270]","0.0100 [-0.0040, 0.0240]"],[3283.496,7818.728,3337.786,7370.578,7401.253,3356.578,7399.181,3339.627,7396.315,3288.15,3308.535,7401.842,3328.89,7393.705,3379.535,7393.051],[0.014,0.006,0.015,0.007,0.007,0.017,0.007,0.016,0.007,0.014,0.015,0.007,0.015,0.007,0.014,0.007],[-0.347,-42.484,-3.151,-3.702,-4.339,-4.038,3.41,11.677,1.38,-0.859,5.752,0.306,0.081,-0.294,-0.06900000000000001,1.357],[".728","&lt; .001",".002","&lt; .001","&lt; .001","&lt; .001",".001","&lt; .001",".168",".391","&lt; .001",".759",".935",".769",".945",".175"],["","***","**","***","***","***","**","***","","","***","","","","",""]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>b [95% CI]<\/th>\n      <th>df<\/th>\n      <th>SE<\/th>\n      <th>t<\/th>\n      <th>p<\/th>\n      <th>significance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"b [95% CI]","targets":2},{"name":"df","targets":3},{"name":"SE","targets":4},{"name":"t","targets":5},{"name":"p","targets":6},{"name":"significance","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-2b03d4ff3116a18ca5ec" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-2b03d4ff3116a18ca5ec">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["Intercept","daysSinceFirstText","first_person_sing_valence_combined_between","first_person_sing_valence_combined_within","tone_pos_within","tone_pos_between","tone_neg_within","tone_neg_between","n_total_within","n_total_between","i_between","i_within","pct_good_between","pct_good_within","pct_bad_between","pct_bad_within"],["-0.0030 [-0.0300, 0.0240]","-0.2610 [-0.2730, -0.2480]","-0.0690 [-0.0980, -0.0410]","-0.0380 [-0.0520, -0.0250]","-0.0320 [-0.0460, -0.0180]","-0.0600 [-0.0920, -0.0280]","0.0220 [0.0080, 0.0360]","0.1780 [0.1470, 0.2090]","0.0100 [-0.0030, 0.0240]","-0.0090 [-0.0360, 0.0180]","0.0840 [0.0540, 0.1140]","-0.0020 [-0.0160, 0.0120]","-0.0010 [-0.0310, 0.0290]","-0.0050 [-0.0180, 0.0090]","0.0030 [-0.0240, 0.0310]","0.0080 [-0.0060, 0.0210]"],[3306.157,8027.912,3344.169,7596.01,7587.536,3377.339,7586.986,3351.985,7587.698,3289.306,3319.934,7588.742,3338.739,7586.903,3396.08,7586.721],[0.014,0.006,0.015,0.007,0.007,0.016,0.007,0.016,0.007,0.014,0.015,0.007,0.015,0.007,0.014,0.007],[-0.235,-41.933,-4.748,-5.446,-4.513,-3.634,3.09,11.247,1.498,-0.622,5.496,-0.25,-0.061,-0.678,0.242,1.07],[".814","&lt; .001","&lt; .001","&lt; .001","&lt; .001","&lt; .001",".002","&lt; .001",".134",".534","&lt; .001",".802",".951",".498",".809",".285"],["","***","***","***","***","***","**","***","","","***","","","","",""]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>b [95% CI]<\/th>\n      <th>df<\/th>\n      <th>SE<\/th>\n      <th>t<\/th>\n      <th>p<\/th>\n      <th>significance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"b [95% CI]","targets":2},{"name":"df","targets":3},{"name":"SE","targets":4},{"name":"t","targets":5},{"name":"p","targets":6},{"name":"significance","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -321,16 +297,16 @@ Steven
 <div id="tabset-4-1">
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-eb2dabecd3efe7d701e8" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-eb2dabecd3efe7d701e8">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9"],["Intercept","i","pct_good","pct_bad","n_total","tone_pos","tone_neg","daysSinceFirstText","first_person_sing_ability_combined"],["-0.0060 [-0.0320, 0.0200]","0.0430 [0.0260, 0.0600]","-0.0020 [-0.0160, 0.0120]","0.0040 [-0.0100, 0.0170]","0.0020 [-0.0140, 0.0180]","-0.0220 [-0.0390, -0.0050]","0.0740 [0.0590, 0.0890]","-0.2680 [-0.2800, -0.2560]","-0.0450 [-0.0600, -0.0300]"],[3602.531,11044.075,9443.182000000001,9409.085999999999,11060.37,10302.293,10229.425,8354.861000000001,10576.29],[0.013,0.008999999999999999,0.007,0.007,0.008,0.008999999999999999,0.008,0.006,0.008],[-0.451,4.911,-0.236,0.518,0.246,-2.517,9.391999999999999,-43.287,-5.778],[".652","&lt; .001",".814",".604",".806",".012","&lt; .001","&lt; .001","&lt; .001"],["","***","","","","*","***","***","***"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>b [95% CI]<\/th>\n      <th>df<\/th>\n      <th>SE<\/th>\n      <th>t<\/th>\n      <th>p<\/th>\n      <th>significance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"b [95% CI]","targets":2},{"name":"df","targets":3},{"name":"SE","targets":4},{"name":"t","targets":5},{"name":"p","targets":6},{"name":"significance","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-86eca35343761127ae08" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-86eca35343761127ae08">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9"],["Intercept","i","pct_good","pct_bad","n_total","tone_pos","tone_neg","daysSinceFirstText","first_person_sing_ability_combined"],["-0.0030 [-0.0290, 0.0240]","0.0390 [0.0230, 0.0550]","-0.0030 [-0.0160, 0.0100]","0.0050 [-0.0080, 0.0190]","-0.0000 [-0.0160, 0.0160]","-0.0230 [-0.0390, -0.0070]","0.0680 [0.0530, 0.0830]","-0.2560 [-0.2690, -0.2440]","-0.0640 [-0.0810, -0.0470]"],[3614.017,11158.778,9666.447,9599.938,11307.231,10527.284,10411.512,8825.588,11618.669],[0.013,0.008,0.007,0.007,0.008,0.008,0.008,0.006,0.008999999999999999],[-0.202,4.689,-0.41,0.821,-0.013,-2.839,8.994,-41.383,-7.377],[".840","&lt; .001",".682",".411",".990",".005","&lt; .001","&lt; .001","&lt; .001"],["","***","","","","**","***","***","***"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>b [95% CI]<\/th>\n      <th>df<\/th>\n      <th>SE<\/th>\n      <th>t<\/th>\n      <th>p<\/th>\n      <th>significance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"b [95% CI]","targets":2},{"name":"df","targets":3},{"name":"SE","targets":4},{"name":"t","targets":5},{"name":"p","targets":6},{"name":"significance","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
 <div id="tabset-4-2">
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-80d87f616b8d074ad1db" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-80d87f616b8d074ad1db">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["Intercept","daysSinceFirstText","first_person_sing_ability_combined_between","first_person_sing_ability_combined_within","tone_pos_within","tone_pos_between","tone_neg_within","tone_neg_between","n_total_within","n_total_between","i_between","i_within","pct_good_between","pct_good_within","pct_bad_between","pct_bad_within"],["-0.0050 [-0.0320, 0.0220]","-0.2650 [-0.2770, -0.2530]","-0.0290 [-0.0580, -0.0000]","-0.0270 [-0.0410, -0.0130]","-0.0320 [-0.0460, -0.0170]","-0.0640 [-0.0970, -0.0300]","0.0240 [0.0090, 0.0380]","0.1840 [0.1530, 0.2150]","0.0100 [-0.0040, 0.0240]","-0.0120 [-0.0390, 0.0160]","0.0910 [0.0600, 0.1210]","0.0040 [-0.0100, 0.0180]","0.0010 [-0.0290, 0.0320]","-0.0020 [-0.0160, 0.0120]","-0.0000 [-0.0290, 0.0280]","0.0100 [-0.0040, 0.0230]"],[3283.597,7827.455,3305.857,7380.41,7401.425,3360.789,7399.598,3341.333,7396.532,3293.532,3312.596,7401.666,3329.88,7393.919,3380.706,7393.227],[0.014,0.006,0.015,0.007,0.007,0.017,0.007,0.016,0.007,0.014,0.015,0.007,0.015,0.007,0.014,0.007],[-0.379,-41.673,-1.968,-3.716,-4.304,-3.713,3.223,11.57,1.381,-0.842,5.85,0.572,0.08500000000000001,-0.262,-0.012,1.335],[".705","&lt; .001",".049","&lt; .001","&lt; .001","&lt; .001",".001","&lt; .001",".167",".400","&lt; .001",".567",".933",".794",".990",".182"],["","***","*","***","***","***","**","***","","","***","","","","",""]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>b [95% CI]<\/th>\n      <th>df<\/th>\n      <th>SE<\/th>\n      <th>t<\/th>\n      <th>p<\/th>\n      <th>significance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"b [95% CI]","targets":2},{"name":"df","targets":3},{"name":"SE","targets":4},{"name":"t","targets":5},{"name":"p","targets":6},{"name":"significance","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-0852e06c913ede74112e" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-0852e06c913ede74112e">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["Intercept","daysSinceFirstText","first_person_sing_ability_combined_between","first_person_sing_ability_combined_within","tone_pos_within","tone_pos_between","tone_neg_within","tone_neg_between","n_total_within","n_total_between","i_between","i_within","pct_good_between","pct_good_within","pct_bad_between","pct_bad_within"],["-0.0020 [-0.0290, 0.0250]","-0.2530 [-0.2660, -0.2410]","-0.0200 [-0.0480, 0.0090]","-0.0470 [-0.0620, -0.0330]","-0.0330 [-0.0470, -0.0190]","-0.0560 [-0.0880, -0.0230]","0.0200 [0.0060, 0.0340]","0.1830 [0.1520, 0.2140]","0.0100 [-0.0040, 0.0240]","-0.0150 [-0.0420, 0.0120]","0.0920 [0.0610, 0.1220]","0.0030 [-0.0110, 0.0170]","-0.0010 [-0.0310, 0.0300]","-0.0040 [-0.0180, 0.0100]","0.0020 [-0.0260, 0.0300]","0.0090 [-0.0050, 0.0230]"],[3306.681,8052.822,3305.834,7626.327,7587.308,3377.724,7587.289,3353.902,7587.441,3288.239,3322.364,7587.591,3338.31,7586.875,3395.771,7586.846],[0.014,0.006,0.014,0.007,0.007,0.017,0.007,0.016,0.007,0.014,0.016,0.007,0.015,0.007,0.014,0.007],[-0.177,-39.427,-1.354,-6.471,-4.657,-3.361,2.831,11.523,1.404,-1.106,5.906,0.374,-0.043,-0.5620000000000001,0.136,1.31],[".859","&lt; .001",".176","&lt; .001","&lt; .001",".001",".005","&lt; .001",".160",".269","&lt; .001",".708",".966",".574",".892",".190"],["","***","","***","***","**","**","***","","","***","","","","",""]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>b [95% CI]<\/th>\n      <th>df<\/th>\n      <th>SE<\/th>\n      <th>t<\/th>\n      <th>p<\/th>\n      <th>significance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"b [95% CI]","targets":2},{"name":"df","targets":3},{"name":"SE","targets":4},{"name":"t","targets":5},{"name":"p","targets":6},{"name":"significance","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -347,8 +323,8 @@ Steven
 <h2>Good-bad</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-16cc9496bb3ac6256d8c" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-16cc9496bb3ac6256d8c">{"x":{"filter":"none","vertical":false,"data":[["1","2"],["Cluster_1","Cluster_2"],[2730,989]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>clusterComb<\/th>\n      <th>n<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"clusterComb","targets":1},{"name":"n","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-ed866aa238fd554a5e1b" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ed866aa238fd554a5e1b">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4"],["Cluster_1","Cluster_2","Cluster_3","Cluster_4"],[1054,998,1405,269]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>clusterComb<\/th>\n      <th>n<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"clusterComb","targets":1},{"name":"n","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -357,7 +333,7 @@ Steven
 <h3 id="map-change-over-time-in-each-cluster">Map Change over time in each cluster</h3>
 <div class="scrollable">
 <div class="panel-tabset">
-<ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1">Cluster 1</a></li><li><a href="#tabset-5-2">Cluster 2</a></li><li><a href="#tabset-5-3">Plot trajectories for each cluster</a></li></ul>
+<ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1">Cluster 1</a></li><li><a href="#tabset-5-2">Cluster 2</a></li><li><a href="#tabset-5-3">Cluster 3</a></li><li><a href="#tabset-5-4">Cluster 4</a></li><li><a href="#tabset-5-5">Plot trajectories for each cluster</a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1">
 <div class="cell">
@@ -367,7 +343,7 @@ Steven
 Parameter          | Std. Coef. |       95% CI
 ----------------------------------------------
 (Intercept)        |       0.00 | [0.00, 0.00]
-daysSinceFirstText |       0.02 | [0.02, 0.03]</code></pre>
+daysSinceFirstText |       0.06 | [0.05, 0.06]</code></pre>
 </div>
 </div>
 </div>
@@ -376,19 +352,43 @@ daysSinceFirstText |       0.02 | [0.02, 0.03]</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code># Standardization method: pseudo
 
-Parameter          | Std. Coef. |         95% CI
-------------------------------------------------
-(Intercept)        |       0.00 | [ 0.00,  0.00]
-daysSinceFirstText |      -0.02 | [-0.03, -0.01]</code></pre>
+Parameter          | Std. Coef. |       95% CI
+----------------------------------------------
+(Intercept)        |       0.00 | [0.00, 0.00]
+daysSinceFirstText |       0.07 | [0.06, 0.08]</code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-5-3">
 <div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># Standardization method: pseudo
+
+Parameter          | Std. Coef. |        95% CI
+-----------------------------------------------
+(Intercept)        |       0.00 | [ 0.00, 0.00]
+daysSinceFirstText |  -3.67e-03 | [-0.01, 0.00]</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-5-4">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># Standardization method: pseudo
+
+Parameter          | Std. Coef. |         95% CI
+------------------------------------------------
+(Intercept)        |       0.00 | [ 0.00,  0.00]
+daysSinceFirstText |      -0.02 | [-0.03, -0.02]</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-5-5">
+<div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Post_files/figure-revealjs/unnamed-chunk-20-1.png" width="480"></p>
+<p><img data-src="Post_files/figure-revealjs/unnamed-chunk-22-1.png" width="480"></p>
 </figure>
 </div>
 </div>
@@ -412,8 +412,8 @@ daysSinceFirstText |      -0.02 | [-0.03, -0.01]</code></pre>
 <div id="tabset-6-1">
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-51e6192ffd5a8a96750f" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-51e6192ffd5a8a96750f">{"x":{"filter":"none","vertical":false,"data":[["1","2"],["clusterComb","Residuals"],[1,3717],[386.251,362710.704],[386.251,97.58199999999999],[3.958,null],[0.047,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>df<\/th>\n      <th>sumsq<\/th>\n      <th>meansq<\/th>\n      <th>statistic<\/th>\n      <th>p.value<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"df","targets":2},{"name":"sumsq","targets":3},{"name":"meansq","targets":4},{"name":"statistic","targets":5},{"name":"p.value","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-e9db65527cc0ccdb0931" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-e9db65527cc0ccdb0931">{"x":{"filter":"none","vertical":false,"data":[["1","2"],["clusterComb","Residuals"],[3,3722],[1542.837,362700.982],[514.279,97.44799999999999],[5.277,null],[0.001,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>df<\/th>\n      <th>sumsq<\/th>\n      <th>meansq<\/th>\n      <th>statistic<\/th>\n      <th>p.value<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"df","targets":2},{"name":"sumsq","targets":3},{"name":"meansq","targets":4},{"name":"statistic","targets":5},{"name":"p.value","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <hr>
@@ -421,8 +421,8 @@ daysSinceFirstText |      -0.02 | [-0.03, -0.01]</code></pre>
 <div id="tabset-6-2">
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-56642004ba97ec580591" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-56642004ba97ec580591">{"x":{"filter":"none","vertical":false,"data":[["1"],["Cluster_1 - Cluster_2"],[-0.729],[0.367],[3717],[-1.99],[0.047],["*"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>contrast<\/th>\n      <th>estimate<\/th>\n      <th>SE<\/th>\n      <th>df<\/th>\n      <th>t.ratio<\/th>\n      <th>p.value<\/th>\n      <th>signif<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"contrast","targets":1},{"name":"estimate","targets":2},{"name":"SE","targets":3},{"name":"df","targets":4},{"name":"t.ratio","targets":5},{"name":"p.value","targets":6},{"name":"signif","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-7dca319b8badd066df45" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-7dca319b8badd066df45">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],["Cluster_1 - Cluster_2","Cluster_1 - Cluster_3","Cluster_1 - Cluster_4","Cluster_2 - Cluster_3","Cluster_2 - Cluster_4","Cluster_3 - Cluster_4"],[-0.648,-1.044,-2.494,-0.396,-1.846,-1.45],[0.436,0.402,0.674,0.409,0.678,0.657],[3722,3722,3722,3722,3722,3722],[-1.486,-2.595,-3.699,-0.969,-2.722,-2.207],[0.446,0.047,0.001,0.767,0.033,0.121],["","*","**","","*",""]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>contrast<\/th>\n      <th>estimate<\/th>\n      <th>SE<\/th>\n      <th>df<\/th>\n      <th>t.ratio<\/th>\n      <th>p.value<\/th>\n      <th>signif<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"contrast","targets":1},{"name":"estimate","targets":2},{"name":"SE","targets":3},{"name":"df","targets":4},{"name":"t.ratio","targets":5},{"name":"p.value","targets":6},{"name":"signif","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -436,16 +436,16 @@ daysSinceFirstText |      -0.02 | [-0.03, -0.01]</code></pre>
 <div id="tabset-7-1">
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-4b0c777e7511fbb32f95" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-4b0c777e7511fbb32f95">{"x":{"filter":"none","vertical":false,"data":[["1","2"],["clusterComb","Residuals"],[1,3717],[1059.123,355182.557],[1059.123,95.556],[11.084,null],[0.001,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>df<\/th>\n      <th>sumsq<\/th>\n      <th>meansq<\/th>\n      <th>statistic<\/th>\n      <th>p.value<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"df","targets":2},{"name":"sumsq","targets":3},{"name":"meansq","targets":4},{"name":"statistic","targets":5},{"name":"p.value","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-3a7b87146aa1a13edd7b" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-3a7b87146aa1a13edd7b">{"x":{"filter":"none","vertical":false,"data":[["1","2"],["clusterComb","Residuals"],[3,3722],[3997.784,352960.801],[1332.595,94.831],[14.052,null],[0,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>df<\/th>\n      <th>sumsq<\/th>\n      <th>meansq<\/th>\n      <th>statistic<\/th>\n      <th>p.value<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"df","targets":2},{"name":"sumsq","targets":3},{"name":"meansq","targets":4},{"name":"statistic","targets":5},{"name":"p.value","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
 <div id="tabset-7-2">
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-2c367a7c92ea8b39ce33" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-2c367a7c92ea8b39ce33">{"x":{"filter":"none","vertical":false,"data":[["1"],["Cluster_1 - Cluster_2"],[-1.208],[0.363],[3717],[-3.329],[0.001],["***"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>contrast<\/th>\n      <th>estimate<\/th>\n      <th>SE<\/th>\n      <th>df<\/th>\n      <th>t.ratio<\/th>\n      <th>p.value<\/th>\n      <th>signif<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"contrast","targets":1},{"name":"estimate","targets":2},{"name":"SE","targets":3},{"name":"df","targets":4},{"name":"t.ratio","targets":5},{"name":"p.value","targets":6},{"name":"signif","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-6322e014d5945f66e00b" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-6322e014d5945f66e00b">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],["Cluster_1 - Cluster_2","Cluster_1 - Cluster_3","Cluster_1 - Cluster_4","Cluster_2 - Cluster_3","Cluster_2 - Cluster_4","Cluster_3 - Cluster_4"],[-1.098,-2.24,-3.18,-1.143,-2.082,-0.9389999999999999],[0.43,0.397,0.665,0.403,0.669,0.648],[3722,3722,3722,3722,3722,3722],[-2.552,-5.646,-4.78,-2.835,-3.112,-1.449],[0.052,0,0,0.024,0.01,0.469],["","***","***","*","*",""]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>contrast<\/th>\n      <th>estimate<\/th>\n      <th>SE<\/th>\n      <th>df<\/th>\n      <th>t.ratio<\/th>\n      <th>p.value<\/th>\n      <th>signif<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"contrast","targets":1},{"name":"estimate","targets":2},{"name":"SE","targets":3},{"name":"df","targets":4},{"name":"t.ratio","targets":5},{"name":"p.value","targets":6},{"name":"signif","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -460,16 +460,16 @@ daysSinceFirstText |      -0.02 | [-0.03, -0.01]</code></pre>
 <div id="tabset-8-1">
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-d68d9856e535daaef616" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-d68d9856e535daaef616">{"x":{"filter":"none","vertical":false,"data":[["1","2","3"],["(Intercept)","clusterCombCluster_2","bSx"],[3.541,0.837,-0.491],[0.343,0.311,0.014],[10.308,2.687,-35.285],[0,0.007,0],[2.867,0.226,-0.519],[4.214,1.447,-0.464]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>estimate<\/th>\n      <th>std.error<\/th>\n      <th>statistic<\/th>\n      <th>p.value<\/th>\n      <th>conf.low<\/th>\n      <th>conf.high<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6,7]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"estimate","targets":2},{"name":"std.error","targets":3},{"name":"statistic","targets":4},{"name":"p.value","targets":5},{"name":"conf.low","targets":6},{"name":"conf.high","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-f3eb7e8fa40ccfb83591" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-f3eb7e8fa40ccfb83591">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5"],["(Intercept)","clusterCombCluster_2","clusterCombCluster_3","clusterCombCluster_4","bSx"],[2.856,0.771,1.714,1.921,-0.495],[0.392,0.37,0.341,0.573,0.014],[7.288,2.084,5.021,3.354,-35.646],[0,0.037,0,0.001,0],[2.088,0.046,1.044,0.798,-0.523],[3.625,1.495,2.383,3.044,-0.468]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>estimate<\/th>\n      <th>std.error<\/th>\n      <th>statistic<\/th>\n      <th>p.value<\/th>\n      <th>conf.low<\/th>\n      <th>conf.high<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6,7]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"estimate","targets":2},{"name":"std.error","targets":3},{"name":"statistic","targets":4},{"name":"p.value","targets":5},{"name":"conf.low","targets":6},{"name":"conf.high","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
 <div id="tabset-8-2">
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-209ef433e4726b468aac" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-209ef433e4726b468aac">{"x":{"filter":"none","vertical":false,"data":[["1"],["Cluster_1 - Cluster_2"],[-0.837],[0.311],[3716],[-2.687],[0.007],["**"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>contrast<\/th>\n      <th>estimate<\/th>\n      <th>SE<\/th>\n      <th>df<\/th>\n      <th>t.ratio<\/th>\n      <th>p.value<\/th>\n      <th>signif<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"contrast","targets":1},{"name":"estimate","targets":2},{"name":"SE","targets":3},{"name":"df","targets":4},{"name":"t.ratio","targets":5},{"name":"p.value","targets":6},{"name":"signif","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-12612addd8d1801d9012" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-12612addd8d1801d9012">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],["Cluster_1 - Cluster_2","Cluster_1 - Cluster_3","Cluster_1 - Cluster_4","Cluster_2 - Cluster_3","Cluster_2 - Cluster_4","Cluster_3 - Cluster_4"],[-0.771,-1.714,-1.921,-0.9429999999999999,-1.15,-0.207],[0.37,0.341,0.573,0.346,0.575,0.5570000000000001],[3721,3721,3721,3721,3721,3721],[-2.084,-5.021,-3.354,-2.722,-1.999,-0.372],[0.158,0,0.004,0.033,0.188,0.982],["","***","**","*","",""]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>contrast<\/th>\n      <th>estimate<\/th>\n      <th>SE<\/th>\n      <th>df<\/th>\n      <th>t.ratio<\/th>\n      <th>p.value<\/th>\n      <th>signif<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"contrast","targets":1},{"name":"estimate","targets":2},{"name":"SE","targets":3},{"name":"df","targets":4},{"name":"t.ratio","targets":5},{"name":"p.value","targets":6},{"name":"signif","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -484,7 +484,7 @@ daysSinceFirstText |      -0.02 | [-0.03, -0.01]</code></pre>
 
 <h4 id="plot">Plot</h4>
 
-<img data-src="Post_files/figure-revealjs/unnamed-chunk-28-1.png" width="576" class="r-stretch"></section>
+<img data-src="Post_files/figure-revealjs/unnamed-chunk-30-1.png" width="576" class="r-stretch"></section>
 <section class="slide level2 center">
 
 <h3 id="do-clusters-moderate">Do clusters moderate?</h3>
@@ -493,8 +493,8 @@ daysSinceFirstText |      -0.02 | [-0.03, -0.01]</code></pre>
 <div class="scrollable">
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-592474a872123eb4416b" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-592474a872123eb4416b">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5"],["Cluster_1","first_person_sing_valence_combined","clusterCombCluster_2","daysSinceFirstText","first_person_sing_valence_combined x clusterCombCluster_2"],["21.4250 [21.1000, 21.7500]","-0.2210 [-0.3320, -0.1100]","1.0190 [0.3980, 1.6390]","-0.1170 [-0.1180, -0.1150]","0.2110 [0.0320, 0.3900]"],[3994.226,173983.037,3755.298,174385.399,173932.718],[0.166,0.057,0.316,0.001,0.091],[129.255,-3.903,3.219,-183.395,2.306],["&lt; .001","&lt; .001",".001","&lt; .001",".021"],["***","***","**","***","*"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>b [95% CI]<\/th>\n      <th>df<\/th>\n      <th>SE<\/th>\n      <th>t<\/th>\n      <th>p<\/th>\n      <th>significance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"b [95% CI]","targets":2},{"name":"df","targets":3},{"name":"SE","targets":4},{"name":"t","targets":5},{"name":"p","targets":6},{"name":"significance","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-896a2df4629f1e93b3bb" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-896a2df4629f1e93b3bb">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9"],["Cluster_1","first_person_sing_valence_combined","clusterCombCluster_2","clusterCombCluster_3","clusterCombCluster_4","daysSinceFirstText","first_person_sing_valence_combined x clusterCombCluster_2","first_person_sing_valence_combined x clusterCombCluster_3","first_person_sing_valence_combined x clusterCombCluster_4"],["20.6330 [20.1180, 21.1470]","-0.4070 [-0.5550, -0.2600]","1.0220 [0.2850, 1.7600]","1.6410 [0.9630, 2.3190]","3.1010 [1.9700, 4.2310]","-0.1170 [-0.1170, -0.1160]","-0.1340 [-0.3870, 0.1180]","0.2250 [0.0480, 0.4010]","0.0030 [-0.2150, 0.2210]"],[3872.158,376449.982,3870.687,3805.159,3734.215,376842.587,376459.148,376426.219,376410.299],[0.262,0.075,0.376,0.346,0.577,0,0.129,0.09,0.111],[78.64100000000001,-5.402,2.718,4.749,5.378,-269.317,-1.044,2.497,0.025],["&lt; .001","&lt; .001",".007","&lt; .001","&lt; .001","&lt; .001",".297",".013",".980"],["***","***","**","***","***","***","","*",""]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>b [95% CI]<\/th>\n      <th>df<\/th>\n      <th>SE<\/th>\n      <th>t<\/th>\n      <th>p<\/th>\n      <th>significance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"b [95% CI]","targets":2},{"name":"df","targets":3},{"name":"SE","targets":4},{"name":"t","targets":5},{"name":"p","targets":6},{"name":"significance","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -503,7 +503,7 @@ daysSinceFirstText |      -0.02 | [-0.03, -0.01]</code></pre>
 
 <h4 id="plot-1">Plot</h4>
 
-<img data-src="Post_files/figure-revealjs/unnamed-chunk-30-1.png" width="768" class="r-stretch"></section>
+<img data-src="Post_files/figure-revealjs/unnamed-chunk-32-1.png" width="768" class="r-stretch"></section>
 <section class="slide level2 center">
 
 <h3 id="all-plots-together">All plots together</h3>
@@ -512,7 +512,7 @@ daysSinceFirstText |      -0.02 | [-0.03, -0.01]</code></pre>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Post_files/figure-revealjs/unnamed-chunk-31-1.png" width="960"></p>
+<p><img data-src="Post_files/figure-revealjs/unnamed-chunk-33-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -523,8 +523,8 @@ daysSinceFirstText |      -0.02 | [-0.03, -0.01]</code></pre>
 <h2>Able-Unable</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-187362b27ac9d0ec349b" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-187362b27ac9d0ec349b">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5"],["Cluster_1","Cluster_2","Cluster_3","Cluster_4","Cluster_5"],[384,1508,834,301,692]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>clusterComb<\/th>\n      <th>n<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"clusterComb","targets":1},{"name":"n","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-37a64b42a50880875048" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-37a64b42a50880875048">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4"],["Cluster_1","Cluster_2","Cluster_3","Cluster_4"],[379,1132,1542,673]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>clusterComb<\/th>\n      <th>n<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"clusterComb","targets":1},{"name":"n","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -533,7 +533,7 @@ daysSinceFirstText |      -0.02 | [-0.03, -0.01]</code></pre>
 <h3 id="map-change-over-time-in-each-cluster-1">Map Change over time in each cluster</h3>
 <div class="scrollable">
 <div class="panel-tabset">
-<ul id="tabset-10" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-10-1">Cluster 1</a></li><li><a href="#tabset-10-2">Cluster 2</a></li><li><a href="#tabset-10-3">Cluster 3</a></li><li><a href="#tabset-10-4">Cluster 4</a></li><li><a href="#tabset-10-5">Cluster 5</a></li><li><a href="#tabset-10-6">Plot trajectories for each cluster</a></li></ul>
+<ul id="tabset-10" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-10-1">Cluster 1</a></li><li><a href="#tabset-10-2">Cluster 2</a></li><li><a href="#tabset-10-3">Cluster 3</a></li><li><a href="#tabset-10-4">Cluster 4</a></li><li><a href="#tabset-10-5">Plot trajectories for each cluster</a></li></ul>
 <div class="tab-content">
 <div id="tabset-10-1">
 <div class="cell">
@@ -543,7 +543,7 @@ daysSinceFirstText |      -0.02 | [-0.03, -0.01]</code></pre>
 Parameter          | Std. Coef. |       95% CI
 ----------------------------------------------
 (Intercept)        |       0.00 | [0.00, 0.00]
-daysSinceFirstText |       0.08 | [0.06, 0.10]</code></pre>
+daysSinceFirstText |       0.10 | [0.08, 0.11]</code></pre>
 </div>
 </div>
 </div>
@@ -555,7 +555,7 @@ daysSinceFirstText |       0.08 | [0.06, 0.10]</code></pre>
 Parameter          | Std. Coef. |       95% CI
 ----------------------------------------------
 (Intercept)        |       0.00 | [0.00, 0.00]
-daysSinceFirstText |       0.07 | [0.06, 0.07]</code></pre>
+daysSinceFirstText |       0.06 | [0.06, 0.07]</code></pre>
 </div>
 </div>
 </div>
@@ -567,7 +567,7 @@ daysSinceFirstText |       0.07 | [0.06, 0.07]</code></pre>
 Parameter          | Std. Coef. |       95% CI
 ----------------------------------------------
 (Intercept)        |       0.00 | [0.00, 0.00]
-daysSinceFirstText |   9.64e-03 | [0.00, 0.02]</code></pre>
+daysSinceFirstText |       0.06 | [0.05, 0.06]</code></pre>
 </div>
 </div>
 </div>
@@ -576,31 +576,19 @@ daysSinceFirstText |   9.64e-03 | [0.00, 0.02]</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code># Standardization method: pseudo
 
-Parameter          | Std. Coef. |       95% CI
-----------------------------------------------
-(Intercept)        |       0.00 | [0.00, 0.00]
-daysSinceFirstText |       0.03 | [0.02, 0.04]</code></pre>
+Parameter          | Std. Coef. |         95% CI
+------------------------------------------------
+(Intercept)        |       0.00 | [ 0.00,  0.00]
+daysSinceFirstText |       0.07 | [ 0.06,  0.08]</code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-10-5">
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># Standardization method: pseudo
-
-Parameter          | Std. Coef. |       95% CI
-----------------------------------------------
-(Intercept)        |       0.00 | [0.00, 0.00]
-daysSinceFirstText |       0.05 | [0.04, 0.06]</code></pre>
-</div>
-</div>
-</div>
-<div id="tabset-10-6">
-<div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Post_files/figure-revealjs/unnamed-chunk-38-1.png" width="480"></p>
+<p><img data-src="Post_files/figure-revealjs/unnamed-chunk-39-1.png" width="480"></p>
 </figure>
 </div>
 </div>
@@ -624,8 +612,8 @@ daysSinceFirstText |       0.05 | [0.04, 0.06]</code></pre>
 <div id="tabset-11-1">
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-0708c8c08ad3ab7332bc" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-0708c8c08ad3ab7332bc">{"x":{"filter":"none","vertical":false,"data":[["1","2"],["clusterComb","Residuals"],[4,3714],[208.617,362888.337],[52.154,97.708],[0.534,null],[0.711,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>df<\/th>\n      <th>sumsq<\/th>\n      <th>meansq<\/th>\n      <th>statistic<\/th>\n      <th>p.value<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"df","targets":2},{"name":"sumsq","targets":3},{"name":"meansq","targets":4},{"name":"statistic","targets":5},{"name":"p.value","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-b792dfc825f5c0e3b8c0" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-b792dfc825f5c0e3b8c0">{"x":{"filter":"none","vertical":false,"data":[["1","2"],["clusterComb","Residuals"],[3,3722],[340.18,363903.638],[113.393,97.771],[1.16,null],[0.324,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>df<\/th>\n      <th>sumsq<\/th>\n      <th>meansq<\/th>\n      <th>statistic<\/th>\n      <th>p.value<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"df","targets":2},{"name":"sumsq","targets":3},{"name":"meansq","targets":4},{"name":"statistic","targets":5},{"name":"p.value","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <hr>
@@ -633,8 +621,8 @@ daysSinceFirstText |       0.05 | [0.04, 0.06]</code></pre>
 <div id="tabset-11-2">
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-c781bd6f76f56c0b1b6f" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-c781bd6f76f56c0b1b6f">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],["Cluster_1 - Cluster_2","Cluster_1 - Cluster_3","Cluster_1 - Cluster_4","Cluster_1 - Cluster_5","Cluster_2 - Cluster_3","Cluster_2 - Cluster_4","Cluster_2 - Cluster_5","Cluster_3 - Cluster_4","Cluster_3 - Cluster_5","Cluster_4 - Cluster_5"],[-0.446,-0.452,-1.059,-0.267,-0.007,-0.613,0.179,-0.606,0.186,0.792],[0.5649999999999999,0.61,0.761,0.629,0.427,0.624,0.454,0.665,0.508,0.6830000000000001],[3714,3714,3714,3714,3714,3714,3714,3714,3714,3714],[-0.789,-0.742,-1.391,-0.424,-0.015,-0.982,0.395,-0.912,0.365,1.16],[0.9340000000000001,0.947,0.633,0.993,1,0.864,0.995,0.892,0.996,0.774],["","","","","","","","","",""]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>contrast<\/th>\n      <th>estimate<\/th>\n      <th>SE<\/th>\n      <th>df<\/th>\n      <th>t.ratio<\/th>\n      <th>p.value<\/th>\n      <th>signif<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"contrast","targets":1},{"name":"estimate","targets":2},{"name":"SE","targets":3},{"name":"df","targets":4},{"name":"t.ratio","targets":5},{"name":"p.value","targets":6},{"name":"signif","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-5bf478a79c2b40fd34c9" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-5bf478a79c2b40fd34c9">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],["Cluster_1 - Cluster_2","Cluster_1 - Cluster_3","Cluster_1 - Cluster_4","Cluster_2 - Cluster_3","Cluster_2 - Cluster_4","Cluster_3 - Cluster_4"],[0.621,0.639,1.167,0.019,0.546,0.527],[0.587,0.5669999999999999,0.635,0.387,0.481,0.457],[3722,3722,3722,3722,3722,3722],[1.058,1.128,1.837,0.048,1.134,1.154],[0.715,0.672,0.256,1,0.668,0.656],["","","","","",""]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>contrast<\/th>\n      <th>estimate<\/th>\n      <th>SE<\/th>\n      <th>df<\/th>\n      <th>t.ratio<\/th>\n      <th>p.value<\/th>\n      <th>signif<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"contrast","targets":1},{"name":"estimate","targets":2},{"name":"SE","targets":3},{"name":"df","targets":4},{"name":"t.ratio","targets":5},{"name":"p.value","targets":6},{"name":"signif","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -648,16 +636,16 @@ daysSinceFirstText |       0.05 | [0.04, 0.06]</code></pre>
 <div id="tabset-12-1">
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-32ed204054a3ca0d69d0" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-32ed204054a3ca0d69d0">{"x":{"filter":"none","vertical":false,"data":[["1","2"],["clusterComb","Residuals"],[4,3714],[1420.169,354821.511],[355.042,95.536],[3.716,null],[0.005,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>df<\/th>\n      <th>sumsq<\/th>\n      <th>meansq<\/th>\n      <th>statistic<\/th>\n      <th>p.value<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"df","targets":2},{"name":"sumsq","targets":3},{"name":"meansq","targets":4},{"name":"statistic","targets":5},{"name":"p.value","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-4e1f12b1cb80726e14ee" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-4e1f12b1cb80726e14ee">{"x":{"filter":"none","vertical":false,"data":[["1","2"],["clusterComb","Residuals"],[3,3722],[344.872,356613.712],[114.957,95.812],[1.2,null],[0.308,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>df<\/th>\n      <th>sumsq<\/th>\n      <th>meansq<\/th>\n      <th>statistic<\/th>\n      <th>p.value<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"df","targets":2},{"name":"sumsq","targets":3},{"name":"meansq","targets":4},{"name":"statistic","targets":5},{"name":"p.value","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
 <div id="tabset-12-2">
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-6284824b112081d4da48" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-6284824b112081d4da48">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],["Cluster_1 - Cluster_2","Cluster_1 - Cluster_3","Cluster_1 - Cluster_4","Cluster_1 - Cluster_5","Cluster_2 - Cluster_3","Cluster_2 - Cluster_4","Cluster_2 - Cluster_5","Cluster_3 - Cluster_4","Cluster_3 - Cluster_5","Cluster_4 - Cluster_5"],[-0.895,-1.764,-2.432,-1.289,-0.868,-1.537,-0.393,-0.669,0.475,1.144],[0.5590000000000001,0.603,0.752,0.622,0.422,0.617,0.449,0.657,0.503,0.675],[3714,3714,3714,3714,3714,3714,3714,3714,3714,3714],[-1.603,-2.926,-3.232,-2.072,-2.058,-2.491,-0.876,-1.017,0.945,1.694],[0.496,0.029,0.011,0.232,0.239,0.093,0.906,0.847,0.879,0.437],["","*","*","","","","","","",""]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>contrast<\/th>\n      <th>estimate<\/th>\n      <th>SE<\/th>\n      <th>df<\/th>\n      <th>t.ratio<\/th>\n      <th>p.value<\/th>\n      <th>signif<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"contrast","targets":1},{"name":"estimate","targets":2},{"name":"SE","targets":3},{"name":"df","targets":4},{"name":"t.ratio","targets":5},{"name":"p.value","targets":6},{"name":"signif","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-964ca419be381ddd326a" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-964ca419be381ddd326a">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],["Cluster_1 - Cluster_2","Cluster_1 - Cluster_3","Cluster_1 - Cluster_4","Cluster_2 - Cluster_3","Cluster_2 - Cluster_4","Cluster_3 - Cluster_4"],[0.631,0.003,-0.103,-0.628,-0.734,-0.106],[0.581,0.5610000000000001,0.629,0.383,0.476,0.452],[3722,3722,3722,3722,3722,3722],[1.086,0.005,-0.164,-1.64,-1.541,-0.234],[0.698,1,0.998,0.356,0.413,0.996],["","","","","",""]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>contrast<\/th>\n      <th>estimate<\/th>\n      <th>SE<\/th>\n      <th>df<\/th>\n      <th>t.ratio<\/th>\n      <th>p.value<\/th>\n      <th>signif<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"contrast","targets":1},{"name":"estimate","targets":2},{"name":"SE","targets":3},{"name":"df","targets":4},{"name":"t.ratio","targets":5},{"name":"p.value","targets":6},{"name":"signif","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -672,16 +660,16 @@ daysSinceFirstText |       0.05 | [0.04, 0.06]</code></pre>
 <p>Cluster predicting <code>fdSx</code> controlling for <code>bSx</code></p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-27ad6d3a08aab06a0f59" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-27ad6d3a08aab06a0f59">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],["(Intercept)","clusterCombCluster_2","clusterCombCluster_3","clusterCombCluster_4","clusterCombCluster_5","bSx"],[2.773,0.668,1.533,1.893,1.153,-0.491],[0.523,0.479,0.517,0.645,0.533,0.014],[5.306,1.395,2.966,2.934,2.162,-35.291],[0,0.163,0.003,0.003,0.031,0],[1.748,-0.271,0.52,0.628,0.107,-0.518],[3.797,1.608,2.547,3.159,2.199,-0.464]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>estimate<\/th>\n      <th>std.error<\/th>\n      <th>statistic<\/th>\n      <th>p.value<\/th>\n      <th>conf.low<\/th>\n      <th>conf.high<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6,7]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"estimate","targets":2},{"name":"std.error","targets":3},{"name":"statistic","targets":4},{"name":"p.value","targets":5},{"name":"conf.low","targets":6},{"name":"conf.high","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-cd8724821ebb073eb733" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-cd8724821ebb073eb733">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5"],["(Intercept)","clusterCombCluster_2","clusterCombCluster_3","clusterCombCluster_4","bSx"],[3.576,-0.315,0.323,0.697,-0.49],[0.534,0.498,0.481,0.539,0.014],[6.696,-0.632,0.671,1.293,-35.249],[0,0.528,0.502,0.196,0],[2.529,-1.291,-0.62,-0.36,-0.518],[4.623,0.662,1.267,1.755,-0.463]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>estimate<\/th>\n      <th>std.error<\/th>\n      <th>statistic<\/th>\n      <th>p.value<\/th>\n      <th>conf.low<\/th>\n      <th>conf.high<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6,7]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"estimate","targets":2},{"name":"std.error","targets":3},{"name":"statistic","targets":4},{"name":"p.value","targets":5},{"name":"conf.low","targets":6},{"name":"conf.high","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
 <div id="tabset-13-2">
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-b27a2e0ae440c8c3051c" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-b27a2e0ae440c8c3051c">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],["Cluster_1 - Cluster_2","Cluster_1 - Cluster_3","Cluster_1 - Cluster_4","Cluster_1 - Cluster_5","Cluster_2 - Cluster_3","Cluster_2 - Cluster_4","Cluster_2 - Cluster_5","Cluster_3 - Cluster_4","Cluster_3 - Cluster_5","Cluster_4 - Cluster_5"],[-0.668,-1.533,-1.893,-1.153,-0.865,-1.225,-0.485,-0.36,0.38,0.74],[0.479,0.517,0.645,0.533,0.362,0.529,0.385,0.5639999999999999,0.431,0.579],[3713,3713,3713,3713,3713,3713,3713,3713,3713,3713],[-1.395,-2.966,-2.934,-2.162,-2.391,-2.315,-1.259,-0.639,0.882,1.279],[0.631,0.025,0.028,0.195,0.118,0.14,0.716,0.969,0.903,0.704],["","*","*","","","","","","",""]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>contrast<\/th>\n      <th>estimate<\/th>\n      <th>SE<\/th>\n      <th>df<\/th>\n      <th>t.ratio<\/th>\n      <th>p.value<\/th>\n      <th>signif<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"contrast","targets":1},{"name":"estimate","targets":2},{"name":"SE","targets":3},{"name":"df","targets":4},{"name":"t.ratio","targets":5},{"name":"p.value","targets":6},{"name":"signif","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-9f017b34e6f96c621f89" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-9f017b34e6f96c621f89">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],["Cluster_1 - Cluster_2","Cluster_1 - Cluster_3","Cluster_1 - Cluster_4","Cluster_2 - Cluster_3","Cluster_2 - Cluster_4","Cluster_3 - Cluster_4"],[0.315,-0.323,-0.697,-0.638,-1.012,-0.374],[0.498,0.481,0.539,0.329,0.409,0.388],[3721,3721,3721,3721,3721,3721],[0.632,-0.671,-1.293,-1.942,-2.477,-0.965],[0.922,0.908,0.5669999999999999,0.211,0.064,0.769],["","","","","",""]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>contrast<\/th>\n      <th>estimate<\/th>\n      <th>SE<\/th>\n      <th>df<\/th>\n      <th>t.ratio<\/th>\n      <th>p.value<\/th>\n      <th>signif<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"contrast","targets":1},{"name":"estimate","targets":2},{"name":"SE","targets":3},{"name":"df","targets":4},{"name":"t.ratio","targets":5},{"name":"p.value","targets":6},{"name":"signif","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -696,7 +684,7 @@ daysSinceFirstText |       0.05 | [0.04, 0.06]</code></pre>
 
 <h4 id="plot-2">Plot</h4>
 
-<img data-src="Post_files/figure-revealjs/unnamed-chunk-46-1.png" width="576" class="r-stretch"></section>
+<img data-src="Post_files/figure-revealjs/unnamed-chunk-47-1.png" width="576" class="r-stretch"></section>
 <section class="slide level2 center">
 
 <h3 id="do-clusters-moderate-1">Do clusters moderate?</h3>
@@ -704,8 +692,8 @@ daysSinceFirstText |       0.05 | [0.04, 0.06]</code></pre>
 <div class="scrollable">
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-7a003b5262824551d147" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-7a003b5262824551d147">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11"],["Cluster_1","first_person_sing_ability_combined","clusterCombCluster_2","clusterCombCluster_3","clusterCombCluster_4","clusterCombCluster_5","daysSinceFirstText","first_person_sing_ability_combined x clusterCombCluster_2","first_person_sing_ability_combined x clusterCombCluster_3","first_person_sing_ability_combined x clusterCombCluster_4","first_person_sing_ability_combined x clusterCombCluster_5"],["20.7470 [19.8790, 21.6160]","-0.0940 [-0.4820, 0.2930]","0.9050 [-0.0660, 1.8760]","0.9930 [-0.0520, 2.0380]","2.0510 [0.7530, 3.3480]","1.2100 [0.1340, 2.2860]","-0.1170 [-0.1180, -0.1150]","-0.4400 [-0.8800, -0.0000]","0.0790 [-0.4080, 0.5670]","-0.4030 [-0.9960, 0.1900]","-0.2970 [-0.7750, 0.1820]"],[4020.148,173957.182,3982.603,3951.562,3860.318,3917.18,174379.404,173951.602,173920.453,173890.553,173946.962],[0.443,0.198,0.495,0.533,0.662,0.549,0.001,0.225,0.249,0.302,0.244],[46.831,-0.478,1.828,1.863,3.1,2.204,-183.027,-1.96,0.318,-1.333,-1.215],["&lt; .001",".633",".068",".063",".002",".028","&lt; .001",".050",".750",".183",".224"],["***","","+","+","**","*","***","+","","",""]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>b [95% CI]<\/th>\n      <th>df<\/th>\n      <th>SE<\/th>\n      <th>t<\/th>\n      <th>p<\/th>\n      <th>significance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"b [95% CI]","targets":2},{"name":"df","targets":3},{"name":"SE","targets":4},{"name":"t","targets":5},{"name":"p","targets":6},{"name":"significance","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-22897ac59d2f90089a47" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-22897ac59d2f90089a47">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9"],["Cluster_1","first_person_sing_ability_combined","clusterCombCluster_2","clusterCombCluster_3","clusterCombCluster_4","daysSinceFirstText","first_person_sing_ability_combined x clusterCombCluster_2","first_person_sing_ability_combined x clusterCombCluster_3","first_person_sing_ability_combined x clusterCombCluster_4"],["21.9180 [21.0620, 22.7740]","-0.3780 [-0.6340, -0.1210]","-0.5690 [-1.5570, 0.4190]","-0.1980 [-1.1530, 0.7570]","-0.1220 [-1.1910, 0.9470]","-0.1160 [-0.1170, -0.1160]","0.0210 [-0.2740, 0.3150]","0.1250 [-0.1590, 0.4090]","-0.0010 [-0.3210, 0.3190]"],[3759.102,376441.838,3744.497,3744.72,3742.066,376837.182,376422.421,376426.606,376442.585],[0.437,0.131,0.504,0.487,0.545,0,0.15,0.145,0.163],[50.19,-2.886,-1.129,-0.406,-0.223,-268.786,0.136,0.864,-0.007],["&lt; .001",".004",".259",".685",".823","&lt; .001",".891",".388",".995"],["***","**","","","","***","","",""]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>term<\/th>\n      <th>b [95% CI]<\/th>\n      <th>df<\/th>\n      <th>SE<\/th>\n      <th>t<\/th>\n      <th>p<\/th>\n      <th>significance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"term","targets":1},{"name":"b [95% CI]","targets":2},{"name":"df","targets":3},{"name":"SE","targets":4},{"name":"t","targets":5},{"name":"p","targets":6},{"name":"significance","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -714,7 +702,7 @@ daysSinceFirstText |       0.05 | [0.04, 0.06]</code></pre>
 
 <h4 id="plot-3">Plot</h4>
 
-<img data-src="Post_files/figure-revealjs/unnamed-chunk-48-1.png" width="768" class="r-stretch"></section>
+<img data-src="Post_files/figure-revealjs/unnamed-chunk-49-1.png" width="768" class="r-stretch"></section>
 <section class="slide level2 center">
 
 <h3 id="all-plots-together-1">All plots together</h3>
@@ -723,7 +711,7 @@ daysSinceFirstText |       0.05 | [0.04, 0.06]</code></pre>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Post_files/figure-revealjs/unnamed-chunk-49-1.png" width="960"></p>
+<p><img data-src="Post_files/figure-revealjs/unnamed-chunk-50-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -735,14 +723,14 @@ daysSinceFirstText |       0.05 | [0.04, 0.06]</code></pre>
 <h1>Q5) Is this occurring for all words, or is “I” unique in some way?</h1>
 
 </section>
-<section id="changes-over-therapy" class="slide level2 center">
-<h2>Changes over Therapy</h2>
+<section id="changes-in-meaning-over-time" class="slide level2 center">
+<h2>Changes in Meaning over Time</h2>
 <div class="scrollable">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Post_files/figure-revealjs/unnamed-chunk-51-1.png" width="768"></p>
+<p><img data-src="Post_files/figure-revealjs/unnamed-chunk-52-1.png" width="768"></p>
 </figure>
 </div>
 </div>
@@ -760,7 +748,7 @@ daysSinceFirstText |       0.05 | [0.04, 0.06]</code></pre>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Post_files/figure-revealjs/unnamed-chunk-52-1.png" width="960"></p>
+<p><img data-src="Post_files/figure-revealjs/unnamed-chunk-53-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -771,7 +759,7 @@ daysSinceFirstText |       0.05 | [0.04, 0.06]</code></pre>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Post_files/figure-revealjs/unnamed-chunk-53-1.png" width="768"></p>
+<p><img data-src="Post_files/figure-revealjs/unnamed-chunk-54-1.png" width="768"></p>
 </figure>
 </div>
 </div>
@@ -784,7 +772,7 @@ daysSinceFirstText |       0.05 | [0.04, 0.06]</code></pre>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Post_files/figure-revealjs/unnamed-chunk-54-1.png" width="480"></p>
+<p><img data-src="Post_files/figure-revealjs/unnamed-chunk-55-1.png" width="480"></p>
 </figure>
 </div>
 </div>

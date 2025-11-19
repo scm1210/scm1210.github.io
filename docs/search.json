@@ -1125,5 +1125,12 @@
     "title": "Regression",
     "section": "All Graphs",
     "text": "All Graphs\n\ntidy_smooth_graphs &lt;- ggpubr::ggarrange(i,we,pronouns, WPS,determiners, possessives, of, contractions,\n                                        ncol=4, nrow=2, common.legend = TRUE, legend = \"top\")\nannotate_figure(tidy_smooth_graphs,\n                top = text_grob(\"LIWC Variables\",  color = \"black\", face = \"bold\", size = 20),\n                 bottom = text_grob(\"Horizontal line represents Fisher Corpus\",  color = \"black\", size = 14))"
+  },
+  {
+    "objectID": "posts/I-projections/Post.html#changes-in-meaning-over-time",
+    "href": "posts/I-projections/Post.html#changes-in-meaning-over-time",
+    "title": "I-Projection Results",
+    "section": "Changes in Meaning over Time",
+    "text": "Changes in Meaning over Time"
   }
 ]
