@@ -37,7 +37,7 @@ B.A. in Psychology (Minor: Spanish)
 
 \* Denotes Shared First Authorship
 
-**Mesquiti, S. & Nook, E.C.** (Accepted). *Large Language Models in. Mental Health Treatment and Research.* *Annual Reviews BioMedical Data Science.* [DOI](https://doi.org/10.31234/osf.io/jvf2z_v1)
+**Mesquiti, S. & Nook, E.C.** (in Press.). *Large Language Models in. Mental Health Treatment and Research.* *Annual Reviews BioMedical Data Science.* [DOI](https://doi.org/10.31234/osf.io/jvf2z_v1)
 
 **Muzekari, B., Cooper, N., Resnick, A., Paul, A. M., Torres-Grillo, O. E., Andrews, M. E., Mattan, B., Scholz, C., Johnson, D., Carreras-Tartak, J., Cakar, M. E., Hao, S., Zhou, E., Beard, E., Mesquiti, S., Sayed, F., Fichman, M. A., Lydon-Staley, D. M., Barnett, I. J., … Falk, E. B.** (2025). *Naturalistic Tobacco Retail Exposure and Smoking Outcomes in Adults Who Smoke Cigarettes Daily.* *JAMA Network Open.* [DOI](https://doi:10.1001/jamanetworkopen.2025.30132)
 
@@ -80,6 +80,7 @@ B.A. in Psychology (Minor: Spanish)
 ------------------------------------------------------------------------
 
 ## Invited Talks
+
 -   **2025**: *Predicting Mental Health Outcomes with the Latent Meaning of "I" in a Large Therapy Dataset.* DDSS Connect: Interdisciplinary Exchange.
 -   **2025**: *Tracking Shifts in the Latent Meaning of "I" and Its Connection to Mental Health Outcomes in a Large Therapy Dataset.* Social Psychology Seminar, Princeton University, Princeton, NJ.
 -   **2022**: *Within-and between-person effects of autonomous motivation on goal pursuit.* Duckworth Lab.
