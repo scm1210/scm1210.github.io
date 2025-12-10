@@ -1,13 +1,14 @@
 ---
-title: "CV"
-output: pdf_document
-# header-includes:
-#   - \usepackage{enumitem}
-#   - \usepackage{hyperref}
-#   - \usepackage{geometry}
-geometry: margin=1in
-fontsize: 11pt
-title-block-banner: true
+title: "Steven Mesquiti CV"
+date: today
+format:
+  html:
+    toc: false
+    number-sections: false
+    theme: cosmo
+  pdf:
+    toc: false
+    number-sections: false
 ---
 
 # Steven Mesquiti, M.A.
@@ -41,7 +42,7 @@ B.A. in Psychology (Minor: Spanish)
 
 **Muzekari, B., Cooper, N., Resnick, A., Paul, A. M., Torres-Grillo, O. E., Andrews, M. E., Mattan, B., Scholz, C., Johnson, D., Carreras-Tartak, J., Cakar, M. E., Hao, S., Zhou, E., Beard, E., Mesquiti, S., Sayed, F., Fichman, M. A., Lydon-Staley, D. M., Barnett, I. J., … Falk, E. B.** (2025). *Naturalistic Tobacco Retail Exposure and Smoking Outcomes in Adults Who Smoke Cigarettes Daily.* *JAMA Network Open.* [DOI](https://doi:10.1001/jamanetworkopen.2025.30132)
 
-**Mesquiti, S., Cosme, D., Nook, E.C., Falk E.B., Burns S.** (Under Revision). *Predicting Psychological and Subjective Well-being through Language-based Assessments of Well-being.* 
+**Mesquiti, S., Cosme, D., Nook, E.C., Falk E.B., Burns S.** (Under Revision). *Predicting Psychological and Subjective Well-being through Language-based Assessments of Well-being.*
 
 **Mesquiti, S.,\* Seraj, S.,\* Weyland, A. H., Ashokkumar, A., Boyd, R. L., Mihalcea, R., & Pennebaker, J. W.** (2025). *Analysis of social media language reveals the psychological interaction of three successive upheavals.* *Scientific Reports, 15*(1), 5740. [DOI](https://doi.org/10.1038/s41598-025-89165-z).
 

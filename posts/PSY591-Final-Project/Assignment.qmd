@@ -1,0 +1,937 @@
+---
+title: "WORDLE Lab Manual"
+subtitle: "Welcome to WORDLE Lab!"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    number-sections: true
+    theme: cosmo
+  pdf:
+    toc: true
+    number-sections: true
+---
+
+::: callout-note
+## Welcome!
+
+We're thrilled that you're joining us! This handbook is designed to orient you to the lab's culture, practices, and infrastructures. It should give you a sense of what to expect from working with us, as well as what we expect of you.
+
+We encourage a collaborative culture in the lab, and it is likely that multiple members will be working together on projects. Collaborations can also occur with researchers at other institutions. In all cases, we expect all lab members to treat collaborators, their time, and data with respect.
+:::
+
+# Who We Are
+
+The **WORDLE Lab** (**W**ellbeing **O**utcomes **R**esearch via **D**igital **L**anguage **E**xpressions) is an interdisciplinary group whose mission focuses on leveraging language and computational methods to understand, assess, and improve mental health by gaining insight into how people express their inner experiences, emotions, and psychological states.
+
+We view language as key way to understand and address well-being. The words we use—whether written or spoken—provide a powerful window into our thoughts, feelings, and well-being. Language structures the relationship between the self and the world, and analyzing it can reveal patterns that predict psychological well-being outcomes. We use a unique set of tools from psychology, computational linguistics, and computer science to develop scalable, equitable assessments that can help identify individuals struggling with their mental health and inform more effective interventions.
+
+> We believe that our science is better with a diverse team. Diversity is integral to our work because it helps ensure our computational tools work equitably across different populations and reflect the world we live in more accurately. We embrace and encourage our lab members' differences in age, color, disability, ethnicity, family or marital status, gender identity or expression, language, national origin, ability, political affiliation, race, religion, sexual orientation, socio-economic status, veteran status, and other characteristics that make our lab members who they are.
+
+As a community, we are committed to challenging and supporting each other. We strive to create rigorous, open, and reproducible science, and to disseminate the insights from our work beyond the confines of our field.
+
+## Roles and Expectations
+
+### Principal Investigator (PI)
+
+The PI, Steven Mesquiti, is responsible for the overall direction of the lab and its research. The PI provides ideas and/or consultation on all the lab projects including theory development, empirical work, and grant proposals.
+
+### Research Directors (RDs)
+
+Research Directors are full-time post-PhD research staff who may have different roles depending on their career goals and interests. In general, RDs are here to:
+
+-   Do research
+-   Support the major projects in the lab
+-   Help write grants
+-   Mentor and help train others in the lab
+-   Help decide the greater direction that the lab goes in (both in terms of lab culture/organization and in terms of research topics/future projects)
+
+### Post-docs
+
+Postdocs are full-time researchers here to learn new skills, mentor, and help train others in the lab. Postdocs share the mission of graduate students to develop their independent lines of research. This includes but is not limited to:
+
+-   Learning to write grants
+-   Designing and implementing novel research
+-   Analyzing new and existing data
+-   Writing manuscripts
+-   Developing mentorship and management skills required for becoming a PI ✨
+
+### Research Coordinators and Lab Managers (RCLMs)
+
+RCLMs are full-time staff who have undergrad degrees (and sometimes master's, too). All lab managers are research coordinators, but not all research coordinators are lab managers.
+
+**Research Coordinators (RCs)** support the needs of ongoing research projects. They may be assigned to play a large role on one project or many smaller roles across multiple projects. This often includes:
+
+-   Helping with recruitment
+-   Data collection
+-   IRB management
+-   Project documentation
+
+**Lab Managers (LMs)** are the subset of RCs who are also responsible for providing **administrative** support to the lab and all of its members. This may include but is not limited to:
+
+-   Helping with meeting scheduling
+-   Documenting lab processes (like this handbook)
+-   Managing lab resources and accounts
+-   Generally knowing the ins and outs of how the lab functions.
+
+### Graduate Students
+
+Graduate students can have many broad goals during their time in the lab, but nearly all of them involve:
+
+a)  Completing the requirements of their doctoral program
+b)  Learning how to generate and communicate evidence-based knowledge and develop an independent program of research
+c)  Helping mentor junior scholars
+
+Ph.D. students might also work on external partnerships, build bridges with other labs, or engage in other activities that relate to their scholarship.
+
+### Undergraduate RAs
+
+Research assistants often take on a range of tasks from planning studies and conducting literature reviews to running participants and managing data. Each study has unique specific requirements but Undergraduate RAs are expected to follow the broad norms and expectations of the lab, while working with us.
+
+# Quick Start Guide
+
+## When in Doubt, Ask the Lab Manager(s)
+
+::: callout-tip
+## Contact the Admin Team
+
+The lab managers (LMs) often shuffle responsibilities based on their availability, so they have developed 2 ways to contact all of them at once:
+
+1.  The `#ask_admin` channel in Slack
+2.  The shared email address: `stevens_future_lab@reallycoolSchool.edu` (for anyone who isn't on Slack yet)
+
+Once you pose a question or request to either one, the relevant person will respond. They may not always know the answer, but they will often be able to direct you to someone who does!
+:::
+
+## Complete Required Training Modules
+
+See the onboarding page to see which training modules you're required to complete. If you need help finding the training modules or have questions about which modules to complete, reach out to one of the Lab Manager at `stevens_future_lab@reallycoolSchool.edu` or on `#ask_admin`.
+
+## Share Your Contact Information
+
+You should have received an intake form when you joined the lab. If you have not, please contact the Lab Manager. Complete the Contact info survey and add your contact information so that other lab members can reach you.
+
+## Google Calendars
+
+The Lab uses the following Google Calendars to document our lab operations:
+
+-   **Lab Calendar** - lab meetings, absences, conferences, birthdays, and lab-wide events
+-   **Steven Mesquiti** - PI-related meetings (e.g., 1:1 meetings, departmental meetings, etc.)
+-   **University Events** - Running list of relevant talks, colloquia, and campus events
+-   **Project-specific calendars** - Individual calendars for major ongoing projects
+-   **Lab Social** - Social events, lab outings, and informal gatherings
+
+### When creating Google Calendar events:
+
+-   Put the Zoom link as the location for a remote or hybrid meeting, and the physical location if relevant
+-   Add the relevant info or the link for relevant doc in the description
+-   Make the event modifiable for attendees (if needed)
+-   Add attendees via their lab email (if they have one) and set reminders as needed
+
+Make sure you can see them on your Google Calendar account and that you know how to add events to the respective calendars.
+
+## Sign into Slack
+
+You should have received an invitation to the Lab Slack. Be sure to sign into the workspace. We treat Slack like a more casual form of email and use it at a more rapid pace. You can message about anything at any time, and others will respond at their earliest convenience (preferably within 24 hours during the week).
+
+## Lab Safety
+
+-   Please make sure that you lock and close doors to lab rooms and turn off lights whenever you leave
+-   We want to ensure that property is not stolen
+-   Do not leave any valuables or equipment (e.g. laptops, chargers, wallets, etc) unattended in unsecured or open spaces
+-   **Moreover, please leave spaces cleaner than you found them!**
+
+## If You Need Help...
+
+We're here for you! The Lab Wiki likely has the answer you seek — we recommend bookmarking this Notion page. If it doesn't have the information you need, see the "Important Contacts" and "Where to Go for Help" sections of this document. You can always contact the lab manager(s) at `stevens_future_lab@reallycoolSchool.edu` or on the `#ask-admin` channel on Slack.
+
+## Reading List
+
+As you get started, it is helpful to read papers that folks on the team (and collaborators you will work with) have written recently. If you'd like more specific guidance, you can ask Steven or your senior team buddy for recommendations.
+
+# Community Norms and Values
+
+Lab members have different identities, backgrounds, and experiences. This is a strength that enriches our culture and our research. Therefore, we strive to foster a safe, collaborative, and supportive environment in which all members feel that they belong, are valued, and included.
+
+> We recognize that advancements in knowledge are contingent on the exchange of ideas and that this exchange is only possible when we all respect each other's perspectives.
+
+The Lab is committed to fostering a community in which all members — regardless of age, race, gender identity, ethnicity, religion, sexual orientation, ability, or any other aspect of one's identity — feel a sense of safety and support. All members of the Lab are expected to actively engage in fostering a positive, inclusive, cooperative, and open environment.
+
+## Core Values
+
+### Well-being
+
+Here, we value well-being both on the inside and outside, in ourselves, the lab, the communities we inhabit, and the world we live in. In our lab, we strive to work hard and to make time for ourselves and others. As part of this, we recognize that there is life outside of work, and that the experiences we have beyond our work can enrich what we do here.
+
+Beyond "self-care," we also promote "other care". This means building a community in which we support and care for one another. We aim to be generous to one another in domains where we excel and to lean on each other as we work on areas where we are still learning; and to be there for each other as people.
+
+**What this looks like:**
+
+-   Creating norms and values that promote your well-being and that of others in the lab
+-   Encouraging others to prioritize their own wellbeing
+
+**What this sounds like:**
+
+> "Hey Steven, I see that you've got a lot of things you're working on. Are you stretching yourself a little too thin and is there anything I can take off your plate?"
+
+> "Hey Steven, I am feeling a bit overwhelmed with my responsibilities for the week. Do you have bandwidth to help me out on \_\_\_\_? Or is it okay if I get this to you at a later date?"
+
+### Joy
+
+We use joy as *one* guide to direct our work. Additionally, our lab loves to celebrate its members' accomplishments, no matter the size. Be sure to let your labmates know of any successes — such as sharing a plot you're proud of, making a project milestone, learning a new skill, or facilitating a meaningful mentorship moment — so that we can celebrate your successes with you.
+
+Successes are self-defined and come in various shapes and sizes. We seek to recognize these wins as a means to acknowledge progress, and cultivate and sustain energy and motivation. We also celebrate failure as a learning opportunity. We also love hearing about the joys you are experiencing outside of work, whether that's a really fun experience with others, a book that moved you, or a picture of your dog.
+
+When a project or task no longer brings you joy, communicate your needs to find ways to work for you (e.g., taking a pause or finding a work buddy to set intentions and check-in/co-work virtually or in-person). Remember, we are still *people* doing science.
+
+**What this looks like:**
+
+-   Realizing you really like working with someone or on something and 'leaning into it'
+-   Sharing mini-wins with the lab during planning, a project team meeting, or on slack
+-   Taking someone for coffee to celebrate a conference presentation
+
+**What this sounds like:**
+
+> "I received some strong comments in my R&R and I wanted to share with the lab!"
+
+> "I really love working on this project with Jamie, is there any way I can work with her more?"
+
+> "Congratulations to Mia! She gave a great talk in class the other day, and I thought others would be interested to hear about it!"
+
+> "Nice work troubleshooting that code you were stuck on, that's progress!"
+
+### Respect
+
+In the Lab, we have respect for others' ideas, perspectives, needs, boundaries, health, time, and well-being. This is crucial for the development of ideas and the support of others. There is no such thing as a 'stupid question'. If something isn't immediately clear to you, odds are it isn't to others as well, so please ask!
+
+When requesting things (e.g., rec letters) please be mindful of the turnaround time.
+
+**What this looks like:**
+
+-   'Schedule' send messages/emails for non-urgent items on weekends, holidays, etc.
+-   Asking questions that help to enhance an idea rather than tear someone down
+-   Asking questions about what a person needs or what boundaries (e.g., time constraints) they might have when collaborating
+-   We can also decenter ourselves when asking questions. Example: "One may be curious about how point 2 has implications for clinical practice."
+
+**What this sounds like:**
+
+> "Hey Ryan, could you please actually clarify point 2? I think it would really enhance your idea. Here are some specific ways to consider that may help clarify X,Y,Z"
+
+> "Erik (this is a queued message), when you get a chance could you please send me X? No rush at all."
+
+> "Emily, I know you have a lot in your queue, when do you need me to send you my SAS submission so that you have enough time to review it before the deadline?"
+
+### Community Building
+
+Academia often promotes a lifestyle of hyper-competitiveness and work-life imbalance, which can lead to decreased well-being and increases in psychopathology. It also stifles creativity and can undermine the very insights we hope to nourish and produce as a research group.
+
+> You belong here. You are enough. You are valued.
+
+We seek to cultivate an environment in which these statements are embodied.
+
+**What this looks like:**
+
+-   Creating systems and standards that promote inclusion, connection, and belonging
+-   Developing norms that foster and support collaboration
+-   Building a lab culture where people feel included and supported
+
+**What this sounds like:**
+
+> "Hey everyone, I'm going to eat lunch at Sally Frank Cafe! Anyone and everyone is welcome to join."
+
+> "Does anybody want to do a co-working session this week?"
+
+> "The Talkspace working group is meeting today. Feel free to join!"
+
+> "I've got an idea for a new project and would love to talk about potential opportunities for collaboration."
+
+### Psychological Safety
+
+We do our best to be open-minded and welcome differing opinions. It's okay to be wrong, change your mind, make mistakes; we are all human and this is necessary for learning and growing. Conflict and disagreement will naturally arise when working in groups and can be generative when dealt with in productive ways.
+
+We are committed to working through conflict in ways that respect each other, give grace to each other, and minimize harm. Together, we can work to maintain a safe environment in which everyone feels like they belong, are valued, and can make the world a more inclusive place.
+
+We can be mindful of peoples' different communication styles (e.g., eye contact and seating).
+
+**What this looks like:**
+
+-   Being courageous and presenting an idea that is not fully developed in front of the lab or asking for help
+-   Speaking out when you disagree with something, and having a candid and respectful conversation about it either in the moment or at a later time
+-   If you feel less comfortable directly expressing a critique, you can offer the question or feedback from a more distanced perspective
+-   Some people may need to close their eyes or not maintain eye contact to be able to process verbal information
+-   Sitting during meetings may differ (side by side, across from one another, needing to move or stand)
+
+**What this sounds like:**
+
+> "Steven, actually I disagree with that point. I think we should really emphasize this instead."
+
+> "Steven, when you interrupted me, it made me feel like my perspective didn't matter, and I'd appreciate it if you waited until I finished speaking in the future."
+
+> "Sarah, you're right, I conducted the wrong analysis; let me go back and change it."
+
+### Communication
+
+You won't always be able to do everything you think you will—that's okay, that's normal. Do your best to communicate that to your labmates so they're aware, and can get you unstuck if needed. Additionally, use lab, project, or team meetings to communicate to others what's on your plate, what your priorities are, and where you might need support from them.
+
+**What this looks like:**
+
+-   Letting people know when you're taking on too much
+-   Not being afraid to reach out to someone if you don't know how to do something
+-   As team members, we can also incorporate questions into our meetings that ask people what they need
+
+**What this sounds like:**
+
+> "Hey Dani, can I ask you a stats question?"
+
+> "Actually Steven, I'm not sure I'll be able to do that task in the time allotted since I have X going on. I could trade it out for Y task."
+
+> "You mentioned you were unsure how to proceed with the multilevel model. Tell me more about what you need to move forward."
+
+### Transparency
+
+We are ultimately here to grow and learn. Lab members are encouraged to support and promote each other's intellectual and career aspirations and to encourage each other to thrive in our personal lives. Our lab maintains a collection of career development resources in the Career Development section of the Lab Wiki.
+
+Scholarship advances when researchers work with integrity to ensure their work is transparent and reproducible. For quantitative research, the Lab operates as a part of the open research community by:
+
+-   Reporting our research choices in clear and transparent ways via pre-registration
+-   Acknowledging aspects of our work that are exploratory versus confirmatory
+-   Engaging in open science best practices
+-   Internal replication
+
+Additionally, academia is full of unspoken norms (i.e. the "hidden curriculum") that perpetuate systemic barriers against marginalized peoples. We try our best to address these disparities by communicating and documenting these norms, and sharing them with early career researchers both within and outside our lab.
+
+### Process Orientation
+
+The research [process]{.underline} is as important as the final product. For this reason, we document our work and follow the available protocols or guidelines during each step of the research process, while continuously experimenting and improving upon them.
+
+We encourage lab members to focus not only on the quality of the outcome, but on the processes that lead to it! If you tried something new that worked for your research, or that did not work, share your knowledge and add it to the research guides on the Lab Notion.
+
+### Curiosity and Intellectual Development
+
+Lab members are encouraged to openly ask questions and strive for intellectual growth. We try to be curious not only about the world around us but also about what's right in front of us. Our lab uses various methods from Psychology, Computer Science, Natural Language Processing, and Information Theory to investigate a diverse set of questions. Even if the person down the hall has interests that diverge from our own, we cultivate curiosity about the phenomena they study, the methods they employ, and the insights about which they are passionate.
+
+**What this looks like:**
+
+-   Listening actively
+-   Asking clarifying questions that may improve an idea, even if they are 'hard'
+
+**What this sounds like:**
+
+> "I would love to hear more!"
+
+> "What do you mean by that, Steven?"
+
+> "What I hear you saying is… Am I right?"
+
+### Equity
+
+Our lab is committed to continuously building a community and environment where members of all identities and backgrounds can thrive. We seek to promote greater equity in the academy and beyond, and to dismantle systems of oppression in society. We seek to support equity in how we do our work, and increase equity in society as a result of our work.
+
+It's our job to recognize the privileges and resources that we have access to that are unique and special and to critically use them in a responsible manner to contribute to a broader range for others to have access to.
+
+**What this looks like:**
+
+-   Creating standards that promote opportunities for others within and outside the lab
+-   Mentoring students from backgrounds that are underrepresented in academia to increase their opportunities
+-   People have unique needs and goals that may require different forms of support, which require a network of support in and outside of the lab
+
+**What this sounds like:**
+
+> "Hey, did you see this continuing ed opportunity?"
+
+> "I really think we should take X REU student to increase their odds of being exposed to research at a R1 university."
+
+### Diversity & Inclusivity
+
+Being a group with a rich and diverse set of identities, perspectives, backgrounds, and experiences is a strength. It enriches our lab culture and our research.
+
+Academia has long failed to provide an equitable or inclusive environment, specifically for Black, Indigenous, and people of color (BIPOC), first generation college and low income (FGLI), and LGBTQIA+ communities, who face varying forms of racism, discrimination, and other structural barriers. Within social and biomedical sciences, participant samples are also skewed toward WEIRD (White, Educated, Industrialized, Rich, and Democratic) samples, which limits the generalizability of our work.
+
+We are committed to supporting members of underrepresented and marginalized groups in science and to being active allies to members of groups we are not a part of. We further aim to—when possible—focus on recruiting representative and inclusive participant samples in our research. All members of the Lab are expected to behave in a manner that promotes an inclusive environment for all.
+
+# FAQ
+
+Norms change often. We actively strive to create a space that promotes adapting these norms to match the current pulse of the world and, more importantly, support the success and well-being of the lab and its members.
+
+## Presence in the Lab
+
+We expect lab members to attend (either virtually or in-person) lab-wide meetings and strongly encourage everyone to actively participate in lab activities. Additionally, graduate students and staff are strongly encouraged to attend relevant colloquia.
+
+The Lab Manager is available from approximately 9:00 AM to 5:00 PM on weekdays, so being around when they're around will help you have easier access to them. Steven also works on weekdays, and is slower to respond evenings/weekends.
+
+## How Long Should I Work?
+
+We typically expect full-time staff (i.e. Research Directors, Research Coordinators) to work approximately 40 hours a week Monday to Friday. The timeframe that this commitment is completed is largely contingent on the lab member, but it is important to communicate it to the rest of the lab.
+
+For example, one member may choose to work 8 to 4, another 10 to 6, or someone else 9 to 5. It is important to note that your schedule may be dependent on the needs of your project.
+
+## Time Off
+
+We encourage vacations and days off, just communicate with Steven (or your appropriate supervisor, such as a Research Director) and the team about your plan, including any considerations for nearby deadlines and/or how ongoing tasks will be taken care of in your absence. Post your days off on your google calendar as well as the Lab calendar.
+
+# Open Communication
+
+All members of Lab are welcome and encouraged to openly discuss issues about or relevant to the lab, be they interpersonal, intrapersonal, or related to our work. It is important to communicate your needs, so we can ensure we can meet those needs. If you need help with something or want to just talk to someone, please reach out! If you are unsure about who to reach out to, feel free to ask the lab managers and they'll point you to the right person.
+
+The Lab expects all members to communicate respectfully. We deliver feedback to one another in a constructive manner. This expectation holds for all forms of interaction, including online and face-to-face. When expressing disagreement or dissent, be sure to deliver these communications respectfully and with acknowledgement of alternate points of view.
+
+## Methods of Communication
+
+We frequently use Slack for day-to-day communication. The lab does its best to respect healthy work-life boundaries and uses unscheduled phone calls for emergencies. Timely response to email (and Slack) is expected (ideally within 24 business hours for intra-lab communications), and we do our best to be punctual for lab meetings and events.
+
+### Email Best Practices
+
+1.  It can be helpful to **bold** important parts of the email, such as the question you are asking or the person to which a certain part is addressed to
+2.  When writing times, writing out the full date and time with the time zone (e.g., Will Tuesday March 6, 11 AM EST work for you?) can help making scheduling easier and prevent miscommunication
+3.  When setting up a time to meet with someone, suggesting a few times, and then ask them to suggest a time if those don't work
+
+If you are running late for a meeting or event, be sure to notify a fellow Lab member by email or slack. Similarly, if you cannot attend a meeting or event, please inform the planning committee or Lab members ahead of time.
+
+### Ping Again!
+
+If others (anyone, outside of Lab, too) takes longer than 48 hours to respond, follow up ("Hey Steven, just checking in on this! Thanks"). It's helpful for them and for you and shouldn't be perceived as being pushy!
+
+### Responses
+
+You do NOT have to respond to emails or slack messages during the weekend. If you receive them, you are welcome to reply to them at your own discretion. If something is very urgent or requires attention during the weekend, we will let you know.
+
+# Authorship
+
+## General Principles
+
+Authorship is based on substantial contributions to the research, following guidelines from major journals and professional organizations. We acknowledge that the trajectory of a research project can be difficult to predict, so **authorship discussions should happen early** and should be revisited if anything changes.
+
+### Criteria for Authorship
+
+To qualify for authorship, individuals should make substantial contributions in **at least two** of the following areas:
+
+1.  **Conception and design** - Developing research questions, hypotheses, or study design
+2.  **Data collection** - Recruiting participants, programming experiments, running sessions
+3.  **Data analysis** - Conducting statistical analyses, creating visualizations, interpreting results
+4.  **Writing** - Drafting or substantially revising the manuscript
+5.  **Securing funding** - Writing grants that support the research
+
+### Authorship Order and Expectations
+
+-   **First author**: Primary contributor who typically led the project, conducted most analyses, and wrote the initial draft
+-   **Second/middle authors**: Made substantial contributions but less extensive than the first author. Order is typically determined by relative contribution
+-   **Last author**: Typically the PI (Steven) who provided oversight, funding, and conceptual guidance
+-   **Co-first authors**: When two individuals contributed equally, this should be indicated with a footnote
+
+### Special Considerations
+
+-   **Undergraduate RAs**: If an RA contributes substantially (e.g., leads data collection, performs analyses, writes methods), they should be considered for authorship
+-   **Lab managers/RCs**: Contributing to routine lab operations alone does not warrant authorship, but substantial intellectual or analytical contributions do
+-   **External collaborators**: Early discussions about authorship expectations prevent misunderstandings
+
+### Acknowledgments
+
+Individuals who contributed but do not meet authorship criteria should be acknowledged. This includes:
+
+-   Technical support (e.g., helping to analyze data on the cluster, prep data, etc.)
+-   Feedback on ideas or drafts
+-   Funding sources
+-   Participants (collecting data)
+-   Helpful conversations
+
+### Resolving Disputes
+
+-   Project leads should be mindful of who has contributed to the project and proactively discuss authorship
+-   If disagreements arise, Steven will mediate
+-   Documentation of contributions (in project logs, GitHub commits, etc.) can help clarify contributions
+
+When in doubt, lab members are encouraged to communicate openly with Steven or other Senior Lab Members. 
+
+# Sharing Resources
+
+## Documentation
+
+Sharing knowledge between members of the lab is an important part of our work as academics. The "Wiki" platform on Notion is an excellent way for us to capture our lab's diverse skills and knowledge bases in a way that is fairly permanent yet easy to change.
+
+Most lab protocols are documented in detail in the Wiki. Check out what we have collected so far, and follow the instructions on the first page to add your contributions and help out in improving the site!
+
+If you need help finding something and you can't find it on the wiki, you can always slack the appropriate slack channels:
+
+-   `#ask_admin`: for setting up meetings with Steven or asking questions to the admin team
+-   `#coding`: for questions regarding coding
+-   `#stats`: for questions about statistics, data analyses and visualizations, etc.
+-   `#random`: miscellaneous questions
+
+Part of practicing good science is having good documentation so others may reproduce your work. When documenting processes, try not to reinvent the wheel (i.e, rewriting already effective code). If you run into an issue and are able to solve it on your own, post it on an appropriate slack channel; who knows, one day it may come in handy for someone else.
+
+## Open Science Practices
+
+Transparency and reproducibility are core values of our lab. We are committed to sharing research materials and adopting open science practices to advance collective knowledge and hold ourselves accountable to the scientific community.
+
+### What Should Be Shared
+
+Unless there are ethical or legal barriers, the following materials should be made publicly available upon publication:
+
+-   **Stimuli** - Task materials, survey items, images, videos, or audio files used in studies
+-   **Data** - De-identified raw  means and processed data in accessible formats (CSV, JSON, etc.). In our lab that usually means no raw text
+-   **Code** - Analysis scripts, data preprocessing pipelines, and task presentation code
+-   **Protocols** - Detailed procedures for data collection and analysis
+-   **Pre-registrations** - Links to pre-registered study plans where appropriate
+
+### Where to Share
+
+-   **Open Science Framework (OSF)** - Primary repository for study materials, data, and preregistrations
+-   **GitHub** - Code repositories for analysis pipelines and computational tools
+-   **Journal supplementary materials** - When required by the journal
+
+### Timeline for Sharing
+
+-   **Pre-registration** - Before data collection begins (for confirmatory studies)
+-   **Preprints** - Upon submission to a journal (when journal policies allow). Please make sure to share with Steven and the Lab Manager to ensure the website is updated and the preprint get's presss!
+-   **Final materials** - Upon publication or acceptance of the manuscript
+-   **Code** - Should be version-controlled throughout the project and made public upon publication
+
+### Exceptions and Special Cases
+
+Materials may not be shared when:
+
+-   Sharing would violate participant privacy (even after de-identification)
+-   Data contains proprietary information from industry partners
+-   Sharing is prohibited by data use agreements or IRB restrictions
+-   Materials are copyrighted by third parties
+
+In these cases, document the reasons for not sharing and provide as much information as possible (e.g., data dictionaries, summary statistics).
+
+### Licensing
+
+-   Use permissive licenses for shared materials produced by the Lab and its members (e.g., CC-BY 4.0 for data, MIT for code)
+-   Clearly indicate the license in README files and repositories
+-   Respect licenses of third-party materials we build upon (e.g., cite where appropriate)
+
+## Preregistration
+
+Preregistration is the practice of documenting research plans before data collection or analysis begins. It helps distinguish confirmatory from exploratory research and increases transparency.
+
+### When to Preregister
+
+-   **High Encouraged for confirmatory studies** - Any study designed to test pre-specified hypotheses should be preregistered
+-   **Encouraged for exploratory studies** - Even exploratory work benefits from documenting initial plans
+-   **Not required for secondary data analysis** - When analyzing existing datasets, clearly label analyses as exploratory unless there was a pre-existing analysis plan
+
+### What to Include
+
+A comprehensive preregistration should include:
+
+-   Research questions and hypotheses
+-   Study design and sampling plan
+-   Variables and measures
+-   Data collection procedures
+-   Planned data exclusions
+-   Analysis plan (statistical tests, software, etc.)
+-   Inference criteria (e.g., alpha levels, Bayes factors)
+
+For more detailed information, please see the Lab Wiki.
+
+### Where to Preregister
+
+-   **Open Science Framework (OSF)** - Preferred platform; allows embargoed and public registrations
+-   **AsPredicted.org** - Simple, quick preregistrations
+-   **ClinicalTrials.gov** - For clinical trials (when applicable)
+
+### Deviations from Preregistration
+
+Research plans often need to change. This is normal and acceptable, but it is importan to document all deviations in the manuscript, distinguish between confirmatory (pre-registered) and exploratory analyses clearly in the manuscript, explain why deviations were necessary, and be transparent about changes strengthens rather than weakens the work.
+
+### Timeline
+
+When should you Preregister? Typically, preregistration should occur **before** data collection begins (for new studies) For multi-study papers, one can preregister each study separately/
+
+# Research Ethics and Human Subjects
+
+## Treatment of Human Subjects
+
+All research involving human participants must adhere to the highest ethical standards and comply with institutional and federal regulations.
+
+### IRB Approval
+
+**All** studies involving human subjects require IRB approval before data collection begins. Lab members must complete required human subjects training (CITI) before conducting research. Additionally, IRB protocols must be kept current; renewals should be submitted at least 30 days before expiration. And we must submit modifications to approved protocols if we modify designs, etc.!
+
+### Informed Consent
+
+All articipants must provide informed consent before participating in any lab study. Consent forms must be written in clear, accessible language (typically 8th-grade reading level) and participants must be informed of their right to withdraw at any time without penalty. For online studies, consent must be documented electronically
+
+### Data Privacy and Confidentiality
+
+Participant data must be de-identified as soon as possible in the analysis processes (e.g., Prolific IDs).  Personal identifiers (names, emails, etc.) should be stored separately from research data. Use participant IDs rather than names in all data files and documentation. Data containing identifiable information must be stored on secure, encrypted systems (e.g., the Lab Server). When sharing data publicly, ensure all identifying information has been removed
+
+### Vulnerable Populations
+
+Special care must be taken when working with vulnerable populations (children, individuals with mental health conditions, etc.):
+
+-   Additional protections and oversight may be required
+-   Consult with the IRB early in the planning process
+-   Have clear protocols for responding to distress or mandatory reporting situations
+
+### Compensation
+
+The Lab deems it important that participants are compensated fairly for their time. That means that payment rates should be consistent with institutional guidelines (typically \$10-15/hour). Where possible, partial compensation should be provided if participants withdraw early
+
+## Use of Artificial Intelligence
+
+AI tools (e.g., ChatGPT, Claude, Copilot) are increasingly integrated into research workflows. We embrace these technologies while maintaining scientific integrity and transparency.
+
+### Acceptable Uses
+
+AI tools may be used for:
+
+-   **Code development and debugging** - Using AI assistants to write, troubleshoot, or optimize code
+-   **Literature review support** - Summarizing papers or identifying relevant literature (always verify sources)
+-   **Writing assistance** - Improving clarity, grammar, or structure of written work
+-   **Brainstorming** - Generating research ideas or hypotheses (which must be critically evaluated by Humans!)
+-   **Data preprocessing** - Automating routine data cleaning tasks (with verification)
+
+### Required Disclosure
+
+AI use **must** be disclosed when:
+
+-   AI tools generate substantial portions of text in manuscripts or grants 
+-   AI is used in the analysis pipeline (e.g., using LLMs for text classification)
+-   AI assists in creating figures or visualizations beyond basic formatting
+
+**Note.** When disclosing use of a LLM, it's important to capture 1. the model you used 2. when you used the model (i.e., the data) 3. any sort of customization you used (e.g., change in temperature, etc.)
+
+### Prohibited Uses
+
+AI tools should NOT be used for:
+
+-   **Fabricating data or results**
+-   **Generating fake citations** - Always verify that cited papers exist and are accurately represented
+-   **Peer review** - Do not input confidential manuscript content into AI systems
+-   **Final decision-making** without human oversight
+
+When in doubt about appropriate AI use, discuss with Steven
+
+## Inclusive Research Practices
+
+Our lab values feedback from members of different communities, and we incorporate this feedback into our research workflows. Below are some resources we recommend when preparing your project:
+
+-   Information on how the lab attempts to collect participant demographics in an inclusive manner
+-   Information on how to construct a citation diversity statement: https://github.com/dalejn/cleanBib
+
+## Working Together: Responsibilities and Respect
+
+### Respect for All Contributors
+
+Research is a collaborative effort, and everyone—from administrators to undergraduates—plays a vital role. All members of the team deserve recognition and appreciation for their contributions, big and small.
+
+**Respect for administrators**: Pay it forward. Show gratitude to administrative and support staff (Finance, HR, etc.) by getting them what they need, exactly how they need it, in a timely manner (ideally within 24 hours). Acknowledge their work with explicit thanks.
+
+### Appropriate Task Delegation
+
+All members of the research team should be given tasks that they are approved, trained, and qualified to complete. This ensures things get done right the first time and promotes learning. If you feel like you're taking on too much or are unsure how to do a task, speak up!
+
+# Lab Social Events
+
+To help us work together to accomplish great things in our research, our lab tries to hold regular social events where lab members can hang out, have fun and get to know each other. If you have ideas for an event and/or are interested in helping set one up, feel free to reach out to the Lab Manager!
+
+Suggesting something does not necessarily mean you are volunteering to set it up. Social events are optional (i.e., you are not required to attend, though we love getting to know you).
+
+# Code of Conduct
+
+## Sexual Harassment and Other Forms of Harassment
+
+The Lab does not tolerate any forms of harassment. With that in mind, it is important to discuss what harassment can look like and outline the available channels for reporting.
+
+The following definitions of harassment are borrowed from the Social Affective Neuroscience Society (SANS) code of conduct:
+
+> "Sexual harassment refers to unwelcome sexual advances, requests for sexual favors, and other verbal or physical conduct of a sexual nature. Behavior and language that are welcome and acceptable to one person may be unwelcome and offensive to another. Consequently, individuals must use discretion to ensure that their words and actions communicate respect for others. This is especially important for those in positions of authority since individuals with lower rank or status may be reluctant to express their objections or discomfort regarding unwelcome behavior."
+
+## Reporting Violations of Community Standards
+
+Steven and Senior Lab Members are both available to discuss any concerns that arise with respect to community standards. If you have concerns about interactions with Steven, you can consult a Senior Lab Member, or the Dean of the XXXX School/Program or one of the resources below.
+
+Whether those concerns involve other Lab members or individuals not directly affiliated with the lab, please know that we are here to listen and provide support to the best of our abilities. Having said that, it is important to note that Steven and Senior Lab Members are mandated reporters of Title IX violations.
+
+### Who are Mandated Reporters?
+
+All university faculty and staff who regularly work with students in a teaching, advising, coaching, or mentoring capacity are required to report instances of sexual harassment, sexual violence, relationship (dating or domestic) violence, and stalking to the Title IX Office.
+
+In other words, Steven, Lab Managers, Post docs, as well as Research Directors and Coordinators are mandated reporters under Title IX.
+
+### What Does This Mean?
+
+Mandated reporters are required to notify the Title IX Office of violations. These reports are not anonymous, and the University does not guarantee that they will be kept confidential. In rare cases, the University may proceed to a Title IX investigation despite requests for confidentiality.
+
+# Day to Day Operations
+
+## General Meetings (One-on-one or Group)
+
+When organizing meetings with other lab members or collaborators, make sure to:
+
+-   Schedule it on your Lab Google calendar
+-   Send calendar invites to guests
+-   Include a zoom link and/or in-person meeting space (we recommend providing both options in case of any last-minute changes)
+-   Create an agenda in advance
+
+## Lab Meetings
+
+Lab meetings are held weekly for an hour and a half. We use a sprint schedule for our meeting schedule. The meeting schedule for the current semester can be found on the Lab Google Calendar.
+
+Labscrum is an adaptation of scrum—an implementation of the agile philosophy of project management—developed for academia by Lisa May. It is a framework for managing research projects and labs that uses empiricism to continuously experiment with and refine *how* we do research and work together.
+
+While labscrum may help us be more productive, that is not our primary goal. Our core goal is to help each other be well and do science in a sustainable way.
+
+The core pillars of labscrum include:
+
+1.  **Transparency**: To improve the research process, it must be observable
+2.  **Inspection**: Reflection enables the generation of ideas for how to improve the research process
+3.  **Adaptation**: Ideas are implemented as experiments and the work process is adjusted continuously
+
+## Individual Meetings with Steven
+
+If you'd like to schedule a meeting with Steven, use the `#ask_admin` slack channel to contact the admin team. The lab manager will schedule these 1:1 meetings each semester, according to lab members' availability. You can schedule recurring meetings (e.g., every 2 weeks) or request one-time meetings as needed.
+
+Prepare an agenda in advance for what the meeting will be about. Although there is no set agenda template and the needs of each meeting may vary, a good starting point may be to consider the following sections:
+
+-   **Updates** (stuff you got done since last time)
+-   **Tasks and Longer-Term Goals** (an ordered priority list for what's coming up)
+-   **Discussion** (stuff that needs input)
+
+## Other Intra-lab Meetings
+
+If you're requesting a meeting with someone else, you set the agenda. For team meetings, the research director or some other designated person (sometimes a research coordinator) maintains the agenda. It is recommended that you schedule a meeting a few days in advance to accommodate others' schedules and allow them to prepare.
+
+# Money
+
+The lab is funded through different government and industry grants, each corresponding to a particular project. For a list of current and past grants, see the Funding section of the lab wiki.
+
+## Funding Policies
+
+Our lab is committed to maintaining scientific integrity and independence in all our work. This includes being thoughtful about funding sources and potential conflicts of interest.
+
+### Acceptable Funding Sources
+
+We actively pursue funding from:
+
+-   **Federal agencies** (NIH, NSF, NIDA, NIMH, etc.)
+-   **Private foundations** with missions aligned with public health and scientific advancement
+-   **University internal grants**
+-   **Professional societies and associations**
+
+### Industry Partnerships
+
+Industry collaborations can provide valuable resources and real-world applications for our research. However, we maintain the following guardrails when collaborating with folks from industry:
+
+-   **Scientific independence** - The lab should retain full control over study design, analysis, and publication
+-   **No publication restrictions** - Funding agreements must not restrict our ability to publish results, regardless of outcomes
+-   **Transparency** - All industry funding must be disclosed in publications and presentations
+-   **Ethical alignment** - We will not accept funding from organizations whose core business conflicts with public health (e.g., tobacco companies, organizations promoting misinformation)
+
+### Data Ownership and Sharing
+
+-   The lab retains ownership of data generated with lab resources
+-   Industry partners may request first access to results before public release, but timelines must be reasonable (typically 30-60 days)
+-   Data sharing agreements must allow for eventual public sharing (after appropriate embargo periods)
+
+### When to Decline Funding
+
+We will decline funding that:
+
+-   Restricts publication rights or requires approval before publication
+-   Prevents data sharing beyond what is ethically necessary
+-   Creates significant conflicts of interest that cannot be managed
+-   Comes from organizations whose values fundamentally conflict with our mission
+
+### Discussing Funding Decisions
+
+If you have concerns about a potential funding source, please raise them with Steven. These discussions are important and will be taken seriously.
+
+## Funding Lab Opportunities
+
+There are multiple funding opportunities available to fund projects for researchers at different stages. For a broad (but by no means comprehensive) list of opportunities, you can take a look at the Funding Opportunities page on the lab wiki. If you see any funding opportunities pop up, feel free to share with the lab via Slack or email.
+
+The lab is usually able to cover the cost of lab-wide or full project team events, such as lunches, dinners, and retreats. The lab will usually not cover expenses for individual or small-group activities. If you have any questions about the lab covering the cost of an activity, please check with the admin team, Steven, and/or the Finance Office.
+
+# Asking for Help - Where to Go
+
+## Online
+
+-   Use the Lab Wiki to answer most lab-related questions
+-   The Wiki is a working document, so if you don't see a page on something you think should be on there, feel free to create it!
+-   Use the search function! You might find something very helpful, or maybe even a similar discussion you can reference to ask someone in the lab
+-   If you don't find what you're looking for, and figure out what you need on your own or with the help of other lab members, consider creating a page on Notion with what you've learned
+
+## Asking for Help - When and How
+
+Always ask questions–there are no stupid questions! It is recommended that lab members try to address issues on their own first. If you aren't able to solve the issue, that's okay! Reach out to the relevant person (whether a lab member or university affiliate, e.g., in IT, HR, or stats consulting) and detail the problem as well as the steps you've taken to try to solve it. This will help others provide you with relevant, tailored support and cut down on excessive back-and-forth.
+
+Senior lab members, when helping other Lab members, please do your best to demonstrate how you've solved the problem in the past and share any relevant knowledge. This way, the lab member seeking help can learn new skills and be better able to problem-solve independently in the future.
+
+# Security Protocols and Data Management
+
+Protecting participant data and maintaining research integrity requires robust security practices.
+
+## Data Security
+
+### Storage
+
+-   **Sensitive data** (containing identifiers) must be stored on secure, encrypted university servers
+-   **De-identified data** can be stored on lab-approved cloud services (Box, Dropbox with encryption)
+-   **Never** store research data containing identifiers on personal devices without encryption
+-   Use the lab's secure server space for active projects
+
+### Password Management
+
+-   Use strong, unique passwords for all research accounts
+-   Use a password manager (e.g., 1Password, LastPass) - the lab can provide licenses
+-   Enable two-factor authentication (2FA) on all accounts that offer it
+-   Never share passwords via email or unencrypted channels!
+
+### File Naming and Organization
+
+-   Use consistent, descriptive file naming conventions
+-   Include dates in ISO format (YYYY-MM-DD) when relevant
+-   Maintain clear folder structures documented in README files
+-   Version control code using Git/GitHub
+
+### Access Control
+
+-   Only lab members working on a specific project should have access to that project's data
+-   Remove access when lab members leave or transition to different projects unbless otherwise specified
+-   Regularly audit who has access to sensitive data
+
+## Data Management Plans
+
+Every project should have a data management plan that includes:
+
+-   Where data will be stored during and after the project
+-   Who has access to the data
+-   Plans for data sharing and archiving
+-   Backup procedures
+
+## HIPAA and PHI
+
+If working with Protected Health Information (PHI):
+
+-   Complete HIPAA training before accessing any PHI
+-   Follow all institutional HIPAA compliance procedures
+-   Store PHI only on HIPAA-compliant systems
+-   Consult with the IRB and institutional HIPAA office
+
+## Incident Response
+
+If you suspect a data breach or security incident:
+
+1.  Immediately notify Steven and the lab manager
+2.  Document what happened and what data may be affected
+3.  Follow institutional reporting procedures
+4.  Do not attempt to "fix" the problem before reporting it
+
+# Conflicts of Interest
+
+A conflict of interest (COI) occurs when personal, financial, or professional interests could compromise or appear to compromise research objectivity.
+
+## What Constitutes a Conflict of Interest
+
+Conflicts of interest in research can take many forms, and understanding what constitutes a conflict is the first step in managing them appropriately.
+
+### Financial Conflicts
+
+Financial conflicts of interest arise when you have monetary interests that could be affected by your research outcomes. These include holding equity or financial interest in a company whose products or services are related to your research, maintaining consulting relationships with companies in your research area, receiving speaking fees or honoraria from organizations that could benefit from your research findings, or earning royalties from products related to your research. Even when these financial relationships don't actually influence your work, they can create the appearance of bias and must be disclosed and managed appropriately.
+
+### Non-Financial Conflicts
+
+Not all conflicts of interest involve money. Non-financial conflicts can be equally important and sometimes more difficult to identify. These include personal relationships with study participants or collaborators that could bias research outcomes, strongly held beliefs or ideological commitments that could influence research design or interpretation, and situations where your professional advancement depends on achieving specific research outcomes. For example, if your dissertation, tenure case, or promotion relies heavily on finding significant results in a particular direction, this creates a non-financial conflict that should be acknowledged and managed.
+
+### Examples of Potential Conflicts
+
+To make these concepts more concrete, consider the following examples: owning stock in a company that produces mental health assessment tools while conducting research that evaluates similar tools creates a clear financial conflict. Having a close family member as a study participant could bias how you collect or interpret data from that individual. Consulting for a company while publishing research relevant to their products raises questions about whether your findings might be influenced by that relationship. Similarly, serving on the board of an organization that could benefit from your research conclusions—even if it's a nonprofit or advocacy organization you believe in—represents a potential conflict that should be disclosed.
+
+## Disclosure Requirements
+
+### When to Disclose
+
+Transparency is the cornerstone of managing conflicts of interest. Conflicts must be disclosed in all publications and presentations, ensuring that readers and audiences are aware of any potential biases. They must also be reported on grant applications, disclosed to the university's COI office as required by institutional policy, communicated to Steven and relevant lab members who are working on related projects, and included in IRB applications when relevant to human subjects research. The goal is to ensure that all stakeholders—from funding agencies to research participants—can evaluate your work with full knowledge of any potential competing interests.
+
+### How to Disclose
+
+When disclosing conflicts of interest, be as specific as possible about the nature of the relationship rather than using vague language. Include dollar amounts when relevant, as the magnitude of a financial interest can affect how it should be managed. Remember to update your disclosures when circumstances change—conflicts are not static, and new relationships or changes to existing ones must be reported promptly. When in doubt, err on the side of over-disclosure rather than under-disclosure. It's better to disclose something that turns out to be minor than to fail to disclose something that could later be seen as problematic.
+
+## What to Do If You Have a Conflict
+
+If you recognize a potential conflict of interest, follow these steps: First, **identify** the conflict by recognizing when a potential conflict exists—being proactive is always better than being reactive. Second, **disclose** the conflict by informing Steven and following institutional disclosure procedures through your university's COI office. Third, **discuss** the situation with Steven to work together to determine if management beyond disclosure is needed. Fourth, **document** everything by keeping records of your disclosures and any management plans you develop. Finally, **monitor** the situation over time and reassess as circumstances change, since conflicts can evolve as your career and relationships develop.
+
+## Questions to Ask Yourself
+
+If you're unsure whether something constitutes a conflict of interest, consider these questions: Would a reasonable person question my objectivity if they knew about this relationship? Could this relationship influence my research decisions, even subconsciously? Would I be comfortable if this relationship became public or was reported in the media? Am I avoiding disclosure because it feels uncomfortable or because I'm worried about how it might be perceived? If you answer "yes" or "maybe" to any of these questions, it's likely worth disclosing.
+
+When in doubt, disclose. It's always better to be transparent! And if you have any questions you can always come and talk to Steven or a Senior Lab Member.
+
+# Collaboration Guidelines
+
+Science is a team sport and collaboration is central to our research approach. Clear expectations help collaborations thrive.
+
+## Initiating Collaborations
+
+### Internal Collaborations
+
+Successful internal collaborations begin with clear communication. Before committing significant time to a new collaborative project, discuss your project ideas with Steven to ensure alignment with lab priorities and avoid duplication of effort. Be explicit about authorship expectations early in the process—having these conversations upfront prevents misunderstandings later. Document each collaborator's roles and responsibilities clearly so everyone knows what's expected of them, and use shared project management tools like Notion or GitHub projects to keep everyone on the same page throughout the project lifecycle.
+
+### External Collaborations
+
+External collaborations can bring new perspectives and resources to our work, but they require additional planning and formal agreements. Steven should be informed of external collaboration discussions early, even in preliminary stages, so he can provide guidance and ensure the collaboration aligns with lab goals and policies. Once you decide to move forward, create a collaboration agreement that outlines project goals and timeline, clarifies each party's contributions and responsibilities, establishes authorship expectations, specifies data ownership and sharing arrangements, outlines publication plans including timelines and review processes, and addresses any funding arrangements or cost-sharing agreements. Having these elements in writing protects everyone involved and provides a reference point if questions arise later.
+
+## Data Sharing with Collaborators
+
+### Before Sharing Data
+
+Data sharing is essential for collaboration, but it must be done responsibly and legally. Before sharing any data with collaborators, ensure you have permission to share by checking your IRB protocols and consent forms to verify that data sharing is allowed. Execute data use agreements when necessary, particularly for sensitive data or when sharing with external collaborators. Share only the minimum data needed for the collaboration—there's no need to share entire datasets when a subset will suffice. Whenever possible, de-identify data before sharing to protect participant privacy, even when working with trusted collaborators.
+
+### Data Use Agreements
+
+For sensitive data or external collaborations, formal data use agreements provide important protections. These agreements should establish permitted uses of the data so collaborators understand what analyses or applications are acceptable, specify restrictions on further sharing to prevent data from being distributed beyond the agreed-upon parties, outline requirements for data security including storage and transmission protocols, detail plans for data destruction or return once the collaboration is complete, and clarify publication and authorship expectations related to work using the shared data. These agreements may seem formal, but they protect both you and your collaborators and ensure everyone has the same understanding of how data can be used.
+
+## Intellectual Property
+
+### General Principles
+
+Intellectual property in academic research is primarily protected through authorship and open sharing rather than through patents or proprietary restrictions. Ideas developed using lab resources belong to the collaborative team—no single person can claim exclusive ownership of concepts developed with shared lab infrastructure and support. Individual contributions should be recognized through authorship on publications, presentations, and other scholarly outputs. Novel methods, tools, or software should be shared openly when possible, contributing to the broader scientific community and allowing others to build on our work.
+
+## Multi-Lab Projects
+
+Large collaborative projects involving multiple labs require additional structure and coordination. For these projects, establish a clear governance structure and decision-making processes at the outset so everyone knows who has authority over different aspects of the project. Create detailed project timelines with milestones to keep the work on track and allow for progress monitoring. Hold regular check-in meetings—monthly or quarterly depending on the project timeline—to ensure all teams are aligned and to address any emerging issues. Document all major decisions in shared meeting notes or project management systems so there's a record of how and why choices were made. Perhaps most importantly, agree on authorship criteria before work begins, including how author order will be determined and what contributions merit authorship versus acknowledgment.
+
+## When Collaborations Go Wrong
+
+Despite best intentions and careful planning, conflicts can arise in collaborative work. When they do, address issues early before they escalate—small misunderstandings are much easier to resolve than major conflicts. Document concerns in writing, whether through email or shared documents, to create a record and ensure everyone has the same understanding of the issues. If you can't resolve a conflict directly with your collaborator, involve Steven in mediation—he can provide an outside perspective and help find solutions that work for everyone. For serious disputes, follow institutional procedures for resolving conflicts, which may involve department chairs, ombudspersons, or other university resources. Whatever the outcome, try to learn from the experience to prevent future issues—reflect on what went wrong and what could be done differently next time.
+
+## Best Practices
+
+Successful collaborations share several common practices. **Communicate frequently**—over-communication is better than under-communication, and regular check-ins prevent surprises. **Be responsive** by replying to collaborator emails within 48 hours, even if just to acknowledge receipt and indicate when you'll provide a full respons at a later time. **Meet deadlines**, or if you can't, communicate early about the delay so your collaborators can adjust their plans accordingly. **Give credit generously** by acknowledging contributions explicitly in conversations, presentations, and publications—recognition costs nothing and builds goodwill. **Be open to feedback**, remembering that collaboration involves compromise and that others' perspectives can strengthen your work. Finally, **document everything**—shared documents, meeting notes, and email trails protect everyone by creating a record of decisions, agreements, and contributions throughout the collaboration.
+
+# Leaving the Lab
+
+One of the goals of the Lab is to prepare its members for the next step in their careers, so the time will eventually come for each of us to graduate from the lab.
+
+## Offboarding Procedures
+
+When transitioning out of the lab:
+
+-   **Transfer project files** - Move all project files to appropriate lab members with clear documentation
+-   **Document ongoing work** - Create detailed notes about work in progress, file locations, and next steps
+-   **Knowledge transfer** - Schedule meetings with people taking over your projects
+-   **Return lab equipment** - Return all lab property (laptops, keys, equipment, etc.)
+-   **Access removal** - Lab accounts and secure systems access will be removed
+-   **Update contact information** - Provide forwarding contact information for any follow-up questions
+-   **Exit interview** - Meet with Steven to discuss your experience and provide feedback
+
+See the Wiki for detailed offboarding checklists and templates.
+
+------------------------------------------------------------------------
+
+## Acknowledgments
+
+Much of the content in this lab manual was developed by Steven Mesquiti during his time as a Lab Manager for Dr. Emily Falk at the Communication Neuroscience Lab at the University of Pennsylvania. This document aims to represents a synthesis of best practices, lessons learned, and values cultivated through that experience.
+
+::: callout-note
+## Living Document
+
+This manual is meant to serve as a **working draft** and can always be updated! Lab culture evolves, practices improve, and new challenges emerge. We encourage all lab members to suggest changes, additions, or clarifications to keep this document relevant and useful. If you notice something that needs updating or have ideas for new sections, please reach out to Steven or post in the `#ask_admin` Slack channel.
+:::

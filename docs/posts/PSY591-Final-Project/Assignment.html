@@ -1,0 +1,1797 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2025-12-08">
+
+<title>WORDLE Lab Manual</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-69f25b25c61dccd9e24e156a0f8f012f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">Steven Mesquiti</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../publications.html"> 
+<span class="menu-text">Publications &amp; Preprints</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../CV.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts.html"> 
+<span class="menu-text">Posts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../coding.html"> 
+<span class="menu-text">Coding Guide</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#who-we-are" id="toc-who-we-are" class="nav-link active" data-scroll-target="#who-we-are"><span class="header-section-number">1</span> Who We Are</a>
+  <ul class="collapse">
+  <li><a href="#roles-and-expectations" id="toc-roles-and-expectations" class="nav-link" data-scroll-target="#roles-and-expectations"><span class="header-section-number">1.1</span> Roles and Expectations</a>
+  <ul class="collapse">
+  <li><a href="#principal-investigator-pi" id="toc-principal-investigator-pi" class="nav-link" data-scroll-target="#principal-investigator-pi"><span class="header-section-number">1.1.1</span> Principal Investigator (PI)</a></li>
+  <li><a href="#research-directors-rds" id="toc-research-directors-rds" class="nav-link" data-scroll-target="#research-directors-rds"><span class="header-section-number">1.1.2</span> Research Directors (RDs)</a></li>
+  <li><a href="#post-docs" id="toc-post-docs" class="nav-link" data-scroll-target="#post-docs"><span class="header-section-number">1.1.3</span> Post-docs</a></li>
+  <li><a href="#research-coordinators-and-lab-managers-rclms" id="toc-research-coordinators-and-lab-managers-rclms" class="nav-link" data-scroll-target="#research-coordinators-and-lab-managers-rclms"><span class="header-section-number">1.1.4</span> Research Coordinators and Lab Managers (RCLMs)</a></li>
+  <li><a href="#graduate-students" id="toc-graduate-students" class="nav-link" data-scroll-target="#graduate-students"><span class="header-section-number">1.1.5</span> Graduate Students</a></li>
+  <li><a href="#undergraduate-ras" id="toc-undergraduate-ras" class="nav-link" data-scroll-target="#undergraduate-ras"><span class="header-section-number">1.1.6</span> Undergraduate RAs</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#quick-start-guide" id="toc-quick-start-guide" class="nav-link" data-scroll-target="#quick-start-guide"><span class="header-section-number">2</span> Quick Start Guide</a>
+  <ul class="collapse">
+  <li><a href="#when-in-doubt-ask-the-lab-managers" id="toc-when-in-doubt-ask-the-lab-managers" class="nav-link" data-scroll-target="#when-in-doubt-ask-the-lab-managers"><span class="header-section-number">2.1</span> When in Doubt, Ask the Lab Manager(s)</a></li>
+  <li><a href="#complete-required-training-modules" id="toc-complete-required-training-modules" class="nav-link" data-scroll-target="#complete-required-training-modules"><span class="header-section-number">2.2</span> Complete Required Training Modules</a></li>
+  <li><a href="#share-your-contact-information" id="toc-share-your-contact-information" class="nav-link" data-scroll-target="#share-your-contact-information"><span class="header-section-number">2.3</span> Share Your Contact Information</a></li>
+  <li><a href="#google-calendars" id="toc-google-calendars" class="nav-link" data-scroll-target="#google-calendars"><span class="header-section-number">2.4</span> Google Calendars</a>
+  <ul class="collapse">
+  <li><a href="#when-creating-google-calendar-events" id="toc-when-creating-google-calendar-events" class="nav-link" data-scroll-target="#when-creating-google-calendar-events"><span class="header-section-number">2.4.1</span> When creating Google Calendar events:</a></li>
+  </ul></li>
+  <li><a href="#sign-into-slack" id="toc-sign-into-slack" class="nav-link" data-scroll-target="#sign-into-slack"><span class="header-section-number">2.5</span> Sign into Slack</a></li>
+  <li><a href="#lab-safety" id="toc-lab-safety" class="nav-link" data-scroll-target="#lab-safety"><span class="header-section-number">2.6</span> Lab Safety</a></li>
+  <li><a href="#if-you-need-help" id="toc-if-you-need-help" class="nav-link" data-scroll-target="#if-you-need-help"><span class="header-section-number">2.7</span> If You Need Help…</a></li>
+  <li><a href="#reading-list" id="toc-reading-list" class="nav-link" data-scroll-target="#reading-list"><span class="header-section-number">2.8</span> Reading List</a></li>
+  </ul></li>
+  <li><a href="#community-norms-and-values" id="toc-community-norms-and-values" class="nav-link" data-scroll-target="#community-norms-and-values"><span class="header-section-number">3</span> Community Norms and Values</a>
+  <ul class="collapse">
+  <li><a href="#core-values" id="toc-core-values" class="nav-link" data-scroll-target="#core-values"><span class="header-section-number">3.1</span> Core Values</a>
+  <ul class="collapse">
+  <li><a href="#well-being" id="toc-well-being" class="nav-link" data-scroll-target="#well-being"><span class="header-section-number">3.1.1</span> Well-being</a></li>
+  <li><a href="#joy" id="toc-joy" class="nav-link" data-scroll-target="#joy"><span class="header-section-number">3.1.2</span> Joy</a></li>
+  <li><a href="#respect" id="toc-respect" class="nav-link" data-scroll-target="#respect"><span class="header-section-number">3.1.3</span> Respect</a></li>
+  <li><a href="#community-building" id="toc-community-building" class="nav-link" data-scroll-target="#community-building"><span class="header-section-number">3.1.4</span> Community Building</a></li>
+  <li><a href="#psychological-safety" id="toc-psychological-safety" class="nav-link" data-scroll-target="#psychological-safety"><span class="header-section-number">3.1.5</span> Psychological Safety</a></li>
+  <li><a href="#communication" id="toc-communication" class="nav-link" data-scroll-target="#communication"><span class="header-section-number">3.1.6</span> Communication</a></li>
+  <li><a href="#transparency" id="toc-transparency" class="nav-link" data-scroll-target="#transparency"><span class="header-section-number">3.1.7</span> Transparency</a></li>
+  <li><a href="#process-orientation" id="toc-process-orientation" class="nav-link" data-scroll-target="#process-orientation"><span class="header-section-number">3.1.8</span> Process Orientation</a></li>
+  <li><a href="#curiosity-and-intellectual-development" id="toc-curiosity-and-intellectual-development" class="nav-link" data-scroll-target="#curiosity-and-intellectual-development"><span class="header-section-number">3.1.9</span> Curiosity and Intellectual Development</a></li>
+  <li><a href="#equity" id="toc-equity" class="nav-link" data-scroll-target="#equity"><span class="header-section-number">3.1.10</span> Equity</a></li>
+  <li><a href="#diversity-inclusivity" id="toc-diversity-inclusivity" class="nav-link" data-scroll-target="#diversity-inclusivity"><span class="header-section-number">3.1.11</span> Diversity &amp; Inclusivity</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#faq" id="toc-faq" class="nav-link" data-scroll-target="#faq"><span class="header-section-number">4</span> FAQ</a>
+  <ul class="collapse">
+  <li><a href="#presence-in-the-lab" id="toc-presence-in-the-lab" class="nav-link" data-scroll-target="#presence-in-the-lab"><span class="header-section-number">4.1</span> Presence in the Lab</a></li>
+  <li><a href="#how-long-should-i-work" id="toc-how-long-should-i-work" class="nav-link" data-scroll-target="#how-long-should-i-work"><span class="header-section-number">4.2</span> How Long Should I Work?</a></li>
+  <li><a href="#time-off" id="toc-time-off" class="nav-link" data-scroll-target="#time-off"><span class="header-section-number">4.3</span> Time Off</a></li>
+  </ul></li>
+  <li><a href="#open-communication" id="toc-open-communication" class="nav-link" data-scroll-target="#open-communication"><span class="header-section-number">5</span> Open Communication</a>
+  <ul class="collapse">
+  <li><a href="#methods-of-communication" id="toc-methods-of-communication" class="nav-link" data-scroll-target="#methods-of-communication"><span class="header-section-number">5.1</span> Methods of Communication</a>
+  <ul class="collapse">
+  <li><a href="#email-best-practices" id="toc-email-best-practices" class="nav-link" data-scroll-target="#email-best-practices"><span class="header-section-number">5.1.1</span> Email Best Practices</a></li>
+  <li><a href="#ping-again" id="toc-ping-again" class="nav-link" data-scroll-target="#ping-again"><span class="header-section-number">5.1.2</span> Ping Again!</a></li>
+  <li><a href="#responses" id="toc-responses" class="nav-link" data-scroll-target="#responses"><span class="header-section-number">5.1.3</span> Responses</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#authorship" id="toc-authorship" class="nav-link" data-scroll-target="#authorship"><span class="header-section-number">6</span> Authorship</a>
+  <ul class="collapse">
+  <li><a href="#general-principles" id="toc-general-principles" class="nav-link" data-scroll-target="#general-principles"><span class="header-section-number">6.1</span> General Principles</a>
+  <ul class="collapse">
+  <li><a href="#criteria-for-authorship" id="toc-criteria-for-authorship" class="nav-link" data-scroll-target="#criteria-for-authorship"><span class="header-section-number">6.1.1</span> Criteria for Authorship</a></li>
+  <li><a href="#authorship-order-and-expectations" id="toc-authorship-order-and-expectations" class="nav-link" data-scroll-target="#authorship-order-and-expectations"><span class="header-section-number">6.1.2</span> Authorship Order and Expectations</a></li>
+  <li><a href="#special-considerations" id="toc-special-considerations" class="nav-link" data-scroll-target="#special-considerations"><span class="header-section-number">6.1.3</span> Special Considerations</a></li>
+  <li><a href="#acknowledgments" id="toc-acknowledgments" class="nav-link" data-scroll-target="#acknowledgments"><span class="header-section-number">6.1.4</span> Acknowledgments</a></li>
+  <li><a href="#resolving-disputes" id="toc-resolving-disputes" class="nav-link" data-scroll-target="#resolving-disputes"><span class="header-section-number">6.1.5</span> Resolving Disputes</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#sharing-resources" id="toc-sharing-resources" class="nav-link" data-scroll-target="#sharing-resources"><span class="header-section-number">7</span> Sharing Resources</a>
+  <ul class="collapse">
+  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation"><span class="header-section-number">7.1</span> Documentation</a></li>
+  <li><a href="#open-science-practices" id="toc-open-science-practices" class="nav-link" data-scroll-target="#open-science-practices"><span class="header-section-number">7.2</span> Open Science Practices</a>
+  <ul class="collapse">
+  <li><a href="#what-should-be-shared" id="toc-what-should-be-shared" class="nav-link" data-scroll-target="#what-should-be-shared"><span class="header-section-number">7.2.1</span> What Should Be Shared</a></li>
+  <li><a href="#where-to-share" id="toc-where-to-share" class="nav-link" data-scroll-target="#where-to-share"><span class="header-section-number">7.2.2</span> Where to Share</a></li>
+  <li><a href="#timeline-for-sharing" id="toc-timeline-for-sharing" class="nav-link" data-scroll-target="#timeline-for-sharing"><span class="header-section-number">7.2.3</span> Timeline for Sharing</a></li>
+  <li><a href="#exceptions-and-special-cases" id="toc-exceptions-and-special-cases" class="nav-link" data-scroll-target="#exceptions-and-special-cases"><span class="header-section-number">7.2.4</span> Exceptions and Special Cases</a></li>
+  <li><a href="#licensing" id="toc-licensing" class="nav-link" data-scroll-target="#licensing"><span class="header-section-number">7.2.5</span> Licensing</a></li>
+  </ul></li>
+  <li><a href="#preregistration" id="toc-preregistration" class="nav-link" data-scroll-target="#preregistration"><span class="header-section-number">7.3</span> Preregistration</a>
+  <ul class="collapse">
+  <li><a href="#when-to-preregister" id="toc-when-to-preregister" class="nav-link" data-scroll-target="#when-to-preregister"><span class="header-section-number">7.3.1</span> When to Preregister</a></li>
+  <li><a href="#what-to-include" id="toc-what-to-include" class="nav-link" data-scroll-target="#what-to-include"><span class="header-section-number">7.3.2</span> What to Include</a></li>
+  <li><a href="#where-to-preregister" id="toc-where-to-preregister" class="nav-link" data-scroll-target="#where-to-preregister"><span class="header-section-number">7.3.3</span> Where to Preregister</a></li>
+  <li><a href="#deviations-from-preregistration" id="toc-deviations-from-preregistration" class="nav-link" data-scroll-target="#deviations-from-preregistration"><span class="header-section-number">7.3.4</span> Deviations from Preregistration</a></li>
+  <li><a href="#timeline" id="toc-timeline" class="nav-link" data-scroll-target="#timeline"><span class="header-section-number">7.3.5</span> Timeline</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#research-ethics-and-human-subjects" id="toc-research-ethics-and-human-subjects" class="nav-link" data-scroll-target="#research-ethics-and-human-subjects"><span class="header-section-number">8</span> Research Ethics and Human Subjects</a>
+  <ul class="collapse">
+  <li><a href="#treatment-of-human-subjects" id="toc-treatment-of-human-subjects" class="nav-link" data-scroll-target="#treatment-of-human-subjects"><span class="header-section-number">8.1</span> Treatment of Human Subjects</a>
+  <ul class="collapse">
+  <li><a href="#irb-approval" id="toc-irb-approval" class="nav-link" data-scroll-target="#irb-approval"><span class="header-section-number">8.1.1</span> IRB Approval</a></li>
+  <li><a href="#informed-consent" id="toc-informed-consent" class="nav-link" data-scroll-target="#informed-consent"><span class="header-section-number">8.1.2</span> Informed Consent</a></li>
+  <li><a href="#data-privacy-and-confidentiality" id="toc-data-privacy-and-confidentiality" class="nav-link" data-scroll-target="#data-privacy-and-confidentiality"><span class="header-section-number">8.1.3</span> Data Privacy and Confidentiality</a></li>
+  <li><a href="#vulnerable-populations" id="toc-vulnerable-populations" class="nav-link" data-scroll-target="#vulnerable-populations"><span class="header-section-number">8.1.4</span> Vulnerable Populations</a></li>
+  <li><a href="#compensation" id="toc-compensation" class="nav-link" data-scroll-target="#compensation"><span class="header-section-number">8.1.5</span> Compensation</a></li>
+  </ul></li>
+  <li><a href="#use-of-artificial-intelligence" id="toc-use-of-artificial-intelligence" class="nav-link" data-scroll-target="#use-of-artificial-intelligence"><span class="header-section-number">8.2</span> Use of Artificial Intelligence</a>
+  <ul class="collapse">
+  <li><a href="#acceptable-uses" id="toc-acceptable-uses" class="nav-link" data-scroll-target="#acceptable-uses"><span class="header-section-number">8.2.1</span> Acceptable Uses</a></li>
+  <li><a href="#required-disclosure" id="toc-required-disclosure" class="nav-link" data-scroll-target="#required-disclosure"><span class="header-section-number">8.2.2</span> Required Disclosure</a></li>
+  <li><a href="#prohibited-uses" id="toc-prohibited-uses" class="nav-link" data-scroll-target="#prohibited-uses"><span class="header-section-number">8.2.3</span> Prohibited Uses</a></li>
+  </ul></li>
+  <li><a href="#inclusive-research-practices" id="toc-inclusive-research-practices" class="nav-link" data-scroll-target="#inclusive-research-practices"><span class="header-section-number">8.3</span> Inclusive Research Practices</a></li>
+  <li><a href="#working-together-responsibilities-and-respect" id="toc-working-together-responsibilities-and-respect" class="nav-link" data-scroll-target="#working-together-responsibilities-and-respect"><span class="header-section-number">8.4</span> Working Together: Responsibilities and Respect</a>
+  <ul class="collapse">
+  <li><a href="#respect-for-all-contributors" id="toc-respect-for-all-contributors" class="nav-link" data-scroll-target="#respect-for-all-contributors"><span class="header-section-number">8.4.1</span> Respect for All Contributors</a></li>
+  <li><a href="#appropriate-task-delegation" id="toc-appropriate-task-delegation" class="nav-link" data-scroll-target="#appropriate-task-delegation"><span class="header-section-number">8.4.2</span> Appropriate Task Delegation</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#lab-social-events" id="toc-lab-social-events" class="nav-link" data-scroll-target="#lab-social-events"><span class="header-section-number">9</span> Lab Social Events</a></li>
+  <li><a href="#code-of-conduct" id="toc-code-of-conduct" class="nav-link" data-scroll-target="#code-of-conduct"><span class="header-section-number">10</span> Code of Conduct</a>
+  <ul class="collapse">
+  <li><a href="#sexual-harassment-and-other-forms-of-harassment" id="toc-sexual-harassment-and-other-forms-of-harassment" class="nav-link" data-scroll-target="#sexual-harassment-and-other-forms-of-harassment"><span class="header-section-number">10.1</span> Sexual Harassment and Other Forms of Harassment</a></li>
+  <li><a href="#reporting-violations-of-community-standards" id="toc-reporting-violations-of-community-standards" class="nav-link" data-scroll-target="#reporting-violations-of-community-standards"><span class="header-section-number">10.2</span> Reporting Violations of Community Standards</a>
+  <ul class="collapse">
+  <li><a href="#who-are-mandated-reporters" id="toc-who-are-mandated-reporters" class="nav-link" data-scroll-target="#who-are-mandated-reporters"><span class="header-section-number">10.2.1</span> Who are Mandated Reporters?</a></li>
+  <li><a href="#what-does-this-mean" id="toc-what-does-this-mean" class="nav-link" data-scroll-target="#what-does-this-mean"><span class="header-section-number">10.2.2</span> What Does This Mean?</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#day-to-day-operations" id="toc-day-to-day-operations" class="nav-link" data-scroll-target="#day-to-day-operations"><span class="header-section-number">11</span> Day to Day Operations</a>
+  <ul class="collapse">
+  <li><a href="#general-meetings-one-on-one-or-group" id="toc-general-meetings-one-on-one-or-group" class="nav-link" data-scroll-target="#general-meetings-one-on-one-or-group"><span class="header-section-number">11.1</span> General Meetings (One-on-one or Group)</a></li>
+  <li><a href="#lab-meetings" id="toc-lab-meetings" class="nav-link" data-scroll-target="#lab-meetings"><span class="header-section-number">11.2</span> Lab Meetings</a></li>
+  <li><a href="#individual-meetings-with-steven" id="toc-individual-meetings-with-steven" class="nav-link" data-scroll-target="#individual-meetings-with-steven"><span class="header-section-number">11.3</span> Individual Meetings with Steven</a></li>
+  <li><a href="#other-intra-lab-meetings" id="toc-other-intra-lab-meetings" class="nav-link" data-scroll-target="#other-intra-lab-meetings"><span class="header-section-number">11.4</span> Other Intra-lab Meetings</a></li>
+  </ul></li>
+  <li><a href="#money" id="toc-money" class="nav-link" data-scroll-target="#money"><span class="header-section-number">12</span> Money</a>
+  <ul class="collapse">
+  <li><a href="#funding-policies" id="toc-funding-policies" class="nav-link" data-scroll-target="#funding-policies"><span class="header-section-number">12.1</span> Funding Policies</a>
+  <ul class="collapse">
+  <li><a href="#acceptable-funding-sources" id="toc-acceptable-funding-sources" class="nav-link" data-scroll-target="#acceptable-funding-sources"><span class="header-section-number">12.1.1</span> Acceptable Funding Sources</a></li>
+  <li><a href="#industry-partnerships" id="toc-industry-partnerships" class="nav-link" data-scroll-target="#industry-partnerships"><span class="header-section-number">12.1.2</span> Industry Partnerships</a></li>
+  <li><a href="#data-ownership-and-sharing" id="toc-data-ownership-and-sharing" class="nav-link" data-scroll-target="#data-ownership-and-sharing"><span class="header-section-number">12.1.3</span> Data Ownership and Sharing</a></li>
+  <li><a href="#when-to-decline-funding" id="toc-when-to-decline-funding" class="nav-link" data-scroll-target="#when-to-decline-funding"><span class="header-section-number">12.1.4</span> When to Decline Funding</a></li>
+  <li><a href="#discussing-funding-decisions" id="toc-discussing-funding-decisions" class="nav-link" data-scroll-target="#discussing-funding-decisions"><span class="header-section-number">12.1.5</span> Discussing Funding Decisions</a></li>
+  </ul></li>
+  <li><a href="#funding-lab-opportunities" id="toc-funding-lab-opportunities" class="nav-link" data-scroll-target="#funding-lab-opportunities"><span class="header-section-number">12.2</span> Funding Lab Opportunities</a></li>
+  </ul></li>
+  <li><a href="#asking-for-help---where-to-go" id="toc-asking-for-help---where-to-go" class="nav-link" data-scroll-target="#asking-for-help---where-to-go"><span class="header-section-number">13</span> Asking for Help - Where to Go</a>
+  <ul class="collapse">
+  <li><a href="#online" id="toc-online" class="nav-link" data-scroll-target="#online"><span class="header-section-number">13.1</span> Online</a></li>
+  <li><a href="#asking-for-help---when-and-how" id="toc-asking-for-help---when-and-how" class="nav-link" data-scroll-target="#asking-for-help---when-and-how"><span class="header-section-number">13.2</span> Asking for Help - When and How</a></li>
+  </ul></li>
+  <li><a href="#security-protocols-and-data-management" id="toc-security-protocols-and-data-management" class="nav-link" data-scroll-target="#security-protocols-and-data-management"><span class="header-section-number">14</span> Security Protocols and Data Management</a>
+  <ul class="collapse">
+  <li><a href="#data-security" id="toc-data-security" class="nav-link" data-scroll-target="#data-security"><span class="header-section-number">14.1</span> Data Security</a>
+  <ul class="collapse">
+  <li><a href="#storage" id="toc-storage" class="nav-link" data-scroll-target="#storage"><span class="header-section-number">14.1.1</span> Storage</a></li>
+  <li><a href="#password-management" id="toc-password-management" class="nav-link" data-scroll-target="#password-management"><span class="header-section-number">14.1.2</span> Password Management</a></li>
+  <li><a href="#file-naming-and-organization" id="toc-file-naming-and-organization" class="nav-link" data-scroll-target="#file-naming-and-organization"><span class="header-section-number">14.1.3</span> File Naming and Organization</a></li>
+  <li><a href="#access-control" id="toc-access-control" class="nav-link" data-scroll-target="#access-control"><span class="header-section-number">14.1.4</span> Access Control</a></li>
+  </ul></li>
+  <li><a href="#data-management-plans" id="toc-data-management-plans" class="nav-link" data-scroll-target="#data-management-plans"><span class="header-section-number">14.2</span> Data Management Plans</a></li>
+  <li><a href="#hipaa-and-phi" id="toc-hipaa-and-phi" class="nav-link" data-scroll-target="#hipaa-and-phi"><span class="header-section-number">14.3</span> HIPAA and PHI</a></li>
+  <li><a href="#incident-response" id="toc-incident-response" class="nav-link" data-scroll-target="#incident-response"><span class="header-section-number">14.4</span> Incident Response</a></li>
+  </ul></li>
+  <li><a href="#conflicts-of-interest" id="toc-conflicts-of-interest" class="nav-link" data-scroll-target="#conflicts-of-interest"><span class="header-section-number">15</span> Conflicts of Interest</a>
+  <ul class="collapse">
+  <li><a href="#what-constitutes-a-conflict-of-interest" id="toc-what-constitutes-a-conflict-of-interest" class="nav-link" data-scroll-target="#what-constitutes-a-conflict-of-interest"><span class="header-section-number">15.1</span> What Constitutes a Conflict of Interest</a>
+  <ul class="collapse">
+  <li><a href="#financial-conflicts" id="toc-financial-conflicts" class="nav-link" data-scroll-target="#financial-conflicts"><span class="header-section-number">15.1.1</span> Financial Conflicts</a></li>
+  <li><a href="#non-financial-conflicts" id="toc-non-financial-conflicts" class="nav-link" data-scroll-target="#non-financial-conflicts"><span class="header-section-number">15.1.2</span> Non-Financial Conflicts</a></li>
+  <li><a href="#examples-of-potential-conflicts" id="toc-examples-of-potential-conflicts" class="nav-link" data-scroll-target="#examples-of-potential-conflicts"><span class="header-section-number">15.1.3</span> Examples of Potential Conflicts</a></li>
+  </ul></li>
+  <li><a href="#disclosure-requirements" id="toc-disclosure-requirements" class="nav-link" data-scroll-target="#disclosure-requirements"><span class="header-section-number">15.2</span> Disclosure Requirements</a>
+  <ul class="collapse">
+  <li><a href="#when-to-disclose" id="toc-when-to-disclose" class="nav-link" data-scroll-target="#when-to-disclose"><span class="header-section-number">15.2.1</span> When to Disclose</a></li>
+  <li><a href="#how-to-disclose" id="toc-how-to-disclose" class="nav-link" data-scroll-target="#how-to-disclose"><span class="header-section-number">15.2.2</span> How to Disclose</a></li>
+  </ul></li>
+  <li><a href="#what-to-do-if-you-have-a-conflict" id="toc-what-to-do-if-you-have-a-conflict" class="nav-link" data-scroll-target="#what-to-do-if-you-have-a-conflict"><span class="header-section-number">15.3</span> What to Do If You Have a Conflict</a></li>
+  <li><a href="#questions-to-ask-yourself" id="toc-questions-to-ask-yourself" class="nav-link" data-scroll-target="#questions-to-ask-yourself"><span class="header-section-number">15.4</span> Questions to Ask Yourself</a></li>
+  </ul></li>
+  <li><a href="#collaboration-guidelines" id="toc-collaboration-guidelines" class="nav-link" data-scroll-target="#collaboration-guidelines"><span class="header-section-number">16</span> Collaboration Guidelines</a>
+  <ul class="collapse">
+  <li><a href="#initiating-collaborations" id="toc-initiating-collaborations" class="nav-link" data-scroll-target="#initiating-collaborations"><span class="header-section-number">16.1</span> Initiating Collaborations</a>
+  <ul class="collapse">
+  <li><a href="#internal-collaborations" id="toc-internal-collaborations" class="nav-link" data-scroll-target="#internal-collaborations"><span class="header-section-number">16.1.1</span> Internal Collaborations</a></li>
+  <li><a href="#external-collaborations" id="toc-external-collaborations" class="nav-link" data-scroll-target="#external-collaborations"><span class="header-section-number">16.1.2</span> External Collaborations</a></li>
+  </ul></li>
+  <li><a href="#data-sharing-with-collaborators" id="toc-data-sharing-with-collaborators" class="nav-link" data-scroll-target="#data-sharing-with-collaborators"><span class="header-section-number">16.2</span> Data Sharing with Collaborators</a>
+  <ul class="collapse">
+  <li><a href="#before-sharing-data" id="toc-before-sharing-data" class="nav-link" data-scroll-target="#before-sharing-data"><span class="header-section-number">16.2.1</span> Before Sharing Data</a></li>
+  <li><a href="#data-use-agreements" id="toc-data-use-agreements" class="nav-link" data-scroll-target="#data-use-agreements"><span class="header-section-number">16.2.2</span> Data Use Agreements</a></li>
+  </ul></li>
+  <li><a href="#intellectual-property" id="toc-intellectual-property" class="nav-link" data-scroll-target="#intellectual-property"><span class="header-section-number">16.3</span> Intellectual Property</a>
+  <ul class="collapse">
+  <li><a href="#general-principles-1" id="toc-general-principles-1" class="nav-link" data-scroll-target="#general-principles-1"><span class="header-section-number">16.3.1</span> General Principles</a></li>
+  </ul></li>
+  <li><a href="#multi-lab-projects" id="toc-multi-lab-projects" class="nav-link" data-scroll-target="#multi-lab-projects"><span class="header-section-number">16.4</span> Multi-Lab Projects</a></li>
+  <li><a href="#when-collaborations-go-wrong" id="toc-when-collaborations-go-wrong" class="nav-link" data-scroll-target="#when-collaborations-go-wrong"><span class="header-section-number">16.5</span> When Collaborations Go Wrong</a></li>
+  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">16.6</span> Best Practices</a></li>
+  </ul></li>
+  <li><a href="#leaving-the-lab" id="toc-leaving-the-lab" class="nav-link" data-scroll-target="#leaving-the-lab"><span class="header-section-number">17</span> Leaving the Lab</a>
+  <ul class="collapse">
+  <li><a href="#offboarding-procedures" id="toc-offboarding-procedures" class="nav-link" data-scroll-target="#offboarding-procedures"><span class="header-section-number">17.1</span> Offboarding Procedures</a></li>
+  <li><a href="#acknowledgments-1" id="toc-acknowledgments-1" class="nav-link" data-scroll-target="#acknowledgments-1"><span class="header-section-number">17.2</span> Acknowledgments</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Assignment.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">WORDLE Lab Manual</h1>
+<p class="subtitle lead">Welcome to WORDLE Lab!</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 8, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Welcome!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We’re thrilled that you’re joining us! This handbook is designed to orient you to the lab’s culture, practices, and infrastructures. It should give you a sense of what to expect from working with us, as well as what we expect of you.</p>
+<p>We encourage a collaborative culture in the lab, and it is likely that multiple members will be working together on projects. Collaborations can also occur with researchers at other institutions. In all cases, we expect all lab members to treat collaborators, their time, and data with respect.</p>
+</div>
+</div>
+<section id="who-we-are" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Who We Are</h1>
+<p>The <strong>WORDLE Lab</strong> (<strong>W</strong>ellbeing <strong>O</strong>utcomes <strong>R</strong>esearch via <strong>D</strong>igital <strong>L</strong>anguage <strong>E</strong>xpressions) is an interdisciplinary group whose mission focuses on leveraging language and computational methods to understand, assess, and improve mental health by gaining insight into how people express their inner experiences, emotions, and psychological states.</p>
+<p>We view language as key way to understand and address well-being. The words we use—whether written or spoken—provide a powerful window into our thoughts, feelings, and well-being. Language structures the relationship between the self and the world, and analyzing it can reveal patterns that predict psychological well-being outcomes. We use a unique set of tools from psychology, computational linguistics, and computer science to develop scalable, equitable assessments that can help identify individuals struggling with their mental health and inform more effective interventions.</p>
+<blockquote class="blockquote">
+<p>We believe that our science is better with a diverse team. Diversity is integral to our work because it helps ensure our computational tools work equitably across different populations and reflect the world we live in more accurately. We embrace and encourage our lab members’ differences in age, color, disability, ethnicity, family or marital status, gender identity or expression, language, national origin, ability, political affiliation, race, religion, sexual orientation, socio-economic status, veteran status, and other characteristics that make our lab members who they are.</p>
+</blockquote>
+<p>As a community, we are committed to challenging and supporting each other. We strive to create rigorous, open, and reproducible science, and to disseminate the insights from our work beyond the confines of our field.</p>
+<section id="roles-and-expectations" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="roles-and-expectations"><span class="header-section-number">1.1</span> Roles and Expectations</h2>
+<section id="principal-investigator-pi" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="principal-investigator-pi"><span class="header-section-number">1.1.1</span> Principal Investigator (PI)</h3>
+<p>The PI, Steven Mesquiti, is responsible for the overall direction of the lab and its research. The PI provides ideas and/or consultation on all the lab projects including theory development, empirical work, and grant proposals.</p>
+</section>
+<section id="research-directors-rds" class="level3" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="research-directors-rds"><span class="header-section-number">1.1.2</span> Research Directors (RDs)</h3>
+<p>Research Directors are full-time post-PhD research staff who may have different roles depending on their career goals and interests. In general, RDs are here to:</p>
+<ul>
+<li>Do research</li>
+<li>Support the major projects in the lab</li>
+<li>Help write grants</li>
+<li>Mentor and help train others in the lab</li>
+<li>Help decide the greater direction that the lab goes in (both in terms of lab culture/organization and in terms of research topics/future projects)</li>
+</ul>
+</section>
+<section id="post-docs" class="level3" data-number="1.1.3">
+<h3 data-number="1.1.3" class="anchored" data-anchor-id="post-docs"><span class="header-section-number">1.1.3</span> Post-docs</h3>
+<p>Postdocs are full-time researchers here to learn new skills, mentor, and help train others in the lab. Postdocs share the mission of graduate students to develop their independent lines of research. This includes but is not limited to:</p>
+<ul>
+<li>Learning to write grants</li>
+<li>Designing and implementing novel research</li>
+<li>Analyzing new and existing data</li>
+<li>Writing manuscripts</li>
+<li>Developing mentorship and management skills required for becoming a PI ✨</li>
+</ul>
+</section>
+<section id="research-coordinators-and-lab-managers-rclms" class="level3" data-number="1.1.4">
+<h3 data-number="1.1.4" class="anchored" data-anchor-id="research-coordinators-and-lab-managers-rclms"><span class="header-section-number">1.1.4</span> Research Coordinators and Lab Managers (RCLMs)</h3>
+<p>RCLMs are full-time staff who have undergrad degrees (and sometimes master’s, too). All lab managers are research coordinators, but not all research coordinators are lab managers.</p>
+<p><strong>Research Coordinators (RCs)</strong> support the needs of ongoing research projects. They may be assigned to play a large role on one project or many smaller roles across multiple projects. This often includes:</p>
+<ul>
+<li>Helping with recruitment</li>
+<li>Data collection</li>
+<li>IRB management</li>
+<li>Project documentation</li>
+</ul>
+<p><strong>Lab Managers (LMs)</strong> are the subset of RCs who are also responsible for providing <strong>administrative</strong> support to the lab and all of its members. This may include but is not limited to:</p>
+<ul>
+<li>Helping with meeting scheduling</li>
+<li>Documenting lab processes (like this handbook)</li>
+<li>Managing lab resources and accounts</li>
+<li>Generally knowing the ins and outs of how the lab functions.</li>
+</ul>
+</section>
+<section id="graduate-students" class="level3" data-number="1.1.5">
+<h3 data-number="1.1.5" class="anchored" data-anchor-id="graduate-students"><span class="header-section-number">1.1.5</span> Graduate Students</h3>
+<p>Graduate students can have many broad goals during their time in the lab, but nearly all of them involve:</p>
+<ol type="a">
+<li>Completing the requirements of their doctoral program</li>
+<li>Learning how to generate and communicate evidence-based knowledge and develop an independent program of research</li>
+<li>Helping mentor junior scholars</li>
+</ol>
+<p>Ph.D.&nbsp;students might also work on external partnerships, build bridges with other labs, or engage in other activities that relate to their scholarship.</p>
+</section>
+<section id="undergraduate-ras" class="level3" data-number="1.1.6">
+<h3 data-number="1.1.6" class="anchored" data-anchor-id="undergraduate-ras"><span class="header-section-number">1.1.6</span> Undergraduate RAs</h3>
+<p>Research assistants often take on a range of tasks from planning studies and conducting literature reviews to running participants and managing data. Each study has unique specific requirements but Undergraduate RAs are expected to follow the broad norms and expectations of the lab, while working with us.</p>
+</section>
+</section>
+</section>
+<section id="quick-start-guide" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Quick Start Guide</h1>
+<section id="when-in-doubt-ask-the-lab-managers" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="when-in-doubt-ask-the-lab-managers"><span class="header-section-number">2.1</span> When in Doubt, Ask the Lab Manager(s)</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Contact the Admin Team
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The lab managers (LMs) often shuffle responsibilities based on their availability, so they have developed 2 ways to contact all of them at once:</p>
+<ol type="1">
+<li>The <code>#ask_admin</code> channel in Slack</li>
+<li>The shared email address: <code>stevens_future_lab@reallycoolSchool.edu</code> (for anyone who isn’t on Slack yet)</li>
+</ol>
+<p>Once you pose a question or request to either one, the relevant person will respond. They may not always know the answer, but they will often be able to direct you to someone who does!</p>
+</div>
+</div>
+</section>
+<section id="complete-required-training-modules" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="complete-required-training-modules"><span class="header-section-number">2.2</span> Complete Required Training Modules</h2>
+<p>See the onboarding page to see which training modules you’re required to complete. If you need help finding the training modules or have questions about which modules to complete, reach out to one of the Lab Manager at <code>stevens_future_lab@reallycoolSchool.edu</code> or on <code>#ask_admin</code>.</p>
+</section>
+<section id="share-your-contact-information" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="share-your-contact-information"><span class="header-section-number">2.3</span> Share Your Contact Information</h2>
+<p>You should have received an intake form when you joined the lab. If you have not, please contact the Lab Manager. Complete the Contact info survey and add your contact information so that other lab members can reach you.</p>
+</section>
+<section id="google-calendars" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="google-calendars"><span class="header-section-number">2.4</span> Google Calendars</h2>
+<p>The Lab uses the following Google Calendars to document our lab operations:</p>
+<ul>
+<li><strong>Lab Calendar</strong> - lab meetings, absences, conferences, birthdays, and lab-wide events</li>
+<li><strong>Steven Mesquiti</strong> - PI-related meetings (e.g., 1:1 meetings, departmental meetings, etc.)</li>
+<li><strong>University Events</strong> - Running list of relevant talks, colloquia, and campus events</li>
+<li><strong>Project-specific calendars</strong> - Individual calendars for major ongoing projects</li>
+<li><strong>Lab Social</strong> - Social events, lab outings, and informal gatherings</li>
+</ul>
+<section id="when-creating-google-calendar-events" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="when-creating-google-calendar-events"><span class="header-section-number">2.4.1</span> When creating Google Calendar events:</h3>
+<ul>
+<li>Put the Zoom link as the location for a remote or hybrid meeting, and the physical location if relevant</li>
+<li>Add the relevant info or the link for relevant doc in the description</li>
+<li>Make the event modifiable for attendees (if needed)</li>
+<li>Add attendees via their lab email (if they have one) and set reminders as needed</li>
+</ul>
+<p>Make sure you can see them on your Google Calendar account and that you know how to add events to the respective calendars.</p>
+</section>
+</section>
+<section id="sign-into-slack" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="sign-into-slack"><span class="header-section-number">2.5</span> Sign into Slack</h2>
+<p>You should have received an invitation to the Lab Slack. Be sure to sign into the workspace. We treat Slack like a more casual form of email and use it at a more rapid pace. You can message about anything at any time, and others will respond at their earliest convenience (preferably within 24 hours during the week).</p>
+</section>
+<section id="lab-safety" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="lab-safety"><span class="header-section-number">2.6</span> Lab Safety</h2>
+<ul>
+<li>Please make sure that you lock and close doors to lab rooms and turn off lights whenever you leave</li>
+<li>We want to ensure that property is not stolen</li>
+<li>Do not leave any valuables or equipment (e.g.&nbsp;laptops, chargers, wallets, etc) unattended in unsecured or open spaces</li>
+<li><strong>Moreover, please leave spaces cleaner than you found them!</strong></li>
+</ul>
+</section>
+<section id="if-you-need-help" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="if-you-need-help"><span class="header-section-number">2.7</span> If You Need Help…</h2>
+<p>We’re here for you! The Lab Wiki likely has the answer you seek — we recommend bookmarking this Notion page. If it doesn’t have the information you need, see the “Important Contacts” and “Where to Go for Help” sections of this document. You can always contact the lab manager(s) at <code>stevens_future_lab@reallycoolSchool.edu</code> or on the <code>#ask-admin</code> channel on Slack.</p>
+</section>
+<section id="reading-list" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="reading-list"><span class="header-section-number">2.8</span> Reading List</h2>
+<p>As you get started, it is helpful to read papers that folks on the team (and collaborators you will work with) have written recently. If you’d like more specific guidance, you can ask Steven or your senior team buddy for recommendations.</p>
+</section>
+</section>
+<section id="community-norms-and-values" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Community Norms and Values</h1>
+<p>Lab members have different identities, backgrounds, and experiences. This is a strength that enriches our culture and our research. Therefore, we strive to foster a safe, collaborative, and supportive environment in which all members feel that they belong, are valued, and included.</p>
+<blockquote class="blockquote">
+<p>We recognize that advancements in knowledge are contingent on the exchange of ideas and that this exchange is only possible when we all respect each other’s perspectives.</p>
+</blockquote>
+<p>The Lab is committed to fostering a community in which all members — regardless of age, race, gender identity, ethnicity, religion, sexual orientation, ability, or any other aspect of one’s identity — feel a sense of safety and support. All members of the Lab are expected to actively engage in fostering a positive, inclusive, cooperative, and open environment.</p>
+<section id="core-values" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="core-values"><span class="header-section-number">3.1</span> Core Values</h2>
+<section id="well-being" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="well-being"><span class="header-section-number">3.1.1</span> Well-being</h3>
+<p>Here, we value well-being both on the inside and outside, in ourselves, the lab, the communities we inhabit, and the world we live in. In our lab, we strive to work hard and to make time for ourselves and others. As part of this, we recognize that there is life outside of work, and that the experiences we have beyond our work can enrich what we do here.</p>
+<p>Beyond “self-care,” we also promote “other care”. This means building a community in which we support and care for one another. We aim to be generous to one another in domains where we excel and to lean on each other as we work on areas where we are still learning; and to be there for each other as people.</p>
+<p><strong>What this looks like:</strong></p>
+<ul>
+<li>Creating norms and values that promote your well-being and that of others in the lab</li>
+<li>Encouraging others to prioritize their own wellbeing</li>
+</ul>
+<p><strong>What this sounds like:</strong></p>
+<blockquote class="blockquote">
+<p>“Hey Steven, I see that you’ve got a lot of things you’re working on. Are you stretching yourself a little too thin and is there anything I can take off your plate?”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“Hey Steven, I am feeling a bit overwhelmed with my responsibilities for the week. Do you have bandwidth to help me out on ____? Or is it okay if I get this to you at a later date?”</p>
+</blockquote>
+</section>
+<section id="joy" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="joy"><span class="header-section-number">3.1.2</span> Joy</h3>
+<p>We use joy as <em>one</em> guide to direct our work. Additionally, our lab loves to celebrate its members’ accomplishments, no matter the size. Be sure to let your labmates know of any successes — such as sharing a plot you’re proud of, making a project milestone, learning a new skill, or facilitating a meaningful mentorship moment — so that we can celebrate your successes with you.</p>
+<p>Successes are self-defined and come in various shapes and sizes. We seek to recognize these wins as a means to acknowledge progress, and cultivate and sustain energy and motivation. We also celebrate failure as a learning opportunity. We also love hearing about the joys you are experiencing outside of work, whether that’s a really fun experience with others, a book that moved you, or a picture of your dog.</p>
+<p>When a project or task no longer brings you joy, communicate your needs to find ways to work for you (e.g., taking a pause or finding a work buddy to set intentions and check-in/co-work virtually or in-person). Remember, we are still <em>people</em> doing science.</p>
+<p><strong>What this looks like:</strong></p>
+<ul>
+<li>Realizing you really like working with someone or on something and ‘leaning into it’</li>
+<li>Sharing mini-wins with the lab during planning, a project team meeting, or on slack</li>
+<li>Taking someone for coffee to celebrate a conference presentation</li>
+</ul>
+<p><strong>What this sounds like:</strong></p>
+<blockquote class="blockquote">
+<p>“I received some strong comments in my R&amp;R and I wanted to share with the lab!”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“I really love working on this project with Jamie, is there any way I can work with her more?”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“Congratulations to Mia! She gave a great talk in class the other day, and I thought others would be interested to hear about it!”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“Nice work troubleshooting that code you were stuck on, that’s progress!”</p>
+</blockquote>
+</section>
+<section id="respect" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="respect"><span class="header-section-number">3.1.3</span> Respect</h3>
+<p>In the Lab, we have respect for others’ ideas, perspectives, needs, boundaries, health, time, and well-being. This is crucial for the development of ideas and the support of others. There is no such thing as a ‘stupid question’. If something isn’t immediately clear to you, odds are it isn’t to others as well, so please ask!</p>
+<p>When requesting things (e.g., rec letters) please be mindful of the turnaround time.</p>
+<p><strong>What this looks like:</strong></p>
+<ul>
+<li>‘Schedule’ send messages/emails for non-urgent items on weekends, holidays, etc.</li>
+<li>Asking questions that help to enhance an idea rather than tear someone down</li>
+<li>Asking questions about what a person needs or what boundaries (e.g., time constraints) they might have when collaborating</li>
+<li>We can also decenter ourselves when asking questions. Example: “One may be curious about how point 2 has implications for clinical practice.”</li>
+</ul>
+<p><strong>What this sounds like:</strong></p>
+<blockquote class="blockquote">
+<p>“Hey Ryan, could you please actually clarify point 2? I think it would really enhance your idea. Here are some specific ways to consider that may help clarify X,Y,Z”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“Erik (this is a queued message), when you get a chance could you please send me X? No rush at all.”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“Emily, I know you have a lot in your queue, when do you need me to send you my SAS submission so that you have enough time to review it before the deadline?”</p>
+</blockquote>
+</section>
+<section id="community-building" class="level3" data-number="3.1.4">
+<h3 data-number="3.1.4" class="anchored" data-anchor-id="community-building"><span class="header-section-number">3.1.4</span> Community Building</h3>
+<p>Academia often promotes a lifestyle of hyper-competitiveness and work-life imbalance, which can lead to decreased well-being and increases in psychopathology. It also stifles creativity and can undermine the very insights we hope to nourish and produce as a research group.</p>
+<blockquote class="blockquote">
+<p>You belong here. You are enough. You are valued.</p>
+</blockquote>
+<p>We seek to cultivate an environment in which these statements are embodied.</p>
+<p><strong>What this looks like:</strong></p>
+<ul>
+<li>Creating systems and standards that promote inclusion, connection, and belonging</li>
+<li>Developing norms that foster and support collaboration</li>
+<li>Building a lab culture where people feel included and supported</li>
+</ul>
+<p><strong>What this sounds like:</strong></p>
+<blockquote class="blockquote">
+<p>“Hey everyone, I’m going to eat lunch at Sally Frank Cafe! Anyone and everyone is welcome to join.”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“Does anybody want to do a co-working session this week?”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“The Talkspace working group is meeting today. Feel free to join!”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“I’ve got an idea for a new project and would love to talk about potential opportunities for collaboration.”</p>
+</blockquote>
+</section>
+<section id="psychological-safety" class="level3" data-number="3.1.5">
+<h3 data-number="3.1.5" class="anchored" data-anchor-id="psychological-safety"><span class="header-section-number">3.1.5</span> Psychological Safety</h3>
+<p>We do our best to be open-minded and welcome differing opinions. It’s okay to be wrong, change your mind, make mistakes; we are all human and this is necessary for learning and growing. Conflict and disagreement will naturally arise when working in groups and can be generative when dealt with in productive ways.</p>
+<p>We are committed to working through conflict in ways that respect each other, give grace to each other, and minimize harm. Together, we can work to maintain a safe environment in which everyone feels like they belong, are valued, and can make the world a more inclusive place.</p>
+<p>We can be mindful of peoples’ different communication styles (e.g., eye contact and seating).</p>
+<p><strong>What this looks like:</strong></p>
+<ul>
+<li>Being courageous and presenting an idea that is not fully developed in front of the lab or asking for help</li>
+<li>Speaking out when you disagree with something, and having a candid and respectful conversation about it either in the moment or at a later time</li>
+<li>If you feel less comfortable directly expressing a critique, you can offer the question or feedback from a more distanced perspective</li>
+<li>Some people may need to close their eyes or not maintain eye contact to be able to process verbal information</li>
+<li>Sitting during meetings may differ (side by side, across from one another, needing to move or stand)</li>
+</ul>
+<p><strong>What this sounds like:</strong></p>
+<blockquote class="blockquote">
+<p>“Steven, actually I disagree with that point. I think we should really emphasize this instead.”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“Steven, when you interrupted me, it made me feel like my perspective didn’t matter, and I’d appreciate it if you waited until I finished speaking in the future.”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“Sarah, you’re right, I conducted the wrong analysis; let me go back and change it.”</p>
+</blockquote>
+</section>
+<section id="communication" class="level3" data-number="3.1.6">
+<h3 data-number="3.1.6" class="anchored" data-anchor-id="communication"><span class="header-section-number">3.1.6</span> Communication</h3>
+<p>You won’t always be able to do everything you think you will—that’s okay, that’s normal. Do your best to communicate that to your labmates so they’re aware, and can get you unstuck if needed. Additionally, use lab, project, or team meetings to communicate to others what’s on your plate, what your priorities are, and where you might need support from them.</p>
+<p><strong>What this looks like:</strong></p>
+<ul>
+<li>Letting people know when you’re taking on too much</li>
+<li>Not being afraid to reach out to someone if you don’t know how to do something</li>
+<li>As team members, we can also incorporate questions into our meetings that ask people what they need</li>
+</ul>
+<p><strong>What this sounds like:</strong></p>
+<blockquote class="blockquote">
+<p>“Hey Dani, can I ask you a stats question?”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“Actually Steven, I’m not sure I’ll be able to do that task in the time allotted since I have X going on. I could trade it out for Y task.”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“You mentioned you were unsure how to proceed with the multilevel model. Tell me more about what you need to move forward.”</p>
+</blockquote>
+</section>
+<section id="transparency" class="level3" data-number="3.1.7">
+<h3 data-number="3.1.7" class="anchored" data-anchor-id="transparency"><span class="header-section-number">3.1.7</span> Transparency</h3>
+<p>We are ultimately here to grow and learn. Lab members are encouraged to support and promote each other’s intellectual and career aspirations and to encourage each other to thrive in our personal lives. Our lab maintains a collection of career development resources in the Career Development section of the Lab Wiki.</p>
+<p>Scholarship advances when researchers work with integrity to ensure their work is transparent and reproducible. For quantitative research, the Lab operates as a part of the open research community by:</p>
+<ul>
+<li>Reporting our research choices in clear and transparent ways via pre-registration</li>
+<li>Acknowledging aspects of our work that are exploratory versus confirmatory</li>
+<li>Engaging in open science best practices</li>
+<li>Internal replication</li>
+</ul>
+<p>Additionally, academia is full of unspoken norms (i.e.&nbsp;the “hidden curriculum”) that perpetuate systemic barriers against marginalized peoples. We try our best to address these disparities by communicating and documenting these norms, and sharing them with early career researchers both within and outside our lab.</p>
+</section>
+<section id="process-orientation" class="level3" data-number="3.1.8">
+<h3 data-number="3.1.8" class="anchored" data-anchor-id="process-orientation"><span class="header-section-number">3.1.8</span> Process Orientation</h3>
+<p>The research <u>process</u> is as important as the final product. For this reason, we document our work and follow the available protocols or guidelines during each step of the research process, while continuously experimenting and improving upon them.</p>
+<p>We encourage lab members to focus not only on the quality of the outcome, but on the processes that lead to it! If you tried something new that worked for your research, or that did not work, share your knowledge and add it to the research guides on the Lab Notion.</p>
+</section>
+<section id="curiosity-and-intellectual-development" class="level3" data-number="3.1.9">
+<h3 data-number="3.1.9" class="anchored" data-anchor-id="curiosity-and-intellectual-development"><span class="header-section-number">3.1.9</span> Curiosity and Intellectual Development</h3>
+<p>Lab members are encouraged to openly ask questions and strive for intellectual growth. We try to be curious not only about the world around us but also about what’s right in front of us. Our lab uses various methods from Psychology, Computer Science, Natural Language Processing, and Information Theory to investigate a diverse set of questions. Even if the person down the hall has interests that diverge from our own, we cultivate curiosity about the phenomena they study, the methods they employ, and the insights about which they are passionate.</p>
+<p><strong>What this looks like:</strong></p>
+<ul>
+<li>Listening actively</li>
+<li>Asking clarifying questions that may improve an idea, even if they are ‘hard’</li>
+</ul>
+<p><strong>What this sounds like:</strong></p>
+<blockquote class="blockquote">
+<p>“I would love to hear more!”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“What do you mean by that, Steven?”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“What I hear you saying is… Am I right?”</p>
+</blockquote>
+</section>
+<section id="equity" class="level3" data-number="3.1.10">
+<h3 data-number="3.1.10" class="anchored" data-anchor-id="equity"><span class="header-section-number">3.1.10</span> Equity</h3>
+<p>Our lab is committed to continuously building a community and environment where members of all identities and backgrounds can thrive. We seek to promote greater equity in the academy and beyond, and to dismantle systems of oppression in society. We seek to support equity in how we do our work, and increase equity in society as a result of our work.</p>
+<p>It’s our job to recognize the privileges and resources that we have access to that are unique and special and to critically use them in a responsible manner to contribute to a broader range for others to have access to.</p>
+<p><strong>What this looks like:</strong></p>
+<ul>
+<li>Creating standards that promote opportunities for others within and outside the lab</li>
+<li>Mentoring students from backgrounds that are underrepresented in academia to increase their opportunities</li>
+<li>People have unique needs and goals that may require different forms of support, which require a network of support in and outside of the lab</li>
+</ul>
+<p><strong>What this sounds like:</strong></p>
+<blockquote class="blockquote">
+<p>“Hey, did you see this continuing ed opportunity?”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“I really think we should take X REU student to increase their odds of being exposed to research at a R1 university.”</p>
+</blockquote>
+</section>
+<section id="diversity-inclusivity" class="level3" data-number="3.1.11">
+<h3 data-number="3.1.11" class="anchored" data-anchor-id="diversity-inclusivity"><span class="header-section-number">3.1.11</span> Diversity &amp; Inclusivity</h3>
+<p>Being a group with a rich and diverse set of identities, perspectives, backgrounds, and experiences is a strength. It enriches our lab culture and our research.</p>
+<p>Academia has long failed to provide an equitable or inclusive environment, specifically for Black, Indigenous, and people of color (BIPOC), first generation college and low income (FGLI), and LGBTQIA+ communities, who face varying forms of racism, discrimination, and other structural barriers. Within social and biomedical sciences, participant samples are also skewed toward WEIRD (White, Educated, Industrialized, Rich, and Democratic) samples, which limits the generalizability of our work.</p>
+<p>We are committed to supporting members of underrepresented and marginalized groups in science and to being active allies to members of groups we are not a part of. We further aim to—when possible—focus on recruiting representative and inclusive participant samples in our research. All members of the Lab are expected to behave in a manner that promotes an inclusive environment for all.</p>
+</section>
+</section>
+</section>
+<section id="faq" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> FAQ</h1>
+<p>Norms change often. We actively strive to create a space that promotes adapting these norms to match the current pulse of the world and, more importantly, support the success and well-being of the lab and its members.</p>
+<section id="presence-in-the-lab" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="presence-in-the-lab"><span class="header-section-number">4.1</span> Presence in the Lab</h2>
+<p>We expect lab members to attend (either virtually or in-person) lab-wide meetings and strongly encourage everyone to actively participate in lab activities. Additionally, graduate students and staff are strongly encouraged to attend relevant colloquia.</p>
+<p>The Lab Manager is available from approximately 9:00 AM to 5:00 PM on weekdays, so being around when they’re around will help you have easier access to them. Steven also works on weekdays, and is slower to respond evenings/weekends.</p>
+</section>
+<section id="how-long-should-i-work" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="how-long-should-i-work"><span class="header-section-number">4.2</span> How Long Should I Work?</h2>
+<p>We typically expect full-time staff (i.e.&nbsp;Research Directors, Research Coordinators) to work approximately 40 hours a week Monday to Friday. The timeframe that this commitment is completed is largely contingent on the lab member, but it is important to communicate it to the rest of the lab.</p>
+<p>For example, one member may choose to work 8 to 4, another 10 to 6, or someone else 9 to 5. It is important to note that your schedule may be dependent on the needs of your project.</p>
+</section>
+<section id="time-off" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="time-off"><span class="header-section-number">4.3</span> Time Off</h2>
+<p>We encourage vacations and days off, just communicate with Steven (or your appropriate supervisor, such as a Research Director) and the team about your plan, including any considerations for nearby deadlines and/or how ongoing tasks will be taken care of in your absence. Post your days off on your google calendar as well as the Lab calendar.</p>
+</section>
+</section>
+<section id="open-communication" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Open Communication</h1>
+<p>All members of Lab are welcome and encouraged to openly discuss issues about or relevant to the lab, be they interpersonal, intrapersonal, or related to our work. It is important to communicate your needs, so we can ensure we can meet those needs. If you need help with something or want to just talk to someone, please reach out! If you are unsure about who to reach out to, feel free to ask the lab managers and they’ll point you to the right person.</p>
+<p>The Lab expects all members to communicate respectfully. We deliver feedback to one another in a constructive manner. This expectation holds for all forms of interaction, including online and face-to-face. When expressing disagreement or dissent, be sure to deliver these communications respectfully and with acknowledgement of alternate points of view.</p>
+<section id="methods-of-communication" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="methods-of-communication"><span class="header-section-number">5.1</span> Methods of Communication</h2>
+<p>We frequently use Slack for day-to-day communication. The lab does its best to respect healthy work-life boundaries and uses unscheduled phone calls for emergencies. Timely response to email (and Slack) is expected (ideally within 24 business hours for intra-lab communications), and we do our best to be punctual for lab meetings and events.</p>
+<section id="email-best-practices" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="email-best-practices"><span class="header-section-number">5.1.1</span> Email Best Practices</h3>
+<ol type="1">
+<li>It can be helpful to <strong>bold</strong> important parts of the email, such as the question you are asking or the person to which a certain part is addressed to</li>
+<li>When writing times, writing out the full date and time with the time zone (e.g., Will Tuesday March 6, 11 AM EST work for you?) can help making scheduling easier and prevent miscommunication</li>
+<li>When setting up a time to meet with someone, suggesting a few times, and then ask them to suggest a time if those don’t work</li>
+</ol>
+<p>If you are running late for a meeting or event, be sure to notify a fellow Lab member by email or slack. Similarly, if you cannot attend a meeting or event, please inform the planning committee or Lab members ahead of time.</p>
+</section>
+<section id="ping-again" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="ping-again"><span class="header-section-number">5.1.2</span> Ping Again!</h3>
+<p>If others (anyone, outside of Lab, too) takes longer than 48 hours to respond, follow up (“Hey Steven, just checking in on this! Thanks”). It’s helpful for them and for you and shouldn’t be perceived as being pushy!</p>
+</section>
+<section id="responses" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="responses"><span class="header-section-number">5.1.3</span> Responses</h3>
+<p>You do NOT have to respond to emails or slack messages during the weekend. If you receive them, you are welcome to reply to them at your own discretion. If something is very urgent or requires attention during the weekend, we will let you know.</p>
+</section>
+</section>
+</section>
+<section id="authorship" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Authorship</h1>
+<section id="general-principles" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="general-principles"><span class="header-section-number">6.1</span> General Principles</h2>
+<p>Authorship is based on substantial contributions to the research, following guidelines from major journals and professional organizations. We acknowledge that the trajectory of a research project can be difficult to predict, so <strong>authorship discussions should happen early</strong> and should be revisited if anything changes.</p>
+<section id="criteria-for-authorship" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="criteria-for-authorship"><span class="header-section-number">6.1.1</span> Criteria for Authorship</h3>
+<p>To qualify for authorship, individuals should make substantial contributions in <strong>at least two</strong> of the following areas:</p>
+<ol type="1">
+<li><strong>Conception and design</strong> - Developing research questions, hypotheses, or study design</li>
+<li><strong>Data collection</strong> - Recruiting participants, programming experiments, running sessions</li>
+<li><strong>Data analysis</strong> - Conducting statistical analyses, creating visualizations, interpreting results</li>
+<li><strong>Writing</strong> - Drafting or substantially revising the manuscript</li>
+<li><strong>Securing funding</strong> - Writing grants that support the research</li>
+</ol>
+</section>
+<section id="authorship-order-and-expectations" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="authorship-order-and-expectations"><span class="header-section-number">6.1.2</span> Authorship Order and Expectations</h3>
+<ul>
+<li><strong>First author</strong>: Primary contributor who typically led the project, conducted most analyses, and wrote the initial draft</li>
+<li><strong>Second/middle authors</strong>: Made substantial contributions but less extensive than the first author. Order is typically determined by relative contribution</li>
+<li><strong>Last author</strong>: Typically the PI (Steven) who provided oversight, funding, and conceptual guidance</li>
+<li><strong>Co-first authors</strong>: When two individuals contributed equally, this should be indicated with a footnote</li>
+</ul>
+</section>
+<section id="special-considerations" class="level3" data-number="6.1.3">
+<h3 data-number="6.1.3" class="anchored" data-anchor-id="special-considerations"><span class="header-section-number">6.1.3</span> Special Considerations</h3>
+<ul>
+<li><strong>Undergraduate RAs</strong>: If an RA contributes substantially (e.g., leads data collection, performs analyses, writes methods), they should be considered for authorship</li>
+<li><strong>Lab managers/RCs</strong>: Contributing to routine lab operations alone does not warrant authorship, but substantial intellectual or analytical contributions do</li>
+<li><strong>External collaborators</strong>: Early discussions about authorship expectations prevent misunderstandings</li>
+</ul>
+</section>
+<section id="acknowledgments" class="level3" data-number="6.1.4">
+<h3 data-number="6.1.4" class="anchored" data-anchor-id="acknowledgments"><span class="header-section-number">6.1.4</span> Acknowledgments</h3>
+<p>Individuals who contributed but do not meet authorship criteria should be acknowledged. This includes:</p>
+<ul>
+<li>Technical support (e.g., helping to analyze data on the cluster, prep data, etc.)</li>
+<li>Feedback on ideas or drafts</li>
+<li>Funding sources</li>
+<li>Participants (collecting data)</li>
+<li>Helpful conversations</li>
+</ul>
+</section>
+<section id="resolving-disputes" class="level3" data-number="6.1.5">
+<h3 data-number="6.1.5" class="anchored" data-anchor-id="resolving-disputes"><span class="header-section-number">6.1.5</span> Resolving Disputes</h3>
+<ul>
+<li>Project leads should be mindful of who has contributed to the project and proactively discuss authorship</li>
+<li>If disagreements arise, Steven will mediate</li>
+<li>Documentation of contributions (in project logs, GitHub commits, etc.) can help clarify contributions</li>
+</ul>
+<p>When in doubt, lab members are encouraged to communicate openly with Steven or other Senior Lab Members.</p>
+</section>
+</section>
+</section>
+<section id="sharing-resources" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Sharing Resources</h1>
+<section id="documentation" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="documentation"><span class="header-section-number">7.1</span> Documentation</h2>
+<p>Sharing knowledge between members of the lab is an important part of our work as academics. The “Wiki” platform on Notion is an excellent way for us to capture our lab’s diverse skills and knowledge bases in a way that is fairly permanent yet easy to change.</p>
+<p>Most lab protocols are documented in detail in the Wiki. Check out what we have collected so far, and follow the instructions on the first page to add your contributions and help out in improving the site!</p>
+<p>If you need help finding something and you can’t find it on the wiki, you can always slack the appropriate slack channels:</p>
+<ul>
+<li><code>#ask_admin</code>: for setting up meetings with Steven or asking questions to the admin team</li>
+<li><code>#coding</code>: for questions regarding coding</li>
+<li><code>#stats</code>: for questions about statistics, data analyses and visualizations, etc.</li>
+<li><code>#random</code>: miscellaneous questions</li>
+</ul>
+<p>Part of practicing good science is having good documentation so others may reproduce your work. When documenting processes, try not to reinvent the wheel (i.e, rewriting already effective code). If you run into an issue and are able to solve it on your own, post it on an appropriate slack channel; who knows, one day it may come in handy for someone else.</p>
+</section>
+<section id="open-science-practices" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="open-science-practices"><span class="header-section-number">7.2</span> Open Science Practices</h2>
+<p>Transparency and reproducibility are core values of our lab. We are committed to sharing research materials and adopting open science practices to advance collective knowledge and hold ourselves accountable to the scientific community.</p>
+<section id="what-should-be-shared" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="what-should-be-shared"><span class="header-section-number">7.2.1</span> What Should Be Shared</h3>
+<p>Unless there are ethical or legal barriers, the following materials should be made publicly available upon publication:</p>
+<ul>
+<li><strong>Stimuli</strong> - Task materials, survey items, images, videos, or audio files used in studies</li>
+<li><strong>Data</strong> - De-identified raw means and processed data in accessible formats (CSV, JSON, etc.). In our lab that usually means no raw text</li>
+<li><strong>Code</strong> - Analysis scripts, data preprocessing pipelines, and task presentation code</li>
+<li><strong>Protocols</strong> - Detailed procedures for data collection and analysis</li>
+<li><strong>Pre-registrations</strong> - Links to pre-registered study plans where appropriate</li>
+</ul>
+</section>
+<section id="where-to-share" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="where-to-share"><span class="header-section-number">7.2.2</span> Where to Share</h3>
+<ul>
+<li><strong>Open Science Framework (OSF)</strong> - Primary repository for study materials, data, and preregistrations</li>
+<li><strong>GitHub</strong> - Code repositories for analysis pipelines and computational tools</li>
+<li><strong>Journal supplementary materials</strong> - When required by the journal</li>
+</ul>
+</section>
+<section id="timeline-for-sharing" class="level3" data-number="7.2.3">
+<h3 data-number="7.2.3" class="anchored" data-anchor-id="timeline-for-sharing"><span class="header-section-number">7.2.3</span> Timeline for Sharing</h3>
+<ul>
+<li><strong>Pre-registration</strong> - Before data collection begins (for confirmatory studies)</li>
+<li><strong>Preprints</strong> - Upon submission to a journal (when journal policies allow). Please make sure to share with Steven and the Lab Manager to ensure the website is updated and the preprint get’s presss!</li>
+<li><strong>Final materials</strong> - Upon publication or acceptance of the manuscript</li>
+<li><strong>Code</strong> - Should be version-controlled throughout the project and made public upon publication</li>
+</ul>
+</section>
+<section id="exceptions-and-special-cases" class="level3" data-number="7.2.4">
+<h3 data-number="7.2.4" class="anchored" data-anchor-id="exceptions-and-special-cases"><span class="header-section-number">7.2.4</span> Exceptions and Special Cases</h3>
+<p>Materials may not be shared when:</p>
+<ul>
+<li>Sharing would violate participant privacy (even after de-identification)</li>
+<li>Data contains proprietary information from industry partners</li>
+<li>Sharing is prohibited by data use agreements or IRB restrictions</li>
+<li>Materials are copyrighted by third parties</li>
+</ul>
+<p>In these cases, document the reasons for not sharing and provide as much information as possible (e.g., data dictionaries, summary statistics).</p>
+</section>
+<section id="licensing" class="level3" data-number="7.2.5">
+<h3 data-number="7.2.5" class="anchored" data-anchor-id="licensing"><span class="header-section-number">7.2.5</span> Licensing</h3>
+<ul>
+<li>Use permissive licenses for shared materials produced by the Lab and its members (e.g., CC-BY 4.0 for data, MIT for code)</li>
+<li>Clearly indicate the license in README files and repositories</li>
+<li>Respect licenses of third-party materials we build upon (e.g., cite where appropriate)</li>
+</ul>
+</section>
+</section>
+<section id="preregistration" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="preregistration"><span class="header-section-number">7.3</span> Preregistration</h2>
+<p>Preregistration is the practice of documenting research plans before data collection or analysis begins. It helps distinguish confirmatory from exploratory research and increases transparency.</p>
+<section id="when-to-preregister" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="when-to-preregister"><span class="header-section-number">7.3.1</span> When to Preregister</h3>
+<ul>
+<li><strong>High Encouraged for confirmatory studies</strong> - Any study designed to test pre-specified hypotheses should be preregistered</li>
+<li><strong>Encouraged for exploratory studies</strong> - Even exploratory work benefits from documenting initial plans</li>
+<li><strong>Not required for secondary data analysis</strong> - When analyzing existing datasets, clearly label analyses as exploratory unless there was a pre-existing analysis plan</li>
+</ul>
+</section>
+<section id="what-to-include" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="what-to-include"><span class="header-section-number">7.3.2</span> What to Include</h3>
+<p>A comprehensive preregistration should include:</p>
+<ul>
+<li>Research questions and hypotheses</li>
+<li>Study design and sampling plan</li>
+<li>Variables and measures</li>
+<li>Data collection procedures</li>
+<li>Planned data exclusions</li>
+<li>Analysis plan (statistical tests, software, etc.)</li>
+<li>Inference criteria (e.g., alpha levels, Bayes factors)</li>
+</ul>
+<p>For more detailed information, please see the Lab Wiki.</p>
+</section>
+<section id="where-to-preregister" class="level3" data-number="7.3.3">
+<h3 data-number="7.3.3" class="anchored" data-anchor-id="where-to-preregister"><span class="header-section-number">7.3.3</span> Where to Preregister</h3>
+<ul>
+<li><strong>Open Science Framework (OSF)</strong> - Preferred platform; allows embargoed and public registrations</li>
+<li><strong>AsPredicted.org</strong> - Simple, quick preregistrations</li>
+<li><strong>ClinicalTrials.gov</strong> - For clinical trials (when applicable)</li>
+</ul>
+</section>
+<section id="deviations-from-preregistration" class="level3" data-number="7.3.4">
+<h3 data-number="7.3.4" class="anchored" data-anchor-id="deviations-from-preregistration"><span class="header-section-number">7.3.4</span> Deviations from Preregistration</h3>
+<p>Research plans often need to change. This is normal and acceptable, but it is importan to document all deviations in the manuscript, distinguish between confirmatory (pre-registered) and exploratory analyses clearly in the manuscript, explain why deviations were necessary, and be transparent about changes strengthens rather than weakens the work.</p>
+</section>
+<section id="timeline" class="level3" data-number="7.3.5">
+<h3 data-number="7.3.5" class="anchored" data-anchor-id="timeline"><span class="header-section-number">7.3.5</span> Timeline</h3>
+<p>When should you Preregister? Typically, preregistration should occur <strong>before</strong> data collection begins (for new studies) For multi-study papers, one can preregister each study separately/</p>
+</section>
+</section>
+</section>
+<section id="research-ethics-and-human-subjects" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Research Ethics and Human Subjects</h1>
+<section id="treatment-of-human-subjects" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="treatment-of-human-subjects"><span class="header-section-number">8.1</span> Treatment of Human Subjects</h2>
+<p>All research involving human participants must adhere to the highest ethical standards and comply with institutional and federal regulations.</p>
+<section id="irb-approval" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="irb-approval"><span class="header-section-number">8.1.1</span> IRB Approval</h3>
+<p><strong>All</strong> studies involving human subjects require IRB approval before data collection begins. Lab members must complete required human subjects training (CITI) before conducting research. Additionally, IRB protocols must be kept current; renewals should be submitted at least 30 days before expiration. And we must submit modifications to approved protocols if we modify designs, etc.!</p>
+</section>
+<section id="informed-consent" class="level3" data-number="8.1.2">
+<h3 data-number="8.1.2" class="anchored" data-anchor-id="informed-consent"><span class="header-section-number">8.1.2</span> Informed Consent</h3>
+<p>All articipants must provide informed consent before participating in any lab study. Consent forms must be written in clear, accessible language (typically 8th-grade reading level) and participants must be informed of their right to withdraw at any time without penalty. For online studies, consent must be documented electronically</p>
+</section>
+<section id="data-privacy-and-confidentiality" class="level3" data-number="8.1.3">
+<h3 data-number="8.1.3" class="anchored" data-anchor-id="data-privacy-and-confidentiality"><span class="header-section-number">8.1.3</span> Data Privacy and Confidentiality</h3>
+<p>Participant data must be de-identified as soon as possible in the analysis processes (e.g., Prolific IDs). Personal identifiers (names, emails, etc.) should be stored separately from research data. Use participant IDs rather than names in all data files and documentation. Data containing identifiable information must be stored on secure, encrypted systems (e.g., the Lab Server). When sharing data publicly, ensure all identifying information has been removed</p>
+</section>
+<section id="vulnerable-populations" class="level3" data-number="8.1.4">
+<h3 data-number="8.1.4" class="anchored" data-anchor-id="vulnerable-populations"><span class="header-section-number">8.1.4</span> Vulnerable Populations</h3>
+<p>Special care must be taken when working with vulnerable populations (children, individuals with mental health conditions, etc.):</p>
+<ul>
+<li>Additional protections and oversight may be required</li>
+<li>Consult with the IRB early in the planning process</li>
+<li>Have clear protocols for responding to distress or mandatory reporting situations</li>
+</ul>
+</section>
+<section id="compensation" class="level3" data-number="8.1.5">
+<h3 data-number="8.1.5" class="anchored" data-anchor-id="compensation"><span class="header-section-number">8.1.5</span> Compensation</h3>
+<p>The Lab deems it important that participants are compensated fairly for their time. That means that payment rates should be consistent with institutional guidelines (typically $10-15/hour). Where possible, partial compensation should be provided if participants withdraw early</p>
+</section>
+</section>
+<section id="use-of-artificial-intelligence" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="use-of-artificial-intelligence"><span class="header-section-number">8.2</span> Use of Artificial Intelligence</h2>
+<p>AI tools (e.g., ChatGPT, Claude, Copilot) are increasingly integrated into research workflows. We embrace these technologies while maintaining scientific integrity and transparency.</p>
+<section id="acceptable-uses" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="acceptable-uses"><span class="header-section-number">8.2.1</span> Acceptable Uses</h3>
+<p>AI tools may be used for:</p>
+<ul>
+<li><strong>Code development and debugging</strong> - Using AI assistants to write, troubleshoot, or optimize code</li>
+<li><strong>Literature review support</strong> - Summarizing papers or identifying relevant literature (always verify sources)</li>
+<li><strong>Writing assistance</strong> - Improving clarity, grammar, or structure of written work</li>
+<li><strong>Brainstorming</strong> - Generating research ideas or hypotheses (which must be critically evaluated by Humans!)</li>
+<li><strong>Data preprocessing</strong> - Automating routine data cleaning tasks (with verification)</li>
+</ul>
+</section>
+<section id="required-disclosure" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="required-disclosure"><span class="header-section-number">8.2.2</span> Required Disclosure</h3>
+<p>AI use <strong>must</strong> be disclosed when:</p>
+<ul>
+<li>AI tools generate substantial portions of text in manuscripts or grants</li>
+<li>AI is used in the analysis pipeline (e.g., using LLMs for text classification)</li>
+<li>AI assists in creating figures or visualizations beyond basic formatting</li>
+</ul>
+<p><strong>Note.</strong> When disclosing use of a LLM, it’s important to capture 1. the model you used 2. when you used the model (i.e., the data) 3. any sort of customization you used (e.g., change in temperature, etc.)</p>
+</section>
+<section id="prohibited-uses" class="level3" data-number="8.2.3">
+<h3 data-number="8.2.3" class="anchored" data-anchor-id="prohibited-uses"><span class="header-section-number">8.2.3</span> Prohibited Uses</h3>
+<p>AI tools should NOT be used for:</p>
+<ul>
+<li><strong>Fabricating data or results</strong></li>
+<li><strong>Generating fake citations</strong> - Always verify that cited papers exist and are accurately represented</li>
+<li><strong>Peer review</strong> - Do not input confidential manuscript content into AI systems</li>
+<li><strong>Final decision-making</strong> without human oversight</li>
+</ul>
+<p>When in doubt about appropriate AI use, discuss with Steven</p>
+</section>
+</section>
+<section id="inclusive-research-practices" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="inclusive-research-practices"><span class="header-section-number">8.3</span> Inclusive Research Practices</h2>
+<p>Our lab values feedback from members of different communities, and we incorporate this feedback into our research workflows. Below are some resources we recommend when preparing your project:</p>
+<ul>
+<li>Information on how the lab attempts to collect participant demographics in an inclusive manner</li>
+<li>Information on how to construct a citation diversity statement: https://github.com/dalejn/cleanBib</li>
+</ul>
+</section>
+<section id="working-together-responsibilities-and-respect" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="working-together-responsibilities-and-respect"><span class="header-section-number">8.4</span> Working Together: Responsibilities and Respect</h2>
+<section id="respect-for-all-contributors" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="respect-for-all-contributors"><span class="header-section-number">8.4.1</span> Respect for All Contributors</h3>
+<p>Research is a collaborative effort, and everyone—from administrators to undergraduates—plays a vital role. All members of the team deserve recognition and appreciation for their contributions, big and small.</p>
+<p><strong>Respect for administrators</strong>: Pay it forward. Show gratitude to administrative and support staff (Finance, HR, etc.) by getting them what they need, exactly how they need it, in a timely manner (ideally within 24 hours). Acknowledge their work with explicit thanks.</p>
+</section>
+<section id="appropriate-task-delegation" class="level3" data-number="8.4.2">
+<h3 data-number="8.4.2" class="anchored" data-anchor-id="appropriate-task-delegation"><span class="header-section-number">8.4.2</span> Appropriate Task Delegation</h3>
+<p>All members of the research team should be given tasks that they are approved, trained, and qualified to complete. This ensures things get done right the first time and promotes learning. If you feel like you’re taking on too much or are unsure how to do a task, speak up!</p>
+</section>
+</section>
+</section>
+<section id="lab-social-events" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Lab Social Events</h1>
+<p>To help us work together to accomplish great things in our research, our lab tries to hold regular social events where lab members can hang out, have fun and get to know each other. If you have ideas for an event and/or are interested in helping set one up, feel free to reach out to the Lab Manager!</p>
+<p>Suggesting something does not necessarily mean you are volunteering to set it up. Social events are optional (i.e., you are not required to attend, though we love getting to know you).</p>
+</section>
+<section id="code-of-conduct" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Code of Conduct</h1>
+<section id="sexual-harassment-and-other-forms-of-harassment" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="sexual-harassment-and-other-forms-of-harassment"><span class="header-section-number">10.1</span> Sexual Harassment and Other Forms of Harassment</h2>
+<p>The Lab does not tolerate any forms of harassment. With that in mind, it is important to discuss what harassment can look like and outline the available channels for reporting.</p>
+<p>The following definitions of harassment are borrowed from the Social Affective Neuroscience Society (SANS) code of conduct:</p>
+<blockquote class="blockquote">
+<p>“Sexual harassment refers to unwelcome sexual advances, requests for sexual favors, and other verbal or physical conduct of a sexual nature. Behavior and language that are welcome and acceptable to one person may be unwelcome and offensive to another. Consequently, individuals must use discretion to ensure that their words and actions communicate respect for others. This is especially important for those in positions of authority since individuals with lower rank or status may be reluctant to express their objections or discomfort regarding unwelcome behavior.”</p>
+</blockquote>
+</section>
+<section id="reporting-violations-of-community-standards" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="reporting-violations-of-community-standards"><span class="header-section-number">10.2</span> Reporting Violations of Community Standards</h2>
+<p>Steven and Senior Lab Members are both available to discuss any concerns that arise with respect to community standards. If you have concerns about interactions with Steven, you can consult a Senior Lab Member, or the Dean of the XXXX School/Program or one of the resources below.</p>
+<p>Whether those concerns involve other Lab members or individuals not directly affiliated with the lab, please know that we are here to listen and provide support to the best of our abilities. Having said that, it is important to note that Steven and Senior Lab Members are mandated reporters of Title IX violations.</p>
+<section id="who-are-mandated-reporters" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="who-are-mandated-reporters"><span class="header-section-number">10.2.1</span> Who are Mandated Reporters?</h3>
+<p>All university faculty and staff who regularly work with students in a teaching, advising, coaching, or mentoring capacity are required to report instances of sexual harassment, sexual violence, relationship (dating or domestic) violence, and stalking to the Title IX Office.</p>
+<p>In other words, Steven, Lab Managers, Post docs, as well as Research Directors and Coordinators are mandated reporters under Title IX.</p>
+</section>
+<section id="what-does-this-mean" class="level3" data-number="10.2.2">
+<h3 data-number="10.2.2" class="anchored" data-anchor-id="what-does-this-mean"><span class="header-section-number">10.2.2</span> What Does This Mean?</h3>
+<p>Mandated reporters are required to notify the Title IX Office of violations. These reports are not anonymous, and the University does not guarantee that they will be kept confidential. In rare cases, the University may proceed to a Title IX investigation despite requests for confidentiality.</p>
+</section>
+</section>
+</section>
+<section id="day-to-day-operations" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Day to Day Operations</h1>
+<section id="general-meetings-one-on-one-or-group" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="general-meetings-one-on-one-or-group"><span class="header-section-number">11.1</span> General Meetings (One-on-one or Group)</h2>
+<p>When organizing meetings with other lab members or collaborators, make sure to:</p>
+<ul>
+<li>Schedule it on your Lab Google calendar</li>
+<li>Send calendar invites to guests</li>
+<li>Include a zoom link and/or in-person meeting space (we recommend providing both options in case of any last-minute changes)</li>
+<li>Create an agenda in advance</li>
+</ul>
+</section>
+<section id="lab-meetings" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="lab-meetings"><span class="header-section-number">11.2</span> Lab Meetings</h2>
+<p>Lab meetings are held weekly for an hour and a half. We use a sprint schedule for our meeting schedule. The meeting schedule for the current semester can be found on the Lab Google Calendar.</p>
+<p>Labscrum is an adaptation of scrum—an implementation of the agile philosophy of project management—developed for academia by Lisa May. It is a framework for managing research projects and labs that uses empiricism to continuously experiment with and refine <em>how</em> we do research and work together.</p>
+<p>While labscrum may help us be more productive, that is not our primary goal. Our core goal is to help each other be well and do science in a sustainable way.</p>
+<p>The core pillars of labscrum include:</p>
+<ol type="1">
+<li><strong>Transparency</strong>: To improve the research process, it must be observable</li>
+<li><strong>Inspection</strong>: Reflection enables the generation of ideas for how to improve the research process</li>
+<li><strong>Adaptation</strong>: Ideas are implemented as experiments and the work process is adjusted continuously</li>
+</ol>
+</section>
+<section id="individual-meetings-with-steven" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="individual-meetings-with-steven"><span class="header-section-number">11.3</span> Individual Meetings with Steven</h2>
+<p>If you’d like to schedule a meeting with Steven, use the <code>#ask_admin</code> slack channel to contact the admin team. The lab manager will schedule these 1:1 meetings each semester, according to lab members’ availability. You can schedule recurring meetings (e.g., every 2 weeks) or request one-time meetings as needed.</p>
+<p>Prepare an agenda in advance for what the meeting will be about. Although there is no set agenda template and the needs of each meeting may vary, a good starting point may be to consider the following sections:</p>
+<ul>
+<li><strong>Updates</strong> (stuff you got done since last time)</li>
+<li><strong>Tasks and Longer-Term Goals</strong> (an ordered priority list for what’s coming up)</li>
+<li><strong>Discussion</strong> (stuff that needs input)</li>
+</ul>
+</section>
+<section id="other-intra-lab-meetings" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="other-intra-lab-meetings"><span class="header-section-number">11.4</span> Other Intra-lab Meetings</h2>
+<p>If you’re requesting a meeting with someone else, you set the agenda. For team meetings, the research director or some other designated person (sometimes a research coordinator) maintains the agenda. It is recommended that you schedule a meeting a few days in advance to accommodate others’ schedules and allow them to prepare.</p>
+</section>
+</section>
+<section id="money" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Money</h1>
+<p>The lab is funded through different government and industry grants, each corresponding to a particular project. For a list of current and past grants, see the Funding section of the lab wiki.</p>
+<section id="funding-policies" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="funding-policies"><span class="header-section-number">12.1</span> Funding Policies</h2>
+<p>Our lab is committed to maintaining scientific integrity and independence in all our work. This includes being thoughtful about funding sources and potential conflicts of interest.</p>
+<section id="acceptable-funding-sources" class="level3" data-number="12.1.1">
+<h3 data-number="12.1.1" class="anchored" data-anchor-id="acceptable-funding-sources"><span class="header-section-number">12.1.1</span> Acceptable Funding Sources</h3>
+<p>We actively pursue funding from:</p>
+<ul>
+<li><strong>Federal agencies</strong> (NIH, NSF, NIDA, NIMH, etc.)</li>
+<li><strong>Private foundations</strong> with missions aligned with public health and scientific advancement</li>
+<li><strong>University internal grants</strong></li>
+<li><strong>Professional societies and associations</strong></li>
+</ul>
+</section>
+<section id="industry-partnerships" class="level3" data-number="12.1.2">
+<h3 data-number="12.1.2" class="anchored" data-anchor-id="industry-partnerships"><span class="header-section-number">12.1.2</span> Industry Partnerships</h3>
+<p>Industry collaborations can provide valuable resources and real-world applications for our research. However, we maintain the following guardrails when collaborating with folks from industry:</p>
+<ul>
+<li><strong>Scientific independence</strong> - The lab should retain full control over study design, analysis, and publication</li>
+<li><strong>No publication restrictions</strong> - Funding agreements must not restrict our ability to publish results, regardless of outcomes</li>
+<li><strong>Transparency</strong> - All industry funding must be disclosed in publications and presentations</li>
+<li><strong>Ethical alignment</strong> - We will not accept funding from organizations whose core business conflicts with public health (e.g., tobacco companies, organizations promoting misinformation)</li>
+</ul>
+</section>
+<section id="data-ownership-and-sharing" class="level3" data-number="12.1.3">
+<h3 data-number="12.1.3" class="anchored" data-anchor-id="data-ownership-and-sharing"><span class="header-section-number">12.1.3</span> Data Ownership and Sharing</h3>
+<ul>
+<li>The lab retains ownership of data generated with lab resources</li>
+<li>Industry partners may request first access to results before public release, but timelines must be reasonable (typically 30-60 days)</li>
+<li>Data sharing agreements must allow for eventual public sharing (after appropriate embargo periods)</li>
+</ul>
+</section>
+<section id="when-to-decline-funding" class="level3" data-number="12.1.4">
+<h3 data-number="12.1.4" class="anchored" data-anchor-id="when-to-decline-funding"><span class="header-section-number">12.1.4</span> When to Decline Funding</h3>
+<p>We will decline funding that:</p>
+<ul>
+<li>Restricts publication rights or requires approval before publication</li>
+<li>Prevents data sharing beyond what is ethically necessary</li>
+<li>Creates significant conflicts of interest that cannot be managed</li>
+<li>Comes from organizations whose values fundamentally conflict with our mission</li>
+</ul>
+</section>
+<section id="discussing-funding-decisions" class="level3" data-number="12.1.5">
+<h3 data-number="12.1.5" class="anchored" data-anchor-id="discussing-funding-decisions"><span class="header-section-number">12.1.5</span> Discussing Funding Decisions</h3>
+<p>If you have concerns about a potential funding source, please raise them with Steven. These discussions are important and will be taken seriously.</p>
+</section>
+</section>
+<section id="funding-lab-opportunities" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="funding-lab-opportunities"><span class="header-section-number">12.2</span> Funding Lab Opportunities</h2>
+<p>There are multiple funding opportunities available to fund projects for researchers at different stages. For a broad (but by no means comprehensive) list of opportunities, you can take a look at the Funding Opportunities page on the lab wiki. If you see any funding opportunities pop up, feel free to share with the lab via Slack or email.</p>
+<p>The lab is usually able to cover the cost of lab-wide or full project team events, such as lunches, dinners, and retreats. The lab will usually not cover expenses for individual or small-group activities. If you have any questions about the lab covering the cost of an activity, please check with the admin team, Steven, and/or the Finance Office.</p>
+</section>
+</section>
+<section id="asking-for-help---where-to-go" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Asking for Help - Where to Go</h1>
+<section id="online" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="online"><span class="header-section-number">13.1</span> Online</h2>
+<ul>
+<li>Use the Lab Wiki to answer most lab-related questions</li>
+<li>The Wiki is a working document, so if you don’t see a page on something you think should be on there, feel free to create it!</li>
+<li>Use the search function! You might find something very helpful, or maybe even a similar discussion you can reference to ask someone in the lab</li>
+<li>If you don’t find what you’re looking for, and figure out what you need on your own or with the help of other lab members, consider creating a page on Notion with what you’ve learned</li>
+</ul>
+</section>
+<section id="asking-for-help---when-and-how" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="asking-for-help---when-and-how"><span class="header-section-number">13.2</span> Asking for Help - When and How</h2>
+<p>Always ask questions–there are no stupid questions! It is recommended that lab members try to address issues on their own first. If you aren’t able to solve the issue, that’s okay! Reach out to the relevant person (whether a lab member or university affiliate, e.g., in IT, HR, or stats consulting) and detail the problem as well as the steps you’ve taken to try to solve it. This will help others provide you with relevant, tailored support and cut down on excessive back-and-forth.</p>
+<p>Senior lab members, when helping other Lab members, please do your best to demonstrate how you’ve solved the problem in the past and share any relevant knowledge. This way, the lab member seeking help can learn new skills and be better able to problem-solve independently in the future.</p>
+</section>
+</section>
+<section id="security-protocols-and-data-management" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Security Protocols and Data Management</h1>
+<p>Protecting participant data and maintaining research integrity requires robust security practices.</p>
+<section id="data-security" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="data-security"><span class="header-section-number">14.1</span> Data Security</h2>
+<section id="storage" class="level3" data-number="14.1.1">
+<h3 data-number="14.1.1" class="anchored" data-anchor-id="storage"><span class="header-section-number">14.1.1</span> Storage</h3>
+<ul>
+<li><strong>Sensitive data</strong> (containing identifiers) must be stored on secure, encrypted university servers</li>
+<li><strong>De-identified data</strong> can be stored on lab-approved cloud services (Box, Dropbox with encryption)</li>
+<li><strong>Never</strong> store research data containing identifiers on personal devices without encryption</li>
+<li>Use the lab’s secure server space for active projects</li>
+</ul>
+</section>
+<section id="password-management" class="level3" data-number="14.1.2">
+<h3 data-number="14.1.2" class="anchored" data-anchor-id="password-management"><span class="header-section-number">14.1.2</span> Password Management</h3>
+<ul>
+<li>Use strong, unique passwords for all research accounts</li>
+<li>Use a password manager (e.g., 1Password, LastPass) - the lab can provide licenses</li>
+<li>Enable two-factor authentication (2FA) on all accounts that offer it</li>
+<li>Never share passwords via email or unencrypted channels!</li>
+</ul>
+</section>
+<section id="file-naming-and-organization" class="level3" data-number="14.1.3">
+<h3 data-number="14.1.3" class="anchored" data-anchor-id="file-naming-and-organization"><span class="header-section-number">14.1.3</span> File Naming and Organization</h3>
+<ul>
+<li>Use consistent, descriptive file naming conventions</li>
+<li>Include dates in ISO format (YYYY-MM-DD) when relevant</li>
+<li>Maintain clear folder structures documented in README files</li>
+<li>Version control code using Git/GitHub</li>
+</ul>
+</section>
+<section id="access-control" class="level3" data-number="14.1.4">
+<h3 data-number="14.1.4" class="anchored" data-anchor-id="access-control"><span class="header-section-number">14.1.4</span> Access Control</h3>
+<ul>
+<li>Only lab members working on a specific project should have access to that project’s data</li>
+<li>Remove access when lab members leave or transition to different projects unbless otherwise specified</li>
+<li>Regularly audit who has access to sensitive data</li>
+</ul>
+</section>
+</section>
+<section id="data-management-plans" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="data-management-plans"><span class="header-section-number">14.2</span> Data Management Plans</h2>
+<p>Every project should have a data management plan that includes:</p>
+<ul>
+<li>Where data will be stored during and after the project</li>
+<li>Who has access to the data</li>
+<li>Plans for data sharing and archiving</li>
+<li>Backup procedures</li>
+</ul>
+</section>
+<section id="hipaa-and-phi" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="hipaa-and-phi"><span class="header-section-number">14.3</span> HIPAA and PHI</h2>
+<p>If working with Protected Health Information (PHI):</p>
+<ul>
+<li>Complete HIPAA training before accessing any PHI</li>
+<li>Follow all institutional HIPAA compliance procedures</li>
+<li>Store PHI only on HIPAA-compliant systems</li>
+<li>Consult with the IRB and institutional HIPAA office</li>
+</ul>
+</section>
+<section id="incident-response" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="incident-response"><span class="header-section-number">14.4</span> Incident Response</h2>
+<p>If you suspect a data breach or security incident:</p>
+<ol type="1">
+<li>Immediately notify Steven and the lab manager</li>
+<li>Document what happened and what data may be affected</li>
+<li>Follow institutional reporting procedures</li>
+<li>Do not attempt to “fix” the problem before reporting it</li>
+</ol>
+</section>
+</section>
+<section id="conflicts-of-interest" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> Conflicts of Interest</h1>
+<p>A conflict of interest (COI) occurs when personal, financial, or professional interests could compromise or appear to compromise research objectivity.</p>
+<section id="what-constitutes-a-conflict-of-interest" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="what-constitutes-a-conflict-of-interest"><span class="header-section-number">15.1</span> What Constitutes a Conflict of Interest</h2>
+<p>Conflicts of interest in research can take many forms, and understanding what constitutes a conflict is the first step in managing them appropriately.</p>
+<section id="financial-conflicts" class="level3" data-number="15.1.1">
+<h3 data-number="15.1.1" class="anchored" data-anchor-id="financial-conflicts"><span class="header-section-number">15.1.1</span> Financial Conflicts</h3>
+<p>Financial conflicts of interest arise when you have monetary interests that could be affected by your research outcomes. These include holding equity or financial interest in a company whose products or services are related to your research, maintaining consulting relationships with companies in your research area, receiving speaking fees or honoraria from organizations that could benefit from your research findings, or earning royalties from products related to your research. Even when these financial relationships don’t actually influence your work, they can create the appearance of bias and must be disclosed and managed appropriately.</p>
+</section>
+<section id="non-financial-conflicts" class="level3" data-number="15.1.2">
+<h3 data-number="15.1.2" class="anchored" data-anchor-id="non-financial-conflicts"><span class="header-section-number">15.1.2</span> Non-Financial Conflicts</h3>
+<p>Not all conflicts of interest involve money. Non-financial conflicts can be equally important and sometimes more difficult to identify. These include personal relationships with study participants or collaborators that could bias research outcomes, strongly held beliefs or ideological commitments that could influence research design or interpretation, and situations where your professional advancement depends on achieving specific research outcomes. For example, if your dissertation, tenure case, or promotion relies heavily on finding significant results in a particular direction, this creates a non-financial conflict that should be acknowledged and managed.</p>
+</section>
+<section id="examples-of-potential-conflicts" class="level3" data-number="15.1.3">
+<h3 data-number="15.1.3" class="anchored" data-anchor-id="examples-of-potential-conflicts"><span class="header-section-number">15.1.3</span> Examples of Potential Conflicts</h3>
+<p>To make these concepts more concrete, consider the following examples: owning stock in a company that produces mental health assessment tools while conducting research that evaluates similar tools creates a clear financial conflict. Having a close family member as a study participant could bias how you collect or interpret data from that individual. Consulting for a company while publishing research relevant to their products raises questions about whether your findings might be influenced by that relationship. Similarly, serving on the board of an organization that could benefit from your research conclusions—even if it’s a nonprofit or advocacy organization you believe in—represents a potential conflict that should be disclosed.</p>
+</section>
+</section>
+<section id="disclosure-requirements" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="disclosure-requirements"><span class="header-section-number">15.2</span> Disclosure Requirements</h2>
+<section id="when-to-disclose" class="level3" data-number="15.2.1">
+<h3 data-number="15.2.1" class="anchored" data-anchor-id="when-to-disclose"><span class="header-section-number">15.2.1</span> When to Disclose</h3>
+<p>Transparency is the cornerstone of managing conflicts of interest. Conflicts must be disclosed in all publications and presentations, ensuring that readers and audiences are aware of any potential biases. They must also be reported on grant applications, disclosed to the university’s COI office as required by institutional policy, communicated to Steven and relevant lab members who are working on related projects, and included in IRB applications when relevant to human subjects research. The goal is to ensure that all stakeholders—from funding agencies to research participants—can evaluate your work with full knowledge of any potential competing interests.</p>
+</section>
+<section id="how-to-disclose" class="level3" data-number="15.2.2">
+<h3 data-number="15.2.2" class="anchored" data-anchor-id="how-to-disclose"><span class="header-section-number">15.2.2</span> How to Disclose</h3>
+<p>When disclosing conflicts of interest, be as specific as possible about the nature of the relationship rather than using vague language. Include dollar amounts when relevant, as the magnitude of a financial interest can affect how it should be managed. Remember to update your disclosures when circumstances change—conflicts are not static, and new relationships or changes to existing ones must be reported promptly. When in doubt, err on the side of over-disclosure rather than under-disclosure. It’s better to disclose something that turns out to be minor than to fail to disclose something that could later be seen as problematic.</p>
+</section>
+</section>
+<section id="what-to-do-if-you-have-a-conflict" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="what-to-do-if-you-have-a-conflict"><span class="header-section-number">15.3</span> What to Do If You Have a Conflict</h2>
+<p>If you recognize a potential conflict of interest, follow these steps: First, <strong>identify</strong> the conflict by recognizing when a potential conflict exists—being proactive is always better than being reactive. Second, <strong>disclose</strong> the conflict by informing Steven and following institutional disclosure procedures through your university’s COI office. Third, <strong>discuss</strong> the situation with Steven to work together to determine if management beyond disclosure is needed. Fourth, <strong>document</strong> everything by keeping records of your disclosures and any management plans you develop. Finally, <strong>monitor</strong> the situation over time and reassess as circumstances change, since conflicts can evolve as your career and relationships develop.</p>
+</section>
+<section id="questions-to-ask-yourself" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="questions-to-ask-yourself"><span class="header-section-number">15.4</span> Questions to Ask Yourself</h2>
+<p>If you’re unsure whether something constitutes a conflict of interest, consider these questions: Would a reasonable person question my objectivity if they knew about this relationship? Could this relationship influence my research decisions, even subconsciously? Would I be comfortable if this relationship became public or was reported in the media? Am I avoiding disclosure because it feels uncomfortable or because I’m worried about how it might be perceived? If you answer “yes” or “maybe” to any of these questions, it’s likely worth disclosing.</p>
+<p>When in doubt, disclose. It’s always better to be transparent! And if you have any questions you can always come and talk to Steven or a Senior Lab Member.</p>
+</section>
+</section>
+<section id="collaboration-guidelines" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> Collaboration Guidelines</h1>
+<p>Science is a team sport and collaboration is central to our research approach. Clear expectations help collaborations thrive.</p>
+<section id="initiating-collaborations" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="initiating-collaborations"><span class="header-section-number">16.1</span> Initiating Collaborations</h2>
+<section id="internal-collaborations" class="level3" data-number="16.1.1">
+<h3 data-number="16.1.1" class="anchored" data-anchor-id="internal-collaborations"><span class="header-section-number">16.1.1</span> Internal Collaborations</h3>
+<p>Successful internal collaborations begin with clear communication. Before committing significant time to a new collaborative project, discuss your project ideas with Steven to ensure alignment with lab priorities and avoid duplication of effort. Be explicit about authorship expectations early in the process—having these conversations upfront prevents misunderstandings later. Document each collaborator’s roles and responsibilities clearly so everyone knows what’s expected of them, and use shared project management tools like Notion or GitHub projects to keep everyone on the same page throughout the project lifecycle.</p>
+</section>
+<section id="external-collaborations" class="level3" data-number="16.1.2">
+<h3 data-number="16.1.2" class="anchored" data-anchor-id="external-collaborations"><span class="header-section-number">16.1.2</span> External Collaborations</h3>
+<p>External collaborations can bring new perspectives and resources to our work, but they require additional planning and formal agreements. Steven should be informed of external collaboration discussions early, even in preliminary stages, so he can provide guidance and ensure the collaboration aligns with lab goals and policies. Once you decide to move forward, create a collaboration agreement that outlines project goals and timeline, clarifies each party’s contributions and responsibilities, establishes authorship expectations, specifies data ownership and sharing arrangements, outlines publication plans including timelines and review processes, and addresses any funding arrangements or cost-sharing agreements. Having these elements in writing protects everyone involved and provides a reference point if questions arise later.</p>
+</section>
+</section>
+<section id="data-sharing-with-collaborators" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="data-sharing-with-collaborators"><span class="header-section-number">16.2</span> Data Sharing with Collaborators</h2>
+<section id="before-sharing-data" class="level3" data-number="16.2.1">
+<h3 data-number="16.2.1" class="anchored" data-anchor-id="before-sharing-data"><span class="header-section-number">16.2.1</span> Before Sharing Data</h3>
+<p>Data sharing is essential for collaboration, but it must be done responsibly and legally. Before sharing any data with collaborators, ensure you have permission to share by checking your IRB protocols and consent forms to verify that data sharing is allowed. Execute data use agreements when necessary, particularly for sensitive data or when sharing with external collaborators. Share only the minimum data needed for the collaboration—there’s no need to share entire datasets when a subset will suffice. Whenever possible, de-identify data before sharing to protect participant privacy, even when working with trusted collaborators.</p>
+</section>
+<section id="data-use-agreements" class="level3" data-number="16.2.2">
+<h3 data-number="16.2.2" class="anchored" data-anchor-id="data-use-agreements"><span class="header-section-number">16.2.2</span> Data Use Agreements</h3>
+<p>For sensitive data or external collaborations, formal data use agreements provide important protections. These agreements should establish permitted uses of the data so collaborators understand what analyses or applications are acceptable, specify restrictions on further sharing to prevent data from being distributed beyond the agreed-upon parties, outline requirements for data security including storage and transmission protocols, detail plans for data destruction or return once the collaboration is complete, and clarify publication and authorship expectations related to work using the shared data. These agreements may seem formal, but they protect both you and your collaborators and ensure everyone has the same understanding of how data can be used.</p>
+</section>
+</section>
+<section id="intellectual-property" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="intellectual-property"><span class="header-section-number">16.3</span> Intellectual Property</h2>
+<section id="general-principles-1" class="level3" data-number="16.3.1">
+<h3 data-number="16.3.1" class="anchored" data-anchor-id="general-principles-1"><span class="header-section-number">16.3.1</span> General Principles</h3>
+<p>Intellectual property in academic research is primarily protected through authorship and open sharing rather than through patents or proprietary restrictions. Ideas developed using lab resources belong to the collaborative team—no single person can claim exclusive ownership of concepts developed with shared lab infrastructure and support. Individual contributions should be recognized through authorship on publications, presentations, and other scholarly outputs. Novel methods, tools, or software should be shared openly when possible, contributing to the broader scientific community and allowing others to build on our work.</p>
+</section>
+</section>
+<section id="multi-lab-projects" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="multi-lab-projects"><span class="header-section-number">16.4</span> Multi-Lab Projects</h2>
+<p>Large collaborative projects involving multiple labs require additional structure and coordination. For these projects, establish a clear governance structure and decision-making processes at the outset so everyone knows who has authority over different aspects of the project. Create detailed project timelines with milestones to keep the work on track and allow for progress monitoring. Hold regular check-in meetings—monthly or quarterly depending on the project timeline—to ensure all teams are aligned and to address any emerging issues. Document all major decisions in shared meeting notes or project management systems so there’s a record of how and why choices were made. Perhaps most importantly, agree on authorship criteria before work begins, including how author order will be determined and what contributions merit authorship versus acknowledgment.</p>
+</section>
+<section id="when-collaborations-go-wrong" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="when-collaborations-go-wrong"><span class="header-section-number">16.5</span> When Collaborations Go Wrong</h2>
+<p>Despite best intentions and careful planning, conflicts can arise in collaborative work. When they do, address issues early before they escalate—small misunderstandings are much easier to resolve than major conflicts. Document concerns in writing, whether through email or shared documents, to create a record and ensure everyone has the same understanding of the issues. If you can’t resolve a conflict directly with your collaborator, involve Steven in mediation—he can provide an outside perspective and help find solutions that work for everyone. For serious disputes, follow institutional procedures for resolving conflicts, which may involve department chairs, ombudspersons, or other university resources. Whatever the outcome, try to learn from the experience to prevent future issues—reflect on what went wrong and what could be done differently next time.</p>
+</section>
+<section id="best-practices" class="level2" data-number="16.6">
+<h2 data-number="16.6" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">16.6</span> Best Practices</h2>
+<p>Successful collaborations share several common practices. <strong>Communicate frequently</strong>—over-communication is better than under-communication, and regular check-ins prevent surprises. <strong>Be responsive</strong> by replying to collaborator emails within 48 hours, even if just to acknowledge receipt and indicate when you’ll provide a full respons at a later time. <strong>Meet deadlines</strong>, or if you can’t, communicate early about the delay so your collaborators can adjust their plans accordingly. <strong>Give credit generously</strong> by acknowledging contributions explicitly in conversations, presentations, and publications—recognition costs nothing and builds goodwill. <strong>Be open to feedback</strong>, remembering that collaboration involves compromise and that others’ perspectives can strengthen your work. Finally, <strong>document everything</strong>—shared documents, meeting notes, and email trails protect everyone by creating a record of decisions, agreements, and contributions throughout the collaboration.</p>
+</section>
+</section>
+<section id="leaving-the-lab" class="level1" data-number="17">
+<h1 data-number="17"><span class="header-section-number">17</span> Leaving the Lab</h1>
+<p>One of the goals of the Lab is to prepare its members for the next step in their careers, so the time will eventually come for each of us to graduate from the lab.</p>
+<section id="offboarding-procedures" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="offboarding-procedures"><span class="header-section-number">17.1</span> Offboarding Procedures</h2>
+<p>When transitioning out of the lab:</p>
+<ul>
+<li><strong>Transfer project files</strong> - Move all project files to appropriate lab members with clear documentation</li>
+<li><strong>Document ongoing work</strong> - Create detailed notes about work in progress, file locations, and next steps</li>
+<li><strong>Knowledge transfer</strong> - Schedule meetings with people taking over your projects</li>
+<li><strong>Return lab equipment</strong> - Return all lab property (laptops, keys, equipment, etc.)</li>
+<li><strong>Access removal</strong> - Lab accounts and secure systems access will be removed</li>
+<li><strong>Update contact information</strong> - Provide forwarding contact information for any follow-up questions</li>
+<li><strong>Exit interview</strong> - Meet with Steven to discuss your experience and provide feedback</li>
+</ul>
+<p>See the Wiki for detailed offboarding checklists and templates.</p>
+<hr>
+</section>
+<section id="acknowledgments-1" class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="acknowledgments-1"><span class="header-section-number">17.2</span> Acknowledgments</h2>
+<p>Much of the content in this lab manual was developed by Steven Mesquiti during his time as a Lab Manager for Dr.&nbsp;Emily Falk at the Communication Neuroscience Lab at the University of Pennsylvania. This document aims to represents a synthesis of best practices, lessons learned, and values cultivated through that experience.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Living Document
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This manual is meant to serve as a <strong>working draft</strong> and can always be updated! Lab culture evolves, practices improve, and new challenges emerge. We encourage all lab members to suggest changes, additions, or clarifications to keep this document relevant and useful. If you notice something that needs updating or have ideas for new sections, please reach out to Steven or post in the <code>#ask_admin</code> Slack channel.</p>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2025 Steven Mesquiti</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p><a href="LICENSE">MIT License</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
