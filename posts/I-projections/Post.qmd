@@ -298,6 +298,8 @@ good_bad_data_small <- good_bad_data_small|>
     pct_i = scale(pct_i),
     pct_good = scale(pct_good),
     pct_bad = scale(pct_bad),
+    pct_able = scale(pct_able),
+    pct_unable = scale(pct_unable),
     n_total = scale(n_total),
     tone_pos = scale(tone_pos),
     tone_neg = scale(tone_neg),
@@ -420,8 +422,7 @@ table_model(pct_words, dv_name = "Good-bad Words Controls (Non-disagg)")
 
 ```{r}
 pct_words_disagg <- lmer(Internalizing ~ daysSinceFirstText + first_person_sing_valence_combined_between + first_person_sing_valence_combined_within + 
-                        tone_pos_within + tone_pos_between + tone_neg_within + tone_neg_between + n_total_within + n_total_between + i_between + i_within + pct_good_between + pct_good_within + pct_bad_between + pct_bad_within +  (1|room_id), data = disaggregated_good_bad, control =
-                           lmerControl(optimizer ="bobyqa")) # need to optimize to get it to converge
+                        tone_pos_within + tone_pos_between + tone_neg_within + tone_neg_between + n_total_within + n_total_between + i_between + i_within + pct_good_between + pct_good_within + pct_bad_between + pct_bad_within +  (1|room_id), data = disaggregated_good_bad) # need to optimize to get it to converge
 table_model(pct_words_disagg)
 ```
 :::
@@ -436,7 +437,7 @@ table_model(pct_words_disagg)
 ### Non-disaggregated (Ability)
 
 ```{r}
-pct_words <- lmer(Internalizing ~ i + pct_good + pct_bad + n_total + tone_pos + tone_neg + daysSinceFirstText + first_person_sing_ability_combined + daysSinceFirstText +  (1|room_id), data = good_bad_data_small)
+pct_words <- lmer(Internalizing ~ i + pct_able + pct_unable+ n_total + tone_pos + tone_neg + daysSinceFirstText + first_person_sing_ability_combined + daysSinceFirstText +  (1|room_id), data = good_bad_data_small)
 table_model(pct_words, dv_name = "% Good-bad Words model summary (Non-disagg)")
 ```
 
@@ -444,8 +445,7 @@ table_model(pct_words, dv_name = "% Good-bad Words model summary (Non-disagg)")
 
 ```{r}
 pct_words_disagg <- lmer(Internalizing ~ daysSinceFirstText + first_person_sing_ability_combined_between +first_person_sing_ability_combined_within + 
-                        tone_pos_within + tone_pos_between + tone_neg_within + tone_neg_between + n_total_within + n_total_between + i_between + i_within + pct_good_between + pct_good_within + pct_bad_between + pct_bad_within + (1|room_id), data = disaggregated_good_bad, control =
-                           lmerControl(optimizer ="bobyqa")) # need to optimize to get it to converge
+                        tone_pos_within + tone_pos_between + tone_neg_within + tone_neg_between + n_total_within + n_total_between + i_between + i_within + pct_able_between + pct_able_within + pct_unable_between + pct_unable_within + (1|room_id), data = disaggregated_good_bad) # need to optimize to get it to converge
 table_model(pct_words_disagg, dv_name = "% Able-unable Words model summary (Disagg)")
 ```
 :::
@@ -993,5 +993,3 @@ ggsave("/Users/sm9518/Downloads/line_plot.png", plot, width = 18, height = 6, dp
 #ggsave("/Users/sm9518/Downloads/line_plot_points.png", plot, width = 10, height = 7.5, dpi = 300)
 
 ```
-
-
