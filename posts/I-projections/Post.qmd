@@ -420,6 +420,7 @@ table_model(pct_words, dv_name = "Good-bad Words Controls (Non-disagg)")
 
 ### Disaggregated (valence)
 
+
 ```{r}
 pct_words_disagg <- lmer(Internalizing ~ daysSinceFirstText + first_person_sing_valence_combined_between + first_person_sing_valence_combined_within + 
                         tone_pos_within + tone_pos_between + tone_neg_within + tone_neg_between + n_total_within + n_total_between + i_between + i_within + pct_good_between + pct_good_within + pct_bad_between + pct_bad_within +  (1|room_id), data = disaggregated_good_bad) # need to optimize to get it to converge
@@ -436,12 +437,15 @@ table_model(pct_words_disagg)
 ::: panel-tabset
 ### Non-disaggregated (Ability)
 
+
 ```{r}
 pct_words <- lmer(Internalizing ~ i + pct_able + pct_unable+ n_total + tone_pos + tone_neg + daysSinceFirstText + first_person_sing_ability_combined + daysSinceFirstText +  (1|room_id), data = good_bad_data_small)
 table_model(pct_words, dv_name = "% Good-bad Words model summary (Non-disagg)")
 ```
 
 ### Disaggregated (ability)
+
+**Note:** The ability models include percentage variables for "able" and "unable" language. The `pct_unable` variable has substantial missing data (~74% of observations) as "unable" language is relatively rare. As a result, these models are estimated on a subset of participants who exhibit variation in ability-related language. 
 
 ```{r}
 pct_words_disagg <- lmer(Internalizing ~ daysSinceFirstText + first_person_sing_ability_combined_between +first_person_sing_ability_combined_within + 
@@ -993,3 +997,5 @@ ggsave("/Users/sm9518/Downloads/line_plot.png", plot, width = 18, height = 6, dp
 #ggsave("/Users/sm9518/Downloads/line_plot_points.png", plot, width = 10, height = 7.5, dpi = 300)
 
 ```
+
+

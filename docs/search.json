@@ -564,7 +564,7 @@
     "href": "posts/I-projections/Post.html#ability-projections",
     "title": "I-Projection Results",
     "section": "Ability Projections",
-    "text": "Ability Projections\n\n\nNon-disaggregated (Ability)Disaggregated (ability)"
+    "text": "Ability Projections\n\n\nNon-disaggregated (Ability)Disaggregated (ability)\n\n\n\n\n\n\n\n\n\n\nNote: The ability models include percentage variables for “able” and “unable” language. The pct_unable variable has substantial missing data (~74% of observations) as “unable” language is relatively rare. As a result, these models are estimated on a subset of participants who exhibit variation in ability-related language."
   },
   {
     "objectID": "posts/I-projections/Post.html#good-bad",
