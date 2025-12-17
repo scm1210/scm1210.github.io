@@ -164,8 +164,9 @@ data_dir = "/Users/sm9518/Library/CloudStorage/Box-Box/Talkspace_ErikNook_Harvar
 ```
 
 ```{r}
-#data = read_csv(file.path(data_dir, "I-representations/data/text-level/MADS_roberta_results_Indy_am_v_feel_cleaned.csv"))
-data = read_csv(file.path(data_dir, "I-representations/data/text-level/MADS_roberta_results_origin_full.csv"))
+#data = read_csv(file.path(data_dir, "I-representations/data/text-level/MADS_roberta_results_Indy_am_v_feel_cleaned.csv")) # use for the am/feel data 
+#data = read_csv(file.path(data_dir, "I-representations/data/text-level/MADS_roberta_results_origin_full.csv")) # has the original 3 pronounds
+data = read_csv(file.path(data_dir, "I-representations/data/text-level/MADS_roberta_results_origin_full_pronouns.csv"))
 
   data = data %>%
     dplyr::rename(
@@ -174,8 +175,8 @@ data = read_csv(file.path(data_dir, "I-representations/data/text-level/MADS_robe
     ) %>% 
     filter(bin < 5)  %>% 
    dplyr:: mutate(
-      first_person_sing_valence_combined = rowMeans(select(., i_projection_valence, me_projection_valence, my_projection_valence), na.rm = TRUE),
-      first_person_sing_ability_combined = rowMeans(select(., i_projection_ability, me_projection_ability, my_projection_ability), na.rm = TRUE)
+      first_person_sing_valence_combined = rowMeans(select(., i_projection_valence, me_projection_valence, my_projection_valence,myself_projection_valence,mine_projection_valence), na.rm = TRUE),
+      first_person_sing_ability_combined = rowMeans(select(., i_projection_ability, me_projection_ability, my_projection_ability,myself_projection_ability,mine_projection_ability), na.rm = TRUE)
       )
 
 
@@ -219,7 +220,7 @@ res3$plot_line
 res3$plot_spline
 ```
 
-# First-person sing. able projections
+# First-person sing. able projections 
 
 *Note.* Data are aggregated at the assessment level and coefficients are unstandardized.\n First person sing. = means of I, me, and my projections for each participant.
 
@@ -245,6 +246,7 @@ res4$plot_line
 ```{r}
 res4$plot_spline
 ```
+
 
 ```{r}
 #| label: disaggregate and standardize
@@ -353,6 +355,7 @@ standardize_parameters(able_change, method = "pseudo", ci_method = "satterthwait
 
 Results are condensed to be for the first-person singular valence and ability projections only (combined).
 
+
 ## Valence Projection
 
 :::: scrollable
@@ -400,6 +403,7 @@ table_model(internalizing_able_disagg, dv_name = "Able-Unable Internalizing mode
 
 Results are condensed to be for the first-person singular valence and ability projections only (combined).
 
+
 ## Valence Projections
 
 :::: scrollable
@@ -410,6 +414,7 @@ Results are condensed to be for the first-person singular valence and ability pr
 pct_words <- lmer(Internalizing ~  i + pct_good + pct_bad + n_total  + tone_pos + tone_neg + daysSinceFirstText +  first_person_sing_valence_combined + daysSinceFirstText +  (1|room_id), data = good_bad_data_small)
 table_model(pct_words, dv_name = "Good-bad Words Controls (Non-disagg)")
 ```
+
 
 ### Disaggregated (valence)
 
@@ -659,7 +664,6 @@ ggplot(aes(x = estimate, y = factor(term),
     plot.subtitle = element_text(hjust = 0.5)
   )
 ```
-
 ### Disaggregated
 
 ```{r}
@@ -740,6 +744,8 @@ mads_coefs |>
 ```
 :::
 ::::
+
+
 
 ```{r}
 dv_list <- c(
@@ -847,6 +853,7 @@ disagg_plot
 ggsave("/Users/sm9518/Downloads/disagg_plot.png", disagg_plot, width = 8.5, height = 5, dpi = 300)
 
 ```
+
 
 ```{r}
 
@@ -986,3 +993,5 @@ ggsave("/Users/sm9518/Downloads/line_plot.png", plot, width = 18, height = 6, dp
 #ggsave("/Users/sm9518/Downloads/line_plot_points.png", plot, width = 10, height = 7.5, dpi = 300)
 
 ```
+
+
