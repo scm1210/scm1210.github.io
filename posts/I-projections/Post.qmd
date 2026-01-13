@@ -195,7 +195,7 @@ good_bad_data_small =  data |>
 
 # Q1.) Do projections move closer to the positive end of the axis over time?
 
-*Note.* Data are aggregated at the assessment level and coefficients are unstandardized.\n First person sing. = means of I, me, and my projections for each participant.
+*Note.* Data are aggregated at the assessment level and coefficients are unstandardized.\n First person sing. = means of I, me, myself, my, and mine projections for each participant.
 
 ## First-person sing. valence projections
 
@@ -991,11 +991,9 @@ plot <- data_plot |>
   )
 plot
 
-ggsave("/Users/sm9518/Downloads/line_plot.png", plot, width = 18, height = 6, dpi = 300)
+#ggsave("/Users/sm9518/Downloads/line_plot.png", plot, width = 18, height = 6, dpi = 300)
 
 
 #ggsave("/Users/sm9518/Downloads/line_plot_points.png", plot, width = 10, height = 7.5, dpi = 300)
 
 ```
-
-
