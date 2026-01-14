@@ -261,7 +261,7 @@ between <- good_bad_data_small %>%
   summarize(mean = mean(value, na.rm = TRUE)) %>%
   mutate(item = sprintf("%s_between", item)) %>%
   group_by(item) %>%
-  mutate(mean = scale(mean, center = TRUE, scale = TRUE)) %>%
+  mutate(mean = scale(mean, center = TRUE, scale = T)) %>%
   spread(item, mean)
 
 # Within-person variation
@@ -269,7 +269,7 @@ within <- good_bad_data_small %>%
   gather(item, value,first_person_sing_valence_combined,first_person_sing_ability_combined,
          n_i,n_good,n_bad,pct_i,pct_good,pct_bad,n_total,tone_pos,tone_neg,emo_pos,emo_neg,,pct_able,pct_unable,i) %>%
   group_by(user_id, item) %>%
-  mutate(value = scale(value, center = TRUE, scale = TRUE),
+  mutate(value = scale(value, center = TRUE, scale = F), # use center=F for within-person since that drops 0s for the numeric variables
          item = sprintf("%s_within", item)) %>%
   spread(item, value)
 
@@ -367,6 +367,19 @@ Results are condensed to be for the first-person singular valence and ability pr
 ```{r}
 internalizing <- lmer(Internalizing ~  first_person_sing_valence_combined + daysSinceFirstText + (1|room_id), data = good_bad_data_small)
 table_model(internalizing, dv_name = "Good-Bad Internalizing model summary (Non-disagg)")
+standardize_parameters(internalizing, method = "pseudo", ci_method = "satterthwaite") |> 
+  as_tibble() |> 
+    rename(
+      term = Parameter,
+      Std_Coefficient = Std_Coefficient,
+      CI_low = CI_low,
+      CI_high = CI_high
+    ) %>%
+    select(term, Std_Coefficient, CI_low, CI_high) |> 
+    dplyr::mutate(across(where(is.numeric), ~round(., 3))) |> 
+    as.data.frame() |> 
+    DT::datatable()
+
 ```
 
 ### Disaggregated
@@ -375,6 +388,18 @@ table_model(internalizing, dv_name = "Good-Bad Internalizing model summary (Non-
 dissagg_proj <- lmer(Internalizing ~ daysSinceFirstText + first_person_sing_valence_combined_within + first_person_sing_valence_combined_between + 
                        (1|room_id), data = disaggregated_good_bad) # need to optimize to get it to converge
 table_model(dissagg_proj, dv_name = "Good-Bad Internalizing model summary (Disagg)")
+standardize_parameters(dissagg_proj, method = "pseudo", ci_method = "satterthwaite") |> 
+  as_tibble() |> 
+    rename(
+      term = Parameter,
+      Std_Coefficient = Std_Coefficient,
+      CI_low = CI_low,
+      CI_high = CI_high
+    ) %>%
+    select(term, Std_Coefficient, CI_low, CI_high) |> 
+    dplyr::mutate(across(where(is.numeric), ~round(., 3))) |> 
+    as.data.frame() |> 
+    DT::datatable()
 ```
 :::
 ::::
@@ -389,6 +414,18 @@ table_model(dissagg_proj, dv_name = "Good-Bad Internalizing model summary (Disag
 internalizing_able <- lmer(Internalizing ~  first_person_sing_ability_combined + daysSinceFirstText + (1|room_id), data = good_bad_data_small)
 
 table_model(internalizing_able, dv_name = "Able-Unable Internalizing model summary (Non-disagg)")
+standardize_parameters(internalizing_able, method = "pseudo", ci_method = "satterthwaite") |> 
+  as_tibble() |> 
+    rename(
+      term = Parameter,
+      Std_Coefficient = Std_Coefficient,
+      CI_low = CI_low,
+      CI_high = CI_high
+    ) %>%
+    select(term, Std_Coefficient, CI_low, CI_high) |> 
+    dplyr::mutate(across(where(is.numeric), ~round(., 3))) |> 
+    as.data.frame() |> 
+    DT::datatable()
 ```
 
 ### Disaggregated
@@ -397,6 +434,18 @@ table_model(internalizing_able, dv_name = "Able-Unable Internalizing model summa
 internalizing_able_disagg <- lmer(Internalizing ~  first_person_sing_ability_combined_between + first_person_sing_ability_combined_within + daysSinceFirstText + (1|room_id), data = disaggregated_good_bad)
 model_results_able_disagg <- extract_lmer_data(internalizing_able_disagg)
 table_model(internalizing_able_disagg, dv_name = "Able-Unable Internalizing model summary (Disagg)")
+standardize_parameters(internalizing_able_disagg, method = "pseudo", ci_method = "satterthwaite") |> 
+  as_tibble() |> 
+    rename(
+      term = Parameter,
+      Std_Coefficient = Std_Coefficient,
+      CI_low = CI_low,
+      CI_high = CI_high
+    ) %>%
+    select(term, Std_Coefficient, CI_low, CI_high) |> 
+    dplyr::mutate(across(where(is.numeric), ~round(., 3))) |> 
+    as.data.frame() |> 
+    DT::datatable()
 ```
 :::
 ::::
@@ -415,6 +464,18 @@ Results are condensed to be for the first-person singular valence and ability pr
 ```{r}
 pct_words <- lmer(Internalizing ~  i + pct_good + pct_bad + n_total  + tone_pos + tone_neg + daysSinceFirstText +  first_person_sing_valence_combined + daysSinceFirstText +  (1|room_id), data = good_bad_data_small)
 table_model(pct_words, dv_name = "Good-bad Words Controls (Non-disagg)")
+standardize_parameters(pct_words, method = "pseudo", ci_method = "satterthwaite") |> 
+  as_tibble() |> 
+    rename(
+      term = Parameter,
+      Std_Coefficient = Std_Coefficient,
+      CI_low = CI_low,
+      CI_high = CI_high
+    ) %>%
+    select(term, Std_Coefficient, CI_low, CI_high) |> 
+    dplyr::mutate(across(where(is.numeric), ~round(., 3))) |> 
+    as.data.frame() |> 
+    DT::datatable()
 ```
 
 
@@ -425,6 +486,18 @@ table_model(pct_words, dv_name = "Good-bad Words Controls (Non-disagg)")
 pct_words_disagg <- lmer(Internalizing ~ daysSinceFirstText + first_person_sing_valence_combined_between + first_person_sing_valence_combined_within + 
                         tone_pos_within + tone_pos_between + tone_neg_within + tone_neg_between + n_total_within + n_total_between + i_between + i_within + pct_good_between + pct_good_within + pct_bad_between + pct_bad_within +  (1|room_id), data = disaggregated_good_bad) # need to optimize to get it to converge
 table_model(pct_words_disagg)
+standardize_parameters(pct_words_disagg, method = "pseudo", ci_method = "satterthwaite") |> 
+  as_tibble() |> 
+    rename(
+      term = Parameter,
+      Std_Coefficient = Std_Coefficient,
+      CI_low = CI_low,
+      CI_high = CI_high
+    ) %>%
+    select(term, Std_Coefficient, CI_low, CI_high) |> 
+    dplyr::mutate(across(where(is.numeric), ~round(., 3))) |> 
+    as.data.frame() |> 
+    DT::datatable()
 ```
 :::
 ::::
@@ -441,17 +514,40 @@ table_model(pct_words_disagg)
 ```{r}
 pct_words <- lmer(Internalizing ~ i + pct_able + pct_unable+ n_total + tone_pos + tone_neg + daysSinceFirstText + first_person_sing_ability_combined + daysSinceFirstText +  (1|room_id), data = good_bad_data_small)
 table_model(pct_words, dv_name = "% Good-bad Words model summary (Non-disagg)")
+standardize_parameters(pct_words, method = "pseudo", ci_method = "satterthwaite") |> 
+  as_tibble() |> 
+    rename(
+      term = Parameter,
+      Std_Coefficient = Std_Coefficient,
+      CI_low = CI_low,
+      CI_high = CI_high
+    ) %>%
+    select(term, Std_Coefficient, CI_low, CI_high) |> 
+    dplyr::mutate(across(where(is.numeric), ~round(., 3))) |> 
+    as.data.frame() |> 
+    DT::datatable()
 ```
 
 ### Disaggregated (ability)
-
-**Note:** The ability models include percentage variables for "able" and "unable" language. The `pct_unable` variable has substantial missing data (~74% of observations) as "unable" language is relatively rare. As a result, these models are estimated on a subset of participants who exhibit variation in ability-related language. 
 
 ```{r}
 pct_words_disagg <- lmer(Internalizing ~ daysSinceFirstText + first_person_sing_ability_combined_between +first_person_sing_ability_combined_within + 
                         tone_pos_within + tone_pos_between + tone_neg_within + tone_neg_between + n_total_within + n_total_between + i_between + i_within + pct_able_between + pct_able_within + pct_unable_between + pct_unable_within + (1|room_id), data = disaggregated_good_bad) # need to optimize to get it to converge
 table_model(pct_words_disagg, dv_name = "% Able-unable Words model summary (Disagg)")
+standardize_parameters(pct_words_disagg, method = "pseudo", ci_method = "satterthwaite") |> 
+  as_tibble() |> 
+    rename(
+      term = Parameter,
+      Std_Coefficient = Std_Coefficient,
+      CI_low = CI_low,
+      CI_high = CI_high
+    ) %>%
+    select(term, Std_Coefficient, CI_low, CI_high) |> 
+    dplyr::mutate(across(where(is.numeric), ~round(., 3))) |> 
+    as.data.frame() |> 
+    DT::datatable()
 ```
+
 :::
 ::::
 
@@ -668,6 +764,7 @@ ggplot(aes(x = estimate, y = factor(term),
     plot.subtitle = element_text(hjust = 0.5)
   )
 ```
+
 ### Disaggregated
 
 ```{r}
@@ -752,6 +849,8 @@ mads_coefs |>
 
 
 ```{r}
+#| eval: false
+#| include: false
 dv_list <- c(
 "first_person_sing_valence_combined",
 "first_person_sing_ability_combined"
@@ -997,3 +1096,5 @@ plot
 #ggsave("/Users/sm9518/Downloads/line_plot_points.png", plot, width = 10, height = 7.5, dpi = 300)
 
 ```
+
+
