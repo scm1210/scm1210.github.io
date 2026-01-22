@@ -38,11 +38,11 @@ B.A. in Psychology (Minor: Spanish)
 
 \* Denotes Shared First Authorship
 
+**Mesquiti, S., Cosme, D., Nook, E.C., Falk E.B., Burns S.** (in Press). *Predicting Psychological and Subjective Well-being through Language-based Assessments of Well-being.* [DOI](https://osf.io/preprints/psyarxiv/rfq8p_v3)
+
 **Mesquiti, S. & Nook, E.C.** (in Press.). *Large Language Models in. Mental Health Treatment and Research.* *Annual Reviews BioMedical Data Science.* [DOI](https://doi.org/10.31234/osf.io/jvf2z_v1)
 
 **Muzekari, B., Cooper, N., Resnick, A., Paul, A. M., Torres-Grillo, O. E., Andrews, M. E., Mattan, B., Scholz, C., Johnson, D., Carreras-Tartak, J., Cakar, M. E., Hao, S., Zhou, E., Beard, E., Mesquiti, S., Sayed, F., Fichman, M. A., Lydon-Staley, D. M., Barnett, I. J., … Falk, E. B.** (2025). *Naturalistic Tobacco Retail Exposure and Smoking Outcomes in Adults Who Smoke Cigarettes Daily.* *JAMA Network Open.* [DOI](https://doi:10.1001/jamanetworkopen.2025.30132)
-
-**Mesquiti, S., Cosme, D., Nook, E.C., Falk E.B., Burns S.** (Under Revision). *Predicting Psychological and Subjective Well-being through Language-based Assessments of Well-being.*
 
 **Mesquiti, S.,\* Seraj, S.,\* Weyland, A. H., Ashokkumar, A., Boyd, R. L., Mihalcea, R., & Pennebaker, J. W.** (2025). *Analysis of social media language reveals the psychological interaction of three successive upheavals.* *Scientific Reports, 15*(1), 5740. [DOI](https://doi.org/10.1038/s41598-025-89165-z).
 
@@ -60,7 +60,7 @@ B.A. in Psychology (Minor: Spanish)
 ------------------------------------------------------------------------
 
 ## Funding
-
+-   **2026**: Princeton University Data Driven Social Science Graduate Fellowship (\$1,200)
 -   **2025**: Princeton University Data Driven Social Science Graduate Fellowship (\$1,200)
 -   **2025**: Princeton University Data Driven Social Science: *Data-Driven Approaches to Building Equitable Language-Based Mental Health Assessments* (\$4,283)
 -   **2025**: New Jersey Health Foundation: *Investigating Racial Equity of Psycholinguistic Measures of Mental Health* (PI: Erik C. Nook; \$34,867; \# PC 42-25)
@@ -70,7 +70,7 @@ B.A. in Psychology (Minor: Spanish)
 ------------------------------------------------------------------------
 
 ## Fellowships
-
+-   **2026**: Princeton University Data Driven Social Science Graduate Fellowship
 -   **2025**: Princeton University Data Driven Social Science Graduate Fellowship
 -   **2024-25**: Princeton University William G. Bowen Merit Fellowship
 -   **2020-21**: Texas State University Graduate College of Liberal Arts Scholarship
@@ -81,7 +81,7 @@ B.A. in Psychology (Minor: Spanish)
 ------------------------------------------------------------------------
 
 ## Invited Talks
-
+-   **2026**: *Investigating Racial Sensitivity in Language-Based Assessments of Mental Health.* DDSS Connect: Interdisciplinary Exchange.
 -   **2025**: *Predicting Mental Health Outcomes with the Latent Meaning of "I" in a Large Therapy Dataset.* DDSS Connect: Interdisciplinary Exchange.
 -   **2025**: *Tracking Shifts in the Latent Meaning of "I" and Its Connection to Mental Health Outcomes in a Large Therapy Dataset.* Social Psychology Seminar, Princeton University, Princeton, NJ.
 -   **2022**: *Within-and between-person effects of autonomous motivation on goal pursuit.* Duckworth Lab.

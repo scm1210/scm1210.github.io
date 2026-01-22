@@ -442,7 +442,7 @@ Individuals who contributed but do not meet authorship criteria should be acknow
 -   If disagreements arise, Steven will mediate
 -   Documentation of contributions (in project logs, GitHub commits, etc.) can help clarify contributions
 
-When in doubt, lab members are encouraged to communicate openly with Steven or other Senior Lab Members. 
+When in doubt, lab members are encouraged to communicate openly with Steven or other Senior Lab Members.
 
 # Sharing Resources
 
@@ -470,7 +470,7 @@ Transparency and reproducibility are core values of our lab. We are committed to
 Unless there are ethical or legal barriers, the following materials should be made publicly available upon publication:
 
 -   **Stimuli** - Task materials, survey items, images, videos, or audio files used in studies
--   **Data** - De-identified raw  means and processed data in accessible formats (CSV, JSON, etc.). In our lab that usually means no raw text
+-   **Data** - De-identified raw means and processed data in accessible formats (CSV, JSON, etc.). In our lab that usually means no raw text
 -   **Code** - Analysis scripts, data preprocessing pipelines, and task presentation code
 -   **Protocols** - Detailed procedures for data collection and analysis
 -   **Pre-registrations** - Links to pre-registered study plans where appropriate
@@ -559,7 +559,7 @@ All articipants must provide informed consent before participating in any lab st
 
 ### Data Privacy and Confidentiality
 
-Participant data must be de-identified as soon as possible in the analysis processes (e.g., Prolific IDs).  Personal identifiers (names, emails, etc.) should be stored separately from research data. Use participant IDs rather than names in all data files and documentation. Data containing identifiable information must be stored on secure, encrypted systems (e.g., the Lab Server). When sharing data publicly, ensure all identifying information has been removed
+Participant data must be de-identified as soon as possible in the analysis processes (e.g., Prolific IDs). Personal identifiers (names, emails, etc.) should be stored separately from research data. Use participant IDs rather than names in all data files and documentation. Data containing identifiable information must be stored on secure, encrypted systems (e.g., the Lab Server). When sharing data publicly, ensure all identifying information has been removed
 
 ### Vulnerable Populations
 
@@ -591,7 +591,7 @@ AI tools may be used for:
 
 AI use **must** be disclosed when:
 
--   AI tools generate substantial portions of text in manuscripts or grants 
+-   AI tools generate substantial portions of text in manuscripts or grants
 -   AI is used in the analysis pipeline (e.g., using LLMs for text classification)
 -   AI assists in creating figures or visualizations beyond basic formatting
 

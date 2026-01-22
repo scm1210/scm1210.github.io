@@ -1,0 +1,253 @@
+---
+title: "Making The Perfect Scrambled Eggs"
+subtitle: "Teaching Demo"
+author: "Steven Mesquiti"
+format:
+  revealjs:
+    theme: simple
+    transition: slide
+    slide-number: true
+    chalkboard: true
+---
+
+## Why This Matters
+
+::: incremental
+-   **Scrambled eggs** seem *simple*, but most people do them wrong
+-   The difference between rubbery, dry eggs and creamy, luxurious eggs is **technique**
+-   This demo teaches: **preparation, timing, and temperature control**
+-   Skills transfer to teaching: breaking down complex tasks into manageable steps
+:::
+
+::: notes
+Opening hook: "How many of you have made scrambled eggs that turned out rubbery or dry? Almost everyone, right? Today I'm going to show you why that happens and how to fix it."
+:::
+
+------------------------------------------------------------------------
+
+## Learning Objectives
+
+By the end of this demo, you will be able to:
+
+1.  **Identify** the key principles of perfect scrambled eggs
+2.  **Apply** proper heat control and timing techniques
+3.  **Evaluate** when eggs are perfectly done (before they look done!)
+
+------------------------------------------------------------------------
+
+## The Three Principles
+
+:::::: columns
+::: {.column width="33%"}
+### 1. Low & Slow
+
+![](https://images.unsplash.com/photo-1608039829572-78524f79c4c7?w=400){height="200"}
+
+Gentle heat = creamy texture
+:::
+
+::: {.column width="33%"}
+### 2. Constant Motion
+
+![](https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=400){height="200"}
+
+Keep stirring = even cooking
+:::
+
+::: {.column width="33%"}
+### 3. Pull Early
+
+![](https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2025/03/Scrambled-Eggs-6.jpg){height="200"}
+
+Remove before "done" = perfect eggs
+:::
+::::::
+
+------------------------------------------------------------------------
+
+## Ingredients & Tools
+
+:::::: columns
+::: {.column width="50%"}
+**What You Need:**
+
+-   2-3 large eggs (I like jumbo though)
+-   1 tablespoon unsalted butter
+-   a bit of cheese (optional)
+-   Salt & pepper
+-   dried herbs (optional)
+-   Non-stick pan
+-   Silicone spatula
+:::
+
+:::: {.column width="50%"}
+**Note:**
+
+::: callout-tip
+## Check for Understanding
+
+Before starting, I'd ask: "Why do you think we use butter instead of oil?" Since butter has a lower smoke point, it allows for gentler cooking.
+:::
+::::
+::::::
+
+------------------------------------------------------------------------
+
+## Step 1: Preparation (30 seconds)
+
+::: incremental
+1.  **Crack eggs** into a bowl
+2.  **Whisk vigorously** for 30 seconds until uniform and slightly frothy. There should be **no visible streaks of white**.
+:::
+
+::: fragment
+**Why this matters:** Incorporating air creates fluffiness. Milk adds moisture.
+:::
+
+::: {.fragment .fade-in}
+**Common Mistake:** Not whisking enough—lumps of white lead to uneven cooking
+:::
+
+------------------------------------------------------------------------
+
+## Step 2: Heat Control (Critical!)
+
+:::::: columns
+::: {.column width="60%"}
+**The Process:**
+
+1.  Set burner to **medium-low** (3-4/10)
+2.  Melt butter until foaming stops
+3.  Add eggs—should **gently** sizzle, not violently
+
+**Temperature Check:** Can hold your hand 4 inches above pan for 3 seconds
+:::
+
+:::: {.column width="40%"}
+::: callout-warning
+## Most Common Error
+
+**Too much heat** = rubbery eggs
+
+Think: "If it's cooking fast, it's cooking wrong"
+:::
+::::
+::::::
+
+------------------------------------------------------------------------
+
+## Step 3: The Cooking Technique
+
+**Continuous Gentle Stirring**
+
+::: incremental
+-   Use silicone spatula to **push eggs from edge to center**
+-   **Slow, deliberate movements**—not frantic scrambling
+-   Create large, soft curds
+-   **Timing:** 3-4 minutes total
+:::
+
+------------------------------------------------------------------------
+
+## Step 4: Almost Done!
+
+### When to Stop?
+
+**When eggs look 80% done**
+
+::: incremental
+-   Still look **slightly wet and glossy**
+-   **Remove from heat** immediately
+-   They'll continue cooking (carryover heat)
+-   **Serve immediately** on a warm plate with some cheese and herbs (if desired)
+:::
+
+::: {.fragment .fade-in}
+⚠️ **If they look fully cooked in the pan, they're overcooked on the plate!**
+:::
+
+------------------------------------------------------------------------
+
+## Visual Guide: Done vs. Overdone
+
+::::: columns
+::: {.column width="50%"}
+### ✅ Perfect
+
+-   Soft, large curds
+-   Slightly glossy
+-   Creamy texture
+-   Holds shape but jiggles
+:::
+
+::: {.column width="50%"}
+### ❌ Overcooked
+
+-   Small, tight curds
+-   Dry, matte appearance
+-   Rubbery texture
+-   Weeps liquid
+:::
+:::::
+
+**The Transfer:** Knowing when to stop is a skill—students need explicit criteria for "done"
+
+------------------------------------------------------------------------
+
+## Active Learning Check
+
+**Think-Pair-Share:** (If this were a real workshop)
+
+::: incremental
+1.  **Think:** What's the #1 mistake you think people make?
+2.  **Pair:** Discuss with a neighbor
+3.  **Share:** Volunteers share with group
+:::
+
+::: fragment
+**Likely answers:** Too high heat, over-stirring, cooking too long
+
+*This engages learners and checks understanding before moving forward*
+:::
+
+------------------------------------------------------------------------
+
+## Troubleshooting Guide
+
+| Problem         | Cause         | Solution                     |
+|-----------------|---------------|------------------------------|
+| Rubbery texture | Heat too high | Lower temperature, stir more |
+| Watery eggs     | Undercooked   | Return to heat briefly       |
+| Dry, crumbly    | Overcooked    | Remove earlier next time     |
+| Uneven curds    | Poor whisking | Whisk eggs thoroughly before |
+
+::: fragment
+**Teaching Tip:** Provide students with troubleshooting guides—it shows you anticipate struggles
+:::
+
+------------------------------------------------------------------------
+
+## Practice Activity (If We Had Time)
+
+**Deliberate Practice Structure:**
+
+1.  **Demo:** I do, you watch (what we just did)
+2.  **Guided:** You do, I help (students make eggs with coaching)
+3.  **Independent:** You do, I observe (students make eggs alone)
+4.  **Reflect:** What worked? What would you change?
+
+------------------------------------------------------------------------
+
+## Questions?
+
+::: r-fit-text
+**Thank you!**
+:::
+
+Contact: \[steven\@realcool.com\]
+
+**Key Resources:** - Full recipe handout (would be provided) - Video demonstration link - Troubleshooting guide
+
+::: fragment
+*Now let's discuss: What would you change?*
+:::

@@ -20,7 +20,7 @@ website:
       - text: Coding Guide
         href: coding.qmd
   page-footer:
-    left: "© 2025 Steven Mesquiti"
+    left: "© 2026 Steven Mesquiti"
     right: "[MIT License](LICENSE)"
 format:
   html:
