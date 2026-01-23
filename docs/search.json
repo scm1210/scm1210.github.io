@@ -732,7 +732,7 @@
     "href": "posts.html",
     "title": "Posts",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nLLM to HPC Tutorial\n\n\n\n\n\n\nCoding\n\n\nTutorial\n\n\n\n\n\n\n\n\n\nSteven Mesquiti\n\n\n\n\n\n\n\n\n\n\n\n\nMaking The Perfect Scrambled Eggs\n\n\nTeaching Demo\n\n\n\n\n\n\n\n\nSteven Mesquiti\n\n\n\n\n\n\n\n\n\n\n\n\nData-Driven Approaches to Building Equitable Language-Based Mental Health Assessments\n\n\n\n\n\n\n\n\n\n\n\nInvalid Date\n\n\nSteven\n\n\n\n\n\n\n\n\n\n\n\n\nFederal research funding cuts will stall scientific progress, hurt Texas students\n\n\n\n\n\n\nOpinion\n\n\nScience Policy\n\n\n\n\n\n\n\n\n\nMar 17, 2025\n\n\nSteven Mesquiti\n\n\n\n\n\n\n\n\n\n\n\n\nI-Projection Results\n\n\n\n\n\n\n\n\n\n\n\nInvalid Date\n\n\nSteven\n\n\n\n\n\n\n\n\n\n\n\n\nWORDLE Lab Manual\n\n\nWelcome to WORDLE Lab!\n\n\n\n\n\n\n\n\nJan 21, 2026\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nLLM to HPC Tutorial\n\n\n\n\n\n\nCoding\n\n\nTutorial\n\n\n\n\n\n\n\n\n\nSteven Mesquiti\n\n\n\n\n\n\n\n\n\n\n\n\nMaking The Perfect Scrambled Eggs\n\n\nTeaching Demo\n\n\n\n\n\n\n\n\nSteven Mesquiti\n\n\n\n\n\n\n\n\n\n\n\n\nData-Driven Approaches to Building Equitable Language-Based Mental Health Assessments\n\n\n\n\n\n\n\n\n\n\n\nInvalid Date\n\n\nSteven\n\n\n\n\n\n\n\n\n\n\n\n\nFederal research funding cuts will stall scientific progress, hurt Texas students\n\n\n\n\n\n\nOpinion\n\n\nScience Policy\n\n\n\n\n\n\n\n\n\nMar 17, 2025\n\n\nSteven Mesquiti\n\n\n\n\n\n\n\n\n\n\n\n\nI-Projection Results\n\n\n\n\n\n\n\n\n\n\n\nInvalid Date\n\n\nSteven\n\n\n\n\n\n\n\n\n\n\n\n\nWORDLE Lab Manual\n\n\nWelcome to WORDLE Lab!\n\n\n\n\n\n\n\n\nJan 23, 2026\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "coding/correlation/Correlations.html",
@@ -1530,7 +1530,7 @@
     "href": "posts/Teaching-Demo/scrambled-eggs-demo.html#why-this-matters",
     "title": "Making The Perfect Scrambled Eggs",
     "section": "Why This Matters",
-    "text": "Why This Matters\n\n\nScrambled eggs seem simple, but most people do them wrong\nThe difference between rubbery, dry eggs and creamy, luxurious eggs is technique\nThis demo teaches: preparation, timing, and temperature control\nSkills transfer to teaching: breaking down complex tasks into manageable steps\n\n\n\nOpening hook: “How many of you have made scrambled eggs that turned out rubbery or dry? Almost everyone, right? Today I’m going to show you why that happens and how to fix it.”"
+    "text": "Why This Matters\n\n\nScrambled eggs seem simple, but most people do them wrong\nThe difference between rubbery, dry eggs and creamy, luxurious eggs is technique\nThis demo (if we had a kitchen) will teach: preparation, timing, and temperature control\nSkills transfer to teaching: breaking down complex tasks into manageable steps\n\n\n\nOpening hook: “How many of you have made scrambled eggs that turned out rubbery or dry? Almost everyone, right? Today I’m going to show you why that happens and how to fix it.”"
   },
   {
     "objectID": "posts/Teaching-Demo/scrambled-eggs-demo.html#learning-objectives",
@@ -1551,7 +1551,7 @@
     "href": "posts/Teaching-Demo/scrambled-eggs-demo.html#ingredients-tools",
     "title": "Making The Perfect Scrambled Eggs",
     "section": "Ingredients & Tools",
-    "text": "Ingredients & Tools\n\n\nWhat You Need:\n\n2-3 large eggs (I like jumbo though)\n1 tablespoon unsalted butter\na bit of cheese (optional)\nSalt & pepper\ndried herbs (optional)\nNon-stick pan\nSilicone spatula\n\n\nNote:\n\n\n\n\n\n\nCheck for Understanding\n\n\nBefore starting, I’d ask: “Why do you think we use butter instead of oil?” Since butter has a lower smoke point, it allows for gentler cooking."
+    "text": "Ingredients & Tools\n\n\nWhat You Need:\n\n2-3 large eggs (jumbo preferred)\n1 tablespoon unsalted butter\nCheese (optional)\nSalt and pepper\nDried herbs (optional)\nNon-stick pan (stainless steel works best)\nRubber spatula\n\n\nNote:\n\n\n\n\n\n\n“Why butter instead of oil?”\n\n\nAnswer: Butter’s lower smoke point allows for gentler cooking"
   },
   {
     "objectID": "posts/Teaching-Demo/scrambled-eggs-demo.html#step-1-preparation-30-seconds",
@@ -1565,28 +1565,28 @@
     "href": "posts/Teaching-Demo/scrambled-eggs-demo.html#step-2-heat-control-critical",
     "title": "Making The Perfect Scrambled Eggs",
     "section": "Step 2: Heat Control (Critical!)",
-    "text": "Step 2: Heat Control (Critical!)\n\n\nThe Process:\n\nSet burner to medium-low (3-4/10)\nMelt butter until foaming stops\nAdd eggs—should gently sizzle, not violently\n\nTemperature Check: Can hold your hand 4 inches above pan for 3 seconds\n\n\n\n\n\n\n\nMost Common Error\n\n\nToo much heat = rubbery eggs\nThink: “If it’s cooking fast, it’s cooking wrong”"
+    "text": "Step 2: Heat Control (Critical!)\n\n\nThe Process:\n\nSet burner to medium-low (3-4 out of 10)\nMelt butter until foaming stops\nAdd eggs—should gently sizzle, not violently\n\nTemperature Check: Hold your hand 4 inches above pan for 3 seconds\n\n\n\n\n\n\n\nMost Common Error\n\n\nToo much heat = rubbery eggs\n“If it’s cooking fast, it’s cooking wrong”"
   },
   {
     "objectID": "posts/Teaching-Demo/scrambled-eggs-demo.html#step-3-the-cooking-technique",
     "href": "posts/Teaching-Demo/scrambled-eggs-demo.html#step-3-the-cooking-technique",
     "title": "Making The Perfect Scrambled Eggs",
     "section": "Step 3: The Cooking Technique",
-    "text": "Step 3: The Cooking Technique\nContinuous Gentle Stirring\n\n\nUse silicone spatula to push eggs from edge to center\nSlow, deliberate movements—not frantic scrambling\nCreate large, soft curds\nTiming: 3-4 minutes total"
+    "text": "Step 3: The Cooking Technique\nContinuous Gentle Stirring\n\n\nUse silicone spatula to push eggs from edge to center\nSlow, deliberate movements—not frantic scrambling\nCreate large, soft curds\nTiming: This should take ~3-4 minutes total depending on your stove"
   },
   {
     "objectID": "posts/Teaching-Demo/scrambled-eggs-demo.html#step-4-the-critical-moment",
     "href": "posts/Teaching-Demo/scrambled-eggs-demo.html#step-4-the-critical-moment",
     "title": "Making The Perfect Scrambled Eggs",
     "section": "Step 4: The Critical Moment",
-    "text": "Step 4: The Critical Moment\nWhen to Stop?\n\nWhen eggs look 80% done\n\n\n\nStill look slightly wet and glossy\nRemove from heat immediately\nThey’ll continue cooking (carryover heat)\nServe immediately on a warm plate\n\n\n\n⚠️ If they look fully cooked in the pan, they’re overcooked on the plate!"
+    "text": "Step 4: The Critical Moment\nWhen to Stop?\nWhen eggs look 80% done\n\n\nStill look slightly wet and glossy\nRemove from heat immediately\nThey’ll continue cooking (carryover heat)\nServe immediately on a warm plate\nAdd cheese and herbs if desired\n\n\n\n⚠️ If they look fully cooked in the pan, they’re overcooked on the plate!"
   },
   {
     "objectID": "posts/Teaching-Demo/scrambled-eggs-demo.html#visual-guide-done-vs.-overdone",
     "href": "posts/Teaching-Demo/scrambled-eggs-demo.html#visual-guide-done-vs.-overdone",
     "title": "Making The Perfect Scrambled Eggs",
     "section": "Visual Guide: Done vs. Overdone",
-    "text": "Visual Guide: Done vs. Overdone\n\n\n✅ Perfect\n\nSoft, large curds\nSlightly glossy\nCreamy texture\nHolds shape but jiggles\n\n\n❌ Overcooked\n\nSmall, tight curds\nDry, matte appearance\nRubbery texture\nWeeps liquid\n\n\nThe Transfer: Knowing when to stop is a skill—students need explicit criteria for “done”"
+    "text": "Visual Guide: Done vs. Overdone\n\n\n✅ Perfect\n\nSoft, large curds\nSlightly glossy\nCreamy texture\nHolds shape but jiggles\n\n\n❌ Overcooked\n\nSmall, tight curds\nDry, matte appearance\nRubbery texture\nWeeps liquid"
   },
   {
     "objectID": "posts/Teaching-Demo/scrambled-eggs-demo.html#active-learning-check",
@@ -1600,7 +1600,7 @@
     "href": "posts/Teaching-Demo/scrambled-eggs-demo.html#troubleshooting-guide",
     "title": "Making The Perfect Scrambled Eggs",
     "section": "Troubleshooting Guide",
-    "text": "Troubleshooting Guide\n\n\n\nProblem\nCause\nSolution\n\n\n\n\nRubbery texture\nHeat too high\nLower temperature, stir more\n\n\nWatery eggs\nUndercooked\nReturn to heat briefly\n\n\nDry, crumbly\nOvercooked\nRemove earlier next time\n\n\nUneven curds\nPoor whisking\nWhisk eggs thoroughly before\n\n\n\n\nTeaching Tip: Provide students with troubleshooting guides—it shows you anticipate struggles"
+    "text": "Troubleshooting Guide\n\n\n\nProblem\nCause\nSolution\n\n\n\n\nRubbery texture\nHeat too high\nLower temperature, stir more\n\n\nWatery eggs\nUndercooked\nReturn to heat briefly\n\n\nDry, crumbly\nOvercooked\nRemove earlier next time\n\n\nUneven curds\nPoor whisking\nWhisk eggs thoroughly before"
   },
   {
     "objectID": "posts/Teaching-Demo/scrambled-eggs-demo.html#practice-activity-if-we-had-time",
@@ -1642,7 +1642,7 @@
     "href": "posts/Teaching-Demo/scrambled-eggs-demo.html#questions",
     "title": "Making The Perfect Scrambled Eggs",
     "section": "Questions?",
-    "text": "Questions?\n\nThank you!\n\nContact: [steven@realcool.com]\nKey Resources: - Full recipe handout (would be provided) - Video demonstration link - Troubleshooting guide\n\nNow let’s discuss: What would you change?"
+    "text": "Questions?\n\nThank you!"
   },
   {
     "objectID": "posts/Teaching-Demo/scrambled-eggs-demo.html#step-4-almost-done",
@@ -1650,5 +1650,19 @@
     "title": "Making The Perfect Scrambled Eggs",
     "section": "Step 4: Almost Done!",
     "text": "Step 4: Almost Done!\nWhen to Stop?\nWhen eggs look 80% done\n\n\nStill look slightly wet and glossy\nRemove from heat immediately\nThey’ll continue cooking (carryover heat)\nServe immediately on a warm plate with some cheese and herbs (if desired)\n\n\n\n⚠️ If they look fully cooked in the pan, they’re overcooked on the plate!"
+  },
+  {
+    "objectID": "posts/Teaching-Demo/scrambled-eggs-demo.html#step-1-preparation",
+    "href": "posts/Teaching-Demo/scrambled-eggs-demo.html#step-1-preparation",
+    "title": "Making The Perfect Scrambled Eggs",
+    "section": "Step 1: Preparation",
+    "text": "Step 1: Preparation\n\n\nCrack eggs into a bowl\nWhisk vigorously for ~30 seconds until uniform and slightly frothy\nThere should be no visible streaks of white in your eggs\n\n\n\nWhy this matters: Incorporating air creates fluffiness and volume\n\n\n💡 Common Mistake: Not whisking enough—lumps of white lead to uneven cooking"
+  },
+  {
+    "objectID": "posts/Teaching-Demo/scrambled-eggs-demo.html#step-4-cooked",
+    "href": "posts/Teaching-Demo/scrambled-eggs-demo.html#step-4-cooked",
+    "title": "Making The Perfect Scrambled Eggs",
+    "section": "Step 4: Cooked!",
+    "text": "Step 4: Cooked!\nWhen am I done?\nWhen eggs look 80% done\n\n\nStill look slightly wet and glossy\nRemove from heat immediately\nThey’ll continue cooking (carryover heat)\nServe immediately on a warm plate\nAdd cheese and herbs if desired\n\n\n\n⚠️ If they look fully cooked in the pan, they’re overcooked on the plate!"
   }
 ]

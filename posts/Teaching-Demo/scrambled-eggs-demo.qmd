@@ -8,6 +8,7 @@ format:
     transition: slide
     slide-number: true
     chalkboard: true
+    loop: false
 ---
 
 ## Why This Matters
@@ -15,8 +16,8 @@ format:
 ::: incremental
 -   **Scrambled eggs** seem *simple*, but most people do them wrong
 -   The difference between rubbery, dry eggs and creamy, luxurious eggs is **technique**
--   This demo teaches: **preparation, timing, and temperature control**
--   Skills transfer to teaching: breaking down complex tasks into manageable steps
+-   This demo (if we had a kitchen) will teach: **preparation, timing, and temperature control**
+-   Skills transfer to teaching: **breaking down complex tasks into manageable steps**
 :::
 
 ::: notes
@@ -71,41 +72,42 @@ Remove before "done" = perfect eggs
 ::: {.column width="50%"}
 **What You Need:**
 
--   2-3 large eggs (I like jumbo though)
--   1 tablespoon unsalted butter
--   a bit of cheese (optional)
--   Salt & pepper
--   dried herbs (optional)
--   Non-stick pan
--   Silicone spatula
+-   2-3 large eggs (jumbo preferred)
+-   1 tablespoon [unsalted]{.underline} butter
+-   Cheese (optional)
+-   Salt and pepper
+-   Dried herbs (optional)
+-   Non-stick pan (stainless steel works best)
+-   Rubber spatula
 :::
 
-:::: {.column width="50%"}
+::: {.column width="50%"}
 **Note:**
 
 ::: callout-tip
-## Check for Understanding
-
-Before starting, I'd ask: "Why do you think we use butter instead of oil?" Since butter has a lower smoke point, it allows for gentler cooking.
+## *"Why butter instead of oil?"*
+  
+**Answer:** Butter's lower smoke point allows for gentler cooking
 :::
-::::
+:::
 ::::::
 
 ------------------------------------------------------------------------
 
-## Step 1: Preparation (30 seconds)
+## Step 1: Preparation
 
 ::: incremental
 1.  **Crack eggs** into a bowl
-2.  **Whisk vigorously** for 30 seconds until uniform and slightly frothy. There should be **no visible streaks of white**.
+2.  **Whisk vigorously** for \~30 seconds until uniform and slightly frothy
+3.  There should be **no visible streaks of white** in your eggs
 :::
 
 ::: fragment
-**Why this matters:** Incorporating air creates fluffiness. Milk adds moisture.
+**Why this matters:** Incorporating air creates fluffiness and volume
 :::
 
 ::: {.fragment .fade-in}
-**Common Mistake:** Not whisking enough—lumps of white lead to uneven cooking
+💡 **Common Mistake:** Not whisking enough—lumps of white lead to uneven cooking
 :::
 
 ------------------------------------------------------------------------
@@ -116,11 +118,11 @@ Before starting, I'd ask: "Why do you think we use butter instead of oil?" Since
 ::: {.column width="60%"}
 **The Process:**
 
-1.  Set burner to **medium-low** (3-4/10)
+1.  Set burner to **medium-low** (3-4 out of 10)
 2.  Melt butter until foaming stops
 3.  Add eggs—should **gently** sizzle, not violently
 
-**Temperature Check:** Can hold your hand 4 inches above pan for 3 seconds
+**Temperature Check:** Hold your hand 4 inches above pan for 3 seconds
 :::
 
 :::: {.column width="40%"}
@@ -129,7 +131,7 @@ Before starting, I'd ask: "Why do you think we use butter instead of oil?" Since
 
 **Too much heat** = rubbery eggs
 
-Think: "If it's cooking fast, it's cooking wrong"
+*"If it's cooking fast, it's cooking wrong"*
 :::
 ::::
 ::::::
@@ -144,14 +146,14 @@ Think: "If it's cooking fast, it's cooking wrong"
 -   Use silicone spatula to **push eggs from edge to center**
 -   **Slow, deliberate movements**—not frantic scrambling
 -   Create large, soft curds
--   **Timing:** 3-4 minutes total
+-   **Timing:** This should take \~3-4 minutes total depending on your stove
 :::
 
 ------------------------------------------------------------------------
 
-## Step 4: Almost Done!
+## Step 4: Cooked!
 
-### When to Stop?
+### When am I done?
 
 **When eggs look 80% done**
 
@@ -159,7 +161,8 @@ Think: "If it's cooking fast, it's cooking wrong"
 -   Still look **slightly wet and glossy**
 -   **Remove from heat** immediately
 -   They'll continue cooking (carryover heat)
--   **Serve immediately** on a warm plate with some cheese and herbs (if desired)
+-   **Serve immediately** on a warm plate
+-   Add cheese and herbs if desired
 :::
 
 ::: {.fragment .fade-in}
@@ -190,26 +193,6 @@ Think: "If it's cooking fast, it's cooking wrong"
 :::
 :::::
 
-**The Transfer:** Knowing when to stop is a skill—students need explicit criteria for "done"
-
-------------------------------------------------------------------------
-
-## Active Learning Check
-
-**Think-Pair-Share:** (If this were a real workshop)
-
-::: incremental
-1.  **Think:** What's the #1 mistake you think people make?
-2.  **Pair:** Discuss with a neighbor
-3.  **Share:** Volunteers share with group
-:::
-
-::: fragment
-**Likely answers:** Too high heat, over-stirring, cooking too long
-
-*This engages learners and checks understanding before moving forward*
-:::
-
 ------------------------------------------------------------------------
 
 ## Troubleshooting Guide
@@ -221,33 +204,12 @@ Think: "If it's cooking fast, it's cooking wrong"
 | Dry, crumbly    | Overcooked    | Remove earlier next time     |
 | Uneven curds    | Poor whisking | Whisk eggs thoroughly before |
 
-::: fragment
-**Teaching Tip:** Provide students with troubleshooting guides—it shows you anticipate struggles
-:::
 
 ------------------------------------------------------------------------
 
-## Practice Activity (If We Had Time)
-
-**Deliberate Practice Structure:**
-
-1.  **Demo:** I do, you watch (what we just did)
-2.  **Guided:** You do, I help (students make eggs with coaching)
-3.  **Independent:** You do, I observe (students make eggs alone)
-4.  **Reflect:** What worked? What would you change?
-
-------------------------------------------------------------------------
 
 ## Questions?
 
 ::: r-fit-text
 **Thank you!**
-:::
-
-Contact: \[steven\@realcool.com\]
-
-**Key Resources:** - Full recipe handout (would be provided) - Video demonstration link - Troubleshooting guide
-
-::: fragment
-*Now let's discuss: What would you change?*
 :::
