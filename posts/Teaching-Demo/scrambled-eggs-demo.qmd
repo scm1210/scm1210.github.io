@@ -207,9 +207,5 @@ Remove before "done" = perfect eggs
 
 ------------------------------------------------------------------------
 
-
 ## Questions?
 
-::: r-fit-text
-**Thank you!**
-:::
