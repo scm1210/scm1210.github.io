@@ -38,7 +38,7 @@ B.A. in Psychology (Minor: Spanish)
 
 \* Denotes Shared First Authorship
 
-**Mesquiti, S., Cosme, D., Nook, E.C., Falk E.B., Burns S.** (in Press). *Predicting Psychological and Subjective Well-being through Language-based Assessments of Well-being.* [DOI](https://osf.io/preprints/psyarxiv/rfq8p_v3)
+**Mesquiti, S., Cosme, D., Nook, E.C., Falk E.B., Burns S.** (in Press). *Predicting Psychological and Subjective Well-being through Language-based Assessments of Well-being. Communications Psychology.* [DOI](https://osf.io/preprints/psyarxiv/rfq8p_v3)
 
 **Mesquiti, S. & Nook, E.C.** (in Press.). *Large Language Models in. Mental Health Treatment and Research.* *Annual Reviews BioMedical Data Science.* [DOI](https://doi.org/10.31234/osf.io/jvf2z_v1)
 
@@ -60,6 +60,7 @@ B.A. in Psychology (Minor: Spanish)
 ------------------------------------------------------------------------
 
 ## Funding
+
 -   **2026**: Princeton University Data Driven Social Science Graduate Fellowship (\$1,200)
 -   **2025**: Princeton University Data Driven Social Science Graduate Fellowship (\$1,200)
 -   **2025**: Princeton University Data Driven Social Science: *Data-Driven Approaches to Building Equitable Language-Based Mental Health Assessments* (\$4,283)
@@ -70,6 +71,7 @@ B.A. in Psychology (Minor: Spanish)
 ------------------------------------------------------------------------
 
 ## Fellowships
+
 -   **2026**: Princeton University Data Driven Social Science Graduate Fellowship
 -   **2025**: Princeton University Data Driven Social Science Graduate Fellowship
 -   **2024-25**: Princeton University William G. Bowen Merit Fellowship
@@ -81,6 +83,7 @@ B.A. in Psychology (Minor: Spanish)
 ------------------------------------------------------------------------
 
 ## Invited Talks
+
 -   **2026**: *Investigating Racial Sensitivity in Language-Based Assessments of Mental Health.* DDSS Connect: Interdisciplinary Exchange.
 -   **2025**: *Predicting Mental Health Outcomes with the Latent Meaning of "I" in a Large Therapy Dataset.* DDSS Connect: Interdisciplinary Exchange.
 -   **2025**: *Tracking Shifts in the Latent Meaning of "I" and Its Connection to Mental Health Outcomes in a Large Therapy Dataset.* Social Psychology Seminar, Princeton University, Princeton, NJ.

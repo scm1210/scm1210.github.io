@@ -23,7 +23,13 @@ fontsize: 11pt
 
 My name is Steven Mesquiti! I'm a [second-year](https://lemolab.princeton.edu/people/steven-mesquiti) PhD Student in the Department of Psychology at Princeton University advised by [Erik Nook](https://lemolab.princeton.edu/people/erik-c-nook-phd).
 
-I study how we can use Natural Language Processing techniques and Artificial Intelligence to better understand people's mental health.
+Broadly, I am interested in leveraging natural language processing and artificial intelligence to understand and improve mental health outcomes.
+
+The overarching goal of my research is to develop theoretically-informed, language-based tools that can identify individuals struggling with mental health challenges, predict treatment outcomes, and ensure equitable assessment across diverse populations.
+
+I am particularly interested in examining how the semantic content and structure of language—in everyday communication, social media discourse, and therapeutic conversations—can serve as real-time indices of psychological well-being and distress.
+
+To achieve these goals, my research combines advanced natural language processing techniques, machine learning and computational methods, large-scale text analysis, and psychological theory to extract meaningful insights from language data.
 
 Before Princeton, I worked as a Lab Manager for Emily Falk in the [Communication Neuroscience Lab](https://www.asc.upenn.edu/research/centers/communication-neuroscience-lab) at the University of Pennsylvania. Along the way, I have worked with excessively generous scientists like Jamie Pennebaker to answer questions at the nexus of Computer Science, Computational Linguistics, and Psychology.
 
@@ -31,17 +37,20 @@ Before Princeton, I worked as a Lab Manager for Emily Falk in the [Communication
 
 ## 🧠 Research Interests
 
--   Natural Language Processing
--   Mental Health
--   Language-based Assessments of Mental Health
--   Artificial Intelligence
+-   Computational approaches to psychological assessment
+
+-   Mental health prediction and intervention
+
+-   Natural language processing and machine learning
+
+-   Equitable and scalable clinical tools
 
 ------------------------------------------------------------------------
 
 ## 🎓 Education
 
 | Degree | Field                       | Year(s)      | Institution             |
-|--------|-----------------------------|--------------|-------------------------|
+|---------------|------------------------|---------------|--------------------|
 | Ph.D.  | Psychology                  | 2024–Present | Princeton University    |
 | M.A.   | Psychological Research      | 2019–2022    | Texas State University  |
 | B.A.   | Psychology (Minor: Spanish) | 2015–2019    | Southwestern University |
