@@ -176,7 +176,9 @@ data = read_csv(file.path(data_dir, "I-representations/data/text-level/MADS_robe
     filter(bin < 5)  %>% 
    dplyr:: mutate(
       first_person_sing_valence_combined = rowMeans(select(., i_projection_valence, me_projection_valence, my_projection_valence,myself_projection_valence,mine_projection_valence), na.rm = TRUE),
-      first_person_sing_ability_combined = rowMeans(select(., i_projection_ability, me_projection_ability, my_projection_ability,myself_projection_ability,mine_projection_ability), na.rm = TRUE)
+      first_person_sing_ability_combined = rowMeans(select(., i_projection_ability, me_projection_ability, my_projection_ability,myself_projection_ability,mine_projection_ability), na.rm = TRUE),
+      article_valence_combined = rowMeans(select(., a_projection_valence, an_projection_valence, the_projection_valence), na.rm = TRUE),
+      article_ability_combined = rowMeans(select(., a_projection_ability, an_projection_ability, the_projection_ability), na.rm = TRUE)
       )
 
 
@@ -563,7 +565,8 @@ good_bad_data_small =  data |>
     mean,
     na.rm = TRUE
   ), .groups = "drop") |> 
-  dplyr::filter(n_total > 20)
+  dplyr::filter(n_total > 20) |> 
+  mutate()
 
 # and now select only the columns we need
 
@@ -573,10 +576,16 @@ good_bad_data_small =  data |>
 between <- good_bad_data_small %>%
   gather(item, value,
          first_person_sing_valence_combined, first_person_sing_ability_combined,
+         article_valence_combined, article_ability_combined,
          we_projection_ability,we_projection_valence,
          a_projection_valence, a_projection_ability,
          an_projection_valence, an_projection_ability,
-         the_projection_valence, the_projection_ability) %>%
+         you_projection_valence,you_projection_ability,
+         he_projection_valence, he_projection_ability,
+         she_projection_valence, she_projection_ability,
+         they_projection_valence, they_projection_ability,
+         the_projection_valence, the_projection_ability,
+         ) %>%
   select(user_id, item, value) %>%
   unique() %>%
   group_by(user_id, item) %>%
@@ -590,8 +599,13 @@ between <- good_bad_data_small %>%
 within <- good_bad_data_small %>%
   gather(item, value,
          first_person_sing_valence_combined, first_person_sing_ability_combined,
+         article_valence_combined, article_ability_combined,
          we_projection_ability,
          we_projection_valence,
+        you_projection_valence,you_projection_ability,
+         he_projection_valence, he_projection_ability,
+         she_projection_valence, she_projection_ability,
+         they_projection_valence, they_projection_ability,
          a_projection_valence, a_projection_ability,
          an_projection_valence, an_projection_ability,
          the_projection_valence, the_projection_ability) %>%
@@ -610,6 +624,8 @@ good_bad_data_small = good_bad_data_small |>
     Internalizing = scale(Internalizing),
     first_person_sing_valence_combined = scale(first_person_sing_valence_combined),
     first_person_sing_ability_combined = scale(first_person_sing_ability_combined),
+    article_valence_combined = scale(article_valence_combined), 
+    article_ability_combined = scale(article_ability_combined),
     we_projection_valence = scale(we_projection_valence),
     we_projection_ability = scale(we_projection_ability),
     a_projection_valence = scale(a_projection_valence),
@@ -617,7 +633,15 @@ good_bad_data_small = good_bad_data_small |>
     an_projection_valence = scale(an_projection_valence),
     an_projection_ability = scale(an_projection_ability),
     the_projection_valence = scale(the_projection_valence),
-    the_projection_ability = scale(the_projection_ability)
+    the_projection_ability = scale(the_projection_ability),
+     you_projection_valence = scale(you_projection_valence),
+     you_projection_ability = scale(you_projection_ability),
+    he_projection_valence = scale(he_projection_valence),
+    he_projection_ability = scale(he_projection_ability),
+    she_projection_valence = scale(she_projection_valence),
+    she_projection_ability = scale(she_projection_ability),
+    they_projection_valence = scale(they_projection_valence),
+    they_projection_ability = scale(they_projection_ability)
   )
 
 
@@ -632,15 +656,26 @@ good_bad_data_small = good_bad_data_small |>
 dv_list <- c(
 "first_person_sing_valence_combined",
 "first_person_sing_ability_combined",
-"a_projection_valence",
-"a_projection_ability",
+"article_valence_combined", 
+"article_ability_combined",
 "we_projection_valence",
 "we_projection_ability",
+"a_projection_valence",
+"a_projection_ability",
 "an_projection_valence",
 "an_projection_ability",
 "the_projection_valence",
-"the_projection_ability"
+"the_projection_ability",
+"you_projection_valence",
+"you_projection_ability",
+"he_projection_valence",
+"he_projection_ability",
+"she_projection_valence",
+"she_projection_ability",
+"they_projection_valence",
+"they_projection_ability"
 )
+
 
 
 # Extract fixed effects for each DV
@@ -706,6 +741,8 @@ ggplot(aes(x = estimate, y = factor(outcome),
 dv_list <- c(
 "first_person_sing_valence_combined",
 "first_person_sing_ability_combined",
+"article_valence_combined", 
+"article_ability_combined",
 "we_projection_valence",
 "we_projection_ability",
 "a_projection_valence",
@@ -713,7 +750,15 @@ dv_list <- c(
 "an_projection_valence",
 "an_projection_ability",
 "the_projection_valence",
-"the_projection_ability"
+"the_projection_ability",
+"you_projection_valence",
+"you_projection_ability",
+"he_projection_valence",
+"he_projection_ability",
+"she_projection_valence",
+"she_projection_ability",
+"they_projection_valence",
+"they_projection_ability"
 )
 mads_coefs <- map_dfr(dv_list, function(dv) {
   formula_str <- paste0("Internalizing ~ daysSinceFirstText + ", dv, " + (1|room_id)")
@@ -774,6 +819,8 @@ ggplot(aes(x = estimate, y = factor(term),
 dv_list <- c(
 "first_person_sing_valence_combined",
 "first_person_sing_ability_combined",
+"article_valence_combined", 
+"article_ability_combined",
 "we_projection_valence",
 "we_projection_ability",
 "a_projection_valence",
@@ -781,7 +828,15 @@ dv_list <- c(
 "an_projection_valence",
 "an_projection_ability",
 "the_projection_valence",
-"the_projection_ability"
+"the_projection_ability",
+"you_projection_valence",
+"you_projection_ability",
+"he_projection_valence",
+"he_projection_ability",
+"she_projection_valence",
+"she_projection_ability",
+"they_projection_valence",
+"they_projection_ability"
 )
 
 mads_coefs <- purrr::map_dfr(dv_list, function(dv_base) {
