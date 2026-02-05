@@ -732,7 +732,7 @@
     "href": "posts.html",
     "title": "Posts",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nLLM to HPC Tutorial\n\n\n\n\n\n\nCoding\n\n\nTutorial\n\n\n\n\n\n\n\n\n\nSteven Mesquiti\n\n\n\n\n\n\n\n\n\n\n\n\nMaking The Perfect Scrambled Eggs\n\n\nTeaching Demo\n\n\n\n\n\n\n\n\nSteven Mesquiti\n\n\n\n\n\n\n\n\n\n\n\n\nFederal research funding cuts will stall scientific progress, hurt Texas students\n\n\n\n\n\n\nOpinion\n\n\nScience Policy\n\n\n\n\n\n\n\n\n\nMar 17, 2025\n\n\nSteven Mesquiti\n\n\n\n\n\n\n\n\n\n\n\n\nI-Projection Results\n\n\n\n\n\n\n\n\n\n\n\nInvalid Date\n\n\nSteven\n\n\n\n\n\n\n\n\n\n\n\n\nWORDLE Lab Manual\n\n\nWelcome to WORDLE Lab!\n\n\n\n\n\n\n\n\nJan 28, 2026\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nLLM to HPC Tutorial\n\n\n\n\n\n\nCoding\n\n\nTutorial\n\n\n\n\n\n\n\n\n\nSteven Mesquiti\n\n\n\n\n\n\n\n\n\n\n\n\nMaking The Perfect Scrambled Eggs\n\n\nTeaching Demo\n\n\n\n\n\n\n\n\nSteven Mesquiti\n\n\n\n\n\n\n\n\n\n\n\n\nFederal research funding cuts will stall scientific progress, hurt Texas students\n\n\n\n\n\n\nOpinion\n\n\nScience Policy\n\n\n\n\n\n\n\n\n\nMar 17, 2025\n\n\nSteven Mesquiti\n\n\n\n\n\n\n\n\n\n\n\n\nI-Projection Results\n\n\n\n\n\n\n\n\n\n\n\nInvalid Date\n\n\nSteven\n\n\n\n\n\n\n\n\n\n\n\n\nWORDLE Lab Manual\n\n\nWelcome to WORDLE Lab!\n\n\n\n\n\n\n\n\nFeb 5, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nI-Projection Results-Validation\n\n\n\n\n\n\n\n\n\n\n\nInvalid Date\n\n\nSteven\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "coding/correlation/Correlations.html",
@@ -1664,5 +1664,75 @@
     "title": "Making The Perfect Scrambled Eggs",
     "section": "Step 4: Cooked!",
     "text": "Step 4: Cooked!\nWhen am I done?\nWhen eggs look 80% done\n\n\nStill look slightly wet and glossy\nRemove from heat immediately\nThey’ll continue cooking (carryover heat)\nServe immediately on a warm plate\nAdd cheese and herbs if desired\n\n\n\n⚠️ If they look fully cooked in the pan, they’re overcooked on the plate!"
+  },
+  {
+    "objectID": "posts/I-projections-validation/Post.html#first-person-sing.-valence-projections",
+    "href": "posts/I-projections-validation/Post.html#first-person-sing.-valence-projections",
+    "title": "I-Projection Results-Validation",
+    "section": "First-person sing. valence projections",
+    "text": "First-person sing. valence projections"
+  },
+  {
+    "objectID": "posts/I-projections-validation/Post.html#first_person_sing_ability_combined",
+    "href": "posts/I-projections-validation/Post.html#first_person_sing_ability_combined",
+    "title": "I-Projection Results-Validation",
+    "section": "first_person_sing_ability_combined",
+    "text": "first_person_sing_ability_combined"
+  },
+  {
+    "objectID": "posts/I-projections-validation/Post.html#good",
+    "href": "posts/I-projections-validation/Post.html#good",
+    "title": "I-Projection Results-Validation",
+    "section": "Good",
+    "text": "Good"
+  },
+  {
+    "objectID": "posts/I-projections-validation/Post.html#able",
+    "href": "posts/I-projections-validation/Post.html#able",
+    "title": "I-Projection Results-Validation",
+    "section": "Able",
+    "text": "Able"
+  },
+  {
+    "objectID": "posts/I-projections-validation/Post.html#valence-projection",
+    "href": "posts/I-projections-validation/Post.html#valence-projection",
+    "title": "I-Projection Results-Validation",
+    "section": "Valence Projection",
+    "text": "Valence Projection\n\n\nNon-disaggregatedDisaggregated"
+  },
+  {
+    "objectID": "posts/I-projections-validation/Post.html#ability-projection",
+    "href": "posts/I-projections-validation/Post.html#ability-projection",
+    "title": "I-Projection Results-Validation",
+    "section": "Ability Projection",
+    "text": "Ability Projection\n\n\nNon-disaggregatedDisaggregated"
+  },
+  {
+    "objectID": "posts/I-projections-validation/Post.html#valence-projections",
+    "href": "posts/I-projections-validation/Post.html#valence-projections",
+    "title": "I-Projection Results-Validation",
+    "section": "Valence Projections",
+    "text": "Valence Projections\n\n\nNon-disaggregated (Valence)Disaggregated (valence)"
+  },
+  {
+    "objectID": "posts/I-projections-validation/Post.html#ability-projections",
+    "href": "posts/I-projections-validation/Post.html#ability-projections",
+    "title": "I-Projection Results-Validation",
+    "section": "Ability Projections",
+    "text": "Ability Projections\n\n\nNon-disaggregated (Ability)Disaggregated (ability)"
+  },
+  {
+    "objectID": "posts/I-projections-validation/Post.html#changes-in-meaning-over-time",
+    "href": "posts/I-projections-validation/Post.html#changes-in-meaning-over-time",
+    "title": "I-Projection Results-Validation",
+    "section": "Changes in Meaning over Time",
+    "text": "Changes in Meaning over Time"
+  },
+  {
+    "objectID": "posts/I-projections-validation/Post.html#track-with-changes-in-symptoms",
+    "href": "posts/I-projections-validation/Post.html#track-with-changes-in-symptoms",
+    "title": "I-Projection Results-Validation",
+    "section": "Track with Changes in Symptoms",
+    "text": "Track with Changes in Symptoms\n\n\nNon-disaggregatedDisaggregated"
   }
 ]
