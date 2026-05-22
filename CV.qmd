@@ -162,8 +162,8 @@ Longitudinal & clinical text data, large-scale social media data, mixed-method s
 
 ## References
 
-- **Emily Falk** — Professor of Communication, Psychology, Marketing, and OID, Vice Dean of the Annenberg School for Communication, University of Pennsylvania | efalk@falklab.org
+- **Erik Nook** — Assistant Professor of Psychology, Princeton University | enook@princeton.edu
 
 - **James Pennebaker** — Professor Emeritus of Psychology, The University of Texas at Austin | pennebaker@utexas.edu
 
-- **Erik Nook** — Assistant Professor of Psychology, Princeton University | enook@princeton.edu
+- **Emily Falk** — Professor of Communication, Psychology, Marketing, and OID, Vice Dean of the Annenberg School for Communication, University of Pennsylvania | efalk@falklab.org

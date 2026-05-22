@@ -487,7 +487,7 @@
     "href": "CV.html#references",
     "title": "Steven Mesquiti CV",
     "section": "References",
-    "text": "References\n\nEmily Falk — Professor of Communication, Psychology, Marketing, and OID, Vice Dean of the Annenberg School for Communication, University of Pennsylvania | efalk@falklab.org\nJames Pennebaker — Professor Emeritus of Psychology, The University of Texas at Austin | pennebaker@utexas.edu\nErik Nook — Assistant Professor of Psychology, Princeton University | enook@princeton.edu"
+    "text": "References\n\nErik Nook — Assistant Professor of Psychology, Princeton University | enook@princeton.edu\nJames Pennebaker — Professor Emeritus of Psychology, The University of Texas at Austin | pennebaker@utexas.edu\nEmily Falk — Professor of Communication, Psychology, Marketing, and OID, Vice Dean of the Annenberg School for Communication, University of Pennsylvania | efalk@falklab.org"
   },
   {
     "objectID": "coding.html",
@@ -1033,21 +1033,21 @@
     "href": "about.html",
     "title": "Steven Mesquiti",
     "section": "",
-    "text": "My name is Steven Mesquiti! I’m a second-year PhD Student in the Department of Psychology at Princeton University advised by Erik Nook.\nBroadly, I am interested in leveraging natural language processing and artificial intelligence to understand and improve mental health outcomes.\nThe overarching goal of my research is to develop theoretically-informed, language-based tools that can identify individuals struggling with mental health challenges, predict treatment outcomes, and ensure equitable assessment across diverse populations.\nI am particularly interested in examining how the semantic content and structure of language—in everyday communication, social media discourse, and therapeutic conversations—can serve as real-time indices of psychological well-being and distress.\nTo achieve these goals, my research combines advanced natural language processing techniques, machine learning and computational methods, large-scale text analysis, and psychological theory to extract meaningful insights from language data.\nBefore Princeton, I worked as a Lab Manager for Emily Falk in the Communication Neuroscience Lab at the University of Pennsylvania. Along the way, I have worked with excessively generous scientists like Jamie Pennebaker to answer questions at the nexus of Computer Science, Computational Linguistics, and Psychology."
+    "text": "I am a second-year PhD student in the Department of Psychology at Princeton University, where I work in Erik Nook’s Logic of Emotion Lab.\nMy research sits at the intersection of computer science, natural language processing, and clinical psychology. I develop and evaluate language-based tools for mental health assessment, with a focus on the psychometric validity and generalizability of such tools across demographically diverse populations. A central question motivating my work is whether linguistic markers of psychological distress are measurement-invariant — that is, whether they capture the same underlying constructs with equivalent precision across the individuals and groups to whom clinical assessments are applied.\nMy current work examines whether large language models predict depression and anxiety equivalently across racially and ethnically diverse clients in teletherapy, how the semantic content of first-person pronoun use in psychotherapy transcripts tracks symptom severity and treatment response, and whether domain-adapted clinical language models can reliably predict treatment outcomes.\nPrior to Princeton, I was as a Lab Manager in Emily Falk’s Communication Neuroscience Lab at the University of Pennsylvania. I have had the privilege of collaborating with researchers including Jamie Pennebaker and people affiliated with the World Well-Being Project at the University of Pennsylvania.\nMy research has been supported by the Princeton University Data Driven Social Science Graduate Fellowship and the New Jersey Health Foundation."
   },
   {
     "objectID": "about.html#research-interests",
     "href": "about.html#research-interests",
     "title": "Steven Mesquiti",
-    "section": "🧠 Research Interests",
-    "text": "🧠 Research Interests\n\nComputational approaches to psychological assessment\nMental health prediction and intervention\nNatural language processing and machine learning\nEquitable and scalable clinical tools"
+    "section": "Research Interests",
+    "text": "Research Interests\n\nPsychometric validity and generalizability of language-based clinical assessment\nLnguage as a transdiagnostic index of psychological distress\nDomain adaptation and evaluation of large language models for mental health\nComputational psycholinguistics and large-scale text analysis"
   },
   {
     "objectID": "about.html#education",
     "href": "about.html#education",
     "title": "Steven Mesquiti",
-    "section": "🎓 Education",
-    "text": "🎓 Education\n\n\n\n\n\n\n\n\n\nDegree\nField\nYear(s)\nInstitution\n\n\n\n\nPh.D.\nPsychology\n2024–Present\nPrinceton University\n\n\nM.A.\nPsychological Research\n2019–2022\nTexas State University\n\n\nB.A.\nPsychology (Minor: Spanish)\n2015–2019\nSouthwestern University"
+    "section": "Education",
+    "text": "Education\n\n\n\n\n\n\n\n\n\nDegree\nField\nYear(s)\nInstitution\n\n\n\n\nPh.D.\nPsychology\n2024–Present\nPrinceton University\n\n\nM.A.\nPsychological Research\n2019–2022\nTexas State University\n\n\nB.A.\nPsychology (Minor: Spanish)\n2015–2019\nSouthwestern University"
   },
   {
     "objectID": "posts.html",
@@ -1447,5 +1447,12 @@
     "title": "Regression",
     "section": "All Graphs",
     "text": "All Graphs\n\ntidy_smooth_graphs &lt;- ggpubr::ggarrange(i,we,pronouns, WPS,determiners, possessives, of, contractions,\n                                        ncol=4, nrow=2, common.legend = TRUE, legend = \"top\")\nannotate_figure(tidy_smooth_graphs,\n                top = text_grob(\"LIWC Variables\",  color = \"black\", face = \"bold\", size = 20),\n                 bottom = text_grob(\"Horizontal line represents Fisher Corpus\",  color = \"black\", size = 14))"
+  },
+  {
+    "objectID": "about.html#selected-publications",
+    "href": "about.html#selected-publications",
+    "title": "Steven Mesquiti",
+    "section": "Selected Publications",
+    "text": "Selected Publications\nMesquiti, S. & Nook, E.C. (2026). Large Language Models in Mental Health Treatment and Research. Annual Reviews BioMedical Data Science. DOI\nMesquiti, S., Cosme, D., Nook, E.C., Falk E.B., Burns S. (2026). Predicting Psychological and Subjective Well-being through Language-based Assessments of Well-being. Communications Psychology. DOI\nMesquiti, S., Seraj, S., Weyland, A. H., Ashokkumar, A., Boyd, R. L., Mihalcea, R., & Pennebaker, J. W. (2025). Analysis of social media language reveals the psychological interaction of three successive upheavals. Scientific Reports. DOI\nA complete list of publications is available on Google Scholar and in my CV."
   }
 ]

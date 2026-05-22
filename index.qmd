@@ -21,33 +21,69 @@ about:
 fontsize: 11pt
 ---
 
-My name is Steven Mesquiti! I'm a [second-year](https://lemolab.princeton.edu/people/steven-mesquiti) PhD Student in the Department of Psychology at Princeton University advised by [Erik Nook](https://lemolab.princeton.edu/people/erik-c-nook-phd).
+I am a second-year PhD student in the [Department of Psychology](https://psychology.princeton.edu/) 
+at Princeton University, where I work in [Erik Nook's](https://lemolab.princeton.edu/people/erik-c-nook-phd) 
+[Logic of Emotion Lab](https://lemolab.princeton.edu/).
 
-Broadly, I am interested in leveraging natural language processing and artificial intelligence to understand and improve mental health outcomes.
+My research sits at the intersection of computer science, natural language 
+processing, and clinical psychology. I develop and evaluate language-based tools 
+for mental health assessment, with a focus on the psychometric validity and 
+generalizability of such tools across demographically diverse populations. A central 
+question motivating my work is whether linguistic markers of psychological distress 
+are measurement-invariant — that is, whether they capture the same underlying 
+constructs with equivalent precision across the individuals and groups to whom 
+clinical assessments are applied.
 
-The overarching goal of my research is to develop theoretically-informed, language-based tools that can identify individuals struggling with mental health challenges, predict treatment outcomes, and ensure equitable assessment across diverse populations.
+My current work examines whether large language models predict depression and anxiety 
+equivalently across racially and ethnically diverse clients in teletherapy, how the 
+semantic content of first-person pronoun use in psychotherapy transcripts tracks 
+symptom severity and treatment response, and whether domain-adapted clinical language 
+models can reliably predict treatment outcomes. 
 
-I am particularly interested in examining how the semantic content and structure of language—in everyday communication, social media discourse, and therapeutic conversations—can serve as real-time indices of psychological well-being and distress.
+Prior to Princeton, I was as a Lab Manager in Emily Falk's 
+[Communication Neuroscience Lab](https://www.asc.upenn.edu/research/centers/communication-neuroscience-lab) 
+at the University of Pennsylvania. I have had the privilege of collaborating with 
+researchers including Jamie Pennebaker and people affiliated with the 
+[World Well-Being Project](https://wwbp.org/) at the University of Pennsylvania.
 
-To achieve these goals, my research combines advanced natural language processing techniques, machine learning and computational methods, large-scale text analysis, and psychological theory to extract meaningful insights from language data.
+My research has been supported by the Princeton University 
+[Data Driven Social Science Graduate Fellowship](https://ddss.princeton.edu/) 
+and the New Jersey Health Foundation.
 
-Before Princeton, I worked as a Lab Manager for Emily Falk in the [Communication Neuroscience Lab](https://www.asc.upenn.edu/research/centers/communication-neuroscience-lab) at the University of Pennsylvania. Along the way, I have worked with excessively generous scientists like Jamie Pennebaker to answer questions at the nexus of Computer Science, Computational Linguistics, and Psychology.
+---
 
-------------------------------------------------------------------------
+## Selected Publications
 
-## 🧠 Research Interests
+Mesquiti, S. & Nook, E.C. (2026). Large Language Models in Mental Health Treatment 
+and Research. *Annual Reviews BioMedical Data Science*. 
+[DOI](https://www.annualreviews.org/content/journals/10.1146/annurev-biodatasci-092524-113527)
 
--   Computational approaches to psychological assessment
+Mesquiti, S., Cosme, D., Nook, E.C., Falk E.B., Burns S. (2026). Predicting 
+Psychological and Subjective Well-being through Language-based Assessments of 
+Well-being. *Communications Psychology*. 
+[DOI](https://www.nature.com/articles/s44271-026-00400-3)
 
--   Mental health prediction and intervention
+Mesquiti, S., Seraj, S., Weyland, A. H., Ashokkumar, A., Boyd, R. L., Mihalcea, R., 
+& Pennebaker, J. W. (2025). Analysis of social media language reveals the 
+psychological interaction of three successive upheavals. *Scientific Reports*. 
+[DOI](https://doi.org/10.1038/s41598-025-89165-z)
 
--   Natural language processing and machine learning
+*A complete list of publications is available on 
+[Google Scholar](https://scholar.google.com/citations?user=jMPn4hoAAAAJ) 
+and in my [CV](CV.qmd).*
 
--   Equitable and scalable clinical tools
+---
 
-------------------------------------------------------------------------
+## Research Interests
 
-## 🎓 Education
+- Psychometric validity and generalizability of language-based clinical assessment
+- Lnguage as a transdiagnostic index of psychological distress
+- Domain adaptation and evaluation of large language models for mental health
+- Computational psycholinguistics and large-scale text analysis
+
+---
+
+## Education
 
 | Degree | Field                       | Year(s)      | Institution             |
 |--------|-----------------------------|--------------|-------------------------|
