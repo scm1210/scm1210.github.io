@@ -88,7 +88,6 @@ Mesquiti, S., Seraj, S. (2023). The Psychological Impacts of the COVID-19 Pandem
 ---
 
 ## Invited Talks
-
 - **2026** — Investigating Racial Sensitivity in Language-Based Assessments of Mental Health. Social Psychology Seminar, Princeton University, Princeton, NJ.
 - **2026** — Investigating Racial Sensitivity in Language-Based Assessments of Mental Health. DDSS Connect: Interdisciplinary Exchange.
 - **2025** — Predicting Mental Health Outcomes with the Latent Meaning of "I" in a Large Therapy Dataset. DDSS Connect: Interdisciplinary Exchange.
@@ -100,6 +99,10 @@ Mesquiti, S., Seraj, S. (2023). The Psychological Impacts of the COVID-19 Pandem
 ---
 
 ## Conference Presentations
+
+Mesquiti, S., Carey, R. M., Daw, N., & Nook, E. C. (2026). Investigating Racial Equity of Psycholinguistic Measures of Mental Health. Oral presentation to be presented at the annual meeting of the Society for Research in Psychopathology. Columbus, OH.
+
+Huang, E., Whiting, C., Mesquiti, S., Baran, S. S., & Nook, E. C. (2026). Linguistic markers of self-representation reflect emotional experiences in expressive writing. Poster presentation at the annual meeting of the Society for Research in Psychopathology. Columbus, OH.
 
 Mesquiti, S., Stade E. C., Hull, T.D., Nook, E. C. (2026). Tracking shifts in the latent meaning of "I" and its connection to mental health outcomes in a large therapy dataset. Poster presentation at the annual meeting of the Society for Affective Science. Pittsburgh, PA.
 
