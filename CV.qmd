@@ -19,28 +19,30 @@ format:
     linkcolor: blue
 ---
 
-:::{.noheader}
+::: noheader
 # Steven Mesquiti, M.A.
 
-Department of Psychology | Princeton University | sm9518@princeton.edu
+Department of Psychology \| Princeton University \| sm9518\@princeton.edu
 :::
 
----
+------------------------------------------------------------------------
 
 ## Education
 
-**Princeton University** (2024–Present)  
-Ph.D. in Psychology | Advisor: Dr. Erik Nook
+**Princeton University** (2024–Present)\
+Ph.D. in Psychology \| Advisor: Dr. Erik Nook
 
-**Texas State University** (2019–2022)  
-M.A. in Psychological Research | Advisor: Dr. Randall Osborne
+**Texas State University** (2019–2022)\
+M.A. in Psychological Research \| Advisor: Dr. Randall Osborne
 
-**Southwestern University** (2015–2019)  
+**Southwestern University** (2015–2019)\
 B.A. in Psychology (Minor: Spanish)
 
----
+------------------------------------------------------------------------
 
 ## Publications
+
+Sahi, R. S., Mesquiti, S., Hull, T. D., Vine, V., & Nook, E. C. (under review). Affect labeling is linked with better mental health in psychotherapeutic conversations. *Nature Mental Health*.
 
 Mesquiti, S. & Nook, E.C. (2026). Large Language Models in Mental Health Treatment and Research. *Annual Reviews BioMedical Data Science*. [DOI](https://www.annualreviews.org/content/journals/10.1146/annurev-biodatasci-092524-113527)
 
@@ -54,49 +56,50 @@ Kang, Y., Mesquiti, S., Baik, E.S., & Falk, E. B. (2024). Empathy and Helping: T
 
 Mesquiti, S., Seraj, S. (2023). The Psychological Impacts of the COVID-19 Pandemic on Business Leadership. *PLOS One*. [DOI](https://doi.org/10.1371/journal.pone.0290621)
 
----
+------------------------------------------------------------------------
 
 ## Works in Progress
 
-- Kang, Y., Mesquiti, S. & Falk, E. B. (in prep). The Effect of Compassion Training on Emotional Support Giving.
-- Mesquiti, S., Stade E. C., Hull, T.D., Nook, E. C. (in prep.) The Meaning of "I": Semantic Self-Representation Tracks Internalizing Symptoms Within and Across Persons in Psychotherapy
-- Mesquiti, S., Carey, R. M., Daw, N. & Nook, E. C. (in prep.). Racial differences in the linguistic markers and machine learning prediction of internalizing symptoms.
+-   Kang, Y., Mesquiti, S. & Falk, E. B. (in prep). The Effect of Compassion Training on Emotional Support Giving.
+-   Mesquiti, S., Stade E. C., Hull, T.D., Nook, E. C. (in prep.) The Meaning of "I": Semantic Self-Representation Tracks Internalizing Symptoms Within and Across Persons in Psychotherapy
+-   Mesquiti, S., Carey, R. M., Daw, N. & Nook, E. C. (in prep.). Racial differences in the linguistic markers and machine learning prediction of internalizing symptoms.
 
----
+------------------------------------------------------------------------
 
 ## Funding
 
-- **2026** — Princeton University Data Driven Social Science Graduate Fellowship ($1,200)
-- **2025** — Princeton University Data Driven Social Science Graduate Fellowship ($1,200)
-- **2025** — Princeton University Data Driven Social Science: Data-Driven Approaches to Building Equitable Language-Based Mental Health Assessments ($4,283)
-- **2025** — New Jersey Health Foundation: Investigating Racial Equity of Psycholinguistic Measures of Mental Health (PI: Erik C. Nook; $34,867; #PC 42-25)
-- **2022** — Northwestern University Kellogg School of Management Behavioral Research Fellowship (Finalist [Declined]; $35,000)
-- **2020** — Texas State University Thesis Research Support Fellowship ($1,070)
+-   **2026** — Princeton University Data Driven Social Science Graduate Fellowship (\$1,200)
+-   **2025** — Princeton University Data Driven Social Science Graduate Fellowship (\$1,200)
+-   **2025** — Princeton University Data Driven Social Science: Data-Driven Approaches to Building Equitable Language-Based Mental Health Assessments (\$4,283)
+-   **2025** — New Jersey Health Foundation: Investigating Racial Equity of Psycholinguistic Measures of Mental Health (PI: Erik C. Nook; \$34,867; #PC 42-25)
+-   **2022** — Northwestern University Kellogg School of Management Behavioral Research Fellowship (Finalist \[Declined\]; \$35,000)
+-   **2020** — Texas State University Thesis Research Support Fellowship (\$1,070)
 
----
+------------------------------------------------------------------------
 
 ## Fellowships
 
-- **2026** — Princeton University Data Driven Social Science Graduate Fellowship
-- **2025** — Princeton University Data Driven Social Science Graduate Fellowship
-- **2024–25** — Princeton University William G. Bowen Merit Fellowship
-- **2020–21** — Texas State University Graduate College of Liberal Arts Scholarship
-- **2021** — Masters in Psychological Research Graduate Competitive Scholarship
-- **2019** — Texas State University Graduate College of Education Scholarship
-- **2015** — Southwestern University Mood Scholar
+-   **2026** — Princeton University Data Driven Social Science Graduate Fellowship
+-   **2025** — Princeton University Data Driven Social Science Graduate Fellowship
+-   **2024–25** — Princeton University William G. Bowen Merit Fellowship
+-   **2020–21** — Texas State University Graduate College of Liberal Arts Scholarship
+-   **2021** — Masters in Psychological Research Graduate Competitive Scholarship
+-   **2019** — Texas State University Graduate College of Education Scholarship
+-   **2015** — Southwestern University Mood Scholar
 
----
+------------------------------------------------------------------------
 
 ## Invited Talks
-- **2026** — Investigating Racial Sensitivity in Language-Based Assessments of Mental Health. Social Psychology Seminar, Princeton University, Princeton, NJ.
-- **2026** — Investigating Racial Sensitivity in Language-Based Assessments of Mental Health. DDSS Connect: Interdisciplinary Exchange.
-- **2025** — Predicting Mental Health Outcomes with the Latent Meaning of "I" in a Large Therapy Dataset. DDSS Connect: Interdisciplinary Exchange.
-- **2025** — Tracking Shifts in the Latent Meaning of "I" and Its Connection to Mental Health Outcomes in a Large Therapy Dataset. Social Psychology Seminar, Princeton University, Princeton, NJ.
-- **2022** — Within-and between-person effects of autonomous motivation on goal pursuit. Duckworth Lab.
-- **2021** — The whole truth and nothing but the truth: an analysis of the variability of prosocial lying in the Netherlands and the United States. Texas State University Psychology Department Brown Bag.
-- **2021** — The truth about prosocial lying: Cross-cultural differences in prosocial lying. Southwestern Psychological Association (Virtual).
 
----
+-   **2026** — Investigating Racial Sensitivity in Language-Based Assessments of Mental Health. Social Psychology Seminar, Princeton University, Princeton, NJ.
+-   **2026** — Investigating Racial Sensitivity in Language-Based Assessments of Mental Health. DDSS Connect: Interdisciplinary Exchange.
+-   **2025** — Predicting Mental Health Outcomes with the Latent Meaning of "I" in a Large Therapy Dataset. DDSS Connect: Interdisciplinary Exchange.
+-   **2025** — Tracking Shifts in the Latent Meaning of "I" and Its Connection to Mental Health Outcomes in a Large Therapy Dataset. Social Psychology Seminar, Princeton University, Princeton, NJ.
+-   **2022** — Within-and between-person effects of autonomous motivation on goal pursuit. Duckworth Lab.
+-   **2021** — The whole truth and nothing but the truth: an analysis of the variability of prosocial lying in the Netherlands and the United States. Texas State University Psychology Department Brown Bag.
+-   **2021** — The truth about prosocial lying: Cross-cultural differences in prosocial lying. Southwestern Psychological Association (Virtual).
+
+------------------------------------------------------------------------
 
 ## Conference Presentations
 
@@ -136,37 +139,48 @@ Domer, K., Mesquiti, S.C., Warnell, K. R., Clegg, J. M. (2021, February). More t
 
 Mesquiti, S.C. (2019, April). Internship at the Central Texas Treatment Center. Poster presented at Southwestern University Creative Works Symposium, Georgetown, Tx.
 
----
+------------------------------------------------------------------------
 
 ## Mentorship
 
-- **Song Ting Tang** — Thesis Student, Princeton University (2025–Present)
-- **Emi Yun** — Thesis Student, Princeton University (2024–2026)
-- **Arden Spehar** — Summer MindCORE REU Student, University of Pennsylvania (2022)
-- **Carlos Santana** — Summer MindCORE REU Student, University of Pennsylvania (2022)
+-   **Song Ting Tang** — Thesis Student, Princeton University (2025–Present)
+-   **Emi Yun** — Thesis Student, Princeton University (2024–2026)
+-   **Arden Spehar** — Summer MindCORE REU Student, University of Pennsylvania (2022)
+-   **Carlos Santana** — Summer MindCORE REU Student, University of Pennsylvania (2022)
 
----
+------------------------------------------------------------------------
 
 ## Skills
 
-**Natural Language Processing & Computational Linguistics**  
-Transformer-based language models, semantic projection methods, topic modeling, sentiment analysis, dictionary-based methods, language-based assessment of mental health, large language models.
 
-**Machine Learning & Statistical Methods**  
-Supervised machine learning, multilevel modeling, moderation & mediation analysis, time-series analysis, item response theory, general linear models.
+**Natural Language Processing & Computational Linguistics**\
+Transformer-based language models, semantic projection & embedding-based measurement, topic modeling (LDA), dictionary-based methods (DLATK), language-based mental health assessment.
 
-**Programming & Data Science**  
-R (proficient), Python (moderate), SQL (moderate), Bash, reproducible research (Quarto/R Markdown), large-scale data pipeline development.
+**Machine Learning & Statistical Methods**\
+Supervised learning & fine-tuning (LoRA/PEFT), ridge regression, mixed-effects/multilevel modeling, moderation & mediation analysis.
 
-**Research Methods**  
-Longitudinal & clinical text data, large-scale social media data, mixed-method study design, within- and between-person designs, open science practices.
+**Programming & Computing**\
+R (proficient), Python (moderate), SQL, Bash, reproducible research (Quarto)
 
----
+**Research Methods**\
+Longitudinal & clinical text data, large-scale social media data, within- and between-person designs, mixed-method design, open science practices.
+
+------------------------------------------------------------------------
+
+## Peer Review
+
+- Behavior Research Methods
+- Clinical Psychological Science
+- Journal of Medical Internet Research
+- Nature Mental Health
+- Personality and Social Psychology Bulletin
+
+------------------------------------------------------------------------
 
 ## References
 
-- **Erik Nook** — Assistant Professor of Psychology, Princeton University | enook@princeton.edu
+-   **Erik Nook** — Assistant Professor of Psychology, Princeton University \| enook\@princeton.edu
 
-- **James Pennebaker** — Professor Emeritus of Psychology, The University of Texas at Austin | pennebaker@utexas.edu
+-   **James Pennebaker** — Professor Emeritus of Psychology, The University of Texas at Austin \| pennebaker\@utexas.edu
 
-- **Emily Falk** — Professor of Communication, Psychology, Marketing, and OID, Vice Dean of the Annenberg School for Communication, University of Pennsylvania | efalk@falklab.org
+-   **Emily Falk** — Professor of Communication, Psychology, Marketing, and OID, Vice Dean of the Annenberg School for Communication, University of Pennsylvania \| efalk\@falklab.org
