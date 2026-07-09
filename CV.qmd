@@ -172,7 +172,6 @@ Longitudinal & clinical text data, large-scale social media data, within- and be
 - Behavior Research Methods
 - Clinical Psychological Science
 - Journal of Medical Internet Research
-- Nature Mental Health
 - Personality and Social Psychology Bulletin
 
 ------------------------------------------------------------------------
