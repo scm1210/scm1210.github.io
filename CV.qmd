@@ -42,7 +42,7 @@ B.A. in Psychology (Minor: Spanish)
 
 ## Publications
 
-Sahi, R. S., Mesquiti, S., Hull, T. D., Vine, V., & Nook, E. C. (under review). Affect labeling is linked with better mental health in psychotherapeutic conversations. *Nature Mental Health*.
+Sahi, R. S., Mesquiti, S., Hull, T. D., Vine, V., & Nook, E. C. (under revision). Affect labeling is linked with better mental health in psychotherapeutic conversations. *Nature Mental Health*.
 
 Mesquiti, S. & Nook, E.C. (2026). Large Language Models in Mental Health Treatment and Research. *Annual Reviews BioMedical Data Science*. [DOI](https://www.annualreviews.org/content/journals/10.1146/annurev-biodatasci-092524-113527)
 
