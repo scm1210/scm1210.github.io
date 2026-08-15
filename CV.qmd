@@ -59,7 +59,7 @@ M.A. in Psychological Research \| Advisor: Dr. Randall Osborne
 B.A. in Psychology (Minor: Spanish)
 
 ## Funding & Fellowships
-
+-  **2026-27** — Princeton Precision Health Graduate Fellowship (\$24,100)
 -   **2026** — Princeton University Data Driven Social Science Graduate Fellowship (\$1,200)
 -   **2025** — Princeton University Data Driven Social Science Graduate Fellowship (\$1,200)
 -   **2025** — Princeton University Data Driven Social Science: Data-Driven Approaches to Building Equitable Language-Based Mental Health Assessments (\$4,283)
@@ -75,6 +75,7 @@ B.A. in Psychology (Minor: Spanish)
 ## Publications
 
 ::: {.pub-list}
+-   **Mesquiti, S.**, Stade E. C., Hull, T.D., Nook, E. C. (Preprint). The Meaning of "I": Semantic Self-Representation Tracks Internalizing Symptoms Within and Across Persons in Psychotherapy. [DOI](https://doi.org/10.31234/osf.io/dngrh_v1)
 -   Sahi, R. S., **Mesquiti, S.**, Hull, T. D., Vine, V., & Nook, E. C. (under revision). Affect labeling is linked with better mental health in psychotherapeutic conversations. *Nature Mental Health*.
 -   **Mesquiti, S.** & Nook, E.C. (2026). Large Language Models in Mental Health Treatment and Research. *Annual Reviews BioMedical Data Science*. [DOI](https://www.annualreviews.org/content/journals/10.1146/annurev-biodatasci-092524-113527)
 -   **Mesquiti, S.**, Cosme, D., Nook, E.C., Falk E.B., Burns S. (2026). Predicting Psychological and Subjective Well-being through Language-based Assessments of Well-being. *Communications Psychology*. [DOI](https://www.nature.com/articles/s44271-026-00400-3)
@@ -87,9 +88,8 @@ B.A. in Psychology (Minor: Spanish)
 ## Works in Progress
 
 ::: {.pub-list}
--   Kang, Y., **Mesquiti, S.** & Falk, E. B. (in prep). The Effect of Compassion Training on Emotional Support Giving.
--   **Mesquiti, S.**, Stade E. C., Hull, T.D., Nook, E. C. (in prep). The Meaning of "I": Semantic Self-Representation Tracks Internalizing Symptoms Within and Across Persons in Psychotherapy.
 -   **Mesquiti, S.**, Carey, R. M., Daw, N. & Nook, E. C. (in prep). Racial differences in the linguistic markers and machine learning prediction of internalizing symptoms.
+-   Kang, Y., **Mesquiti, S.** & Falk, E. B. (in prep). The Effect of Compassion Training on Emotional Support Giving.
 :::
 
 ## Invited Talks
