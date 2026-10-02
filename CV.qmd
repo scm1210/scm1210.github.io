@@ -76,7 +76,7 @@ B.A. in Psychology (Minor: Spanish)
 ## Publications
 
 ::: pub-list
--   **Mesquiti, S.**, Stade E. C., Hull, T.D., Nook, E. C. (Submitted). The Meaning of "I": Semantic Self-Representation Tracks Internalizing Symptoms Within and Across Persons in Psychotherapy. [DOI](https://doi.org/10.31234/osf.io/dngrh_v1)
+-   **Mesquiti, S.**, Stade E. C., Hull, T.D., Nook, E. C. (Under Review). The Meaning of "I": Semantic Self-Representation Tracks Internalizing Symptoms Within and Across Persons in Psychotherapy. [DOI](https://doi.org/10.31234/osf.io/dngrh_v1)
 -   Sahi, R. S., **Mesquiti, S.**, Hull, T. D., Vine, V., & Nook, E. C. (Under Revision). Affect labeling is linked with better mental health in psychotherapeutic conversations. *Nature Mental Health*.
 -   **Mesquiti, S.** & Nook, E.C. (2026). Large Language Models in Mental Health Treatment and Research. *Annual Reviews BioMedical Data Science*. [DOI](https://www.annualreviews.org/content/journals/10.1146/annurev-biodatasci-092524-113527)
 -   **Mesquiti, S.**, Cosme, D., Nook, E.C., Falk E.B., Burns S. (2026). Predicting Psychological and Subjective Well-being through Language-based Assessments of Well-being. *Communications Psychology*. [DOI](https://www.nature.com/articles/s44271-026-00400-3)
