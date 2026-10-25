@@ -68,6 +68,7 @@ Full list on [Google Scholar](https://scholar.google.com/citations?user=jMPn4hoA
 
 ::: edu
 -   **Ph.D., Psychology** — Princeton University [2024–present]{.edu-years}
+-   **M.A., Psychology — Princeton University [2024–]{.edu-years}2026**
 -   **M.A., Psychological Research** — Texas State University [2019–2022]{.edu-years}
 -   **B.A., Psychology** (Minor: Spanish) — Southwestern University [2015–2019]{.edu-years}
 :::
