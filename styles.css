@@ -1,281 +1,386 @@
-/* Root variables for light mode (default) */
-:root {
-  --q-primary: #fff;
-  --q-secondary: #5c80a8;
-  --q-font-family-base: 'Arial', sans-serif;
-  --q-heading-font-family: 'Georgia', serif;
-  --q-text-color: #222222;
-  --q-background-color: #fff;
-  --q-accent: #222;
-  --q-accent-light: #fff4e6;
-  --q-border-radius: 8px;
+/* =========================================================
+   Steven Mesquiti — site styles
+   Colors/fonts live in theme-light.scss / theme-dark.scss;
+   this file handles layout and the finer details.
+   ========================================================= */
 
-  --background: #333;
-  --highlight: #39AC4C;
+body.quarto-light {
+  --ink: #1E2530;
+  --muted: #6B7280;
+  --indigo: #2F4E86;
+  --ochre: #A87A2E;
+  --leaf: #4E6A48;
+  --rule: #E4DED2;
+  --surface: #FFFFFF;
+  --surface-soft: #F1ECE2;
 }
 
-/* Dark mode variables */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --q-primary: #121212;
-    --q-secondary: #5c80a8;
-    --q-font-family-base: 'Arial', sans-serif;
-    --q-heading-font-family: 'Georgia', serif;
-    --q-text-color: #fff;
-    --q-background-color: #121212;
-    --q-accent: #b3b3b3;
-    --q-accent-light: #333;
-
-    --background: #121212;
-    --highlight: #5c80a8;
-  }
+body.quarto-dark {
+  --ink: #E8E3D9;
+  --muted: #9AA0A8;
+  --indigo: #9DB4E0;
+  --ochre: #D6AC62;
+  --leaf: #94B08C;
+  --rule: #2A2F37;
+  --surface: #1B1F25;
+  --surface-soft: #191C22;
 }
 
-/* General body styles */
 body {
-  font-family: var(--q-font-family-base);
-  color: var(--q-text-color);
-  background-color: var(--q-background-color);
-  margin: 0;
-  padding: 0;
-  transition: background-color 0.3s, color 0.3s;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-/* Theme Switcher */
-.theme-switch {
-  --background: var(--q-background-color);
-  --text: var(--q-text-color);
-  width: 70px;
-  height: 30px;
-  background: var(--highlight);
-  border-radius: 50px;
+::selection { background: color-mix(in srgb, var(--ochre) 30%, transparent); }
+
+/* ---------- Navbar ---------- */
+#quarto-header .navbar {
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--rule);
+  box-shadow: none;
+}
+
+#quarto-header .navbar-brand,
+#quarto-header .navbar-title {
+  font-family: "Jost", "Futura", sans-serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: -0.01em;
+}
+
+#quarto-header .navbar-nav .nav-link,
+#quarto-header .navbar-nav .nav-link .menu-text {
+  font-family: "Jost", "Futura", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--muted);
   position: relative;
-  margin: 1rem;
+  transition: color 0.2s ease;
 }
 
-.theme-switch .switch {
-  background: var(--background);
-  width: 24px;
-  height: 24px;
-  border-radius: 100%;
+#quarto-header .navbar-nav .nav-link:hover,
+#quarto-header .navbar-nav .nav-link.active {
+  color: var(--ink);
+}
+
+#quarto-header .navbar-nav .nav-link.active::after {
+  content: "";
   position: absolute;
-  top: 3px;
-  left: 4px;
-  transition: 0.5s all ease;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: 0.1rem;
+  height: 2px;
+  background: var(--ochre);
+  border-radius: 2px;
 }
 
-.light-theme {
-  --background: #FFF;
-  --text: #000;
-  background: var(--background);
+/* Embroidery band — a nod to the shirt in the photo */
+#quarto-header::after {
+  content: "";
+  display: block;
+  height: 7px;
+  background-repeat: repeat-x;
+  background-size: 28px 7px;
+  opacity: 0.85;
+}
+body.quarto-light #quarto-header::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='7'%3E%3Cpath d='M7 0l3.5 3.5L7 7 3.5 3.5z' fill='%232F4E86'/%3E%3Cpath d='M21 0l3.5 3.5L21 7l-3.5-3.5z' fill='%23A87A2E'/%3E%3Ccircle cx='14' cy='3.5' r='1' fill='%234E6A48'/%3E%3Ccircle cx='0' cy='3.5' r='1' fill='%234E6A48'/%3E%3Ccircle cx='28' cy='3.5' r='1' fill='%234E6A48'/%3E%3C/svg%3E");
+}
+body.quarto-dark #quarto-header::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='7'%3E%3Cpath d='M7 0l3.5 3.5L7 7 3.5 3.5z' fill='%239DB4E0'/%3E%3Cpath d='M21 0l3.5 3.5L21 7l-3.5-3.5z' fill='%23D6AC62'/%3E%3Ccircle cx='14' cy='3.5' r='1' fill='%2394B08C'/%3E%3Ccircle cx='0' cy='3.5' r='1' fill='%2394B08C'/%3E%3Ccircle cx='28' cy='3.5' r='1' fill='%2394B08C'/%3E%3C/svg%3E");
 }
 
-.light-theme .theme-switch {
-  background: var(--text);
+/* ---------- Typography ---------- */
+h1, h2, h3, h4 {
+  letter-spacing: -0.015em;
 }
 
-.light-theme .theme-switch .switch {
-  transform: translateX(37px);
+h2 {
+  font-size: 1.6rem;
+  margin-top: 3rem;
+  margin-bottom: 1.1rem;
+  padding-bottom: 0;
+  border-bottom: none;
 }
 
-/* Navbar */
-.navbar {
-  background-color: var(--q-secondary);
-  color: #fff;
-  padding: 1rem 2rem;
-  border-bottom: 3px solid var(--q-primary);
+/* small ochre kicker above section headings */
+main h2:not(.anchored-ignore)::before {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 3px;
+  background: var(--ochre);
+  border-radius: 2px;
+  margin-bottom: 0.7rem;
 }
 
-.navbar a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  margin-right: 1.5rem;
-  transition: color 0.2s;
-}
-
-.navbar a:hover {
-  color: var(--q-accent);
-}
-
-/* Headings */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--q-heading-font-family);
-  color: var(--q-secondary);
-  margin-top: 1.5em;
-}
-
-/* Links */
-a {
-  color: var(--q-secondary);
+main a:not(.nav-link):not(.about-link):not(.btn) {
   text-decoration: underline;
-  transition: color 0.2s;
+  text-decoration-color: color-mix(in srgb, var(--indigo) 35%, transparent);
+  text-decoration-thickness: 1px;
   text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s ease;
+}
+main a:not(.nav-link):not(.about-link):not(.btn):hover {
+  text-decoration-color: var(--indigo);
 }
 
-a:hover {
-  color: var(--q-accent);
+hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  opacity: 1;
+  margin: 2.5rem 0;
 }
 
-/* Fix for Quarto about section links */
-div.quarto-about-trestles .about-entity .about-link,
-div.quarto-about-marquee .about-link {
-  color: var(--q-secondary) !important;
-  text-decoration: none;
-  border: solid 1px;
+.lead {
+  font-family: "Jost", "Futura", sans-serif;
+  font-size: 1.35rem;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 1.4rem;
+}
+
+/* ---------- About page (trestles) ---------- */
+div.quarto-about-trestles {
+  margin-top: 2rem;
+}
+
+div.quarto-about-trestles .about-entity .about-image {
+  border-radius: 14px;
+  object-fit: cover;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 12px 32px -12px rgba(30,37,48,0.35);
+}
+
+div.quarto-about-trestles .about-entity .about-title {
+  font-family: "Jost", "Futura", sans-serif;
+  font-weight: 600;
+  font-size: 2.1rem;
+  letter-spacing: -0.02em;
+  margin-top: 1.4rem;
+}
+
+div.quarto-about-trestles .about-entity .about-subtitle {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+div.quarto-about-trestles .about-entity .about-links {
+  gap: 0.45rem;
+  justify-content: center;
+}
+
+div.quarto-about-trestles .about-entity .about-link {
+  color: var(--ink) !important;
+  background: var(--surface);
+  border: 1px solid var(--rule) !important;
+  border-radius: 999px;
+  padding: 0.3rem 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-decoration: none !important;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 div.quarto-about-trestles .about-entity .about-link:hover {
-  color: var(--q-accent) !important;
-  text-decoration: underline;
+  border-color: var(--indigo) !important;
+  color: var(--indigo) !important;
+  transform: translateY(-1px);
 }
 
-div.quarto-post a {
-  color: var(--q-text-color) !important;
-  text-decoration: none;
+div.quarto-about-trestles .about-contents {
+  padding-top: 0.5rem;
 }
 
-/* Buttons */
-.button, button, input[type="submit"] {
-  background-color: var(--q-secondary);
-  color: #fff;
-  border: none;
-  border-radius: var(--q-border-radius);
-  padding: 0.6em 1.2em;
-  font-family: var(--q-font-family-base);
-  font-size: 1em;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+/* ---------- Publication cards ---------- */
+.pub {
+  position: relative;
+  padding: 1rem 1.2rem 1rem 1.35rem;
+  margin-bottom: 0.9rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.pub::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 14px; bottom: 14px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--indigo);
+}
+.pub:hover { border-color: color-mix(in srgb, var(--indigo) 40%, var(--rule)); transform: translateY(-1px); }
+.pub p { margin: 0; }
+.pub .pub-meta {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ochre);
+  margin-bottom: 0.25rem;
+}
+.pub .pub-title {
+  display: block;
+  font-family: "Jost", "Futura", sans-serif;
+  font-size: 1.08rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.pub .pub-authors {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-top: 0.25rem;
+}
+.pub a.pub-link {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+.pub a.pub-link::after { content: " →"; }
+
+.more-note {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-top: 0.6rem;
 }
 
-.button:hover, button:hover, input[type="submit"]:hover {
-  background-color: var(--q-primary);
-  color: var(--q-secondary);
-  border: 1px solid var(--q-secondary);
+/* ---------- Research interests list ---------- */
+.interest-list ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.interest-list li {
+  position: relative;
+  padding: 0.55rem 0 0.55rem 1.5rem;
+  border-bottom: 1px solid var(--rule);
+  margin: 0;
+}
+.interest-list li:last-child { border-bottom: none; }
+.interest-list li::before {
+  content: "◆";
+  position: absolute;
+  left: 0.1rem;
+  top: 0.78rem;
+  color: var(--ochre);
+  font-size: 0.65rem;
 }
 
-/* Card styles */
-.card {
-  background: var(--q-accent-light);
-  border: 1px solid #eaeaea;
-  border-radius: var(--q-border-radius);
-  box-shadow: 0 2px 8px rgba(231, 117, 0, 0.08);
-  padding: 1.5rem;
-  margin-bottom: 2rem;
+/* ---------- Education timeline ---------- */
+.edu ul {
+  list-style: none;
+  padding-left: 0;
+  border-left: 2px solid var(--rule);
+  margin-left: 0.3rem;
+}
+.edu li {
+  position: relative;
+  padding-left: 1.3rem;
+  margin-bottom: 1rem;
+}
+.edu li::before {
+  content: "";
+  position: absolute;
+  left: -7px; top: 0.5rem;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--indigo);
+}
+.edu li strong { font-weight: 600; }
+.edu .edu-years {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  margin-left: 0.4rem;
 }
 
-/* Accent highlight */
-.accent {
-  background: var(--q-accent);
-  color: var(--q-secondary);
-  padding: 0.2em 0.6em;
-  border-radius: var(--q-border-radius);
-  font-weight: bold;
+/* ---------- Listing pages (Posts, Coding, Publications) ---------- */
+.quarto-title-banner {
+  background: transparent !important;
+  color: var(--ink) !important;
+  border-bottom: 1px solid var(--rule);
+  padding-top: 3rem !important;
+  padding-bottom: 2rem !important;
+}
+.quarto-title-banner .title {
+  font-family: "Jost", "Futura", sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink) !important;
+}
+.quarto-title-banner .quarto-title-meta-heading,
+.quarto-title-banner .quarto-title-meta-contents {
+  color: var(--muted) !important;
 }
 
-/* Table styles */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5rem 0;
-  font-size: 1em;
+div.quarto-post {
+  border-bottom: 1px solid var(--rule) !important;
+  padding: 1.4rem 0;
 }
-
-th, td {
-  border: 1px solid #ddd;
-  padding: 0.75em;
-  text-align: left;
+div.quarto-post a { color: var(--ink) !important; text-decoration: none; }
+div.quarto-post .listing-title { font-family: "Jost", "Futura", sans-serif; font-weight: 500; }
+div.quarto-post .listing-categories .listing-category,
+.quarto-listing-category .category {
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  padding: 0.1rem 0.55rem;
+  color: var(--muted);
 }
+div.quarto-post .thumbnail img { border-radius: 10px; }
 
+/* ---------- Tables ---------- */
+table { font-size: 0.93rem; }
 th {
-  background-color: var(--q-secondary);
-  color: #fff;
-  font-family: var(--q-heading-font-family);
+  font-family: "Jost", "Futura", sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  background: transparent;
+  border-bottom: 1px solid var(--rule) !important;
+}
+td { border-color: var(--rule) !important; }
+
+/* ---------- Code ---------- */
+pre, div.sourceCode {
+  border-radius: 10px;
+  border: 1px solid var(--rule);
 }
 
-tr:nth-child(even) {
-  background-color: #f5f5f5;
+/* ---------- Footer ---------- */
+.nav-footer {
+  border-top: 1px solid var(--rule);
+  font-size: 0.85rem;
 }
 
-/* Scrollable container (updated style) */
+/* ---------- Scrollable panels (used in posts) ---------- */
 .scrollable {
   max-height: 75vh;
   overflow-y: auto;
   padding-right: 1em;
   box-sizing: border-box;
-  border-radius: var(--q-border-radius);
-  background-color: var(--q-background-color);
-}
-
-.scrollable > * {
-  max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.scrollable img,
-.scrollable svg,
-.scrollable canvas {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.scrollable pre {
-  overflow: auto !important;
-  max-height: 400px;
-}
-
-/* Webkit scrollbar appearance */
-.scrollable::-webkit-scrollbar {
-  width: 10px;
-}
-
-.scrollable::-webkit-scrollbar-thumb {
-  background-color: rgba(100, 100, 100, 0.5);
   border-radius: 10px;
+  font-size: 0.8em;
 }
-
-/* Code blocks and inline code */
-pre, code {
-  background-color: var(--q-accent-light);
-  color: var(--q-text-color);
-  font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', monospace;
-  border-radius: 6px;
-  padding: 0.5em 0.75em;
-  font-size: 1em;
+.scrollable > * { max-width: 100%; margin-left: auto; margin-right: auto; }
+.scrollable img, .scrollable svg, .scrollable canvas {
+  max-width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;
 }
+.scrollable pre { overflow: auto !important; max-height: 400px; }
+.scrollable::-webkit-scrollbar { width: 10px; }
+.scrollable::-webkit-scrollbar-thumb { background-color: rgba(100,100,100,0.5); border-radius: 10px; }
 
-/* Dark mode adjustments */
-@media (prefers-color-scheme: dark) {
-  pre, code {
-    background-color: #1e1e1e;
-    color: #e0e0e0;
-  }
-  .scrollable {
-    background-color: #121212;
-  }
-  tr:nth-child(even) {
-    background-color: #1a1a1a;
-  }
-}
-
-/* Responsive adjustments */
-@media (max-width: 600px) {
-  .navbar {
-    padding: 1rem;
-  }
-  .card {
-    padding: 1rem;
-  }
-  th, td {
-    padding: 0.5em;
-  }
-}
-
-/* Make plots scale responsively on all slides */
+/* ---------- Slides ---------- */
 .reveal .slides section img,
 .reveal .slides section svg,
 .reveal .slides section canvas {
@@ -286,7 +391,8 @@ pre, code {
   margin-right: auto;
 }
 
-/* ===== NEW: Make font smaller in scrollable panels ===== */
-.scrollable {
-  font-size: 0.8em; /* adjust as needed */
+/* ---------- Small screens ---------- */
+@media (max-width: 640px) {
+  .lead { font-size: 1.18rem; }
+  div.quarto-about-trestles .about-entity .about-title { font-size: 1.8rem; }
 }

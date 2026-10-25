@@ -10,4 +10,8 @@
 *.RDS
 .Rproj.user
 .DS_Store
-*.pdf
+*.pdf.quarto/
+.Rproj.user/
+.Rhistory
+.DS_Store
+*_files/

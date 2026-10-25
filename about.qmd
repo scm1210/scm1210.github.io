@@ -1,63 +1,73 @@
 ---
 title: "Steven Mesquiti"
-subtitle: "PhD Student | Department of Psychology | Princeton University"
+subtitle: "PhD Student · Department of Psychology · Princeton University"
 image: profile.jpg
+toc: false
 about:
   template: trestles
+  image-width: 15em
+  image-shape: rounded
   links:
-    - text: CV
+    - icon: file-earmark-text
+      text: CV
       href: CV.qmd
-    - text: Bluesky
-      href: https://bsky.app/profile/smesquiti.bsky.social
-    - icon: google scholar
-      text: Google Scholar
+    - icon: google
+      text: Scholar
       href: https://scholar.google.com/citations?user=jMPn4hoAAAAJ&hl=en&inst=10749622055976013885
     - icon: github
       text: GitHub
       href: https://github.com/scm1210
+    - icon: cloud
+      text: Bluesky
+      href: https://bsky.app/profile/smesquiti.bsky.social
     - icon: envelope
       text: Email
       href: mailto:sm9518@princeton.edu
-fontsize: 11pt
 ---
 
-I am a third-year PhD student in the [Department of Psychology](https://psychology.princeton.edu/) at Princeton University, advised by [Erik Nook in the Logic of Emotion Lab](https://lemolab.princeton.edu/).
+::: lead
+I build and evaluate language-based tools for mental health assessment, asking when they work, for whom, and why.
+:::
 
-My research sits at the intersection of computer science, natural language processing, and clinical psychology. My program of research seeks to develop and evaluate language-based tools for mental health assessment, with a focus on the psychometric validity and generalizability of such tools.
+I am a third-year PhD student in the [Department of Psychology](https://psychology.princeton.edu/) at Princeton University, advised by [Erik Nook in the Logic of Emotion Lab](https://lemolab.princeton.edu/). My research sits at the intersection of computer science, natural language processing, and clinical psychology, with a focus on the psychometric validity and generalizability of language-based measures.
 
-My current work examines whether large language models predict depression and anxiety equivalently across racially and ethnically diverse samples, how the semantic content of first-person pronoun use in psychotherapy transcripts tracks symptom severity and treatment response, and whether we can develop domain-adapted clinical language models to reliably predict treatment outcomes.
+My current work examines whether large language models predict depression and anxiety equivalently across racially and ethnically diverse samples, how the semantic content of first-person pronoun use in psychotherapy transcripts tracks symptom severity and treatment response, and whether domain-adapted clinical language models can reliably predict treatment outcomes.
 
-Prior to Princeton, I was as a Lab Manager in Emily Falk's [Communication Neuroscience Lab](https://www.asc.upenn.edu/research/centers/communication-neuroscience-lab) at the University of Pennsylvania. I have also had the privilege of collaborating with researchers including Jamie Pennebaker and people affiliated with the [World Well-Being Project](https://wwbp.org/) at the University of Pennsylvania.
+Before Princeton, I was a Lab Manager in Emily Falk's [Communication Neuroscience Lab](https://www.asc.upenn.edu/research/centers/communication-neuroscience-lab) at the University of Pennsylvania. I have also had the privilege of collaborating with Jamie Pennebaker and researchers affiliated with the [World Well-Being Project](https://wwbp.org/).
 
-My research has been supported by the Princeton University [Data Driven Social Science Graduate Fellowship](https://ddss.princeton.edu/), the New Jersey Health Foundation, and [Princeton Precision Health](https://pph.princeton.edu/about).
-
-------------------------------------------------------------------------
+My research has been supported by the Princeton [Data Driven Social Science Graduate Fellowship](https://ddss.princeton.edu/), the New Jersey Health Foundation, and [Princeton Precision Health](https://pph.princeton.edu/about).
 
 ## Selected Publications
 
-Mesquiti, S., Stade E. C., Hull, T.D., Nook, E. C. (Submitted). The Meaning of "I": Semantic Self-Representation Tracks Internalizing Symptoms Within and Across Persons in Psychotherapy. [DOI](https://doi.org/10.31234/osf.io/dngrh_v1)
+::: pub
+[Under Revision]{.pub-meta}[The Meaning of "I": Semantic Self-Representation Tracks Internalizing Symptoms Within and Across Persons in Psychotherapy]{.pub-title} [Mesquiti, S., Stade, E. C., Hull, T. D., & Nook, E. C.]{.pub-authors} [Preprint](https://doi.org/10.31234/osf.io/dngrh_v1){.pub-link}
+:::
 
-Mesquiti, S. & Nook, E.C. (2026). Large Language Models in Mental Health Treatment and Research. *Annual Reviews BioMedical Data Science*. [DOI](https://www.annualreviews.org/content/journals/10.1146/annurev-biodatasci-092524-113527)
+::: pub
+[2026 · Annual Review of Biomedical Data Science]{.pub-meta} [Large Language Models in Mental Health Treatment and Research]{.pub-title} [Mesquiti, S. & Nook, E. C.]{.pub-authors} [DOI](https://www.annualreviews.org/content/journals/10.1146/annurev-biodatasci-092524-113527){.pub-link}
+:::
 
-Mesquiti, S., Cosme, D., Nook, E.C., Falk E.B., Burns S. (2026). Predicting Psychological and Subjective Well-being through Language-based Assessments of Well-being. *Communications Psychology*. [DOI](https://www.nature.com/articles/s44271-026-00400-3)
+::: pub
+[2026 · Communications Psychology]{.pub-meta} [Predicting Psychological and Subjective Well-being through Language-based Assessments of Well-being]{.pub-title} [Mesquiti, S., Cosme, D., Nook, E. C., Falk, E. B., & Burns, S.]{.pub-authors} [DOI](https://www.nature.com/articles/s44271-026-00400-3){.pub-link}
+:::
 
-*A complete list of publications is available on [Google Scholar](https://scholar.google.com/citations?user=jMPn4hoAAAAJ) and in my [CV](CV.qmd).*
-
-------------------------------------------------------------------------
+::: more-note
+Full list on [Google Scholar](https://scholar.google.com/citations?user=jMPn4hoAAAAJ) and in my [CV](CV.qmd).
+:::
 
 ## Research Interests
 
--   Development of language-based clinical assessmenrs
+::: interest-list
+-   Development of language-based clinical assessments
 -   Language as a transdiagnostic index of psychological distress
 -   Domain adaptation and evaluation of large language models for mental health
 -   Computational psycholinguistics and large-scale text analysis
-
-------------------------------------------------------------------------
+:::
 
 ## Education
 
-| Degree | Field                       | Year(s)      | Institution             |
-|------------------|-------------------|------------------|------------------|
-| Ph.D.  | Psychology                  | 2024–Present | Princeton University    |
-| M.A.   | Psychological Research      | 2019–2022    | Texas State University  |
-| B.A.   | Psychology (Minor: Spanish) | 2015–2019    | Southwestern University |
+::: edu
+-   **Ph.D., Psychology** — Princeton University [2024–present]{.edu-years}
+-   **M.A., Psychological Research** — Texas State University [2019–2022]{.edu-years}
+-   **B.A., Psychology** (Minor: Spanish) — Southwestern University [2015–2019]{.edu-years}
+:::

@@ -1,0 +1,41 @@
+/*-- scss:defaults --*/
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..700;1,300..700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+$night:   #14171C;
+$paper:   #E8E3D9;
+$indigo:  #9DB4E0;
+$ochre:   #D6AC62;
+$leaf:    #94B08C;
+
+$body-bg:      $night;
+$body-color:   $paper;
+$primary:      $indigo;
+$secondary:    #9AA0A8;
+$success:      $leaf;
+$warning:      $ochre;
+
+$link-color:            $indigo;
+$link-decoration:       none;
+$link-hover-decoration: underline;
+
+$font-family-sans-serif: "Jost", "Futura", "Century Gothic", system-ui, sans-serif;
+$headings-font-family:   "Jost", "Futura", "Century Gothic", sans-serif;
+$font-family-monospace:  "JetBrains Mono", "Fira Mono", Menlo, monospace;
+$font-size-root:         18px;
+$line-height-base:       1.6;
+$headings-font-weight:   500;
+$headings-color:         #F3EFE7;
+
+$navbar-bg:        $night;
+$navbar-fg:        $paper;
+$navbar-hl:        $indigo;
+$footer-bg:        $night;
+$footer-fg:        #8B919A;
+
+$border-color:     #2A2F37;
+$code-color:       #E5BF7A;
+$code-bg:          #1D2128;
+$code-block-bg:    #1D2128;
+
+$toc-color:        #9AA0A8;
+$border-radius:    10px;

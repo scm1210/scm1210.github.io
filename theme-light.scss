@@ -1,0 +1,42 @@
+/*-- scss:defaults --*/
+// Palette drawn from the profile photo: linen shirt, indigo + ochre embroidery, leaf-green backdrop
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..700;1,300..700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+$linen:   #F7F4EE;
+$ink:     #1E2530;
+$indigo:  #2F4E86;
+$ochre:   #A87A2E;
+$leaf:    #4E6A48;
+
+$body-bg:      $linen;
+$body-color:   $ink;
+$primary:      $indigo;
+$secondary:    #6B7280;
+$success:      $leaf;
+$warning:      $ochre;
+
+$link-color:            $indigo;
+$link-decoration:       none;
+$link-hover-decoration: underline;
+
+$font-family-sans-serif: "Jost", "Futura", "Century Gothic", system-ui, sans-serif;
+$headings-font-family:   "Jost", "Futura", "Century Gothic", sans-serif;
+$font-family-monospace:  "JetBrains Mono", "Fira Mono", Menlo, monospace;
+$font-size-root:         18px;
+$line-height-base:       1.6;
+$headings-font-weight:   500;
+$headings-color:         $ink;
+
+$navbar-bg:        $linen;
+$navbar-fg:        $ink;
+$navbar-hl:        $indigo;
+$footer-bg:        $linen;
+$footer-fg:        #6B7280;
+
+$border-color:     #E4DED2;
+$code-color:       #7A4E12;
+$code-bg:          #EFEADF;
+$code-block-bg:    #EFEADF;
+
+$toc-color:        #6B7280;
+$border-radius:    10px;

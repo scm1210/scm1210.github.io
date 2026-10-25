@@ -3,15 +3,12 @@ project:
   output-dir: docs
 
 website:
+  title: "Steven Mesquiti"
   description: "Personal Website of Steven Mesquiti"
+  page-navigation: false
   navbar:
-    left:
-      - text: Steven Mesquiti
-        href: about.qmd  # Redirects to the about page when clicked
     right:
-      - text: Home
-        href: about.qmd  # Additional link to the about page
-      - text: Publications & Preprints
+      - text: Publications
         href: publications.qmd
       - text: CV
         href: CV.qmd
@@ -22,11 +19,15 @@ website:
   page-footer:
     left: "© 2026 Steven Mesquiti"
     right: "[MIT License](LICENSE)"
+
 format:
   html:
     theme:
-      - cyborg
-      - brand
-    toc: true
+      light: [cosmo, theme-light.scss]
+      dark: [cosmo, theme-dark.scss]
     css: styles.css
+    toc: true
+    smooth-scroll: true
+    link-external-newwindow: true
+
 editor: visual

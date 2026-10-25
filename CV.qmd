@@ -1,18 +1,17 @@
 ---
 title: "Steven Mesquiti, M.A."
-author: "Department of Psychology | Princeton University | sm9518@princeton.edu"
+subtitle: "Department of Psychology · Princeton University · sm9518@princeton.edu"
 format:
   html:
     toc: false
     number-sections: false
-    theme: cosmo
-    css: styles.css
     include-in-header:
       text: |
         <style>
         #title-block-header { text-align: center; margin-bottom: 1.5em; }
         #title-block-header .title { margin-bottom: 0.3em; }
         #title-block-header .quarto-title-meta-heading { display: none; }
+        #title-block-header .subtitle { font-family: 'Jost', 'Futura', sans-serif; font-size: 0.95rem; color: var(--muted); }
         #title-block-header .quarto-title-meta-contents,
         #title-block-header .quarto-title-meta-contents p {
           text-align: center;
@@ -23,7 +22,9 @@ format:
         }
         .pub-list { list-style: none; padding-left: 0; margin-top: 0.5em; }
         .pub-list li { padding-left: 1.5em; text-indent: -1.5em; margin-bottom: 0.9em; line-height: 1.4; }
-        h2 { border-bottom: 1px solid #ccc; padding-bottom: 0.2em; margin-top: 1.6em; }
+        h2 { padding-bottom: 0.2em; margin-top: 2.2em; }
+        main h2::before { display: none !important; }
+        h2 { border-bottom: 1px solid var(--rule); }
         </style>
   pdf:
     toc: false
@@ -75,7 +76,6 @@ B.A. in Psychology (Minor: Spanish)
 -   **2020** — Texas State University Thesis Research Support Fellowship (\$1,070)
 -   **2019** — Texas State University Graduate College of Education Scholarship
 -   **2015** — Southwestern University Mood Scholar
-
 
 ## Publications
 
