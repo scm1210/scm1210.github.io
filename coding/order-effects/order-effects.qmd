@@ -1,0 +1,279 @@
+---
+title: "Question Order Demo"
+subtitle: "Does the order of the questions change the answer?"
+format:
+  html:
+    page-layout: full
+    toc: false
+execute:
+  echo: false
+---
+
+```{ojs}
+//| echo: false
+// ---- SETTINGS: paste your two links here --------------------------------
+// Response sheet (for reference): https://docs.google.com/spreadsheets/d/11MZU6PJeBErgCZ7ImWRUKHCrQfjdmAEh-6ypqK2viDI/edit
+// To fill SHEET_URL: in that sheet, File > Share > Publish to web > "Form Responses 1" > CSV > Publish,
+// then paste the link it shows (it looks like https://docs.google.com/spreadsheets/d/e/2PACX-.../pub?gid=...&single=true&output=csv)
+SHEET_URL = "https://docs.google.com/spreadsheets/d/11MZU6PJeBErgCZ7ImWRUKHCrQfjdmAEh-6ypqK2viDI/edit?gid=1000853334#gid=1000853334"
+// Student link to the form (used for the QR code)
+FORM_URL = "https://forms.gle/SzfcnpbcHTPd1v5K6"
+// -------------------------------------------------------------------------
+// Precepts. The form dropdown should start each option with the code (e.g. "P01 · Mon 9:35 AM").
+PRECEPTS = [
+  { code: "P01", when: "Mon 9:35 AM",  room: "Lewis Library 117",            ta: "Steven" },
+  { code: "P02", when: "Mon 1:20 PM",  room: "Neuroscience Institute A02",   ta: "Steven" },
+  { code: "P04", when: "Wed 2:25 PM",  room: "Neuroscience Institute A18",   ta: "Henna" },
+  { code: "P05", when: "Wed 3:30 PM",  room: "Neuroscience Institute A18",   ta: "Henna" },
+  { code: "P07", when: "Thu 2:25 PM",  room: "Neuroscience Institute A17",   ta: "Faustine" },
+  { code: "P08", when: "Thu 3:30 PM",  room: "Neuroscience Institute A17",   ta: "Faustine" },
+  { code: "P09", when: "Fri 9:35 AM",  room: "Neuroscience Institute A18",   ta: "Diana" },
+  { code: "P10", when: "Fri 10:40 AM", room: "Neuroscience Institute A18",   ta: "Diana" },
+  { code: "P11", when: "Fri 12:15 PM", room: "Neuroscience Institute A18",   ta: "Diana" },
+  { code: "P12", when: "Thu 1:20 PM",  room: "Peretsman Scully Hall 116",    ta: "Henna" }
+]
+```
+
+```{ojs}
+//| echo: false
+params = new URLSearchParams(location.search)
+memo = ({ precept: params.get("precept") })   // remembers the dropdown across refreshes
+viewof refresh = Inputs.button("↻ Refresh responses")
+viewof auto = Inputs.toggle({ label: "Auto-refresh every 15 s", value: false })
+```
+
+```{ojs}
+//| echo: false
+tick = {
+  if (!auto) { yield 0; return; }
+  let i = 0;
+  while (true) { yield ++i; await Promises.delay(15000); }
+}
+```
+
+```{ojs}
+//| echo: false
+loaded = {
+  refresh; tick;
+  if (!SHEET_URL) return { rows: demoRows(), demo: true, at: new Date() };
+  try {
+    // A plain share link (…/d/<id>/edit) is read through Google's CSV query endpoint;
+    // a "Publish to web" CSV link is used as-is.
+    const id = (SHEET_URL.match(/spreadsheets\/d\/([\w-]{20,})/) || [])[1];
+    const src = SHEET_URL.includes("output=csv") || !id ? SHEET_URL
+      : `https://docs.google.com/spreadsheets/d/${id}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent("Form Responses 1")}`;
+    const res = await fetch(src + (src.includes("?") ? "&" : "?") + "t=" + Date.now(), { cache: "no-store" });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const table = d3.csvParseRows(await res.text()).filter(r => r.some(x => x.trim() !== ""));
+    return { rows: toRows(table), demo: false, at: new Date() };
+  } catch (e) {
+    return { rows: [], demo: false, at: new Date(), error: e.message };
+  }
+}
+```
+
+```{ojs}
+//| echo: false
+counts = d3.rollup(loaded.rows, v => v.length, d => d.p)
+TAS = [...new Set(PRECEPTS.map(d => d.ta))]
+choices = new Map([
+  ["All precepts", { all: true }],
+  ...TAS.map(t => [`All of ${t}'s precepts`, { ta: t }]),
+  ...[...PRECEPTS].sort((a, b) => a.code.localeCompare(b.code)).map(d =>
+    [`${d.code} · ${d.when} · ${d.ta} (${counts.get(d.code) ?? 0})`, { code: d.code }])
+])
+startChoice = {
+  const want = (memo.precept || "").toUpperCase();
+  for (const [k, v] of choices) if ((v.code && v.code === want) || (v.ta && v.ta.toUpperCase() === want)) return k;
+  return "All precepts";
+}
+viewof precept = Inputs.select(choices, { label: "Precept", key: startChoice })
+viewof view = Inputs.radio(["Everyone", "Split by order"], { value: "Everyone" })
+```
+
+```{ojs}
+//| echo: false
+data = {
+  memo.precept = precept.code ?? precept.ta ?? null;
+  if (precept.code) return loaded.rows.filter(d => d.p === precept.code);
+  if (precept.ta) { const codes = new Set(PRECEPTS.filter(d => d.ta === precept.ta).map(d => d.code)); return loaded.rows.filter(d => codes.has(d.p)); }
+  return loaded.rows;
+}
+split = view === "Split by order"
+nA = data.filter(d => d.g === "A").length
+md`${loaded.error ? `**Couldn't read the sheet** (${loaded.error}). Check that the Responses tab is published to the web as CSV.` :
+  loaded.demo ? `**Example data.** Paste your published-sheet link into \`SHEET_URL\` to show real responses.` :
+  `**${data.length} responses** · Order A: ${nA} · Order B: ${data.length - nA} · updated ${loaded.at.toLocaleTimeString()}`}`
+```
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Show the form QR code for students
+
+```{ojs}
+//| echo: false
+QR = import("https://cdn.jsdelivr.net/npm/qrcode@1.5.3/+esm")
+qrBlock = {
+  if (!FORM_URL) return md`Add your form link to \`FORM_URL\` at the top of the notebook.`;
+  const url = await (QR.toDataURL ?? QR.default.toDataURL)(FORM_URL, { width: 640, margin: 2 });
+  return html`<div style="text-align:center"><img src="${url}" style="width:min(60vh,90%);background:#fff;padding:12px;border-radius:12px"><p style="font-family:monospace">${FORM_URL}</p></div>`;
+}
+```
+:::
+
+::::::: grid
+::: {.g-col-12 .g-col-lg-6}
+#### What is the population of Finland?
+
+```{ojs}
+//| echo: false
+hist("fin", { log: true, lo: 5, hi: 8, truth: 5.6e6, labels: ["Finland asked first", "Movie asked first"] })
+```
+:::
+
+::: {.g-col-12 .g-col-lg-6}
+#### What does a mid-budget movie cost to make?
+
+```{ojs}
+//| echo: false
+hist("mov", { log: true, lo: 6, hi: 9, money: true, labels: ["Finland asked first", "Movie asked first"] })
+```
+:::
+
+::: {.g-col-12 .g-col-lg-6}
+#### How happy are you today? (1–10)
+
+```{ojs}
+//| echo: false
+hist("hap", { labels: ["Happiness asked first", "Weather asked first"] })
+```
+:::
+
+::: {.g-col-12 .g-col-lg-6}
+#### How sunny is it today? (1–10)
+
+```{ojs}
+//| echo: false
+hist("sun", { labels: ["Happiness asked first", "Weather asked first"] })
+```
+:::
+:::::::
+
+#### Does today's weather track your happiness rating?
+
+```{ojs}
+//| echo: false
+{
+  const ok = data.filter(d => isFinite(d.hap) && isFinite(d.sun))
+    .map((d, i) => ({ ...d, order: d.g === "A" ? "Happiness asked first" : "Weather asked first",
+                      jx: d.sun + (rand(i) - 0.5) * 0.5, jy: d.hap + (rand(i + 99) - 0.5) * 0.5 }));
+  const groups = split ? ["Happiness asked first", "Weather asked first"] : [null];
+  const rs = groups.map(g => { const s = ok.filter(d => !g || d.order === g);
+    return `${g ?? "Everyone"}: r = ${fmtR(corr(s.map(d => d.sun), s.map(d => d.hap)))} (n = ${s.length})`; });
+  return html`${Plot.plot({
+    width: 900, height: 300, marginBottom: 40,
+    x: { domain: [0.5, 10.5], ticks: d3.range(1, 11), label: "How sunny (1–10) →" },
+    y: { domain: [0.5, 10.5], ticks: d3.range(1, 11), label: "↑ How happy (1–10)" },
+    fx: split ? { label: null } : undefined,
+    color: { domain: COLORS.domain, range: COLORS.range },
+    marks: [
+      Plot.frame({ stroke: "#ccc" }),
+      Plot.dot(ok, { x: "jx", y: "jy", fx: split ? "order" : undefined, r: 6,
+                     fill: split ? "order" : GROUP.pool, fillOpacity: 0.75, stroke: "#333", strokeWidth: 0.5 })
+    ]
+  })}<p style="font-family:monospace;font-size:13px">${rs.join(" · ")}</p>`;
+}
+```
+
+```{ojs}
+//| echo: false
+//| output: false
+// ---------------------------- helpers ------------------------------------
+COLORS = ({ domain: ["Finland asked first", "Movie asked first", "Happiness asked first", "Weather asked first"],
+            range: ["#FF8080", "#8080FF", "#FF8080", "#8080FF"] })
+GROUP = ({ A: "#FF8080", B: "#8080FF", pool: "#9a9fae" })
+
+function hist(key, { log = false, lo = 0, hi = 10, money = false, truth = null, labels }) {
+  const ok = data.filter(d => isFinite(d[key]) && (!log || d[key] > 0))
+    .map(d => ({ x: log ? Math.log10(d[key]) : d[key], order: d.g === "A" ? labels[0] : labels[1], raw: d[key] }));
+  let thresholds, xopt;
+  if (log) {
+    const xs = ok.map(d => d.x);
+    let a = Math.max(0, Math.floor(Math.min(lo, ...xs) * 2) / 2), b = Math.min(13, Math.ceil(Math.max(hi, ...xs) * 2) / 2);
+    thresholds = d3.range(a, b + 0.001, 0.25);
+    xopt = { domain: [a, b], ticks: d3.range(Math.ceil(a), Math.floor(b) + 1), tickFormat: v => (money ? "$" : "") + big(10 ** v), label: "log scale" };
+  } else {
+    thresholds = d3.range(0.5, 11, 1);
+    xopt = { domain: [0.5, 10.5], ticks: d3.range(1, 11), label: null };
+  }
+  // ggplot-style: geom_histogram(position = "identity", alpha = .6, colour = "grey20")
+  const bar = { thresholds, stroke: "#333", strokeWidth: 0.6, inset: 0 };
+  const marks = split
+    ? ["A", "B"].map((g, i) => Plot.rectY(ok.filter(d => d.order === labels[i]),
+        Plot.binX({ y: "count" }, { x: "x", fill: GROUP[g], fillOpacity: 0.6, ...bar })))
+    : [Plot.rectY(ok, Plot.binX({ y: "count" }, { x: "x", fill: GROUP.pool, fillOpacity: 0.8, ...bar }))];
+  marks.push(Plot.ruleY([0]));
+  if (truth) marks.push(
+    Plot.ruleX([Math.log10(truth)], { stroke: "currentColor", strokeDasharray: "4,3" }),
+    Plot.text([Math.log10(truth)], { x: d => d, frameAnchor: "top", dx: 6, textAnchor: "start", text: () => "actual ≈ " + (truth / 1e6).toFixed(1) + "M" }));
+  const f = v => !isFinite(v) ? "–" : log ? (money ? "$" : "") + big(v) : v.toFixed(1);
+  const cap = split
+    ? labels.map(l => `${l}: median ${f(d3.median(ok.filter(d => d.order === l), d => d.raw))}`).join(" · ")
+    : `n = ${ok.length} · median ${f(d3.median(ok, d => d.raw))}`;
+  return html`${Plot.plot({
+    height: 260, marginLeft: 20, x: xopt, y: { label: null, ticks: [] }, marks
+  })}${split ? html`<div style="display:flex;gap:18px;font-size:14px;margin:2px 0 4px">
+      <span><span style="display:inline-block;width:12px;height:12px;background:${GROUP.A};opacity:.75;border:1px solid #333"></span> Group A · ${labels[0]}</span>
+      <span><span style="display:inline-block;width:12px;height:12px;background:${GROUP.B};opacity:.75;border:1px solid #333"></span> Group B · ${labels[1]}</span></div>` : ""}<p style="font-family:monospace;font-size:13px;margin:0">${cap}</p>`;
+}
+
+function num(s) {
+  if (s == null) return NaN;
+  s = String(s).toLowerCase().replace(/[$€£,\s~≈]/g, "").replace(/^about|^around/, "");
+  const m = s.match(/^(-?\d*\.?\d+)(.*)$/); if (!m) return NaN;
+  let v = parseFloat(m[1]); const suf = m[2];
+  if (/^(b|bn|bil)/.test(suf)) v *= 1e9; else if (/^(m|mm|mil)/.test(suf)) v *= 1e6; else if (/^(k|thou)/.test(suf)) v *= 1e3;
+  return v;
+}
+
+// Columns are matched by keywords in the question text, so both form sections
+// can reuse the same wording. Duplicate headers are fine (parsed as raw rows).
+function toRows(table) {
+  const h = table[0].map(x => x.trim());
+  const cols = re => h.map((t, i) => re.test(t) ? i : -1).filter(i => i >= 0);
+  const C = { fin: cols(/finland/i), mov: cols(/movie|film/i), hap: cols(/happy/i), sun: cols(/sunny|weather/i) };
+  const cond = cols(/odd|even|birth|condition|order|version|group/i)[0];
+  const pc = cols(/precept|which section/i).filter(i => i !== cond)[0];
+  return table.slice(1).map(r => {
+    const pick = k => { for (let j = 0; j < C[k].length; j++) { const v = (r[C[k][j]] || "").trim(); if (v !== "") return { v, j }; } return null; };
+    const f = pick("fin"), m = pick("mov"), hh = pick("hap"), s = pick("sun");
+    let g = null;
+    if (cond != null) { const t = (r[cond] || "").toLowerCase();
+      if (/odd|^a\b|finland first/.test(t)) g = "A"; else if (/even|^b\b|movie first/.test(t)) g = "B"; }
+    if (!g && f && C.fin.length > 1) g = f.j === 0 ? "A" : "B";
+    if (!g && f && m) g = C.fin[f.j] < C.mov[m.j] ? "A" : "B";
+    const pm = pc != null ? (r[pc] || "").match(/P\s?0?(\d{1,2})/i) : null;
+    return { p: pm ? "P" + pm[1].padStart(2, "0") : "", g: g || "A",
+             fin: f ? num(f.v) : NaN, mov: m ? num(m.v) : NaN, hap: hh ? num(hh.v) : NaN, sun: s ? num(s.v) : NaN };
+  });
+}
+
+function big(v) { if (!isFinite(v)) return "–"; const a = Math.abs(v);
+  if (a >= 1e9) return +(v / 1e9).toPrecision(3) + "B"; if (a >= 1e6) return +(v / 1e6).toPrecision(3) + "M";
+  if (a >= 1e3) return +(v / 1e3).toPrecision(3) + "K"; return +v.toPrecision(3) + ""; }
+function corr(x, y) { const n = x.length; if (n < 3) return NaN; const mx = d3.mean(x), my = d3.mean(y);
+  let a = 0, b = 0, c = 0; for (let i = 0; i < n; i++) { a += (x[i] - mx) * (y[i] - my); b += (x[i] - mx) ** 2; c += (y[i] - my) ** 2; }
+  return b && c ? a / Math.sqrt(b * c) : NaN; }
+fmtR = r => isFinite(r) ? r.toFixed(2) : "–"
+rand = i => { const x = Math.sin(i * 12.9898) * 43758.5453; return x - Math.floor(x); }
+
+function demoRows() {
+  const n = d3.randomNormal(0, 1), out = [];
+  for (let i = 0; i < 36; i++) {
+    const g = i % 2 ? "B" : "A", sun = Math.max(1, Math.min(10, Math.round(4 + n() * 2.2)));
+    out.push({ p: PRECEPTS[i % PRECEPTS.length].code, g,
+      fin: 10 ** ((g === "A" ? 6.75 : 7.55) + n() * 0.35), mov: 10 ** ((g === "A" ? 7.0 : 7.65) + n() * 0.35),
+      sun, hap: Math.max(1, Math.min(10, Math.round((g === "A" ? 3 + 0.5 * sun : 6) + n() * 1.4))) });
+  }
+  return out;
+}
+```

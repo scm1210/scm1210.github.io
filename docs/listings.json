@@ -2,6 +2,7 @@
   {
     "listing": "/coding.html",
     "items": [
+      "/coding/order-effects/order-effects.html",
       "/coding/correlation/Correlations.html",
       "/coding/t-test/T-tests.html",
       "/coding/Regression/Regression.html",
